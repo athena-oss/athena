@@ -1,0 +1,621 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <title>A Simple PHP Web Server · GitBook</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.0">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+<style>
+.book-summary {
+  background-color:#13262f;
+  border-left-color: #344047;
+}
+
+.book-summary .summary li a, .book-summary .summary li span {
+	color: #FFF !important;
+}
+
+.book-summary .summary > li > a, .book-summary ul.summary > li > span {
+	text-transform: uppercase;
+	font-weight: 700;
+}
+
+.book-header {
+	color: #7e888b;
+	background-color: rgb(245, 245, 245);
+}
+
+.book-body {
+	background-color: #fafafa;
+}
+
+.markdown-section pre {
+	line-height: 1;
+	border: 1px solid #d8d6d6;
+}
+
+.page-inner h1,
+.page-inner h2,
+.page-inner h3,
+.page-inner h4,
+.page-inner h5,
+.page-inner h6 {
+	color: #098BCC;
+	font-weight:300;
+}
+
+#book-search-input {
+	color: rgb(54, 65, 73);
+	background-color: #2b3a42;
+}
+
+#book-search-input input, #book-search-input input:hover, #book-search-input input:focus {
+	color: #909394 !important;
+}
+
+</style>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    Quick Start
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../quick-start/getting-started.html">
+            
+                <a href="../quick-start/getting-started.html">
+            
+                    
+                    Getting Started
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../quick-start/how-engine-works.html">
+            
+                <a href="../quick-start/how-engine-works.html">
+            
+                    
+                    Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../quick-start/how-plugins-work.html">
+            
+                <a href="../quick-start/how-plugins-work.html">
+            
+                    
+                    Plugins
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    Reference
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../api/frequently-used-cli-functions.html">
+            
+                <a href="../api/frequently-used-cli-functions.html">
+            
+                    
+                    Top used API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../api/cli-functions-shared.html">
+            
+                <a href="../api/cli-functions-shared.html">
+            
+                    
+                    Shared API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../api/cli-functions-host.html">
+            
+                <a href="../api/cli-functions-host.html">
+            
+                    
+                    Host only API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../api/flags.html">
+            
+                <a href="../api/flags.html">
+            
+                    
+                    CLI flags
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    Guides
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../guides/contributing.html">
+            
+                <a href="../guides/contributing.html">
+            
+                    
+                    Contributing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../LICENSE.html">
+            
+                <a href="../LICENSE.html">
+            
+                    
+                    License
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../guides/versioning.html">
+            
+                <a href="../guides/versioning.html">
+            
+                    
+                    Versioning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../guides/testing.html">
+            
+                <a href="../guides/testing.html">
+            
+                    
+                    Testing
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    Examples
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.5.1" data-path="simple-php-server.html">
+            
+                <a href="simple-php-server.html">
+            
+                    
+                    A Simple PHP Web Server
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >A Simple PHP Web Server</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="lets-create-a-plugin-using-the-wizard">Let&apos;s create a plugin using the wizard</h2><pre><code class="lang-bash">$ athena wizard start
+       ___   __  __
+      /   | / /_/ /_  ___  ____  ____ _
+     / /| |/ __/ __ \/ _ \/ __ \/ __  /
+    / ___ / /_/ / / /  __/ / / / /_/ /
+   /_/  |_\__/_/ /_/\___/_/ /_/\__,_/
+                              v0.4.0
+  ==================================
+
+
+Welcome to the plugin creator wizard.
+
+[Plugin] what is the name of the plugin?
+simple-webserver
+
+[Plugin:simple-webserver] how many commands <span class="hljs-keyword">do</span> you want <span class="hljs-keyword">do</span> add?
+1
+
+[Plugin:simple-webserver] what is the name of the <span class="hljs-built_in">command</span> <span class="hljs-comment">#1? (Cannot contain spaces or underscore and should be in lowercase)</span>
+start
+
+[Command:start] what is the description?
+Starts the webserver.
+
+[Command:start] will you require a docker container (Y/n)?
+
+
+[Command:start] <span class="hljs-keyword">do</span> you want to create your own container (Y/n)?
+n
+
+[Command:start] what will be the image that you will be using, e.g.: debian:jessie, ubuntu:latest, php:7.0-apache, etc...
+php:7.0-apache
+
+[Command:start] will the container run as a daemon(y/N)?
+y
+
+[Command:start] will you execute some tasks after the container starts/executes (y/N)?
+
+
+[Command:start] how many mandatory arguments does it have *(0)?
+2
+
+[Command:start] what is the name of the argument <span class="hljs-comment">#1?</span>
+<span class="hljs-built_in">source</span> directory
+
+[Command:start] what is the name of the argument <span class="hljs-comment">#2?</span>
+port
+
+[Command:start] <span class="hljs-keyword">do</span> you want to save (Y/n)?
+
+
+[OK] Command <span class="hljs-string">&apos;start&apos;</span> was created <span class="hljs-keyword">for</span> plugin <span class="hljs-string">&apos;simple-webserver&apos;</span>.
+
+[INFO] To use it execute <span class="hljs-string">&quot;athena simple-webserver start&quot;</span></code></pre>
+<h2 id="using-the-plugin-for-the-first-time">Using the plugin for the first time</h2><pre><code class="lang-bash">$ athena simple-webserver
+       ___   __  __
+      /   | / /_/ /_  ___  ____  ____ _
+     / /| |/ __/ __ \/ _ \/ __ \/ __  /
+    / ___ / /_/ / / /  __/ / / / /_/ /
+   /_/  |_\__/_/ /_/\___/_/ /_/\__,_/
+                              v0.4.0
+  ==================================
+  [simple-webserver v1.0.0]
+  ----------------------------------
+
+[INFO] Athena plugin <span class="hljs-string">&apos;simple-webserver&apos;</span> has not been initialized!
+[INFO] Athena plugin <span class="hljs-string">&apos;simple-webserver&apos;</span> is initialising...
+
+usage: athena simple-webserver &lt;<span class="hljs-built_in">command</span>&gt; [arg...]
+
+These are the available commands <span class="hljs-keyword">for</span> plugin [simple-webserver]:
+        start  Starts the webserver.</code></pre>
+<h2 id="execute-the-start-command-without-parameters">Execute the start command without parameters</h2><pre><code class="lang-bash">$ athena simple-webserver start
+       ___   __  __
+      /   | / /_/ /_  ___  ____  ____ _
+     / /| |/ __/ __ \/ _ \/ __ \/ __  /
+    / ___ / /_/ / / /  __/ / / / /_/ /
+   /_/  |_\__/_/ /_/\___/_/ /_/\__,_/
+                              v0.4.0
+  ==================================
+  [simple-webserver v1.0.0]
+  ----------------------------------
+
+usage: athena simple-webserver start &lt;<span class="hljs-built_in">source</span>_directory&gt; &lt;port&gt;</code></pre>
+<h2 id="code-generated-by-the-wizard-plus-a-few-additions">Code generated by the wizard plus a few additions</h2><pre><code class="lang-bash">CMD_DESCRIPTION=<span class="hljs-string">&quot;Starts the webserver.&quot;</span>
+
+athena.usage 2 <span class="hljs-string">&quot;&lt;source_directory&gt; &lt;port&gt;&quot;</span>
+
+<span class="hljs-comment"># arguments are found below</span>
+<span class="hljs-built_in">source</span>_directory=<span class="hljs-string">&quot;<span class="hljs-variable">$(athena.path 1)</span>&quot;</span>
+port=<span class="hljs-string">&quot;<span class="hljs-variable">$(athena.int 2)</span>&quot;</span>
+
+<span class="hljs-comment"># clearing arguments from the stack</span>
+athena.pop_args 2
+
+<span class="hljs-comment"># options for container are found below</span>
+athena.plugin.use_external_container_as_daemon <span class="hljs-string">&quot;php:7.0-apache&quot;</span>
+
+<span class="hljs-comment"># mounts the specified dir into the container</span>
+athena.docker.mount_dir <span class="hljs-string">&quot;<span class="hljs-variable">$source_directory</span>&quot;</span> <span class="hljs-string">&quot;/var/www/html&quot;</span>
+
+<span class="hljs-comment"># maps the specified port into the port 80 of the container</span>
+athena.docker.add_option <span class="hljs-string">&quot;-p <span class="hljs-variable">$port</span>:80&quot;</span></code></pre>
+<h2 id="execute-the-command-with-the-right-parameters">Execute the command with the right parameters</h2><pre><code class="lang-bash">$ athena simple-webserver start ~/tech-demo  80 --athena-dbg
+       ___   __  __
+      /   | / /_/ /_  ___  ____  ____ _
+     / /| |/ __/ __ \/ _ \/ __ \/ __  /
+    / ___ / /_/ / / /  __/ / / / /_/ /
+   /_/  |_\__/_/ /_/\___/_/ /_/\__,_/
+                              v0.4.0
+  ==================================
+  [simple-webserver v1.0.0]
+  ----------------------------------
+
+[DEBUG] starting container athena-plugin-simple-webserver-0 <span class="hljs-keyword">for</span> <span class="hljs-built_in">command</span> <span class="hljs-string">&apos;start&apos;</span> ...
+
+[DEBUG] Time: 0 minutes and 0 seconds elapsed.</code></pre>
+<h2 id="run-the-info-command-to-check-if-the-container-is-running">Run the info command to check if the container is running</h2><pre><code class="lang-bash">$ athena info
+       ___   __  __
+      /   | / /_/ /_  ___  ____  ____ _
+     / /| |/ __/ __ \/ _ \/ __ \/ __  /
+    / ___ / /_/ / / /  __/ / / / /_/ /
+   /_/  |_\__/_/ /_/\___/_/ /_/\__,_/
+                              v0.4.0
+  ==================================
+
+
+[INFO] Running containers [image|container|status]:
+
+ * php  athena-plugin-simple-webserver-0  [UP]  To access it use http://192.168.99.100:80
+
+
+[INFO] No custom images were found!
+</code></pre>
+<h2 id="now-check-the-browser-and-voil&#xE1;-its-working">Now check the browser, and <em>voil&#xE1;</em> it&apos;s working:</h2><p><img alt="image" src="../img/wizard/hello-world.png"></p>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"A Simple PHP Web Server","level":"1.5.1","depth":2,"previous":{"title":"Examples","level":"1.5","depth":1,"ref":"","articles":[{"title":"A Simple PHP Web Server","level":"1.5.1","depth":2,"path":"examples/simple-php-server.md","ref":"examples/simple-php-server.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"examples/simple-php-server.md","mtime":"2016-09-01T14:41:07.000Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-01T14:41:16.799Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

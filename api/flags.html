@@ -1,0 +1,495 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <title>CLI flags · GitBook</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.0">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+<style>
+.book-summary {
+  background-color:#13262f;
+  border-left-color: #344047;
+}
+
+.book-summary .summary li a, .book-summary .summary li span {
+	color: #FFF !important;
+}
+
+.book-summary .summary > li > a, .book-summary ul.summary > li > span {
+	text-transform: uppercase;
+	font-weight: 700;
+}
+
+.book-header {
+	color: #7e888b;
+	background-color: rgb(245, 245, 245);
+}
+
+.book-body {
+	background-color: #fafafa;
+}
+
+.markdown-section pre {
+	line-height: 1;
+	border: 1px solid #d8d6d6;
+}
+
+.page-inner h1,
+.page-inner h2,
+.page-inner h3,
+.page-inner h4,
+.page-inner h5,
+.page-inner h6 {
+	color: #098BCC;
+	font-weight:300;
+}
+
+#book-search-input {
+	color: rgb(54, 65, 73);
+	background-color: #2b3a42;
+}
+
+#book-search-input input, #book-search-input input:hover, #book-search-input input:focus {
+	color: #909394 !important;
+}
+
+</style>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    Quick Start
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../quick-start/getting-started.html">
+            
+                <a href="../quick-start/getting-started.html">
+            
+                    
+                    Getting Started
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../quick-start/how-engine-works.html">
+            
+                <a href="../quick-start/how-engine-works.html">
+            
+                    
+                    Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../quick-start/how-plugins-work.html">
+            
+                <a href="../quick-start/how-plugins-work.html">
+            
+                    
+                    Plugins
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    Reference
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="frequently-used-cli-functions.html">
+            
+                <a href="frequently-used-cli-functions.html">
+            
+                    
+                    Top used API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="cli-functions-shared.html">
+            
+                <a href="cli-functions-shared.html">
+            
+                    
+                    Shared API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="cli-functions-host.html">
+            
+                <a href="cli-functions-host.html">
+            
+                    
+                    Host only API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3.4" data-path="flags.html">
+            
+                <a href="flags.html">
+            
+                    
+                    CLI flags
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    Guides
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../guides/contributing.html">
+            
+                <a href="../guides/contributing.html">
+            
+                    
+                    Contributing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../LICENSE.html">
+            
+                <a href="../LICENSE.html">
+            
+                    
+                    License
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../guides/versioning.html">
+            
+                <a href="../guides/versioning.html">
+            
+                    
+                    Versioning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../guides/testing.html">
+            
+                <a href="../guides/testing.html">
+            
+                    
+                    Testing
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    Examples
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../examples/simple-php-server.html">
+            
+                <a href="../examples/simple-php-server.html">
+            
+                    
+                    A Simple PHP Web Server
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >CLI flags</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="global-cli-flags">Global CLI flags</h1><p>These are flags that can be used with any command of any <code>plugin</code>.</p><h2 id="enabling-debug-messages">Enabling debug messages</h2><p>To enable the debug messages append your command with :</p><pre><code class="lang-bash">--athena-dbg</code></pre>
+<h2 id="disabling-the-logo">Disabling the logo</h2><p>To disable the logo when invoking the commands append your command with :</p><pre><code class="lang-bash">--athena-no-logo</code></pre>
+<h2 id="specifying-the-environment">Specifying the environment</h2><p>In case your plugin supports multiple environments for the same container append your command with :</p><pre><code class="lang-bash">--athena-env=&lt;name|file_with_environment_config&gt;</code></pre>
+<h2 id="overriding-the-containers-dns-nameserver">Overriding the container&apos;s dns nameserver</h2><pre><code class="lang-bash">--athena-dns=&lt;nameserver_ip&gt;</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="cli-functions-host.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Host only API">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"CLI flags","level":"1.3.4","depth":2,"next":{"title":"Guides","level":"1.4","depth":1,"ref":"","articles":[{"title":"Contributing","level":"1.4.1","depth":2,"path":"guides/contributing.md","ref":"guides/contributing.md","articles":[]},{"title":"License","level":"1.4.2","depth":2,"path":"LICENSE.md","ref":"LICENSE.md","articles":[]},{"title":"Versioning","level":"1.4.3","depth":2,"path":"guides/versioning.md","ref":"guides/versioning.md","articles":[]},{"title":"Testing","level":"1.4.4","depth":2,"path":"guides/testing.md","ref":"guides/testing.md","articles":[]}]},"previous":{"title":"Host only API","level":"1.3.3","depth":2,"path":"api/cli-functions-host.md","ref":"api/cli-functions-host.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"api/flags.md","mtime":"2016-09-01T14:41:07.000Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-01T14:41:16.799Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

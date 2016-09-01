@@ -1,0 +1,643 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <title>Shared API · GitBook</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.0">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+<style>
+.book-summary {
+  background-color:#13262f;
+  border-left-color: #344047;
+}
+
+.book-summary .summary li a, .book-summary .summary li span {
+	color: #FFF !important;
+}
+
+.book-summary .summary > li > a, .book-summary ul.summary > li > span {
+	text-transform: uppercase;
+	font-weight: 700;
+}
+
+.book-header {
+	color: #7e888b;
+	background-color: rgb(245, 245, 245);
+}
+
+.book-body {
+	background-color: #fafafa;
+}
+
+.markdown-section pre {
+	line-height: 1;
+	border: 1px solid #d8d6d6;
+}
+
+.page-inner h1,
+.page-inner h2,
+.page-inner h3,
+.page-inner h4,
+.page-inner h5,
+.page-inner h6 {
+	color: #098BCC;
+	font-weight:300;
+}
+
+#book-search-input {
+	color: rgb(54, 65, 73);
+	background-color: #2b3a42;
+}
+
+#book-search-input input, #book-search-input input:hover, #book-search-input input:focus {
+	color: #909394 !important;
+}
+
+</style>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    Quick Start
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../quick-start/getting-started.html">
+            
+                <a href="../quick-start/getting-started.html">
+            
+                    
+                    Getting Started
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../quick-start/how-engine-works.html">
+            
+                <a href="../quick-start/how-engine-works.html">
+            
+                    
+                    Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../quick-start/how-plugins-work.html">
+            
+                <a href="../quick-start/how-plugins-work.html">
+            
+                    
+                    Plugins
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    Reference
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="frequently-used-cli-functions.html">
+            
+                <a href="frequently-used-cli-functions.html">
+            
+                    
+                    Top used API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3.2" data-path="cli-functions-shared.html">
+            
+                <a href="cli-functions-shared.html">
+            
+                    
+                    Shared API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="cli-functions-host.html">
+            
+                <a href="cli-functions-host.html">
+            
+                    
+                    Host only API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="flags.html">
+            
+                <a href="flags.html">
+            
+                    
+                    CLI flags
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    Guides
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../guides/contributing.html">
+            
+                <a href="../guides/contributing.html">
+            
+                    
+                    Contributing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../LICENSE.html">
+            
+                <a href="../LICENSE.html">
+            
+                    
+                    License
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../guides/versioning.html">
+            
+                <a href="../guides/versioning.html">
+            
+                    
+                    Versioning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../guides/testing.html">
+            
+                <a href="../guides/testing.html">
+            
+                    
+                    Testing
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    Examples
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../examples/simple-php-server.html">
+            
+                <a href="../examples/simple-php-server.html">
+            
+                    
+                    A Simple PHP Web Server
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Shared API</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <ul><li><p><a href="#using-cli-functions">Using CLI Functions</a></p><ul><li><p><a href="#handling-argument">Handling <em>argument</em></a></p><ul><li><a href="#athenaargumentappendtoarguments"><code>athena.argument.append_to_arguments</code></a>
+</li>
+<li><a href="#athenaargumentarg"><code>athena.argument.arg</code></a>
+</li>
+<li><a href="#athenaargumentargs"><code>athena.argument.args</code></a>
+</li>
+<li><a href="#athenaargumentargumentexists"><code>athena.argument.argument_exists</code></a>
+</li>
+<li><a href="#athenaargumentargumentexistsandremove"><code>athena.argument.argument_exists_and_remove</code></a>
+</li>
+<li><a href="#athenaargumentargumentexistsorfail"><code>athena.argument.argument_exists_or_fail</code></a>
+</li>
+<li><a href="#athenaargumentargumentisnotempty"><code>athena.argument.argument_is_not_empty</code></a>
+</li>
+<li><a href="#athenaargumentargumentisnotemptyorfail"><code>athena.argument.argument_is_not_empty_or_fail</code></a>
+</li>
+<li><a href="#athenaargumentgetargument"><code>athena.argument.get_argument</code></a>
+</li>
+<li><a href="#athenaargumentgetargumentandremove"><code>athena.argument.get_argument_and_remove</code></a>
+</li>
+<li><a href="#athenaargumentgetarguments"><code>athena.argument.get_arguments</code></a>
+</li>
+<li><a href="#athenaargumentgetintegerargument"><code>athena.argument.get_integer_argument</code></a>
+</li>
+<li><a href="#athenaargumentgetpathfromargument"><code>athena.argument.get_path_from_argument</code></a>
+</li>
+<li><a href="#athenaargumentgetpathfromargumentandremove"><code>athena.argument.get_path_from_argument_and_remove</code></a>
+</li>
+<li><a href="#athenaargumentisinteger"><code>athena.argument.is_integer</code></a>
+</li>
+<li><a href="#athenaargumentnrargslt"><code>athena.argument.nr_args_lt</code></a>
+</li>
+<li><a href="#athenaargumentnrofarguments"><code>athena.argument.nr_of_arguments</code></a>
+</li>
+<li><a href="#athenaargumentpoparguments"><code>athena.argument.pop_arguments</code></a>
+</li>
+<li><a href="#athenaargumentprependtoarguments"><code>athena.argument.prepend_to_arguments</code></a>
+</li>
+<li><a href="#athenaargumentremoveargument"><code>athena.argument.remove_argument</code></a>
+</li>
+<li><a href="#athenaargumentsetarguments"><code>athena.argument.set_arguments</code></a>
+</li>
+<li><a href="#athenaargumentstringcontains"><code>athena.argument.string_contains</code></a>
+</li></ul>
+</li>
+<li><p><a href="#handling-color">Handling <em>color</em></a></p><ul><li><a href="#athenacolorprintcolor"><code>athena.color.print_color</code></a>
+</li>
+<li><a href="#athenacolorprintdebug"><code>athena.color.print_debug</code></a>
+</li>
+<li><a href="#athenacolorprinterror"><code>athena.color.print_error</code></a>
+</li>
+<li><a href="#athenacolorprintfatal"><code>athena.color.print_fatal</code></a>
+</li>
+<li><a href="#athenacolorprintinfo"><code>athena.color.print_info</code></a>
+</li>
+<li><a href="#athenacolorprintok"><code>athena.color.print_ok</code></a>
+</li>
+<li><a href="#athenacolorprintwarn"><code>athena.color.print_warn</code></a>
+</li></ul>
+</li>
+<li><p><a href="#handling-fs">Handling <em>fs</em></a></p><ul><li><a href="#athenafsabsolutepath"><code>athena.fs.absolutepath</code></a>
+</li>
+<li><a href="#athenafsbasename"><code>athena.fs.basename</code></a>
+</li>
+<li><a href="#athenafsdircontainsfiles"><code>athena.fs.dir_contains_files</code></a>
+</li>
+<li><a href="#athenafsdirexistsorcreate"><code>athena.fs.dir_exists_or_create</code></a>
+</li>
+<li><a href="#athenafsdirexistsorfail"><code>athena.fs.dir_exists_or_fail</code></a>
+</li>
+<li><a href="#athenafsfilecontainsstring"><code>athena.fs.file_contains_string</code></a>
+</li>
+<li><a href="#athenafsfileexistsorfail"><code>athena.fs.file_exists_or_fail</code></a>
+</li>
+<li><a href="#athenafsgetfilecontents"><code>athena.fs.get_file_contents</code></a>
+</li>
+<li><a href="#athenafsgetfullpath"><code>athena.fs.get_full_path</code></a>
+</li>
+<li><a href="#athenafsgetpathfromstringorargument"><code>athena.fs.get_path_from_string_or_argument</code></a>
+</li></ul>
+</li>
+<li><p><a href="#handling-os">Handling <em>os</em></a></p><ul><li><a href="#athenaoscallwithargs"><code>athena.os.call_with_args</code></a>
+</li>
+<li><a href="#athenaosenableerrormode"><code>athena.os.enable_error_mode</code></a>
+</li>
+<li><a href="#athenaosenablequietmode"><code>athena.os.enable_quiet_mode</code></a>
+</li>
+<li><a href="#athenaosenableverbosemode"><code>athena.os.enable_verbose_mode</code></a>
+</li>
+<li><a href="#athenaosexec"><code>athena.os.exec</code></a>
+</li>
+<li><a href="#athenaosexit"><code>athena.os.exit</code></a>
+</li>
+<li><a href="#athenaosexitwithmsg"><code>athena.os.exit_with_msg</code></a>
+</li>
+<li><a href="#athenaosfunctionexists"><code>athena.os.function_exists</code></a>
+</li>
+<li><a href="#athenaosfunctionexistsorfail"><code>athena.os.function_exists_or_fail</code></a>
+</li>
+<li><a href="#athenaosgetbasedir"><code>athena.os.get_base_dir</code></a>
+</li>
+<li><a href="#athenaosgetbaselibdir"><code>athena.os.get_base_lib_dir</code></a>
+</li>
+<li><a href="#athenaosgetcommand"><code>athena.os.get_command</code></a>
+</li>
+<li><a href="#athenaosgetexecutable"><code>athena.os.get_executable</code></a>
+</li>
+<li><a href="#athenaosgethostip"><code>athena.os.get_host_ip</code></a>
+</li>
+<li><a href="#athenaosgetinstance"><code>athena.os.get_instance</code></a>
+</li>
+<li><a href="#athenaosgetprefix"><code>athena.os.get_prefix</code></a>
+</li>
+<li><a href="#athenaoshandleexit"><code>athena.os.handle_exit</code></a>
+</li>
+<li><a href="#athenaosincludeonce"><code>athena.os.include_once</code></a>
+</li>
+<li><a href="#athenaosiscommandset"><code>athena.os.is_command_set</code></a>
+</li>
+<li><a href="#athenaosisdebugactive"><code>athena.os.is_debug_active</code></a>
+</li>
+<li><a href="#athenaosisgitinstalled"><code>athena.os.is_git_installed</code></a>
+</li>
+<li><a href="#athenaosislinux"><code>athena.os.is_linux</code></a>
+</li>
+<li><a href="#athenaosismac"><code>athena.os.is_mac</code></a>
+</li>
+<li><a href="#athenaosoverrideexithandler"><code>athena.os.override_exit_handler</code></a>
+</li>
+<li><a href="#athenaosregisterexithandler"><code>athena.os.register_exit_handler</code></a>
+</li>
+<li><a href="#athenaosreturn"><code>athena.os.return</code></a>
+</li>
+<li><a href="#athenaossetcommand"><code>athena.os.set_command</code></a>
+</li>
+<li><a href="#athenaossetdebug"><code>athena.os.set_debug</code></a>
+</li>
+<li><a href="#athenaossetexithandler"><code>athena.os.set_exit_handler</code></a>
+</li>
+<li><a href="#athenaossetinstance"><code>athena.os.set_instance</code></a>
+</li>
+<li><a href="#athenaosusage"><code>athena.os.usage</code></a>
+</li></ul>
+</li></ul>
+</li></ul>
+<h1 id="using-cli-functions">Using CLI Functions</h1><h2 id="handling-argument">Handling <em>argument</em></h2><h3 id="athenaargumentappendtoarguments"><a name="athenaargumentappendtoarguments"></a><code>athena.argument.append_to_arguments</code></h3><p>This function appends the given argumnets to the argument list ($ATHENA_ARGS).</p><p><strong>USAGE:</strong>  <code>athena.argument.append_to_arguments &lt;argument...&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenaargumentarg"><a name="athenaargumentarg"></a><code>athena.argument.arg</code></h3><p>This function is a wraper for the athena.argument.get_argument function.</p><p><strong>USAGE:</strong>  <code>athena.argument.arg &lt;argument position or name&gt;</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenaargumentargs"><a name="athenaargumentargs"></a><code>athena.argument.args</code></h3><p>This function is a wrapper for the athena.argument.get_arguments function. It returns the argument list ($ATHENA_ARGS).</p><p><strong>USAGE:</strong>  <code>athena.argument.args</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenaargumentargumentexists"><a name="athenaargumentargumentexists"></a><code>athena.argument.argument_exists</code></h3><p>This function checks if an argument exists in the argument list $ATHENA_ARGS.</p><p><strong>USAGE:</strong>  <code>athena.argument.argument_exists &lt;argument name&gt;</code></p><p><strong>RETURN:</strong> <code>0 (true), 1 (false)</code></p><h3 id="athenaargumentargumentexistsandremove"><a name="athenaargumentargumentexistsandremove"></a><code>athena.argument.argument_exists_and_remove</code></h3><p>This function checks if an argument exists (see athena.argument.argument_exists) in the argument list $ATHENA_ARGS and removes it if it exists.</p><p><strong>USAGE:</strong>  <code>athena.argument.argument_exists_and_remove &lt;argument name&gt;</code></p><p><strong>RETURN:</strong> <code>0 (true), 1 (false)</code></p><h3 id="athenaargumentargumentexistsorfail"><a name="athenaargumentargumentexistsorfail"></a><code>athena.argument.argument_exists_or_fail</code></h3><p>This function checks if an argument exists (see athena.argument.argument_exists) in the argument list $ATHENA_ARGS. If no argument was given or the argument was not found script execution is exited and an error message is thrown.</p><p><strong>USAGE:</strong>  <code>athena.argument.argument_exists_or_fail &lt;argument name&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenaargumentargumentisnotempty"><a name="athenaargumentargumentisnotempty"></a><code>athena.argument.argument_is_not_empty</code></h3><p>This function checks if the given arguments string is not empty.</p><p><strong>USAGE:</strong>  <code>athena.argument.argument_is_not_empty &lt;arguments string&gt;</code></p><p><strong>RETURN:</strong> <code>0 (true), 1 (false)</code></p><h3 id="athenaargumentargumentisnotemptyorfail"><a name="athenaargumentargumentisnotemptyorfail"></a><code>athena.argument.argument_is_not_empty_or_fail</code></h3><p>This function checks if the given arguments string is not empty. If it is empty execution is stopped and an error message is thrown. If not empty the error code 0 is returned.</p><p><strong>USAGE:</strong>  <code>athena.argument.argument_is_not_empty_or_fail &lt;argument string&gt; [&lt;name&gt;]</code></p><p><strong>RETURN:</strong> <code>0 (true)</code></p><h3 id="athenaargumentgetargument"><a name="athenaargumentgetargument"></a><code>athena.argument.get_argument</code></h3><p>This function returns the requested argument name or value if found in the argument list $ATHENA_ARGS. The function interpretes an given integer as argument index and a given string as argument name (e.g. for the list &quot;a=3 b=5&quot; &quot;3&quot; is return if &quot;a&quot; is requested and &quot;a=3&quot; is returned if &quot;1&quot; is requested).</p><p><strong>USAGE:</strong>  <code>athena.argument.get_argument &lt;argument position or name&gt;</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenaargumentgetargumentandremove"><a name="athenaargumentgetargumentandremove"></a><code>athena.argument.get_argument_and_remove</code></h3><p>This function returns the argument name or value (see athena.argument.get_argument) and removes it from the $ATHENA_ARGS list.</p><p><strong>USAGE:</strong>  <code>athena.argument.get_argument_and_remove &lt;argument position or name&gt; [&lt;name of variable to save the value&gt;]</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenaargumentgetarguments"><a name="athenaargumentgetarguments"></a><code>athena.argument.get_arguments</code></h3><p>This function will copy the $ATHENA_ARGS array into a variable provided as argument, unless it is being used in a shubshell, then a string containing all the arguments will be output.</p><p><strong>USAGE:</strong>  <code>athena.argument.get_arguments [array_name]</code></p><p><strong>RETURN:</strong> <code>0 (success) | 1 (failure)</code></p><h3 id="athenaargumentgetintegerargument"><a name="athenaargumentgetintegerargument"></a><code>athena.argument.get_integer_argument</code></h3><p>This function returns the value for the given argument and if it is not an integer it will exit with error.</p><p><strong>USAGE:</strong>  <code>athena.argument.get_integer_argument &lt;argument position or name&gt; [&lt;error string&gt;]</code></p><p><strong>RETURN:</strong> <code>int</code></p><h3 id="athenaargumentgetpathfromargument"><a name="athenaargumentgetpathfromargument"></a><code>athena.argument.get_path_from_argument</code></h3><p>This function extract a argument string or value (see athena.argument.get_argument) from the $ATHENA_ARGS list and checks if it is a valid directory path. If it is valid the path is return, if not script execution is exited and an error message is thrown.</p><p><strong>USAGE:</strong>  <code>athena.argument.get_path_from_argument &lt;argument position or name&gt;</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenaargumentgetpathfromargumentandremove"><a name="athenaargumentgetpathfromargumentandremove"></a><code>athena.argument.get_path_from_argument_and_remove</code></h3><p>This function returns a valid direcory path if the given argument name or value (see athena.argument.get_path_from_argument) could be converted and removes the argument from the $ATHENA_ARGS list.</p><p><strong>USAGE:</strong>  <code>athena.argument.get_path_from_argument_and_remove &lt;argument position or name&gt;</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenaargumentisinteger"><a name="athenaargumentisinteger"></a><code>athena.argument.is_integer</code></h3><p>This function checks if an argument is an integer.</p><p><strong>USAGE:</strong>  <code>athena.argument.is_integer &lt;argument&gt;</code></p><p><strong>RETURN:</strong> <code>0 (true), 1 (false)</code></p><h3 id="athenaargumentnrargslt"><a name="athenaargumentnrargslt"></a><code>athena.argument.nr_args_lt</code></h3><p>This function returns the error code 0 if the number of arguments in $ATHENA_ARGS is less than the given number. If not the error code 1 is returned.</p><p><strong>USAGE:</strong>  <code>athena.argument.nr_args_lt &lt;number&gt;</code></p><p><strong>RETURN:</strong> <code>0 (true), 1 (false)</code></p><h3 id="athenaargumentnrofarguments"><a name="athenaargumentnrofarguments"></a><code>athena.argument.nr_of_arguments</code></h3><p>This function returns the number of arguments found in the argument list $ATHENA_ARGS.</p><p><strong>USAGE:</strong>  <code>athena.argument.nr_of_arguments</code></p><p><strong>RETURN:</strong> <code>int</code></p><h3 id="athenaargumentpoparguments"><a name="athenaargumentpoparguments"></a><code>athena.argument.pop_arguments</code></h3><p>This function pops a number of arguments from the argument list $ATHENA_ARGS.</p><p><strong>USAGE:</strong>  <code>athena.argument.pop_arguments &lt;number&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenaargumentprependtoarguments"><a name="athenaargumentprependtoarguments"></a><code>athena.argument.prepend_to_arguments</code></h3><p>This function prepends the given argumnets to the argument list ($ATHENA_ARGS).</p><p><strong>USAGE:</strong>  <code>athena.argument.prepend_to_arguments &lt;argument...&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenaargumentremoveargument"><a name="athenaargumentremoveargument"></a><code>athena.argument.remove_argument</code></h3><p>This function removes an argument from the argument list $ATHENA_ARGS if it is in the list.</p><p><strong>USAGE:</strong>  <code>athena.argument.remove_argument &lt;argument|index&gt;</code></p><p><strong>RETURN:</strong> <code>0 (successful), 1 (failed)</code></p><h3 id="athenaargumentsetarguments"><a name="athenaargumentsetarguments"></a><code>athena.argument.set_arguments</code></h3><p>This function sets the argument list ($ATHENA_ARGS) to the given arguments.</p><p><strong>USAGE:</strong>  <code>athena.argument.set_arguments &lt;argument...&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenaargumentstringcontains"><a name="athenaargumentstringcontains"></a><code>athena.argument.string_contains</code></h3><p>This function if a string contains a substring. With --literal, regex is not parsed, and there&apos;s a literal comparison.</p><p><strong>USAGE:</strong>  <code>athena.argument.string_contains &lt;string&gt; &lt;sub-string&gt; [--literal]</code></p><p><strong>RETURN:</strong> <code>0 (true), 1 (false)</code></p><h2 id="handling-color">Handling <em>color</em></h2><h3 id="athenacolorprintcolor"><a name="athenacolorprintcolor"></a><code>athena.color.print_color</code></h3><p>This function prints the given string in a given color on STDOUT. Available colors are &quot;green&quot;, &quot;red&quot;, &quot;blue&quot;, &quot;yellow&quot;, &quot;cyan&quot;, and &quot;normal&quot;.</p><p><strong>USAGE:</strong>  <code>athena.color.print_color &lt;color&gt; &lt;string&gt; [&lt;non_colored_string&gt;]</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenacolorprintdebug"><a name="athenacolorprintdebug"></a><code>athena.color.print_debug</code></h3><p>This function prints the given string on STDOUT formatted as debug message if debug mode is set.</p><p><strong>USAGE:</strong>  <code>athena.color.print_debug &lt;string&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenacolorprinterror"><a name="athenacolorprinterror"></a><code>athena.color.print_error</code></h3><p>This function prints the given string on STDOUT formatted as error message.</p><p><strong>USAGE:</strong>  <code>athena.color.print_error &lt;string&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenacolorprintfatal"><a name="athenacolorprintfatal"></a><code>athena.color.print_fatal</code></h3><p>This function prints the given string on STDOUT formatted as fatal message and exit with 1 or the given code.</p><p><strong>USAGE:</strong>  <code>athena.color.print_fatal &lt;string&gt; [&lt;exit_code&gt;]</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenacolorprintinfo"><a name="athenacolorprintinfo"></a><code>athena.color.print_info</code></h3><p>This function prints the given string on STDOUT formatted as info message.</p><p><strong>USAGE:</strong>  <code>athena.color.print_info &lt;string&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenacolorprintok"><a name="athenacolorprintok"></a><code>athena.color.print_ok</code></h3><p>This function prints the given string on STDOUT formatted as ok message.</p><p><strong>USAGE:</strong>  <code>athena.color.print_ok &lt;string&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenacolorprintwarn"><a name="athenacolorprintwarn"></a><code>athena.color.print_warn</code></h3><p>This function prints the given string on STDOUT formatted as warn message.</p><p><strong>USAGE:</strong>  <code>athena.color.print_warn &lt;string&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h2 id="handling-fs">Handling <em>fs</em></h2><h3 id="athenafsabsolutepath"><a name="athenafsabsolutepath"></a><code>athena.fs.absolutepath</code></h3><p>This function checks if the given argument is a valid absolute path to a directory or file. If not, execution is stopped and an error message is thrown. Otherwise the absolute path is returned.</p><p><strong>USAGE:</strong>  <code>athena.fs.absolutepath &lt;file or directory name&gt;</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenafsbasename"><a name="athenafsbasename"></a><code>athena.fs.basename</code></h3><p>This function returns the basename of a file. If the file does not exist it will generate an error. It can be a full path or relative to the file.</p><p><strong>USAGE:</strong>  <code>athena.fs.basename &lt;filename&gt;</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenafsdircontainsfiles"><a name="athenafsdircontainsfiles"></a><code>athena.fs.dir_contains_files</code></h3><p>This function checks if the given directory contains files with certain pattern (e.g.: *.sh).</p><p><strong>USAGE:</strong>  <code>athena.fs.dir_contains_files &lt;directory&gt; &lt;pattern&gt;</code></p><p><strong>RETURN:</strong> <code>0 (true), 1 (false)</code></p><h3 id="athenafsdirexistsorcreate"><a name="athenafsdirexistsorcreate"></a><code>athena.fs.dir_exists_or_create</code></h3><p>This function checks if the given directory name is valid. If not the directory is been created. If the creation fails execution is stopped and an error message is thrown. 0 is returned if the directory exists or was created.</p><p><strong>USAGE:</strong>  <code>athena.fs.file_exists_or_fail &lt;directory name&gt;</code></p><p><strong>RETURN:</strong> <code>0 (true), 1 (false)</code></p><h3 id="athenafsdirexistsorfail"><a name="athenafsdirexistsorfail"></a><code>athena.fs.dir_exists_or_fail</code></h3><p>This function checks if the given directory name is valid. If not execution is stopped and an error message is thrown. The displayed error message can be passed as second argument.</p><p><strong>USAGE:</strong>  <code>athena.fs.dir_exists_or_fail &lt;directory name&gt; &lt;message&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenafsfilecontainsstring"><a name="athenafsfilecontainsstring"></a><code>athena.fs.file_contains_string</code></h3><p>This function checks if the filename contains the given string.</p><p><strong>USAGE:</strong>  <code>athena.fs.file_contains_string_&lt;filename&gt; &lt;string&gt;</code></p><p><strong>RETURN:</strong> <code>0 (true), 1 (true)</code></p><h3 id="athenafsfileexistsorfail"><a name="athenafsfileexistsorfail"></a><code>athena.fs.file_exists_or_fail</code></h3><p>This function checks if the given filename is valid. If not execution is stopped and an error message is thrown. The displayed error message can be passed as second argument.</p><p><strong>USAGE:</strong>  <code>athena.fs.file_exists_or_fail &lt;filename&gt; &lt;message&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenafsgetfilecontents"><a name="athenafsgetfilecontents"></a><code>athena.fs.get_file_contents</code></h3><p>This function checks if the given filename is valid. If not execution is stopped and an error message is thrown. If the given name is a valid filename the file content returned.</p><p><strong>USAGE:</strong>  <code>athena.fs.get_file_contents &lt;filename&gt;</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenafsgetfullpath"><a name="athenafsgetfullpath"></a><code>athena.fs.get_full_path</code></h3><p>This function checks if the given argument is a valid directory or file and returns the absolute directory path of the given file or directory (a relative path is converted in an absolute directory path). If the path is not valid execution is stopped and an error message is thrown.</p><p><strong>USAGE:</strong>  <code>athena.fs.get_full_path &lt;file or directory name&gt;</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenafsgetpathfromstringorargument"><a name="athenafsgetpathfromstringorargument"></a><code>athena.fs.get_path_from_string_or_argument</code></h3><p>This function returns a full path to a file or directory from the arguments in case it is an integer passed (positional argument) or from a given string. When a string is provided, it checks on the arguments for that string and then tries to get from the function athena.fs.absolutepath.</p><p><strong>USAGE:</strong>  <code>athena.fs.get_path_from_string_or_argument &lt;arg position|arg name|relative path&gt;</code></p><p><strong>RETURN:</strong> <code>string</code></p><h2 id="handling-os">Handling <em>os</em></h2><h3 id="athenaoscallwithargs"><a name="athenaoscallwithargs"></a><code>athena.os.call_with_args</code></h3><p>This function will call the command/function passed as argument with all the arguments existing in $ATHENA_ARGS.</p><p><strong>USAGE:</strong>  <code>athena.os.call_with_args &lt;command&gt;</code></p><p><strong>RETURN:</strong> <code>&lt;command&gt; result | 1 (false) if no &lt;command&gt; was specified or it doesn&apos; exist</code></p><h3 id="athenaosenableerrormode"><a name="athenaosenableerrormode"></a><code>athena.os.enable_error_mode</code></h3><p>This function enables the error only output mode. To be used in conjunction with athena.os.exec.</p><p><strong>USAGE:</strong>  <code>athena.os.enable_error_mode</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenaosenablequietmode"><a name="athenaosenablequietmode"></a><code>athena.os.enable_quiet_mode</code></h3><p>This function enables the no output mode. To be used in conjunction with athena.os.exec.</p><p><strong>USAGE:</strong>  <code>athena.os.enable_quiet_mode</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenaosenableverbosemode"><a name="athenaosenableverbosemode"></a><code>athena.os.enable_verbose_mode</code></h3><p>This function enables the all output mode. To be used in conjunction with athena.os.exec.</p><p><strong>USAGE:</strong>  <code>athena.os.enable_verbose_mode</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenaosexec"><a name="athenaosexec"></a><code>athena.os.exec</code></h3><p>This function wraps command execution to allow for switching output modes. The output mode is defined by using the athena.os.set<em>output</em>* functions.</p><p><strong>USAGE:</strong>  <code>athena.os.exec &lt;function&gt; &lt;args&gt;</code></p><p><strong>RETURN:</strong> <code>int</code></p><h3 id="athenaosexit"><a name="athenaosexit"></a><code>athena.os.exit</code></h3><p>This function exits Athena if called (if a forced exit is required).</p><p><strong>USAGE:</strong>  <code>athena.os.exit &lt;exit code&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenaosexitwithmsg"><a name="athenaosexitwithmsg"></a><code>athena.os.exit_with_msg</code></h3><p>This function exits Athena with an error message (see athena.os.exit).</p><p><strong>USAGE:</strong>  <code>athena.os.exit_with_msg &lt;error message&gt; [&lt;exit_code&gt;]</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenaosfunctionexists"><a name="athenaosfunctionexists"></a><code>athena.os.function_exists</code></h3><p>This functions checks if the function with the given name exists.</p><p><strong>USAGE:</strong>  <code>athena.os.function_exists &lt;name&gt;</code></p><p><strong>RETURN:</strong> <code>0 (true) 1 (false)</code></p><h3 id="athenaosfunctionexistsorfail"><a name="athenaosfunctionexistsorfail"></a><code>athena.os.function_exists_or_fail</code></h3><p>This functions checks if the function with the given name exists, if not it will abort the current execution.</p><p><strong>USAGE:</strong>  <code>athena.os.function_exists_or_fail &lt;name&gt;</code></p><p><strong>RETURN:</strong> <code>0 (true) 1 (false)</code></p><h3 id="athenaosgetbasedir"><a name="athenaosgetbasedir"></a><code>athena.os.get_base_dir</code></h3><p>This functions returns the base directory of athena.</p><p><strong>USAGE:</strong>  <code>athena.os.get_base_dir</code></p><h3 id="athenaosgetbaselibdir"><a name="athenaosgetbaselibdir"></a><code>athena.os.get_base_lib_dir</code></h3><p>This functions returns the base lib directory of athena.</p><p><strong>USAGE:</strong>  <code>athena.os.get_base_lib_dir</code></p><h3 id="athenaosgetcommand"><a name="athenaosgetcommand"></a><code>athena.os.get_command</code></h3><p>This function returns the content of the $ATHENA_COMMAND variable. If it is not set execution is stopped and an error message is thrown.</p><p><strong>USAGE:</strong>  <code>athena.os.get_command &lt;command&gt;</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenaosgetexecutable"><a name="athenaosgetexecutable"></a><code>athena.os.get_executable</code></h3><p>This function returns the executable for athena.</p><p><strong>USAGE:</strong>  <code>athena.os.get_executable</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenaosgethostip"><a name="athenaosgethostip"></a><code>athena.os.get_host_ip</code></h3><p>This functions returns the ip of the host of athena.</p><p><strong>USAGE:</strong>  <code>athena.os.get_host_ip</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenaosgetinstance"><a name="athenaosgetinstance"></a><code>athena.os.get_instance</code></h3><p>This function returns the value of the current instance as set in the $ATHENA_INSTANCE variable.</p><p><strong>USAGE:</strong>  <code>athena.os.get_instance</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenaosgetprefix"><a name="athenaosgetprefix"></a><code>athena.os.get_prefix</code></h3><p>This functions returns the prefix that is used to create names for</p><p><strong>USAGE:</strong>  <code>athena.os.get_prefix</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenaoshandleexit"><a name="athenaoshandleexit"></a><code>athena.os.handle_exit</code></h3><p>This function handles the signals sent to and by athena.</p><p><strong>USAGE:</strong>  <code>athena.os.handle_exit &lt;signal&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenaosincludeonce"><a name="athenaosincludeonce"></a><code>athena.os.include_once</code></h3><p>This function checks if a given <a href="../GLOSSARY.html#bash" class="glossary-term" title="Bash is the GNU Project&apos;s shell. Bash is the Bourne Again SHell. Bash is an sh-compatible shell that incorporates useful features from the Korn shell (ksh) and C shell (csh).
+https://www.gnu.org/software/bash/">Bash</a> source file exists and includes it if it wasn&apos;t loaded before. If it was loaded nothing is done (avoid multiple sourcing).</p><p><strong>USAGE:</strong>  <code>athena.os.include_once &lt;Bash source file&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenaosiscommandset"><a name="athenaosiscommandset"></a><code>athena.os.is_command_set</code></h3><p>This functions checks if $ATHENA_COMMAND variable is set.</p><p><strong>USAGE:</strong>  <code>athena.os.is_command_set</code></p><p><strong>RETURN:</strong> <code>0 (true) 1 (false)</code></p><h3 id="athenaosisdebugactive"><a name="athenaosisdebugactive"></a><code>athena.os.is_debug_active</code></h3><p>This function returns the error code 0 if the debug flag ($ATHENA_IS_DEBUG) is set. If not it returns the error code 1.</p><p><strong>USAGE:</strong>  <code>athena.os.is_debug_active</code></p><p><strong>RETURN:</strong> <code>0 (true), 1 (false)</code></p><h3 id="athenaosisgitinstalled"><a name="athenaosisgitinstalled"></a><code>athena.os.is_git_installed</code></h3><p>This function checks if the &apos;<a href="../GLOSSARY.html#git" class="glossary-term" title="Free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
+https://git-scm.com">git</a>&apos; command is available (i.e. if <a href="../GLOSSARY.html#git" class="glossary-term" title="Free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
+https://git-scm.com">git</a> is installed). If not execution is stopped and an error message is thrown.</p><p><strong>USAGE:</strong>  <code>athena.os.is_git_installed</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenaosislinux"><a name="athenaosislinux"></a><code>athena.os.is_linux</code></h3><p>This function checks if Athena runs on a Linux machine.</p><p><strong>USAGE:</strong>  <code>athena.os.is_mac</code></p><p><strong>RETURN:</strong> <code>0 (true), 1 (false)</code></p><h3 id="athenaosismac"><a name="athenaosismac"></a><code>athena.os.is_mac</code></h3><p>This function checks if Athena runs on a Mac OS X.</p><p><strong>USAGE:</strong>  <code>athena.os.is_mac</code></p><p><strong>RETURN:</strong> <code>0 (true), 1 (false)</code></p><h3 id="athenaosoverrideexithandler"><a name="athenaosoverrideexithandler"></a><code>athena.os.override_exit_handler</code></h3><p>This functions overrides the exit handler with the default signals to catch.</p><p><strong>USAGE:</strong>  <code>athena.os.override_exit_handler &lt;function_name&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenaosregisterexithandler"><a name="athenaosregisterexithandler"></a><code>athena.os.register_exit_handler</code></h3><p>This function register the exit handler that takes the decision of what to do when interpreting the exit codes and signals.</p><p><strong>USAGE:</strong>  <code>athena.os.register_exit_handler &lt;function_name&gt; &lt;list_of_signals_to_trap&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenaosreturn"><a name="athenaosreturn"></a><code>athena.os.return</code></h3><p>This function assigns a value to a variable and overcomes the problem of assignment in subshells losing the current environment. It is meant to be used in the getters and expects that the function using it follows the convention athena.get_<variable>. NOTE: when used in subshell it will echo the value to be assigned to a variable.</variable></p><p><strong>USAGE:</strong>  <code>athena.os.return &lt;value&gt; [&lt;name_of_variable_to_assign_to&gt;]</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenaossetcommand"><a name="athenaossetcommand"></a><code>athena.os.set_command</code></h3><p>This function sets the $ATHENA_COMMAND variable to the given command string if it is not empty. If it is empty execution is stopped and an error message is thrown.</p><p><strong>USAGE:</strong>  <code>athena.os.set_command &lt;command&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenaossetdebug"><a name="athenaossetdebug"></a><code>athena.os.set_debug</code></h3><p>This function sets the debug flag ($ATHENA_IS_DEBUG) to the given value. If no value is provided $ATHENA_IS_DEBUG is set to 0 (disabled).</p><p><strong>USAGE:</strong>  <code>athena.os.set_debug &lt;debug value&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenaossetexithandler"><a name="athenaossetexithandler"></a><code>athena.os.set_exit_handler</code></h3><p>This functions registers the exit handler with the default signals to catch.</p><p><strong>USAGE:</strong>  <code>athena.os.set_exit_handler</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenaossetinstance"><a name="athenaossetinstance"></a><code>athena.os.set_instance</code></h3><p>This functions sets the instance value.</p><p><strong>USAGE:</strong>  <code>athena.os.set_instance &lt;value&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenaosusage"><a name="athenaosusage"></a><code>athena.os.usage</code></h3><p>This function prints the usage and exits with 1 and handles the name of the command automatically and the athena executable.</p><p><strong>USAGE:</strong>  <code>athena.os.usage [&lt;min_args&gt;] [&lt;options&gt;] [&lt;multi-line options&gt;]</code></p><p><strong>RETURN:</strong> <code>--</code></p>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="frequently-used-cli-functions.html" class="navigation navigation-prev " aria-label="Previous page: Top used API">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="cli-functions-host.html" class="navigation navigation-next " aria-label="Next page: Host only API">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Shared API","level":"1.3.2","depth":2,"next":{"title":"Host only API","level":"1.3.3","depth":2,"path":"api/cli-functions-host.md","ref":"api/cli-functions-host.md","articles":[]},"previous":{"title":"Top used API","level":"1.3.1","depth":2,"path":"api/frequently-used-cli-functions.md","ref":"api/frequently-used-cli-functions.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"api/cli-functions-shared.md","mtime":"2016-09-01T14:41:07.000Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-01T14:41:16.799Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
