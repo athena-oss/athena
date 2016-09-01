@@ -1,0 +1,53 @@
+{% extends template.self %}
+
+{% block head %}
+<style>
+.book-summary {
+  background-color:#13262f;
+  border-left-color: #344047;
+}
+
+.book-summary .summary li a, .book-summary .summary li span {
+	color: #FFF !important;
+}
+
+.book-summary .summary > li > a, .book-summary ul.summary > li > span {
+	text-transform: uppercase;
+	font-weight: 700;
+}
+
+.book-header {
+	color: #7e888b;
+	background-color: rgb(245, 245, 245);
+}
+
+.book-body {
+	background-color: #fafafa;
+}
+
+.markdown-section pre {
+	line-height: 1;
+	border: 1px solid #d8d6d6;
+}
+
+.page-inner h1,
+.page-inner h2,
+.page-inner h3,
+.page-inner h4,
+.page-inner h5,
+.page-inner h6 {
+	color: #098BCC;
+	font-weight:300;
+}
+
+#book-search-input {
+	color: rgb(54, 65, 73);
+	background-color: #2b3a42;
+}
+
+#book-search-input input, #book-search-input input:hover, #book-search-input input:focus {
+	color: #909394 !important;
+}
+
+</style>
+{% endblock %}

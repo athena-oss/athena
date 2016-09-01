@@ -1,0 +1,765 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <title>Host only API · GitBook</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.0">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+<style>
+.book-summary {
+  background-color:#13262f;
+  border-left-color: #344047;
+}
+
+.book-summary .summary li a, .book-summary .summary li span {
+	color: #FFF !important;
+}
+
+.book-summary .summary > li > a, .book-summary ul.summary > li > span {
+	text-transform: uppercase;
+	font-weight: 700;
+}
+
+.book-header {
+	color: #7e888b;
+	background-color: rgb(245, 245, 245);
+}
+
+.book-body {
+	background-color: #fafafa;
+}
+
+.markdown-section pre {
+	line-height: 1;
+	border: 1px solid #d8d6d6;
+}
+
+.page-inner h1,
+.page-inner h2,
+.page-inner h3,
+.page-inner h4,
+.page-inner h5,
+.page-inner h6 {
+	color: #098BCC;
+	font-weight:300;
+}
+
+#book-search-input {
+	color: rgb(54, 65, 73);
+	background-color: #2b3a42;
+}
+
+#book-search-input input, #book-search-input input:hover, #book-search-input input:focus {
+	color: #909394 !important;
+}
+
+</style>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    Quick Start
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../quick-start/getting-started.html">
+            
+                <a href="../quick-start/getting-started.html">
+            
+                    
+                    Getting Started
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../quick-start/how-engine-works.html">
+            
+                <a href="../quick-start/how-engine-works.html">
+            
+                    
+                    Engine
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../quick-start/how-plugins-work.html">
+            
+                <a href="../quick-start/how-plugins-work.html">
+            
+                    
+                    Plugins
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    Reference
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="frequently-used-cli-functions.html">
+            
+                <a href="frequently-used-cli-functions.html">
+            
+                    
+                    Top used API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="cli-functions-shared.html">
+            
+                <a href="cli-functions-shared.html">
+            
+                    
+                    Shared API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3.3" data-path="cli-functions-host.html">
+            
+                <a href="cli-functions-host.html">
+            
+                    
+                    Host only API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="flags.html">
+            
+                <a href="flags.html">
+            
+                    
+                    CLI flags
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    Guides
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../guides/contributing.html">
+            
+                <a href="../guides/contributing.html">
+            
+                    
+                    Contributing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../LICENSE.html">
+            
+                <a href="../LICENSE.html">
+            
+                    
+                    License
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../guides/versioning.html">
+            
+                <a href="../guides/versioning.html">
+            
+                    
+                    Versioning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../guides/testing.html">
+            
+                <a href="../guides/testing.html">
+            
+                    
+                    Testing
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    Examples
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../examples/simple-php-server.html">
+            
+                <a href="../examples/simple-php-server.html">
+            
+                    
+                    A Simple PHP Web Server
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Host only API</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <ul><li><p><a href="#using-cli-functions">Using CLI Functions</a></p><ul><li><p><a href="#handling-docker">Handling <em>docker</em></a></p><ul><li><a href="#athenadocker"><code>athena.docker</code></a>
+</li>
+<li><a href="#athenadockeraddautoremove"><code>athena.docker.add_autoremove</code></a>
+</li>
+<li><a href="#athenadockeradddaemon"><code>athena.docker.add_daemon</code></a>
+</li>
+<li><a href="#athenadockeraddenv"><code>athena.docker.add_env</code></a>
+</li>
+<li><a href="#athenadockeraddenvswithprefix"><code>athena.docker.add_envs_with_prefix</code></a>
+</li>
+<li><a href="#athenadockeraddoption"><code>athena.docker.add_option</code></a>
+</li>
+<li><a href="#athenadockerbuild"><code>athena.docker.build</code></a>
+</li>
+<li><a href="#athenadockerbuildcontainer"><code>athena.docker.build_container</code></a>
+</li>
+<li><a href="#athenadockerbuildfromplugin"><code>athena.docker.build_from_plugin</code></a>
+</li>
+<li><a href="#athenadockercleanup"><code>athena.docker.cleanup</code></a>
+</li>
+<li><a href="#athenadockercontainerhasstarted"><code>athena.docker.container_has_started</code></a>
+</li>
+<li><a href="#athenadockerexec"><code>athena.docker.exec</code></a>
+</li>
+<li><a href="#athenadockergetbuildargs"><code>athena.docker.get_build_args</code></a>
+</li>
+<li><a href="#athenadockergetip"><code>athena.docker.get_ip</code></a>
+</li>
+<li><a href="#athenadockergetoptions"><code>athena.docker.get_options</code></a>
+</li>
+<li><a href="#athenadockergettagandversion"><code>athena.docker.get_tag_and_version</code></a>
+</li>
+<li><a href="#athenadockerhandleruntype"><code>athena.docker.handle_run_type</code></a>
+</li>
+<li><a href="#athenadockerhasoption"><code>athena.docker.has_option</code></a>
+</li>
+<li><a href="#athenadockerimageexists"><code>athena.docker.image_exists</code></a>
+</li>
+<li><a href="#athenadockerimages"><code>athena.docker.images</code></a>
+</li>
+<li><a href="#athenadockerinspect"><code>athena.docker.inspect</code></a>
+</li>
+<li><a href="#athenadockeriscontainerrunning"><code>athena.docker.is_container_running</code></a>
+</li>
+<li><a href="#athenadockerisdefaultroutertobeused"><code>athena.docker.is_default_router_to_be_used</code></a>
+</li>
+<li><a href="#athenadockerisrunningasdaemon"><code>athena.docker.is_running_as_daemon</code></a>
+</li>
+<li><a href="#athenadockerlistathenacontainers"><code>athena.docker.list_athena_containers</code></a>
+</li>
+<li><a href="#athenadockerlogs"><code>athena.docker.logs</code></a>
+</li>
+<li><a href="#athenadockermount"><code>athena.docker.mount</code></a>
+</li>
+<li><a href="#athenadockermountdir"><code>athena.docker.mount_dir</code></a>
+</li>
+<li><a href="#athenadockermountdirfromplugin"><code>athena.docker.mount_dir_from_plugin</code></a>
+</li>
+<li><a href="#athenadockerprintorfollowcontainerlogs"><code>athena.docker.print_or_follow_container_logs</code></a>
+</li>
+<li><a href="#athenadockerremovecontainerandimage"><code>athena.docker.remove_container_and_image</code></a>
+</li>
+<li><a href="#athenadockerrm"><code>athena.docker.rm</code></a>
+</li>
+<li><a href="#athenadockerrmi"><code>athena.docker.rmi</code></a>
+</li>
+<li><a href="#athenadockerrun"><code>athena.docker.run</code></a>
+</li>
+<li><a href="#athenadockerruncontainer"><code>athena.docker.run_container</code></a>
+</li>
+<li><a href="#athenadockerruncontainerwithdefaultrouter"><code>athena.docker.run_container_with_default_router</code></a>
+</li>
+<li><a href="#athenadockersetnodefaultrouter"><code>athena.docker.set_no_default_router</code></a>
+</li>
+<li><a href="#athenadockersetoptions"><code>athena.docker.set_options</code></a>
+</li>
+<li><a href="#athenadockerstopallcontainers"><code>athena.docker.stop_all_containers</code></a>
+</li>
+<li><a href="#athenadockerstopcontainer"><code>athena.docker.stop_container</code></a>
+</li>
+<li><a href="#athenadockerwaitforstringincontainerlogs"><code>athena.docker.wait_for_string_in_container_logs</code></a>
+</li>
+<li><a href="#athenapluginbuild"><code>athena.plugin.build</code></a>
+</li></ul>
+</li>
+<li><p><a href="#handling-plugin">Handling <em>plugin</em></a></p><ul><li><a href="#athenapluginbuild"><code>athena.plugin.build</code></a>
+</li>
+<li><a href="#athenaplugincheckdependencies"><code>athena.plugin.check_dependencies</code></a>
+</li>
+<li><a href="#athenaplugingetavailablecmds"><code>athena.plugin.get_available_cmds</code></a>
+</li>
+<li><a href="#athenaplugingetcontainername"><code>athena.plugin.get_container_name</code></a>
+</li>
+<li><a href="#athenaplugingetcontainertouse"><code>athena.plugin.get_container_to_use</code></a>
+</li>
+<li><a href="#athenaplugingetenvironment"><code>athena.plugin.get_environment</code></a>
+</li>
+<li><a href="#athenaplugingetenvironmentbuildfile"><code>athena.plugin.get_environment_build_file</code></a>
+</li>
+<li><a href="#athenaplugingetimagename"><code>athena.plugin.get_image_name</code></a>
+</li>
+<li><a href="#athenaplugingetimageversion"><code>athena.plugin.get_image_version</code></a>
+</li>
+<li><a href="#athenaplugingetplg"><code>athena.plugin.get_plg</code></a>
+</li>
+<li><a href="#athenaplugingetplgbindir"><code>athena.plugin.get_plg_bin_dir</code></a>
+</li>
+<li><a href="#athenaplugingetplgcmddir"><code>athena.plugin.get_plg_cmd_dir</code></a>
+</li>
+<li><a href="#athenaplugingetplgdir"><code>athena.plugin.get_plg_dir</code></a>
+</li>
+<li><a href="#athenaplugingetplgdockerdir"><code>athena.plugin.get_plg_docker_dir</code></a>
+</li>
+<li><a href="#athenaplugingetplglibdir"><code>athena.plugin.get_plg_lib_dir</code></a>
+</li>
+<li><a href="#athenaplugingetplgversion"><code>athena.plugin.get_plg_version</code></a>
+</li>
+<li><a href="#athenaplugingetplugin"><code>athena.plugin.get_plugin</code></a>
+</li>
+<li><a href="#athenaplugingetpluginsdir"><code>athena.plugin.get_plugins_dir</code></a>
+</li>
+<li><a href="#athenaplugingetsharedlibdir"><code>athena.plugin.get_shared_lib_dir</code></a>
+</li>
+<li><a href="#athenaplugingetsubplgversion"><code>athena.plugin.get_subplg_version</code></a>
+</li>
+<li><a href="#athenaplugingettagname"><code>athena.plugin.get_tag_name</code></a>
+</li>
+<li><a href="#athenapluginhandle"><code>athena.plugin.handle</code></a>
+</li>
+<li><a href="#athenapluginhandlecontainer"><code>athena.plugin.handle_container</code></a>
+</li>
+<li><a href="#athenapluginhandleenvironment"><code>athena.plugin.handle_environment</code></a>
+</li>
+<li><a href="#athenaplugininit"><code>athena.plugin.init</code></a>
+</li>
+<li><a href="#athenapluginisenvironmentspecified"><code>athena.plugin.is_environment_specified</code></a>
+</li>
+<li><a href="#athenapluginpluginexists"><code>athena.plugin.plugin_exists</code></a>
+</li>
+<li><a href="#athenapluginprintavailablecmds"><code>athena.plugin.print_available_cmds</code></a>
+</li>
+<li><a href="#athenapluginrequire"><code>athena.plugin.require</code></a>
+</li>
+<li><a href="#athenapluginruncommand"><code>athena.plugin.run_command</code></a>
+</li>
+<li><a href="#athenapluginruncontainer"><code>athena.plugin.run_container</code></a>
+</li>
+<li><a href="#athenapluginsetcontainername"><code>athena.plugin.set_container_name</code></a>
+</li>
+<li><a href="#athenapluginsetenvironment"><code>athena.plugin.set_environment</code></a>
+</li>
+<li><a href="#athenapluginsetenvironmentbuildfile"><code>athena.plugin.set_environment_build_file</code></a>
+</li>
+<li><a href="#athenapluginsetimagename"><code>athena.plugin.set_image_name</code></a>
+</li>
+<li><a href="#athenapluginsetimageversion"><code>athena.plugin.set_image_version</code></a>
+</li>
+<li><a href="#athenapluginsetplgcmddir"><code>athena.plugin.set_plg_cmd_dir</code></a>
+</li>
+<li><a href="#athenapluginsetplugin"><code>athena.plugin.set_plugin</code></a>
+</li>
+<li><a href="#athenapluginusecontainer"><code>athena.plugin.use_container</code></a>
+</li>
+<li><a href="#athenapluginuseexternalcontainerasdaemon"><code>athena.plugin.use_external_container_as_daemon</code></a>
+</li>
+<li><a href="#athenapluginvalidatepluginname"><code>athena.plugin.validate_plugin_name</code></a>
+</li>
+<li><a href="#athenapluginvalidateusage"><code>athena.plugin.validate_usage</code></a>
+</li>
+<li><a href="#athenapluginvalidateversion"><code>athena.plugin.validate_version</code></a>
+</li>
+<li><a href="#athenapluginvalidateversionformat"><code>athena.plugin.validate_version_format</code></a>
+</li></ul>
+</li>
+<li><p><a href="#handling-test">Handling <em>test</em></a></p><ul><li><a href="#athenatestassertarray"><code>athena.test.assert_array</code></a>
+</li>
+<li><a href="#athenatestassertexitcode"><code>athena.test.assert_exit_code</code></a>
+</li>
+<li><a href="#athenatestassertexitcodeexpectsfail"><code>athena.test.assert_exit_code.expects_fail</code></a>
+</li>
+<li><a href="#athenatestassertoutput"><code>athena.test.assert_output</code></a>
+</li>
+<li><a href="#athenatestassertoutputexpectsfail"><code>athena.test.assert_output.expects_fail</code></a>
+</li>
+<li><a href="#athenatestassertreturn"><code>athena.test.assert_return</code></a>
+</li>
+<li><a href="#athenatestassertreturnexpectsfail"><code>athena.test.assert_return.expects_fail</code></a>
+</li>
+<li><a href="#athenatestassertstringcontains"><code>athena.test.assert_string_contains</code></a>
+</li>
+<li><a href="#athenatestassertstringcontainsexpectsfail"><code>athena.test.assert_string_contains.expects_fail</code></a>
+</li>
+<li><a href="#athenatestassertvalue"><code>athena.test.assert_value</code></a>
+</li>
+<li><a href="#athenatestassertvalueexpectsfail"><code>athena.test.assert_value.expects_fail</code></a>
+</li>
+<li><a href="#athenatestcreatetempdir"><code>athena.test.create_tempdir</code></a>
+</li>
+<li><a href="#athenatestcreatetempfile"><code>athena.test.create_tempfile</code></a>
+</li>
+<li><a href="#athenatestmock"><code>athena.test.mock</code></a>
+</li>
+<li><a href="#athenatestmockexits"><code>athena.test.mock.exits</code></a>
+</li>
+<li><a href="#athenatestmockoutputs"><code>athena.test.mock.outputs</code></a>
+</li>
+<li><a href="#athenatestmockreturns"><code>athena.test.mock.returns</code></a>
+</li>
+<li><a href="#athenatestrunsuite"><code>athena.test.run_suite</code></a>
+</li>
+<li><a href="#athenatestshowcoverage"><code>athena.test.show_coverage</code></a>
+</li>
+<li><a href="#athenatestunmock"><code>athena.test.unmock</code></a>
+</li></ul>
+</li></ul>
+</li></ul>
+<h1 id="using-cli-functions">Using CLI Functions</h1><h2 id="handling-docker">Handling <em>docker</em></h2><h3 id="athenadocker"><a name="athenadocker"></a><code>athena.docker</code></h3><p>This is a wrapper function for executing <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a>, which helps with mocking and tweaking.</p><p><strong>USAGE:</strong>  <code>athena.docker &lt;args&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenadockeraddautoremove"><a name="athenadockeraddautoremove"></a><code>athena.docker.add_autoremove</code></h3><p>This function adds the --rm flag (automatically remove the container when it exits) to the <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> run option string ($ATHENA_DOCKER_OPTS).</p><p><strong>USAGE:</strong>  <code>athena.docker.add_autoremove</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenadockeradddaemon"><a name="athenadockeradddaemon"></a><code>athena.docker.add_daemon</code></h3><p>This function adds the daemon flag to the <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> run option string ($ATHENA_DOCKER_OPTS).</p><p><strong>USAGE:</strong>  <code>athena.docker.add_daemon</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenadockeraddenv"><a name="athenadockeraddenv"></a><code>athena.docker.add_env</code></h3><p>This function adds an environment variable to the <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> run option string ($ATHENA_DOCKER_OPTS).</p><p><strong>USAGE:</strong>  <code>athena.docker.add_env &lt;variable name&gt; &lt;variable value&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenadockeraddenvswithprefix"><a name="athenadockeraddenvswithprefix"></a><code>athena.docker.add_envs_with_prefix</code></h3><p>This function adds environment variables with the given prefix to the <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> run option string.</p><p><strong>USAGE:</strong>  <code>athena.docker.add_envs_with_prefix &lt;prefix&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenadockeraddoption"><a name="athenadockeraddoption"></a><code>athena.docker.add_option</code></h3><p>This function adds the given option to the <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> run option string ($ATHENA_DOCKER_OPTS).</p><p><strong>USAGE:</strong>  <code>athena.docker.add_option &lt;your option&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenadockerbuild"><a name="athenadockerbuild"></a><code>athena.docker.build</code></h3><p>This is a wrapper function for executing <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> build, which helps with mocking and tweaking.</p><p><strong>USAGE:</strong>  <code>athena.docker.build &lt;args&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenadockerbuildcontainer"><a name="athenadockerbuildcontainer"></a><code>athena.docker.build_container</code></h3><p>This function builds a <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> image using the given tag name, version and <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> directory (Dockerfile must exists in the given directory). If a <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> image with tag:version already exists nothing is done. If not the function checks if it is in the right directory, loads build environment variables if provided (see athena.<a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a>.get_build_args), and builds the <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> image. If the function is called in a wrong directory or the build is unsuccessful execution is stopped and an error message is thrown.</p><p><strong>USAGE:</strong>  <code>athena.docker.build_container &lt;tag name&gt; &lt;version&gt; &lt;docker directory&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenadockerbuildfromplugin"><a name="athenadockerbuildfromplugin"></a><code>athena.docker.build_from_plugin</code></h3><p>This function builds a <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> image for a plugin. Plugin name, sub-plugin name, and version must be provided. If no valid <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> directory or Dockerfile is found execution is stopped and an error message is thrown.</p><p><strong>USAGE:</strong>  <code>athena.docker.build_from_plugin &lt;plugin name&gt; &lt;sub-plugin name&gt; &lt;plugin version&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenadockercleanup"><a name="athenadockercleanup"></a><code>athena.docker.cleanup</code></h3><p>This function cleans up the container for the current plugin in case is not running.</p><p><strong>USAGE:</strong>  <code>athena.docker.cleanup</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenadockercontainerhasstarted"><a name="athenadockercontainerhasstarted"></a><code>athena.docker.container_has_started</code></h3><p>This function checks if container has started</p><p><strong>USAGE:</strong>  <code>athena.docker.container_has_started</code></p><p><strong>RETURN:</strong> <code>0 (true) 1 (false)</code></p><h3 id="athenadockerexec"><a name="athenadockerexec"></a><code>athena.docker.exec</code></h3><p>This is a wrapper function for executing <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> exec, which helps with mocking and tweaking.</p><p><strong>USAGE:</strong>  <code>athena.docker.exec &lt;args&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenadockergetbuildargs"><a name="athenadockergetbuildargs"></a><code>athena.docker.get_build_args</code></h3><p>This function checks if a <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> build environment file is defined in the $ATHENA_PLG_DOCKER_ENV_BUILD_FILE variable. If not it does nothing. If defined it checks if the file exists and generates a build arguments string from the file&apos;s content which is returned.</p><p><strong>USAGE:</strong>  <code>athena.docker.get_build_args</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenadockergetip"><a name="athenadockergetip"></a><code>athena.docker.get_ip</code></h3><p>This function returns the ip address of the <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> machine. It checks for the &apos;<a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a>-machine&apos; and &apos;boot2docker&apos; commands to do this (default on Mac). If not found it searches for the docker0 device (default on Linux) and returns the localhost ip if found. If no docker0 device is available the function assumes to run inside a <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> container and checks if a <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> daemon is running in this container. If so localhost is returned. If not it returns the default route ip address.</p><p><strong>USAGE:</strong>  <code>athena.docker.get_ip</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenadockergetoptions"><a name="athenadockergetoptions"></a><code>athena.docker.get_options</code></h3><p>This function outputs the extra options to be passed for running <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a>.</p><p><strong>USAGE:</strong>  <code>athena.docker.get_options</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenadockergettagandversion"><a name="athenadockergettagandversion"></a><code>athena.docker.get_tag_and_version</code></h3><h3 id="athenadockerhandleruntype"><a name="athenadockerhandleruntype"></a><code>athena.docker.handle_run_type</code></h3><p>This function checks if either the daemon or the autoremove flag is set in the <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> run option string ($ATHENA_DOCKER_OPTS). If one of both is set it returns the error code 0. If none is set it sets the autoremove flag (--rm) and returns the error code 1.</p><p><strong>USAGE:</strong>  <code>athena.docker.handle_run_type</code></p><p><strong>RETURN:</strong> <code>0 (true), 1 (false)</code></p><h3 id="athenadockerhasoption"><a name="athenadockerhasoption"></a><code>athena.docker.has_option</code></h3><p>This function checks if there if the given option is already set.</p><p><strong>USAGE:</strong>  <code>athena.docker.has_option &lt;option&gt;</code></p><p><strong>RETURN:</strong> <code>0 (true) 1 (false)</code></p><h3 id="athenadockerimageexists"><a name="athenadockerimageexists"></a><code>athena.docker.image_exists</code></h3><p>This function checks if a <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> image with the given tag name and version exists.</p><p><strong>USAGE:</strong>  <code>athena.docker.image_exists &lt;tag name&gt; &lt;version&gt;</code></p><p><strong>RETURN:</strong> <code>0 (true), 1 (false)</code></p><h3 id="athenadockerimages"><a name="athenadockerimages"></a><code>athena.docker.images</code></h3><p>This is a wrapper function for executing <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> images, which helps with mocking and tweaking.</p><p><strong>USAGE:</strong>  <code>athena.docker.images &lt;args&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenadockerinspect"><a name="athenadockerinspect"></a><code>athena.docker.inspect</code></h3><p>This is a wrapper function for executing <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> inspect, which helps with mocking and tweaking.</p><p><strong>USAGE:</strong>  <code>athena.docker.inspect &lt;args&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenadockeriscontainerrunning"><a name="athenadockeriscontainerrunning"></a><code>athena.docker.is_container_running</code></h3><p>This function checks if a <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> container with the given name is running. If no container with the given name is running all stopped containers with this name are removed (to avoid collisions).</p><p><strong>USAGE:</strong>  <code>athena.docker.is_container_running &lt;container name&gt;</code></p><p><strong>RETURN:</strong> <code>0 (true), 1 (false)</code></p><h3 id="athenadockerisdefaultroutertobeused"><a name="athenadockerisdefaultroutertobeused"></a><code>athena.docker.is_default_router_to_be_used</code></h3><p>This function checks if the default router should be used.</p><p><strong>USAGE:</strong>  <code>athena.docker.is_default_router_to_be_used</code></p><p><strong>RETURN:</strong> <code>0 (true) 1 (false)</code></p><h3 id="athenadockerisrunningasdaemon"><a name="athenadockerisrunningasdaemon"></a><code>athena.docker.is_running_as_daemon</code></h3><p>This function checks if <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> option -d is already set.</p><p><strong>USAGE:</strong>  <code>athena.docker.is_running_as_daemon</code></p><p><strong>RETURN:</strong> <code>0 (true) 1 (false)</code></p><h3 id="athenadockerlistathenacontainers"><a name="athenadockerlistathenacontainers"></a><code>athena.docker.list_athena_containers</code></h3><p>This function returns a list of athena custom containers.</p><p><strong>USAGE:</strong>  <code>athena.docker.list_athena_containers</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenadockerlogs"><a name="athenadockerlogs"></a><code>athena.docker.logs</code></h3><p>This is a wrapper function for executing <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> logs, which helps with mocking and tweaking.</p><p><strong>USAGE:</strong>  <code>athena.docker.logs &lt;args&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenadockermount"><a name="athenadockermount"></a><code>athena.docker.mount</code></h3><p>This function adds the given volume to the <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> run option string ($ATHENA_DOCKER_OPTS). If source or target directory are not specified it stops execution and throws an error message and if source is neither a file or a directory also stops the execution.</p><p><strong>USAGE:</strong>  <code>athena.docker.mount &lt;source&gt; &lt;target&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenadockermountdir"><a name="athenadockermountdir"></a><code>athena.docker.mount_dir</code></h3><p>This function adds the given volume to the <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> run option string ($ATHENA_DOCKER_OPTS). If source or target directory are not specified it stops execution and throws an error message or if source is not a directory also stops.</p><p><strong>USAGE:</strong>  <code>athena.docker.mount_dir &lt;source directory&gt; &lt;target directory&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenadockermountdirfromplugin"><a name="athenadockermountdirfromplugin"></a><code>athena.docker.mount_dir_from_plugin</code></h3><p>This function adds the given volume to the <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> run option from a relative path to the current plugin.</p><p><strong>USAGE:</strong>  <code>athena,docker.mount_dir_from_plugin &lt;relative_path_from_plugin&gt; &lt;target_directory&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenadockerprintorfollowcontainerlogs"><a name="athenadockerprintorfollowcontainerlogs"></a><code>athena.docker.print_or_follow_container_logs</code></h3><p>Either print or follow the output of one or more container logs.</p><p><strong>USAGE:</strong>  <code>athena.docker.print_or_follow_container_logs &lt;containers&gt; [-f]</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenadockerremovecontainerandimage"><a name="athenadockerremovecontainerandimage"></a><code>athena.docker.remove_container_and_image</code></h3><p>This function removes a <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> container and the associated image.</p><p><strong>USAGE:</strong>  <code>athena.docker.remove_container_and_image &lt;tag name&gt; &lt;version&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenadockerrm"><a name="athenadockerrm"></a><code>athena.docker.rm</code></h3><p>This is a wrapper function for executing <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> rm, which helps with mocking and tweaking.</p><p><strong>USAGE:</strong>  <code>athena.docker.rm &lt;args&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenadockerrmi"><a name="athenadockerrmi"></a><code>athena.docker.rmi</code></h3><p>This is a wrapper function for executing <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> rmi, which helps with mocking and tweaking.</p><p><strong>USAGE:</strong>  <code>athena.docker.rmi &lt;args&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenadockerrun"><a name="athenadockerrun"></a><code>athena.docker.run</code></h3><p>This is a wrapper function for executing <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> run, which helps with mocking and tweaking.</p><p><strong>USAGE:</strong>  <code>athena.docker.run &lt;args&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenadockerruncontainer"><a name="athenadockerruncontainer"></a><code>athena.docker.run_container</code></h3><p>This function runs a container.</p><p><strong>USAGE:</strong>  <code>athena.docker.run_container &lt;container_name&gt; &lt;tag_name&gt; [&quot;docker_opts&quot;] [argument...]</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenadockerruncontainerwithdefaultrouter"><a name="athenadockerruncontainerwithdefaultrouter"></a><code>athena.docker.run_container_with_default_router</code></h3><p>This function runs a container using the default router. The ATHENA_COMMAND and ATHENA_ARGS will be set dynamically within the router inside the container so that even executing something inside an already running container will have the correct COMMAND being executed with the correct ARGS.</p><p><strong>USAGE:</strong>  <code>athena.docker.run_container_with_default_router &lt;container_name&gt; &lt;tag_name&gt; &lt;command&gt; [&lt;docker_opts&gt;] [&lt;arguments...&gt;]</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenadockersetnodefaultrouter"><a name="athenadockersetnodefaultrouter"></a><code>athena.docker.set_no_default_router</code></h3><p>This function specifies that the default router should not be used.</p><p><strong>USAGE:</strong>  <code>athena.docker.set_no_default_router [value]</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenadockersetoptions"><a name="athenadockersetoptions"></a><code>athena.docker.set_options</code></h3><p>This function sets the options to be passed to <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a>.</p><p><strong>USAGE:</strong>  <code>athena.docker.set_options &lt;options&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenadockerstopallcontainers"><a name="athenadockerstopallcontainers"></a><code>athena.docker.stop_all_containers</code></h3><p>This function stops and removes <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> containers which run in this instance with the given name. If &apos;--global&apos; is set as additional argument all (regardless the instance) <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> containers with the given name are stopped/removed. Since the containers are stopped/removed in parallel the function waits until all containers were stopped and removed successfully. OPTION: --global</p><p><strong>USAGE:</strong>  <code>athena.docker.stop_all_containers &lt;name_to_filter&gt; [&lt;option&gt;]</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenadockerstopcontainer"><a name="athenadockerstopcontainer"></a><code>athena.docker.stop_container</code></h3><p>This function stops a <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> container with the given name if running. In any case (running or already stopped) the containers with the given name will be removed including associated volumes.</p><p><strong>USAGE:</strong>  <code>athena.docker.stop_container &lt;container name&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenadockerwaitforstringincontainerlogs"><a name="athenadockerwaitforstringincontainerlogs"></a><code>athena.docker.wait_for_string_in_container_logs</code></h3><p>This function checks if a certain string can be found in the container logs. If not the container is considered to be not running and the function keeps rechecking every second. If 300 seconds are reached it stops execution and throws an error message.</p><p><strong>USAGE:</strong>  <code>athena.docker.wait_for_string_in_container_logs &lt;container&gt; &lt;log message&gt;</code></p><p><strong>RETURN:</strong> <code>0 (true)</code></p><h3 id="athenapluginbuild"><a name="athenapluginbuild"></a><code>athena.plugin.build</code></h3><p>This function gets the name ($ATHENA_PLUGIN), <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> directory (see athena.plugin.get_plg_docker_dir), tag name (see athena.plugin.get_tag_name), and version ($ATHENA_PLG_IMAGE_VERSION) of the current plugin and builds a <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> image from these resources. If no valid Dockerfile exists or the build is unsuccessful execution is stopped and an error message is thrown.</p><p><strong>USAGE:</strong>  <code>athena.plugin.build</code></p><p><strong>RETURN:</strong> <code>--</code></p><h2 id="handling-plugin">Handling <em>plugin</em></h2><h3 id="athenapluginbuild"><a name="athenapluginbuild"></a><code>athena.plugin.build</code></h3><p>This function builds the container for the current plugin.</p><p><strong>USAGE:</strong>  <code>athena.plugin.build</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenaplugincheckdependencies"><a name="athenaplugincheckdependencies"></a><code>athena.plugin.check_dependencies</code></h3><p>This function checks if the given plugin has dependencies (i.e. it checks the content of dependencies.ini). It checks each specified dependency by name and version. If a plugin specified as dependency is not installed or has the wrong version number the error code 1 is returned. If all dependencies are installed the error code 0 is returned.</p><p><strong>USAGE:</strong>  <code>athena.plugin.check_dependencies &lt;plugin name&gt;</code></p><p><strong>RETURN:</strong> <code>0 (true), 1 (false)</code></p><h3 id="athenaplugingetavailablecmds"><a name="athenaplugingetavailablecmds"></a><code>athena.plugin.get_available_cmds</code></h3><p>This function prints the usage info on the given plugin including the list of all commands found for this plugin (in $ATHENA_PLG_CMD_DIR).</p><p><strong>USAGE:</strong>  <code>athena.plugin.get_available_cmds &lt;plugin_name&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenaplugingetcontainername"><a name="athenaplugingetcontainername"></a><code>athena.plugin.get_container_name</code></h3><p>This function returns a generic container name generated from the current plugin and instance settings (i.e. $ATHENA_PLUGIN and $ATHENA_INSTANCE variables will be considered for the container name generation).</p><p><strong>USAGE:</strong>  <code>athena.plugin.get_container_name</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenaplugingetcontainertouse"><a name="athenaplugingetcontainertouse"></a><code>athena.plugin.get_container_to_use</code></h3><p>This function checks if a container was set for running (in the $ATHENA_PLG_CONTAINER_TO_USE variable). If so the container name is returned. If not the error code 1 is returned.</p><p><strong>USAGE:</strong>  <code>athena.plugin.get_container_to_use</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenaplugingetenvironment"><a name="athenaplugingetenvironment"></a><code>athena.plugin.get_environment</code></h3><p>This function returns the value of the current plugin environment as set in the $ATHENA_PLG_ENVIRONMENT variable. If $ATHENA_PLG_ENVIRONMENT is not set error code 1 is returned.</p><p><strong>USAGE:</strong>  <code>athena.plugin.get_environment</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenaplugingetenvironmentbuildfile"><a name="athenaplugingetenvironmentbuildfile"></a><code>athena.plugin.get_environment_build_file</code></h3><p>This function returns the current <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> build environment file name as set in the $ATHENA_PLG_DOCKER_ENV_BUILD_FILE variable. If $ATHENA_PLG_DOCKER_ENV_BUILD_FILE is not set error code 1 is returned.</p><p><strong>USAGE:</strong>  <code>athena.plugin.get_environment_build_file</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenaplugingetimagename"><a name="athenaplugingetimagename"></a><code>athena.plugin.get_image_name</code></h3><p>This function returns the value of the current plugin image name as set in the $ATHENA_PLG_IMAGE_NAME variable.</p><p><strong>USAGE:</strong>  <code>athena.plugin.get_image_name</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenaplugingetimageversion"><a name="athenaplugingetimageversion"></a><code>athena.plugin.get_image_version</code></h3><p>This function returns the value of the current plugin image version as set in $ATHENA_PLG_IMAGE_VERSION variable.</p><p><strong>USAGE:</strong>  <code>athena.plugin.get_image_version</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenaplugingetplg"><a name="athenaplugingetplg"></a><code>athena.plugin.get_plg</code></h3><p>This function returns the name of the current plugin as set in the $ATHENA_PLUGIN variable.</p><p><strong>USAGE:</strong>  <code>athena.plugin.get_plg</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenaplugingetplgbindir"><a name="athenaplugingetplgbindir"></a><code>athena.plugin.get_plg_bin_dir</code></h3><p>This function returns the plugin binary directory name and checks if the plugin root exists. If not, execution is stopped and an error message is thrown.</p><p><strong>USAGE:</strong>  <code>athena.plugin.get_plg_bin_dir [plugin name]</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenaplugingetplgcmddir"><a name="athenaplugingetplgcmddir"></a><code>athena.plugin.get_plg_cmd_dir</code></h3><p>This function returns the plugin command directory name and checks if the plugin root exists. If not execution is stopped and an error message is thrown.</p><p><strong>USAGE:</strong>  <code>athena.plugin.get_plg_cmd_dir &lt;plugin name&gt;</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenaplugingetplgdir"><a name="athenaplugingetplgdir"></a><code>athena.plugin.get_plg_dir</code></h3><p>This function returns the plugin root directory name and checks if it exists. If it does not exist execution is stopped and an error message is thrown.</p><p><strong>USAGE:</strong>  <code>athena.plugin.get_plg_dir [plugin name]</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenaplugingetplgdockerdir"><a name="athenaplugingetplgdockerdir"></a><code>athena.plugin.get_plg_docker_dir</code></h3><p>This function returns the plugin <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> directory name and checks if the plugin root exists. If not execution is stopped and an error message is thrown.</p><p><strong>USAGE:</strong>  <code>athena.plugin.get_plg_docker_dir &lt;plugin name&gt;</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenaplugingetplglibdir"><a name="athenaplugingetplglibdir"></a><code>athena.plugin.get_plg_lib_dir</code></h3><p>This function returns the plugin library directory name and checks if the plugin root exists. If not, execution is stopped and an error message is thrown.</p><p><strong>USAGE:</strong>  <code>athena.plugin.get_plg_lib_dir [plugin name]</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenaplugingetplgversion"><a name="athenaplugingetplgversion"></a><code>athena.plugin.get_plg_version</code></h3><p>This function returns the version of a plugin as set in its version.txt.</p><p><strong>USAGE:</strong>  <code>athena.plugin.get_plg_version [plugin name]</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenaplugingetplugin"><a name="athenaplugingetplugin"></a><code>athena.plugin.get_plugin</code></h3><p>This function wraps the athena.plugin.get_plg function.</p><p><strong>USAGE:</strong>  <code>athena.plugin.get_plugin</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenaplugingetpluginsdir"><a name="athenaplugingetpluginsdir"></a><code>athena.plugin.get_plugins_dir</code></h3><p>This function returns the directory name where plugins are installed (i.e. the value of the $ATHENA_PLGS_DIR variable).</p><p><strong>USAGE:</strong>  <code>athena.plugin.get_plugins_dir</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenaplugingetsharedlibdir"><a name="athenaplugingetsharedlibdir"></a><code>athena.plugin.get_shared_lib_dir</code></h3><p>This function returns the shared lib directory.</p><p><strong>USAGE:</strong>  <code>athena.plugin.get_shared_lib_dir</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenaplugingetsubplgversion"><a name="athenaplugingetsubplgversion"></a><code>athena.plugin.get_subplg_version</code></h3><p>This function returns the version of a sub-plugin as set in its version.txt.</p><p><strong>USAGE:</strong>  <code>athena.plugin.get_subplg_version &lt;plugin name&gt; &lt;sub-plugin name&gt;</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenaplugingettagname"><a name="athenaplugingettagname"></a><code>athena.plugin.get_tag_name</code></h3><p>This function generates and returns a tag name from current plugin settings (i.e. $ATHENA_PLG_IMAGE_NAME, $ATHENA_PLUGIN, and $ATHENA_PLG_ENVIRONMENT variables will be considered for the tag name generation).</p><p><strong>USAGE:</strong>  <code>athena.plugin.get_tag_name</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenapluginhandle"><a name="athenapluginhandle"></a><code>athena.plugin.handle</code></h3><p>This function handles the routing of the plugin.</p><p><strong>USAGE:</strong>  <code>athena.plugin.handle &lt;command&gt; &lt;command_dir&gt; &lt;lib_dir&gt; &lt;bin_dir&gt; &lt;hooks_dir&gt;</code></p><p><strong>RETURN:</strong> <code>0 (sucessfull), 1 (failed)</code></p><h3 id="athenapluginhandlecontainer"><a name="athenapluginhandlecontainer"></a><code>athena.plugin.handle_container</code></h3><p>This function checks if the name, <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> directory, and container of the current plugin are set. If no container is set it checks if a Dockerfile is available in the <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> directory and will run athena.<a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a>.build with it. If no Dockerfile is available it will return doing nothing (some plugins might not need a container). If a container was already set it will check if its <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> directory (e.g. of a given sub-plugin) with version.txt exists, sets image version ($ATHENA_PLG_IMAGE_VERSION) and plugin name ($ATHENA_PLUGIN) accordingly, and builds the <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> image for it. If no valid <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> directory is found execution is stopped and an error message is thrown.</p><p><strong>USAGE:</strong>  <code>athena.plugin.handle_container</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenapluginhandleenvironment"><a name="athenapluginhandleenvironment"></a><code>athena.plugin.handle_environment</code></h3><p>This function checks if the name, environment, and container of the current plugin are set. If so it checks if a build environment file exists and sets the $ATHENA_PLG_DOCKER_ENV_BUILD_FILE variable pointing to it. If not execution is stopped and an error message is thrown.</p><p><strong>USAGE:</strong>  <code>athena.plugin.handle_environment</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenaplugininit"><a name="athenaplugininit"></a><code>athena.plugin.init</code></h3><p>This function checks if the given plugin was initialised (i.e. if athena.lock is set in the plugin directory). If not it checks the plugin dependencies (using athena.plugin.check_dependencies) and then runs the plugin init script if successful. If the required plugins (dependencies) are not installed it stops execution and throws an error message.</p><p><strong>USAGE:</strong>  <code>athena.plugin.init &lt;plugin_name&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenapluginisenvironmentspecified"><a name="athenapluginisenvironmentspecified"></a><code>athena.plugin.is_environment_specified</code></h3><p>This function checks if the current plugin environment ($ATHENA_PLG_ENVIRONMENT) is set. If set error code 0 is returned. If not error code 1 is returned.</p><p><strong>USAGE:</strong>  <code>athena.plugin.is_environment_specified</code></p><p><strong>RETURN:</strong> <code>0 (true), 1 (false)</code></p><h3 id="athenapluginpluginexists"><a name="athenapluginpluginexists"></a><code>athena.plugin.plugin_exists</code></h3><p>This function checks if the plugin root directory of the given plugin exists. If not execution is stopped and an error message is thrown. If a version is given as second argument it checks if it complies with the found plugin version. If not an error message is thrown.</p><p><strong>USAGE:</strong>  <code>athena.plugin.plugin_exists &lt;plugin name&gt; &lt;version&gt;</code></p><p><strong>RETURN:</strong> <code>0 (true), 1 (false)</code></p><h3 id="athenapluginprintavailablecmds"><a name="athenapluginprintavailablecmds"></a><code>athena.plugin.print_available_cmds</code></h3><p>This function prints the usage screen of the given plugin including all commands found in the plugin directory ($ATHENA_PLG_CMD_DIR).</p><p><strong>USAGE:</strong>  <code>athena.plugin.print_available_cmds &lt;plugin_name&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenapluginrequire"><a name="athenapluginrequire"></a><code>athena.plugin.require</code></h3><p>This function checks if the plugin root directory of the given plugin name exists. If not it stops execution and throws an error message. If it exists it sources &apos;bin/variables.sh&apos; and &apos;bin/lib/functions.sh&apos; if available in the plugin.</p><p><strong>USAGE:</strong>  <code>athena.plugin.require &lt;plugin name&gt; &lt;version&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenapluginruncommand"><a name="athenapluginruncommand"></a><code>athena.plugin.run_command</code></h3><p>This function runs the given command from the plugin.</p><p><strong>USAGE:</strong>  <code>athena.plugin.run_command &lt;command_name&gt; &lt;plugin_cmd_dir&gt;</code></p><p><strong>RETURN:</strong> <code>int</code></p><h3 id="athenapluginruncontainer"><a name="athenapluginruncontainer"></a><code>athena.plugin.run_container</code></h3><p>This functions runs the given container.</p><p><strong>USAGE:</strong>  <code>athena.plugin.run_container &lt;command&gt;</code></p><p><strong>RETURN:</strong> <code>0 (true), 1 (false)</code></p><h3 id="athenapluginsetcontainername"><a name="athenapluginsetcontainername"></a><code>athena.plugin.set_container_name</code></h3><p>This function sets the current container name in the $ATHENA_CONTAINER_NAME variable to the given value.</p><p><strong>USAGE:</strong>  <code>athena.plugin.set_container_name &lt;container name&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenapluginsetenvironment"><a name="athenapluginsetenvironment"></a><code>athena.plugin.set_environment</code></h3><p>This function sets the current plugin environment in the $ATHENA_PLG_ENVIRONMENT variable to the given value. If no plugin environment is provided execution will be stopped.</p><p><strong>USAGE:</strong>  <code>athena.plugin.set_environment &lt;plugin environment&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenapluginsetenvironmentbuildfile"><a name="athenapluginsetenvironmentbuildfile"></a><code>athena.plugin.set_environment_build_file</code></h3><p>This function sets the current <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> build environment file name in the $ATHENA_PLG_DOCKER_ENV_BUILD_FILE variable to the given value.</p><p><strong>USAGE:</strong>  <code>athena.plugin.set_environment_build_file &lt;docker build environment file name&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenapluginsetimagename"><a name="athenapluginsetimagename"></a><code>athena.plugin.set_image_name</code></h3><p>This function sets the current plugin image name in the $ATHENA_PLG_IMAGE_NAME variable to the given value.</p><p><strong>USAGE:</strong>  <code>athena.plugin.set_image_name &lt;image name&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenapluginsetimageversion"><a name="athenapluginsetimageversion"></a><code>athena.plugin.set_image_version</code></h3><p>This function sets the current plugin image version in the $ATHENA_PLG_IMAGE_VERSION variable to the given value.</p><p><strong>USAGE:</strong>  <code>athena.plugin.set_image_version &lt;image version&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenapluginsetplgcmddir"><a name="athenapluginsetplgcmddir"></a><code>athena.plugin.set_plg_cmd_dir</code></h3><p>This functions sets the plg cmd dir(s).</p><p><strong>USAGE:</strong>  <code>athena.plugin.set_plg_cmd_dir &lt;dir(s)&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenapluginsetplugin"><a name="athenapluginsetplugin"></a><code>athena.plugin.set_plugin</code></h3><p>This function sets the current plugin in the $ATHENA_PLUGIN variable to the given value.</p><p><strong>USAGE:</strong>  <code>athena.plugin.set_plugin &lt;plugin name&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenapluginusecontainer"><a name="athenapluginusecontainer"></a><code>athena.plugin.use_container</code></h3><p>This function sets the container that will be used for running (i.e. assigning the given value to $ATHENA_PLG_CONTAINER_TO_USE variable). If no value is provided it stops the execution and throws an error message.</p><p><strong>USAGE:</strong>  <code>athena.plugin.use_container &lt;container name&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenapluginuseexternalcontainerasdaemon"><a name="athenapluginuseexternalcontainerasdaemon"></a><code>athena.plugin.use_external_container_as_daemon</code></h3><p>This function uses an external container as a daemon and disables the default router.</p><p><strong>USAGE:</strong>  <code>athena.plugin.use_external_container_as_daemon &lt;container name&gt; [instance_name]</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenapluginvalidatepluginname"><a name="athenapluginvalidatepluginname"></a><code>athena.plugin.validate_plugin_name</code></h3><p>This function checks if the given argument (e.g. <plugin name="">) is not empty. If the given string is empty execution is stopped and an error message is thrown.</plugin></p><p><strong>USAGE:</strong>  <code>athena.plugin.validate_plugin_name &lt;$VARIABLE&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenapluginvalidateusage"><a name="athenapluginvalidateusage"></a><code>athena.plugin.validate_usage</code></h3><p>This function checks the number of arguments in the given list. If no argument is given it shows the available commands of the given plugin and exits. If another argument than &apos;init&apos; or &apos;cleanup&apos; is given it checks if the plugin was initialised.</p><p><strong>USAGE:</strong>  <code>athena.plugin.validate_usage &lt;plugin_name&gt; &lt;argument1&gt; &lt;argument2&gt; ...</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenapluginvalidateversion"><a name="athenapluginvalidateversion"></a><code>athena.plugin.validate_version</code></h3><p>This function validates a given version against the accepted one. Semantic Version 2.0 is used in for the validation algorithm.</p><p><strong>USAGE:</strong>  <code>athena.plugin.validate_version &lt;version_to_validate&gt; &lt;version_accepted&gt;</code></p><p><strong>RETURN:</strong> <code>0 (true), 1 (false)</code></p><h3 id="athenapluginvalidateversionformat"><a name="athenapluginvalidateversionformat"></a><code>athena.plugin.validate_version_format</code></h3><p>This function validates if the given version follows Semantic Versioning 2.0.</p><p><strong>USAGE:</strong>  <code>athena.plugin.validate_version &lt;version&gt;</code></p><p><strong>RETURN:</strong> <code>0 (true) 1 (false)</code></p><h2 id="handling-test">Handling <em>test</em></h2><h3 id="athenatestassertarray"><a name="athenatestassertarray"></a><code>athena.test.assert_array</code></h3><p>This function asserts if two arrays are equal. It takes the name of the array variables to look them up.</p><p><strong>USAGE:</strong>  <code>athena.assert_value &lt;name_of_array&gt; &lt;name_of_expected_array&gt;</code></p><p><strong>RETURN:</strong> <code>0 (true) 1 (false)</code></p><h3 id="athenatestassertexitcode"><a name="athenatestassertexitcode"></a><code>athena.test.assert_exit_code</code></h3><p>This function asserts if the function exits with 0.</p><p><strong>USAGE:</strong>  <code>athena.test.assert_exit_code &lt;function&gt; &lt;arguments&gt;</code></p><p><strong>RETURN:</strong> <code>0 (true) 1 (false)</code></p><h3 id="athenatestassertexitcodeexpectsfail"><a name="athenatestassertexitcodeexpectsfail"></a><code>athena.test.assert_exit_code.expects_fail</code></h3><p>This function asserts if the function does not exit with 0.</p><p><strong>USAGE:</strong>  <code>athena.test.assert_exit_code &lt;function&gt; &lt;arguments&gt;</code></p><p><strong>RETURN:</strong> <code>0 (true) 1 (false)</code></p><h3 id="athenatestassertoutput"><a name="athenatestassertoutput"></a><code>athena.test.assert_output</code></h3><p>This function asserts the output of a function call.</p><p><strong>USAGE:</strong>  <code>athena.assert_output &lt;function&gt; &lt;expected&gt; &lt;arguments&gt;</code></p><p><strong>RETURN:</strong> <code>0 (true) 1 (false)</code></p><h3 id="athenatestassertoutputexpectsfail"><a name="athenatestassertoutputexpectsfail"></a><code>athena.test.assert_output.expects_fail</code></h3><p>This function asserts if the output of a function call is not the same as the expected.</p><p><strong>USAGE:</strong>  <code>athena.assert_output.expects_fail &lt;function&gt; &lt;expected&gt; &lt;arguments&gt;</code></p><p><strong>RETURN:</strong> <code>0 (true) 1 (false)</code></p><h3 id="athenatestassertreturn"><a name="athenatestassertreturn"></a><code>athena.test.assert_return</code></h3><p>This function asserts the return of a function call.</p><p><strong>USAGE:</strong>  <code>athena.assert_return &lt;function&gt; &lt;arguments&gt;</code></p><p><strong>RETURN:</strong> <code>0 (true) 1 (false)</code></p><h3 id="athenatestassertreturnexpectsfail"><a name="athenatestassertreturnexpectsfail"></a><code>athena.test.assert_return.expects_fail</code></h3><p>This function asserts if a function call fails.</p><p><strong>USAGE:</strong>  <code>athena.assert_return.expects_fail &lt;function&gt; &lt;arguments&gt;</code></p><p><strong>RETURN:</strong> <code>0 (true) 1 (false)</code></p><h3 id="athenatestassertstringcontains"><a name="athenatestassertstringcontains"></a><code>athena.test.assert_string_contains</code></h3><p>Assert <string> contains <sub-string></sub-string></string></p><p><strong>USAGE:</strong>  <code>athena.test.assert_string_contains &lt;string&gt; &lt;sub-string&gt;</code></p><h3 id="athenatestassertstringcontainsexpectsfail"><a name="athenatestassertstringcontainsexpectsfail"></a><code>athena.test.assert_string_contains.expects_fail</code></h3><p>Assert <string> does not contain <sub-string></sub-string></string></p><p><strong>USAGE:</strong>  <code>athena.test.assert_string_contains.expects_fail &lt;string&gt; &lt;sub-string&gt;</code></p><h3 id="athenatestassertvalue"><a name="athenatestassertvalue"></a><code>athena.test.assert_value</code></h3><p>This function asserts if two values are equal.</p><p><strong>USAGE:</strong>  <code>athena.assert_value &lt;value&gt; &lt;expected&gt;</code></p><p><strong>RETURN:</strong> <code>0 (true) 1 (false)</code></p><h3 id="athenatestassertvalueexpectsfail"><a name="athenatestassertvalueexpectsfail"></a><code>athena.test.assert_value.expects_fail</code></h3><p>This function asserts if two values are not supposed to be equal.</p><p><strong>USAGE:</strong>  <code>athena.assert_value.expects_fail &lt;value&gt; &lt;not_expected&gt;</code></p><p><strong>RETURN:</strong> <code>0 (true) 1 (false)</code></p><h3 id="athenatestcreatetempdir"><a name="athenatestcreatetempdir"></a><code>athena.test.create_tempdir</code></h3><p>This function creates a temporary directory in the home dir, by making use of mktemp command.</p><p><strong>USAGE:</strong>  <code>athena.test.create_tempdir</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenatestcreatetempfile"><a name="athenatestcreatetempfile"></a><code>athena.test.create_tempfile</code></h3><p>This function creates a temporary file in the home dir, by making use of mktemp command.</p><p><strong>USAGE:</strong>  <code>athena.test.create_tempfile</code></p><p><strong>RETURN:</strong> <code>string</code></p><h3 id="athenatestmock"><a name="athenatestmock"></a><code>athena.test.mock</code></h3><p>This function mocks and existing function by overriding it. Also it saves the function to be mocked as ATHENA<em>MOCK</em><func_name>, so that it can be restored afterwards by callin athena.test.unmock.</func_name></p><p><strong>USAGE:</strong>  <code>athena.test.mock &lt;function_name&gt; &lt;mock_function_name&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenatestmockexits"><a name="athenatestmockexits"></a><code>athena.test.mock.exits</code></h3><p>This function creates a mock of the specified function with the given exit code.</p><p><strong>USAGE:</strong>  <code>athena.test.mock.exits &lt;function_name&gt; &lt;return&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenatestmockoutputs"><a name="athenatestmockoutputs"></a><code>athena.test.mock.outputs</code></h3><p>This function creates a mock of the specified function with the given output.</p><p><strong>USAGE:</strong>  <code>athena.test.mock.outputs &lt;function_name&gt; &lt;return&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenatestmockreturns"><a name="athenatestmockreturns"></a><code>athena.test.mock.returns</code></h3><p>This function creates a mock of the specified function with the given return.</p><p><strong>USAGE:</strong>  <code>athena.test.mock.returns &lt;function_name&gt; &lt;return&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenatestrunsuite"><a name="athenatestrunsuite"></a><code>athena.test.run_suite</code></h3><p>This function executes the suite of tests located in the given directory. The exit code will be zero in case all tests succeed and 1 if any fail.</p><p><strong>USAGE:</strong>  <code>athena.test.run_suite &lt;directory|file&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenatestshowcoverage"><a name="athenatestshowcoverage"></a><code>athena.test.show_coverage</code></h3><p>This function outputs the coverage for the given source and tests directory. It is also possible to output the list of functions that don&apos;t have tests for it.</p><p><strong>USAGE:</strong>  <code>athena.test.show_coverage &lt;source_dir&gt; &lt;tests_dir&gt; [&lt;show_untested_functions&gt;]</code></p><p><strong>RETURN:</strong> <code>--</code></p><h3 id="athenatestunmock"><a name="athenatestunmock"></a><code>athena.test.unmock</code></h3><p>This function unmocks the previous mocked function by restoring its source code.</p><p><strong>USAGE:</strong>  <code>athena.test.unmock &lt;function_name&gt;</code></p><p><strong>RETURN:</strong> <code>--</code></p>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="cli-functions-shared.html" class="navigation navigation-prev " aria-label="Previous page: Shared API">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="flags.html" class="navigation navigation-next " aria-label="Next page: CLI flags">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Host only API","level":"1.3.3","depth":2,"next":{"title":"CLI flags","level":"1.3.4","depth":2,"path":"api/flags.md","ref":"api/flags.md","articles":[]},"previous":{"title":"Shared API","level":"1.3.2","depth":2,"path":"api/cli-functions-shared.md","ref":"api/cli-functions-shared.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-default","livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"api/cli-functions-host.md","mtime":"2016-09-01T13:17:14.000Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-01T15:16:50.010Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

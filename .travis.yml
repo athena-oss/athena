@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+  - "stable"
+services:
+  - docker
+before_install:
+  - npm install -g gitbook-cli
+script:
+  - ./athena version
+after_success:
+  - .travis/publish_docs
+cache:
+  directories:
+    - $(npm config get prefix)/bin/gitbook
+env:
+  global:
+    secure: ENM/ZqktIQNgk2GzySB+yP1EJt4/X18Mu5PHamBDH+RSJv9hvy3+zJEvriC0EmNTYFGXmxCt3Kh1skzlumhLXRmtAicYji38OghfmYle+IfpQVeLiMLNCWfxU13FjsUCDF37RU5CeUaBJD09wUcJtD+3TCul0Higiw+HaHjeXtivinlXu5MH79kKPICrZ0wd9kaJSNHy9AuSRahH3w4FD30GR/f+tDojxUwF1cSC4juTbTWxT46lvORkfxaMmgS3eaEgm2BAm0vMpQ6zI3VYwoivVEhxOiocov1XlQkBqS0xIbafq7f/wwJmItQ4/QFzHikrBldnMoOP0IzXeFYckUQwEI7rHwmJqXf2EMDp4p71wiwe2a4bZ9LKWlIuTdTxkZvJjvIKQ78Y//mkYNHD1Hx6tMyLVw9rx3c/bUwdk1Gkjt6BT2PB3PzbwUXJcAoYhqDat74KHHznwzI+G/MExH/UoyoB5Jljv176TIEHZEVmykclDxMCDdocb8B3NbTQ4yKzSPrKpOYBK2hrN81GmH46A/P/HFoo5/iy+tahLdAWjOHsOINMQ8+W36PP54Jx4OMiJ+Ua9TogAoOzaYENrn+Z7yeUZXDQkmx2IqW41RBKbJCrwqH7rSUb/LDZ+ilbWS9ClM6A9Cueg9T7YIYuPxhoy6ZULNyRXB0w7Xn5cxk=
