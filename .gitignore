@@ -13,3 +13,4 @@
 /example-tests/Report/*
 *.swp
 /context/php/athena.lock
+/docs/_book
