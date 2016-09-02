@@ -8,7 +8,7 @@ before_install:
 script:
   - ./athena version
 after_success:
-  - .travis/publish_docs
+  - docs/publish_docs
 cache:
   directories:
     - $(npm config get prefix)/bin/gitbook
