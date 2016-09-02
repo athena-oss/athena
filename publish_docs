@@ -1,0 +1,39 @@
+#!/bin/bash -e
+
+function error() {
+	echo "ERROR: $1"
+	exit 1
+}
+
+function info() {
+	echo "INFO: $1"
+}
+
+if [[ "$TRAVIS_BRANCH" != "master" ]] || [[ "$TRAVIS_PULL_REQUEST" != "false" ]]; then
+	info "Commit made against ${TRAVIS_BRANCH}. Only master commits will trigger documentation publishing."
+	exit 0
+fi
+
+GITBOOK_DOCS_DIR="$TRAVIS_BUILD_DIR/docs"
+GITBOOK_HTML_OUTPUT_DIR="$TRAVIS_BUILD_DIR/docs/_book"
+
+if [[ ! -d "$GITBOOK_DOCS_DIR" ]]; then
+	error "Documentation dir $GITBOOK_DOCS_DIR does not exist or it's not a valid directory."
+fi
+
+gitbook build "$GITBOOK_DOCS_DIR" "$GITBOOK_HTML_OUTPUT_DIR"
+
+pushd "$GITBOOK_HTML_OUTPUT_DIR"
+git init
+git config --global user.name "Travis CI"
+git config --global user.email "athena@olx.com"
+
+git remote add upstream "https://$GH_TOKEN@github.com/athena-oss/athena.git"
+git fetch upstream
+git reset upstream/gh-pages
+
+git add -A .
+git commit -m"Automatic page rebuild for $TRAVIS_COMMIT."
+git push -q upstream HEAD:gh-pages
+popd
+
