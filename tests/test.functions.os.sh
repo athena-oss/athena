@@ -306,6 +306,19 @@ function testcase_athena.os._set_no_logo()
 	ATHENA_NO_LOGO=$curr_no_logo
 }
 
+function testcase_athena.os.split_string()
+{
+	local test_string="something:with:colons:   as separator"
+	local -a test_string_as_array=(something with colons "   as separator")
+	local -a test_result
+	athena.os.split_string "$test_string" ":" test_result
+	athena.test.assert_array test_result test_string_as_array
+
+	test_string_as_array=("$test_string")
+	athena.os.split_string "$test_string" "/" test_result
+	athena.test.assert_array test_result test_string_as_array
+}
+
 function testcase_athena.os.call_with_args()
 {
 	athena.argument.set_arguments one two three

@@ -259,7 +259,8 @@ function athena.os.include_once()
 }
 
 # This function exits Athena if called (if a forced exit is required).
-# USAGE:  athena.os.exit <exit code>
+# Default exit_code is 1.
+# USAGE:  athena.os.exit [<exit_code>]
 # RETURN: --
 function athena.os.exit()
 {
@@ -467,6 +468,31 @@ function athena.os.set_instance()
 function athena.os.get_prefix()
 {
 	echo "$ATHENA_PREFIX"
+}
+
+# This function splits up a string on the specified field
+# separator and will write the array into the given variable.
+# USAGE: athena.os.split_string <string_to_split> <separator_character> <variable_name>
+# RETURN: --
+function athena.os.split_string()
+{
+	local string_to_split=$1
+	local sc=$2
+	local variable_name=$3
+
+	if [ -z "$string_to_split" ]; then
+		athena.exit_with_msg "missing variable 'string_to_split'"
+	fi
+	if [ -z "$sc" ]; then
+		athena.exit_with_msg "missing variable 'separator_character'"
+	fi
+	if [ -z "$variable_name" ]; then
+		athena.exit_with_msg "missing variable 'variable_name'"
+	fi
+
+	OLD_IFS=$IFS
+	IFS=$sc read -a $variable_name <<< "$string_to_split"
+	IFS=$OLD_IFS
 }
 
 # This function prints the duration time if the $ATHENA_NO_LOGO variable is set to 0 and

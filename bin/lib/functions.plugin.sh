@@ -55,23 +55,25 @@ function athena.plugin._router()
 # RETURN: 0 (sucessfull), 1 (failed)
 function athena.plugin.handle()
 {
-	athena.argument.argument_is_not_empty_or_fail "$1"
-
-	for dir in $2 ; do
-		athena.fs.dir_exists_or_fail "$dir"
-	done
-
 	local command=$1
-	local cmd_dir=$2
+	local -a cmd_dir
 	local lib_dir=$3
 	local bin_dir=$4
 	local hooks_dir=$5
 	local cmd_found=0
 	local return_code=0
 
+	athena.argument.argument_is_not_empty_or_fail "$1"
+
+	athena.os.split_string "$2" ":" cmd_dir
+
+	for dir in "${cmd_dir[@]}" ; do
+		athena.fs.dir_exists_or_fail "$dir"
+	done
+
 	# in case $cmd_dir is a list of dirs, then the command must be
 	# located in only one of the directories, so we need to search for it.
-	for dir in $cmd_dir
+	for dir in "${cmd_dir[@]}"
 	do
 		if athena.fs.dir_contains_files "$dir" "$command*.sh" ; then
 
@@ -211,10 +213,10 @@ function athena.plugin.init()
 {
 	local plg
 	local plg_dir
-	local plg_cmd_dir
+	local -a plg_cmd_dir
 	plg="$1"
 	plg_dir=$(athena.plugin.get_plg_dir "$plg")
-	plg_cmd_dir=$(athena.plugin.get_plg_cmd_dir "$plg")
+	plg_cmd_dir=$(athena.plugin.get_plg_cmd_dir)
 
 	# plugins might not require initialisation so only
 	# if an init command exists then it will try to init
@@ -311,7 +313,7 @@ function athena.plugin.get_plg_lib_dir()
 
 # This function returns the plugin command directory name and checks if the plugin
 # root exists. If not execution is stopped and an error message is thrown.
-# USAGE:  athena.plugin.get_plg_cmd_dir <plugin name>
+# USAGE:  athena.plugin.get_plg_cmd_dir
 # RETURN: string
 function athena.plugin.get_plg_cmd_dir()
 {
@@ -319,6 +321,7 @@ function athena.plugin.get_plg_cmd_dir()
 }
 
 # This functions sets the plg cmd dir(s).
+# The parameter should be one or more directories separated by colons.
 # USAGE: athena.plugin.set_plg_cmd_dir <dir(s)>
 # RETURN: --
 function athena.plugin.set_plg_cmd_dir()
@@ -796,38 +799,32 @@ function athena.plugin.get_container_to_use()
 	return 0
 }
 
-# This function prints the usage info on the given plugin including the
-# list of all commands found for this plugin (in $ATHENA_PLG_CMD_DIR).
-# USAGE:  athena.plugin.get_available_cmds <plugin_name>
+# This function prints the usage info list of all commands found for
+# this plugin (in $ATHENA_PLG_CMD_DIR).
+# USAGE:  athena.plugin.get_available_cmds
 # RETURN: --
 function athena.plugin.get_available_cmds()
 {
-	athena.argument.argument_is_not_empty_or_fail "$1" "plugin_name"
+	local -a plg_cmd_dir
+	athena.os.split_string "$(athena.plugin.get_plg_cmd_dir)" ":" plg_cmd_dir
 
-	local plugin_name="$1"
-	local plg_cmd_dir
-	local cmds
-	plg_cmd_dir=$(athena.plugin.get_plg_cmd_dir "$plugin_name")
-	cmds=$(
-		for dir in $plg_cmd_dir; do
-			ls "$dir" | while read cmd
-			do
-				description=$(sed -n -e 's/CMD_DESCRIPTION\="\(.*\)"/\1/p' "$dir/$cmd" | head -1 | sed 's# #_#g' | tr -d '\n')
-				cmd=${cmd/\.sh/}
-				cmd=${cmd/_pre/}
-				cmd=${cmd/_post/}
-				# the init command should only be used internally
-				if [[ ! "$cmd" = "init" ]]; then
-					if [ -n "$description" ]; then
-						echo "$cmd:$description"
-					else
-						echo "$cmd:"
-					fi
+	for dir in "${plg_cmd_dir[@]}"; do
+		ls "$dir" | while read cmd
+		do
+			description=$(sed -n -e 's/CMD_DESCRIPTION\="\(.*\)"/\1/p' "$dir/$cmd" | head -1 | sed 's# #_#g' | tr -d '\n')
+			cmd=${cmd/\.sh/}
+			cmd=${cmd/_pre/}
+			cmd=${cmd/_post/}
+			# the init command should only be used internally
+			if [[ ! "$cmd" = "init" ]]; then
+				if [ -n "$description" ]; then
+					echo "$cmd:$description"
+				else
+					echo "$cmd:"
 				fi
-			done;
-		done)
-		echo "$cmds"| tr ' ' '\n' | sort -r -t: -k1,1 | sort -u -t: -k1,1
-
+			fi
+		done;
+	done | tr ' ' '\n' | sort -r -t: -k1,1 | sort -u -t: -k1,1
 }
 
 # This function prints the usage screen of the given plugin including all
@@ -851,7 +848,7 @@ usage: $athena_cmd $plugin_name <command> [arg...]
 
 These are the available commands for plugin [$plugin_name]:
 EOF
-	for cmd in $(athena.plugin.get_available_cmds "$plugin_name"); do
+	for cmd in $(athena.plugin.get_available_cmds); do
 		printf "\t%s\n" "$cmd" | sed "s#_# #g"
 	done | column -t -s:
 

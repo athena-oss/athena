@@ -608,7 +608,7 @@ EOF
 	mkdir "$tmpdir/test1"
 
 	athena.test.mock.outputs "athena.plugin.get_plugins_dir" "$tmpdir"
-	athena.test.mock.outputs "athena.plugin.get_available_cmds" "cmd1_My_description." "base"
+	athena.test.mock.outputs "athena.plugin.get_available_cmds" "cmd1_My_description."
 
 	athena.test.assert_output "athena.plugin.print_available_cmds" "$expected" "base"
 
@@ -621,7 +621,7 @@ function testcase_athena.plugin.get_available_cmds()
 	athena.test.mock.outputs "athena.plugin.get_plg_cmd_dir" "$tmpdir"
 	echo "CMD_DESCRIPTION=\"My cmd1 description.\"" > "$tmpdir/cmd1.sh"
 
-	athena.test.assert_output "athena.plugin.get_available_cmds" "cmd1:My_cmd1_description." "myplugin"
+	athena.test.assert_output "athena.plugin.get_available_cmds" "cmd1:My_cmd1_description."
 	rm -r $tmpdir
 }
 
