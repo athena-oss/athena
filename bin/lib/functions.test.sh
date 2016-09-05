@@ -383,6 +383,7 @@ function athena.test._assert_array()
 	for ((i=0; i<${#array_to_test[*]}; i++)); do
 		if [ "${array_to_test[$i]}" != "${array_expected[$i]}" ]; then
 			echo "array (${array_to_test[*]}) does not match expected array (${array_expected[*]}), values mismatch"
+			return 1
 		fi
 	done
 

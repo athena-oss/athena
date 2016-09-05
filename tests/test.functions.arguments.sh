@@ -70,6 +70,12 @@ function testcase_athena.argument.remove_argument()
 	athena.argument.get_arguments arguments true
 	array=(--one cmd two "--myarg='value with spaces'")
 	athena.test.assert_array arguments array
+
+	athena.argument.set_arguments -p=4449 -e GRID_TIMEOUT=2000
+	athena.argument.remove_argument -p
+	athena.argument.get_arguments arguments true
+	array=(-e GRID_TIMEOUT=2000)
+	athena.test.assert_array arguments array
 }
 
 function testcase_athena.argument.set_arguments()
@@ -152,6 +158,14 @@ function testcase_athena.argument.get_argument_and_remove()
 	athena.argument.get_argument_and_remove "--param" "value"
 	athena.test.assert_value "$value" "ccc"
 	array=(aaa bbb)
+	athena.argument.get_arguments arguments
+	athena.test.assert_array arguments array
+
+	local argument
+	athena.argument.set_arguments -p=4449 -e GRID_TIMEOUT=2000
+	athena.argument.get_argument_and_remove "-p" "argument"
+	array=(-e GRID_TIMEOUT=2000)
+	athena.test.assert_value "4449" $argument
 	athena.argument.get_arguments arguments
 	athena.test.assert_array arguments array
 }
