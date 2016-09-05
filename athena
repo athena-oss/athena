@@ -1,4 +1,27 @@
 #!/bin/bash
+# This function tries to retrieve the current script directory.
+# Case this script is a symlink, it will try to resolve it. If
+# the script is a relative symlink it will resolve it relative
+# to the symlink base directory.
+# USAGE: athena.get_current_script_dir
+# RETURN: string
+function athena.get_current_script_dir()
+{
+	local src="${BASH_SOURCE[0]}"
+	local dir
+
+	# While $src is a symlink, resolve it
+	while [ -h "$src" ]; do
+	  dir="$( cd -P "$( dirname "$src" )" && pwd )"
+	  src="$( readlink "$src" )"
+
+	  # relative symlink
+	  [[ $src != /* ]] && src="$dir/$src"
+	done
+	dir="$( cd -P "$( dirname "$src" )" && pwd )"
+	echo "$dir"
+}
+
 export ATHENA_BASE_DIR
 export ATHENA_TAG
 export ATHENA_CONTAINER_NAME
@@ -20,7 +43,7 @@ export ATHENA_INSTANCE=${ATHENA_INSTANCE:-0}
 export ATHENA_NO_TTY=${ATHENA_NO_TTY:-0}
 export ATHENA_PLG_ENVIRONMENT=""
 export ATHENA_PLG_IMAGE_NAME=olx/athena
-ATHENA_BASE_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
+ATHENA_BASE_DIR="$(athena.get_current_script_dir)"
 export ATHENA_BASE_BIN_DIR=$ATHENA_BASE_DIR/bin
 export ATHENA_BASE_LIB_DIR=$ATHENA_BASE_BIN_DIR/lib
 export ATHENA_BASE_SHARED_LIB_DIR=$ATHENA_BASE_LIB_DIR/shared
