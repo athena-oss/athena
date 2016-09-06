@@ -5,7 +5,13 @@ Prerequisites
  * You have Git installed.
  * You have Docker installed.
 
-There are two quick start options available:
+There are three quick start options available:
+
+* On MAC OSX using Homebrew :
+```bash
+$ brew tap athena-oss/athena
+$ brew install athena
+```
 
 * [Download the latest release](https://github.com/athena-oss/athena/releases/latest)
 * Clone the repo: `git clone https://github.com/athena-oss/athena.git`

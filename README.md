@@ -69,7 +69,13 @@ Prerequisites
  * You have [Git](https://git-scm.com/) installed.
  * You have [Docker](https://www.docker.com/) installed.
 
-There are two quick start options available:
+There are three quick start options available:
+
+* On MAC OSX using [Homebrew](http://brew.sh/) :
+```bash
+$ brew tap athena-oss/athena
+$ brew install athena
+```
 
 * [Download the latest release](https://github.com/athena-oss/athena/releases/latest)
 * Clone the repo: `git clone https://github.com/athena-oss/athena.git`

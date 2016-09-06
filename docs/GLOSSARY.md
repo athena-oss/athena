@@ -13,3 +13,7 @@ https://git-scm.com
 ## Bash
 Bash is the GNU Project's shell. Bash is the Bourne Again SHell. Bash is an sh-compatible shell that incorporates useful features from the Korn shell (ksh) and C shell (csh).
 https://www.gnu.org/software/bash/
+
+## Homebrew
+The missing package manager for OS X
+http://brew.sh/
