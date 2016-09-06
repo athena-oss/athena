@@ -24,7 +24,7 @@ Well, it might also seem too easy or too abstract so let's dig into it.
 
  * the `Engine`: a declarative framework based in `bash` ( *say that again ???* Don't run away yet because it has a pretty cool built-in testing system with mocking and proper [unit tests](tests/))
 
- * the `Plugins`: they are tipically *Services*, *Applications*, *Jobs*, etc. They can use any technology or any stack of technologies and they form the ecosystem that helps you handle different scenarios. To support the automation environments, the virtualisation technology used is [docker](https://www.docker.com/).
+ * the `Plugins`: they are typically *Services*, *Applications*, *Jobs*, etc. They can use any technology or any stack of technologies and they form the ecosystem that helps you handle different scenarios. To support the automation environments, the virtualisation technology used is [docker](https://www.docker.com/).
 
 
 As an example, you can use **Athena** to setup a webserver, test your website and handle the deployment. This example could be achieved by creating 3 `plugins`: `webserver`, `test` and `deploy` or you could simply create just one : `app`.
