@@ -317,6 +317,11 @@ function athena.plugin.get_plg_lib_dir()
 # RETURN: string
 function athena.plugin.get_plg_cmd_dir()
 {
+	# to allow to override in the plugin hooks for example
+	if [ -n "$ATHENA_PLG_CMD_DIR" ]; then
+		echo "$ATHENA_PLG_CMD_DIR"
+		return 0
+	fi
 	echo "$(athena.plugin.get_plg_bin_dir $1)/cmd"
 }
 
