@@ -39,7 +39,7 @@ if [ $? -ne 0 ]; then
 	athena.fatal "problem found with system!"
 fi
 
-athena.plugins.base.check "$ATHENA_PLG_CMD_DIR"
+athena.plugins.base.check "$(athena.plugin.get_plg_cmd_dir)"
 if [ $? -ne 0 ]; then
 	athena.fatal "problem found with system!"
 fi
