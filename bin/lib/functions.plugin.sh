@@ -216,7 +216,7 @@ function athena.plugin.init()
 	local -a plg_cmd_dir
 	plg="$1"
 	plg_dir=$(athena.plugin.get_plg_dir "$plg")
-	plg_cmd_dir=$(athena.plugin.get_plg_cmd_dir)
+	plg_cmd_dir=$(athena.plugin.get_plg_cmd_dir "$plg")
 
 	# plugins might not require initialisation so only
 	# if an init command exists then it will try to init
@@ -313,11 +313,11 @@ function athena.plugin.get_plg_lib_dir()
 
 # This function returns the plugin command directory name and checks if the plugin
 # root exists. If not execution is stopped and an error message is thrown.
-# USAGE:  athena.plugin.get_plg_cmd_dir
+# USAGE:  athena.plugin.get_plg_cmd_dir [plugin name]
 # RETURN: string
 function athena.plugin.get_plg_cmd_dir()
 {
-	echo $ATHENA_PLG_CMD_DIR
+	echo "$(athena.plugin.get_plg_bin_dir $1)/cmd"
 }
 
 # This functions sets the plg cmd dir(s).

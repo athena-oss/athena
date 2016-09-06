@@ -321,10 +321,8 @@ function testcase_athena.plugin.get_plg_lib_dir()
 
 function testcase_athena.plugin.get_plg_cmd_dir()
 {
-	local curr_plg_cmd_dir=$ATHENA_PLG_CMD_DIR
-	ATHENA_PLG_CMD_DIR="/my/plugin/path/cmd"
+	athena.test.mock.outputs "athena.plugin.get_plg_bin_dir" "/my/plugin/path"
 	athena.test.assert_output "athena.plugin.get_plg_cmd_dir" "/my/plugin/path/cmd"
-	ATHENA_PLG_CMD_DIR=$curr_plg_cmd_dir
 }
 
 function testcase_athena.plugin.set_plg_cmd_dir()
@@ -650,9 +648,11 @@ function testcase_athena.plugin.init()
 {
 	tmpdir=$(athena.test.create_tempdir)
 	athena.test.mock.outputs "athena.plugin.get_plg_dir" "$tmpdir"
+	athena.test.mock.outputs "athena.plugin.get_plg_cmd_dir" "$tmpdir"
+	touch $tmpdir/init_pre.sh
 
 	athena.test.mock.returns "athena.plugin._init_plugin" 1
-	athena.test.assert_return.expects_fail "athena.plugin.init"
+	athena.test.assert_exit_code.expects_fail "athena.plugin.init"
 
 	athena.test.mock.returns "athena.plugin._init_plugin" 0
 	athena.test.assert_return "athena.plugin.init"
