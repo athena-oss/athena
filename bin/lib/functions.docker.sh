@@ -44,6 +44,30 @@ function athena.docker.is_container_running()
 	return $rc
 }
 
+# This function checks if the container assigned for running is already running.
+# USAGE: athena.docker.is_current_container_running
+# RETURN: 0 (true), 1 (false)
+function athena.docker.is_current_container_running()
+{
+	local container_name
+	container_name=$(athena.plugin.get_container_name)
+	athena.docker.is_container_running "$container_name"
+}
+
+# This function checks if the container assigned for running is already running and if it is then exits with an error message.
+# USAGE: athena.docker.is_current_container_not_running_or_fail [msg]
+# RETURN: 0 (false)
+function athena.docker.is_current_container_not_running_or_fail()
+{
+	if athena.docker.is_current_container_running ; then
+		local container_name
+		container_name=$(athena.plugin.get_container_name)
+		local msg=${1:-"container '$container_name' is already running!"}
+		athena.os.exit_with_msg "$msg"
+	fi
+	return 0
+}
+
 # This function stops a docker container with the given name if running. In any
 # case (running or already stopped) the containers with the given name will be
 # removed including associated volumes.
@@ -335,7 +359,7 @@ function athena.docker.wait_for_string_in_container_logs()
 		let counter++
 		athena.color.print_debug "waiting for $component..."
 		if [ $counter -gt $wait_for_seconds ]; then
-			athena.os.exit_with_msg "not reaching the selenium component after ${wait_for_seconds}s"
+			athena.os.exit_with_msg "not reaching the component after ${wait_for_seconds}s"
 		fi
 
 		sleep 1

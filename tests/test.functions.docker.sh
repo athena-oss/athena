@@ -214,6 +214,21 @@ function testcase_athena.docker.is_container_running()
 	athena.test.assert_exit_code.expects_fail "athena.docker.is_container_running" "rm was called" "mycontainer"
 }
 
+function testcase_athena.docker.is_current_container_running()
+{
+	athena.test.mock.outputs "athena.plugin.get_container_name" "mycontainer123"
+	athena.test.mock "athena.docker.is_container_running" "_my_echo"
+	athena.test.assert_output "athena.docker.is_current_container_running" "mycontainer123"
+}
+
+function testcase_athena.docker.is_current_container_not_running_or_fail()
+{
+	athena.test.mock.returns "athena.docker.is_current_container_running" 0
+	athena.test.assert_exit_code.expects_fail "athena.docker.is_current_container_not_running_or_fail"
+	athena.test.mock.returns "athena.docker.is_current_container_running" 1
+	athena.test.assert_return "athena.docker.is_current_container_not_running_or_fail"
+}
+
 function testcase_athena.docker.stop_container()
 {
 	athena.test.mock.returns "athena.docker.is_container_running" 1

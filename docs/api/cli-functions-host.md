@@ -13,6 +13,7 @@
     * [`athena.docker.container_has_started`](#athenadockercontainerhasstarted)
     * [`athena.docker.exec`](#athenadockerexec)
     * [`athena.docker.get_build_args`](#athenadockergetbuildargs)
+    * [`athena.docker.get_build_args_file`](#athenadockergetbuildargsfile)
     * [`athena.docker.get_ip`](#athenadockergetip)
     * [`athena.docker.get_options`](#athenadockergetoptions)
     * [`athena.docker.get_tag_and_version`](#athenadockergettagandversion)
@@ -22,6 +23,8 @@
     * [`athena.docker.images`](#athenadockerimages)
     * [`athena.docker.inspect`](#athenadockerinspect)
     * [`athena.docker.is_container_running`](#athenadockeriscontainerrunning)
+    * [`athena.docker.is_current_container_not_running_or_fail`](#athenadockeriscurrentcontainernotrunningorfail)
+    * [`athena.docker.is_current_container_running`](#athenadockeriscurrentcontainerrunning)
     * [`athena.docker.is_default_router_to_be_used`](#athenadockerisdefaultroutertobeused)
     * [`athena.docker.is_running_as_daemon`](#athenadockerisrunningasdaemon)
     * [`athena.docker.list_athena_containers`](#athenadockerlistathenacontainers)
@@ -211,11 +214,19 @@ This is a wrapper function for executing docker exec, which helps with mocking a
  
 ### <a name="athenadockergetbuildargs"></a>`athena.docker.get_build_args`
  
-This function checks if a docker build environment file is defined in the $ATHENA_PLG_DOCKER_ENV_BUILD_FILE variable. If not it does nothing. If defined it checks if the file exists and generates a build arguments string from the file's content which is returned.
+This function generates and prints a build arguments string from the build args file returned by athena.docker.get_build_args_file or does nothing if no file was found.
  
 **USAGE:**  `athena.docker.get_build_args`
  
-**RETURN:** `string`
+**RETURN:** `string | 1 (false)`
+ 
+### <a name="athenadockergetbuildargsfile"></a>`athena.docker.get_build_args_file`
+ 
+This function checks if a docker build environment file is defined in the $ATHENA_PLG_DOCKER_ENV_BUILD_FILE variable. If not it returns 1. If defined it checks if the file exists and returns the name of the file.
+ 
+**USAGE:**  `athena.docker.get_build_args_file`
+ 
+**RETURN:** `string | 1 (false)`
  
 ### <a name="athenadockergetip"></a>`athena.docker.get_ip`
  
@@ -280,6 +291,22 @@ This is a wrapper function for executing docker inspect, which helps with mockin
 This function checks if a docker container with the given name is running. If no container with the given name is running all stopped containers with this name are removed (to avoid collisions).
  
 **USAGE:**  `athena.docker.is_container_running <container name>`
+ 
+**RETURN:** `0 (true), 1 (false)`
+ 
+### <a name="athenadockeriscurrentcontainernotrunningorfail"></a>`athena.docker.is_current_container_not_running_or_fail`
+ 
+This function checks if the container assigned for running is already running and if it is then exits with an error message.
+ 
+**USAGE:**  `athena.docker.is_current_container_not_running_or_fail [msg]`
+ 
+**RETURN:** `0 (false)`
+ 
+### <a name="athenadockeriscurrentcontainerrunning"></a>`athena.docker.is_current_container_running`
+ 
+This function checks if the container assigned for running is already running.
+ 
+**USAGE:**  `athena.docker.is_current_container_running`
  
 **RETURN:** `0 (true), 1 (false)`
  
@@ -463,9 +490,9 @@ This function checks if the given plugin has dependencies (i.e. it checks the co
  
 ### <a name="athenaplugingetavailablecmds"></a>`athena.plugin.get_available_cmds`
  
-This function prints the usage info on the given plugin including the list of all commands found for this plugin (in $ATHENA_PLG_CMD_DIR).
+This function prints the usage info list of all commands found for this plugin (in $ATHENA_PLG_CMD_DIR).
  
-**USAGE:**  `athena.plugin.get_available_cmds <plugin_name>`
+**USAGE:**  `athena.plugin.get_available_cmds`
  
 **RETURN:** `--`
  
@@ -537,7 +564,7 @@ This function returns the plugin binary directory name and checks if the plugin 
  
 This function returns the plugin command directory name and checks if the plugin root exists. If not execution is stopped and an error message is thrown.
  
-**USAGE:**  `athena.plugin.get_plg_cmd_dir <plugin name>`
+**USAGE:**  `athena.plugin.get_plg_cmd_dir`
  
 **RETURN:** `string`
  
@@ -735,7 +762,7 @@ This function sets the current plugin image version in the $ATHENA_PLG_IMAGE_VER
  
 ### <a name="athenapluginsetplgcmddir"></a>`athena.plugin.set_plg_cmd_dir`
  
-This functions sets the plg cmd dir(s).
+This functions sets the plg cmd dir(s). The parameter should be one or more directories separated by colons.
  
 **USAGE:**  `athena.plugin.set_plg_cmd_dir <dir(s)>`
  
