@@ -564,7 +564,7 @@ This function returns the plugin binary directory name and checks if the plugin 
  
 This function returns the plugin command directory name and checks if the plugin root exists. If not execution is stopped and an error message is thrown.
  
-**USAGE:**  `athena.plugin.get_plg_cmd_dir`
+**USAGE:**  `athena.plugin.get_plg_cmd_dir [plugin name]`
  
 **RETURN:** `string`
  
