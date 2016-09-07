@@ -1,5 +1,7 @@
 #!/bin/bash
 
+ATHENA_IS_INSIDE_CONTAINER=1
+
 # includes
 source $ATHENA_BASE_SHARED_LIB_DIR/bootstrap.functions.sh
 

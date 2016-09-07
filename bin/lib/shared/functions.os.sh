@@ -71,6 +71,8 @@ function athena.os.get_executable()
 {
 	if which athena 1>/dev/null 2>/dev/null; then
 		echo "athena"
+	elif [ -n "$ATHENA_IS_INSIDE_CONTAINER" ] && [ $ATHENA_IS_INSIDE_CONTAINER -eq 1 ]; then
+		echo "athena"
 	else
 		echo "$0"
 	fi
