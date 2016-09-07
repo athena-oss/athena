@@ -531,6 +531,18 @@ function athena.os.set_debug()
 	athena.docker.add_env "ATHENA_IS_DEBUG" "$ATHENA_IS_DEBUG"
 }
 
+# This function returns the 0 if the $ATHENA_SUDO variable is set. If not
+# it returns the error code 1.
+# USAGE:  athena.os.is_sudo
+# RETURN: 0 (true), 1 (false
+function athena.os.is_sudo()
+{
+    if [ -z "$ATHENA_SUDO" ]; then
+      return 1
+    fi
+    return 0
+}
+
 # This function prints the Athena logo including infos about base plugin and current
 # plugin versions if $ATHENA_NO_LOGO is set to 0. If the $ATHENA_NO_LOGO flag is set to a value
 # unequal to 0 no logo will be printed.
