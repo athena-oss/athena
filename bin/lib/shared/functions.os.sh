@@ -531,8 +531,7 @@ function athena.os.set_debug()
 	athena.docker.add_env "ATHENA_IS_DEBUG" "$ATHENA_IS_DEBUG"
 }
 
-# This function returns the 0 if the $ATHENA_SUDO variable is set. If not
-# it returns the error code 1.
+# This function returns 0 if the $ATHENA_SUDO variable is set. If not it returns 1.
 # USAGE:  athena.os.is_sudo
 # RETURN: 0 (true), 1 (false
 function athena.os.is_sudo()
