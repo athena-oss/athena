@@ -533,7 +533,7 @@ function athena.os.set_debug()
 
 # This function returns 0 if the $ATHENA_SUDO variable is set. If not it returns 1.
 # USAGE:  athena.os.is_sudo
-# RETURN: 0 (true), 1 (false
+# RETURN: 0 (true), 1 (false)
 function athena.os.is_sudo()
 {
     if [ -z "$ATHENA_SUDO" ]; then
