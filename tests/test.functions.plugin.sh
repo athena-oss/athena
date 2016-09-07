@@ -705,6 +705,7 @@ function testcase_athena.plugin._router()
 
 	local tmpdir=$(athena.test.create_tempdir)
 
+	# testing hooks
 	echo "echo -n hello-pre" > "$tmpdir/plugin_pre.sh"
 	athena.test.assert_output "athena.plugin._router" "hello-pre" "myplugin" "" "" "" "$tmpdir"
 
@@ -734,6 +735,15 @@ function testcase_athena.plugin.handle()
 	rm "$tmpdir/functions.sh"
 	echo "echo variables.sh" > "$tmpdir/variables.sh"
 	athena.test.assert_output "athena.plugin.handle" "variables.sh" "cmd1" "$tmpdir" "$tmpdir" "$tmpdir" "$tmpdir"
+
+	# testing hooks
+	rm "$tmpdir/variables.sh"
+	echo "echo -n hello-pre" > "$tmpdir/command_pre.sh"
+	athena.test.assert_output "athena.plugin.handle" "hello-pre" "cmd1" "$tmpdir" "$tmpdir" "$tmpdir" "$tmpdir"
+
+	rm "$tmpdir/command_pre.sh"
+	echo "echo -n hello-post" > "$tmpdir/command_pre.sh"
+	athena.test.assert_output "athena.plugin.handle" "hello-post" "cmd1" "$tmpdir" "$tmpdir" "$tmpdir" "$tmpdir"
 
 	rm -r "$tmpdir"
 }

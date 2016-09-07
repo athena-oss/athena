@@ -87,8 +87,15 @@ function athena.plugin.handle()
 				athena.os.include_once "$bin_dir/variables.sh"
 			fi
 
+			# command pre-hooks
+			athena.plugin._run_hooks_if_exist "$hooks_dir/command_pre.sh"
+
 			athena.plugin.run_command "$command" $dir
 			return_code=$?
+
+			# command post-hooks
+			athena.plugin._run_hooks_if_exist "$hooks_dir/command_post.sh"
+
 			cmd_found=1
 			break
 		fi
