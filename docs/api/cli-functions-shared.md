@@ -72,6 +72,7 @@
     * [`athena.os.set_debug`](#athenaossetdebug)
     * [`athena.os.set_exit_handler`](#athenaossetexithandler)
     * [`athena.os.set_instance`](#athenaossetinstance)
+    * [`athena.os.split_string`](#athenaossplitstring)
     * [`athena.os.usage`](#athenaosusage)
 
 # Using CLI Functions
@@ -114,7 +115,7 @@ This function checks if an argument exists in the argument list $ATHENA_ARGS.
  
 This function checks if an argument exists (see athena.argument.argument_exists) in the argument list $ATHENA_ARGS and removes it if it exists.
  
-**USAGE:**  `athena.argument.argument_exists_and_remove <argument name>`
+**USAGE:**  `athena.argument.argument_exists_and_remove <argument name> [<name of variable to save the value>]`
  
 **RETURN:** `0 (true), 1 (false)`
  
@@ -438,9 +439,9 @@ This function wraps command execution to allow for switching output modes. The o
  
 ### <a name="athenaosexit"></a>`athena.os.exit`
  
-This function exits Athena if called (if a forced exit is required).
+This function exits Athena if called (if a forced exit is required). Default exit_code is 1.
  
-**USAGE:**  `athena.os.exit <exit code>`
+**USAGE:**  `athena.os.exit [<exit_code>]`
  
 **RETURN:** `--`
  
@@ -629,6 +630,14 @@ This functions registers the exit handler with the default signals to catch.
 This functions sets the instance value.
  
 **USAGE:**  `athena.os.set_instance <value>`
+ 
+**RETURN:** `--`
+ 
+### <a name="athenaossplitstring"></a>`athena.os.split_string`
+ 
+This function splits up a string on the specified field separator and will write the array into the given variable.
+ 
+**USAGE:**  `athena.os.split_string <string_to_split> <separator_character> <variable_name>`
  
 **RETURN:** `--`
  

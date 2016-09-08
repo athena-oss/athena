@@ -227,16 +227,20 @@ function athena.argument.argument_exists()
 
 # This function checks if an argument exists (see athena.argument.argument_exists) in the
 # argument list $ATHENA_ARGS and removes it if it exists.
-# USAGE:  athena.argument.argument_exists_and_remove <argument name>
+# USAGE:  athena.argument.argument_exists_and_remove <argument name> [<name of variable to save the value>]
 # RETURN: 0 (true), 1 (false)
 function athena.argument.argument_exists_and_remove()
 {
 	if athena.argument.argument_exists "$1"; then
-		athena.argument.remove_argument "$1"
+		if [ -n "$2" ]; then
+			athena.argument.get_argument_and_remove "$1" "val"
+			athena.os.return "$val" "$2"
+		else
+			athena.argument.remove_argument "$1"
+		fi
 		return 0
-	else
-		return 1
 	fi
+	return 1
 }
 
 # This function checks if an argument exists (see athena.argument.argument_exists) in the

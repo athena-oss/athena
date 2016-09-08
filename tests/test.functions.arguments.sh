@@ -223,6 +223,13 @@ function testcase_athena.argument.argument_exists_and_remove()
 	athena.argument.get_arguments arguments
 	array=(--myarg=2)
 	athena.test.assert_array arguments array
+
+	athena.argument.set_arguments "myarg=val2"
+	athena.argument.argument_exists_and_remove "myarg" "arg"
+	athena.test.assert_value "val2" "$arg"
+	athena.argument.get_arguments arguments
+	array=()
+	athena.test.assert_array arguments array
 }
 
 function testcase_athena.argument.argument_exists_or_fail()
