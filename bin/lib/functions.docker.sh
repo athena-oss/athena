@@ -19,7 +19,7 @@ function athena.docker.get_ip()
 
 # This function checks if a docker image with the given tag name and version
 # exists.
-# USAGE:  athena.docker.image_exists <tag name> <version>
+# USAGE:  athena.docker.image_exists <image name> <version>
 # RETURN: 0 (true), 1 (false)
 function athena.docker.image_exists() {
 	athena.docker.images "$1" | grep "$1" | grep "$2" 1>/dev/null 2>/dev/null
