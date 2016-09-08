@@ -73,7 +73,7 @@ There are three quick start options available:
 
 * On MAC OSX using [Homebrew](http://brew.sh/) :
 ```bash
-$ brew tap athena-oss/athena
+$ brew tap athena-oss/tap
 $ brew install athena
 ```
 
