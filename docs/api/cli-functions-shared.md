@@ -65,6 +65,7 @@
     * [`athena.os.is_git_installed`](#athenaosisgitinstalled)
     * [`athena.os.is_linux`](#athenaosislinux)
     * [`athena.os.is_mac`](#athenaosismac)
+    * [`athena.os.is_sudo`](#athenaosissudo)
     * [`athena.os.override_exit_handler`](#athenaosoverrideexithandler)
     * [`athena.os.register_exit_handler`](#athenaosregisterexithandler)
     * [`athena.os.return`](#athenaosreturn)
@@ -576,7 +577,15 @@ This function checks if Athena runs on a Mac OS X.
 **USAGE:**  `athena.os.is_mac`
  
 **RETURN:** `0 (true), 1 (false)`
- 
+
+#### <a name="athenaosissudo"></a>`athena.os.is_sudo`
+
+This function checks if the $ATHENA_SUDO variable is set.
+
+**USAGE:**  `athena.os.is_sudo`
+
+**RETURN:** `0 (true), 1 (false)`
+
 ### <a name="athenaosoverrideexithandler"></a>`athena.os.override_exit_handler`
  
 This functions overrides the exit handler with the default signals to catch.

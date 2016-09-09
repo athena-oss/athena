@@ -399,6 +399,17 @@ function athena.os.is_linux()
 	return 0
 }
 
+# This function checks if the $ATHENA_SUDO variable is set.
+# USAGE:  athena.os.is_sudo
+# RETURN: 0 (true), 1 (false)
+function athena.os.is_sudo()
+{
+    if [ -z "$ATHENA_SUDO" ]; then
+      return 1
+    fi
+    return 0
+}
+
 # This functions returns the ip of the host of athena.
 # USAGE: athena.os.get_host_ip
 # RETURN: string
