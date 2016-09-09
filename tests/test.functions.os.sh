@@ -90,6 +90,16 @@ function testcase_athena.os.is_linux()
 	ATHENA_IS_LINUX=$curr_is_linux
 }
 
+function testcase_athena.os.is_sudo()
+{
+	curr_is_sudo=$ATHENA_SUDO
+	ATHENA_SUDO="sudo"
+	athena.test.assert_return "athena.os.is_sudo"
+	ATHENA_SUDO=""
+	athena.test.assert_return.expects_fail "athena.os.is_sudo"
+	ATHENA_SUDO=curr_is_sudo
+}
+
 function testcase_athena.os.get_host_ip()
 {
 	curr_is_mac=$ATHENA_IS_MAC
