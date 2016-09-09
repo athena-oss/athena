@@ -570,11 +570,14 @@ function testcase_athena.plugin.require()
 	mkdir -p "$tmpdir/$plg/bin/lib"
 	athena.test.mock.returns "athena.plugin.init" 0
 
-	echo "echo -n olleh" > "$tmpdir/$plg/bin/variables.sh"
-	echo "echo -n hello" > "$tmpdir/$plg/bin/lib/functions.sh"
+	echo "echo -n hello" > "$tmpdir/$plg/bin/variables.sh"
+	echo "echo -n olleh" > "$tmpdir/$plg/bin/lib/functions.sh"
 
 	athena.test.assert_output "athena.plugin.require" "ollehhello" "$plg"
 	athena.test.assert_exit_code.expects_fail "athena.plugin.require" "myotherplguin"
+
+	athena.test.mock.outputs "athena.plugin.get_plugin" "spinpans"
+	athena.test.assert_return.expects_fail "athena.plugin.require" "spinpans"
 
 	rm -r $tmpdir
 	ATHENA_PLGS_DIR=$curr_plgs_dir
@@ -634,27 +637,6 @@ function testcase_athena.plugin.get_available_cmds()
 	athena.test.assert_output "athena.plugin.get_available_cmds" "cmd1:My_cmd1_description."
 	rm -r $tmpdir
 }
-
-
-function testcase_athena.plugin.require()
-{
-	curr_plgs_dir=$ATHENA_PLGS_DIR
-	tmpdir=$(athena.test.create_tempdir)
-	ATHENA_PLGS_DIR=$tmpdir
-	local plg="myplugin"
-	mkdir -p "$tmpdir/$plg/bin/lib"
-	athena.test.mock.returns "athena.plugin.init" 0
-
-	echo "echo -n olleh" > "$tmpdir/$plg/bin/lib/functions.sh"
-	echo "echo -n hello" > "$tmpdir/$plg/bin/variables.sh"
-
-	athena.test.assert_output "athena.plugin.require" "ollehhello" "$plg"
-	athena.test.assert_exit_code.expects_fail "athena.plugin.require" "myotherplguin"
-
-	rm -r $tmpdir
-	ATHENA_PLGS_DIR=$curr_plgs_dir
-}
-
 
 function testcase_athena.plugin.init()
 {

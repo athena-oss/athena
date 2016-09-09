@@ -191,12 +191,16 @@ function athena.plugin.run_command()
 # RETURN: --
 function athena.plugin.require()
 {
+	if [ "$1" == "$(athena.plugin.get_plugin)" ]; then
+		return 1
+	fi
+
 	athena.plugin.plugin_exists "$1" "$2"
 	athena.plugin.init "$1"
 
 	# source files from plugin
-	local variables_file=$ATHENA_PLGS_DIR/$1/bin/variables.sh
-	local functions_file=$ATHENA_PLGS_DIR/$1/bin/lib/functions.sh
+	local variables_file="$(athena.plugin.get_plg_bin_dir $1)/variables.sh"
+	local functions_file="$(athena.plugin.get_plg_lib_dir $1)/functions.sh"
 
 	if [ -f "$functions_file" ]; then
 		source "$functions_file"
