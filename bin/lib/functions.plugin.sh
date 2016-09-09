@@ -309,6 +309,15 @@ function athena.plugin.get_plg_bin_dir()
 	echo "$(athena.plugin.get_plg_dir $1)/bin"
 }
 
+# This function returns the plugin hooks directory and checks if the plugin root
+# root exists. If not, execution is stopped and an error message is thrown.
+# USAGE: athena.plugin.get_plg_hooks_dir [plugin name]
+# RETURN: string
+function athena.plugin.get_plg_hooks_dir()
+{
+	echo "$(athena.plugin.get_plg_bin_dir $1)/hooks"
+}
+
 # This function returns the plugin library directory name and checks if the plugin
 # root exists. If not, execution is stopped and an error message is thrown.
 # USAGE:  athena.plugin.get_plg_lib_dir [plugin name]

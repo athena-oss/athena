@@ -313,6 +313,12 @@ function testcase_athena.plugin.get_plg_bin_dir()
 	athena.test.assert_output "athena.plugin.get_plg_bin_dir" "/my/plugin/path/bin"
 }
 
+function testcase_athena.plugin.get_plg_hooks_dir()
+{
+	athena.test.mock.outputs "athena.plugin.get_plg_bin_dir" "/my/plugin/path"
+	athena.test.assert_output "athena.plugin.get_plg_hooks_dir" "/my/plugin/path/hooks"
+}
+
 function testcase_athena.plugin.get_plg_lib_dir()
 {
 	athena.test.mock.outputs "athena.plugin.get_plg_bin_dir" "/my/plugin/path"
