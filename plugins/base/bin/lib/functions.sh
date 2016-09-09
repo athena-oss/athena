@@ -14,7 +14,7 @@ function athena.plugins.base.check_for_undefined_athena_functions()
 			# looking for declared functions
 			grep -R -e "[function|alias] ${func}[=|()]" $ATHENA_BASE_LIB_DIR 1>/dev/null 2>/dev/null
 			if [ $? -ne 0 ]; then
-				grep -R -e "[function|alias] ${func}[=|()]" $ATHENA_PLG_LIB_DIR 1>/dev/null 2>/dev/null
+				grep -R -e "[function|alias] ${func}[=|()]" "$(athena.plugin.get_plg_lib_dir)" 1>/dev/null 2>/dev/null
 				if [ $? -ne 0 ]; then
 					file=$(echo "$line" | awk -F":" '{ print $1 }')
 					line_nr=$(echo "$line" | awk -F":" '{ print $2 }')
