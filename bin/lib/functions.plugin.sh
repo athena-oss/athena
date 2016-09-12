@@ -636,7 +636,7 @@ function athena.plugin.handle_container()
 	version=$(athena.fs.get_file_contents "$version_file")
 	athena.plugin.set_image_version "$version"
 	athena.docker.build_from_plugin "$plg" "$other_ctr" "$version"
-	athena.plugin.set_container_name "athena-plugin-$plg-$sub_plg-$(athena.os.get_instance)"
+	athena.plugin.set_container_name "athena-plugin-$plg-$(athena.os.get_instance)"
 }
 
 # This function checks if the plugin root directory of the given plugin exists. If
