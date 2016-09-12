@@ -716,24 +716,31 @@ function testcase_athena.plugin.handle()
 
 	touch  "$tmpdir/cmd1_pre.sh"
 
-
 	echo "echo functions.sh" > "$tmpdir/functions.sh"
 	athena.test.assert_output "athena.plugin.handle" "functions.sh" "cmd1" "$tmpdir" "$tmpdir" "$tmpdir" "$tmpdir"
-
 	rm "$tmpdir/functions.sh"
+
 	echo "echo variables.sh" > "$tmpdir/variables.sh"
 	athena.test.assert_output "athena.plugin.handle" "variables.sh" "cmd1" "$tmpdir" "$tmpdir" "$tmpdir" "$tmpdir"
+	rm "$tmpdir/variables.sh"
 
 	# testing hooks
-	rm "$tmpdir/variables.sh"
 	echo "echo -n hello-pre" > "$tmpdir/command_pre.sh"
 	athena.test.assert_output "athena.plugin.handle" "hello-pre" "cmd1" "$tmpdir" "$tmpdir" "$tmpdir" "$tmpdir"
-
 	rm "$tmpdir/command_pre.sh"
-	echo "echo -n hello-post" > "$tmpdir/command_pre.sh"
+
+	echo "echo -n hello-post" > "$tmpdir/command_post.sh"
 	athena.test.assert_output "athena.plugin.handle" "hello-post" "cmd1" "$tmpdir" "$tmpdir" "$tmpdir" "$tmpdir"
+	rm "$tmpdir/command_post.sh"
+
+	# testing multiple cmd dirs
+	local tmpdir2=$(athena.test.create_tempdir)
+	echo "echo -n cmd1_pre" > "$tmpdir/cmd1_pre.sh"
+	echo "echo -n cmd_pre" > "$tmpdir2/cmd_pre.sh"
+	athena.test.assert_output "athena.plugin.handle" "cmd_pre" "cmd" "$tmpdir:$tmpdir2" "$tmpdir" "$tmpdir" "$tmpdir"
 
 	rm -r "$tmpdir"
+	rm -r "$tmpdir2"
 }
 
 
