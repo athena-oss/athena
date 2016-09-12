@@ -489,19 +489,13 @@ function athena.os.get_prefix()
 # RETURN: --
 function athena.os.split_string()
 {
+	athena.argument.argument_is_not_empty_or_fail "$1" "string_to_split"
+	athena.argument.argument_is_not_empty_or_fail "$2" "separator_character"
+	athena.argument.argument_is_not_empty_or_fail "$3" "variable_name"
+
 	local string_to_split=$1
 	local sc=$2
 	local variable_name=$3
-
-	if [ -z "$string_to_split" ]; then
-		athena.os.exit_with_msg "missing variable 'string_to_split'"
-	fi
-	if [ -z "$sc" ]; then
-		athena.os.exit_with_msg "missing variable 'separator_character'"
-	fi
-	if [ -z "$variable_name" ]; then
-		athena.os.exit_with_msg "missing variable 'variable_name'"
-	fi
 
 	OLD_IFS=$IFS
 	IFS=$sc read -a $variable_name <<< "$string_to_split"
