@@ -75,7 +75,7 @@ function athena.plugin.handle()
 	# located in only one of the directories, so we need to search for it.
 	for dir in "${cmd_dir[@]}"
 	do
-		if athena.fs.dir_contains_files "$dir" "$command*.sh" ; then
+		if athena.fs.dir_contains_files "$dir" "$command?(_pre|_post).sh" ; then
 
 			# per plugin functions
 			if [ -f "$lib_dir/functions.sh" ]; then

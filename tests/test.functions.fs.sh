@@ -101,8 +101,10 @@ function testcase_athena.fs.dir_contains_files()
 	tmpdir=$(athena.test.create_tempdir)
 	athena.test.assert_exit_code.expects_fail "athena.fs.dir_contains_files" "$tmpdir"
 	athena.test.assert_return.expects_fail "athena.fs.dir_contains_files" "$tmpdir" "*.sh"
+
 	touch "$tmpdir/test.sh"
 	athena.test.assert_return "athena.fs.dir_contains_files" "$tmpdir" "*.sh"
+	athena.test.assert_return "athena.fs.dir_contains_files" "$tmpdir" "test?(_pre|_post).sh"
 
 	rm -r $tmpdir
 }

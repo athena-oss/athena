@@ -1,4 +1,5 @@
 # This function checks if the given directory contains files with certain pattern (e.g.: *.sh).
+# Globbing has 'dotglob' and 'extglob' (see BASH(1)) enabled.
 # USAGE: athena.fs.dir_contains_files <directory> <pattern>
 # RETURN: 0 (true), 1 (false)
 function athena.fs.dir_contains_files()
@@ -6,7 +7,7 @@ function athena.fs.dir_contains_files()
 	athena.fs.dir_exists_or_fail "$1"
 	athena.argument.argument_is_not_empty_or_fail "$2"
 	local files
-	files=$(shopt -s nullglob;shopt -s dotglob;echo $1/$2)
+	files=$(shopt -s nullglob dotglob extglob; echo $1/$2)
 	if [ ${#files} -gt 0 ]; then
 		return 0
 	fi
