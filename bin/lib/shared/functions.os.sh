@@ -292,11 +292,11 @@ function athena.os.exit_with_msg()
 	level=${#FUNCNAME[@]}
 	idx=1
 	if athena.os.is_debug_active && [ $level -gt 0 ]; then
-		printf "\nStacktrace:\n"
+		printf "\nStacktrace:\n" >&2
 		while [ $level -gt 1  ];
 		do
 			source="${BASH_SOURCE[$idx]//$ATHENA_BASE_DIR/}:${BASH_LINENO[(($idx - 1))]}"
-			printf "\t%s\n" "$source"
+			printf "\t%s\n" "$source" >&2
 			((level--))
 			((idx++))
 		done
