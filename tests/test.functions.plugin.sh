@@ -528,6 +528,13 @@ function testcase_athena.plugin.handle_container()
 	athena.test.assert_exit_code "athena.plugin.handle_container"
 	athena.test.assert_output "athena.plugin.handle_container" "myplugin othercontainer 1.2.3"
 
+	athena.test.mock.outputs "athena.plugin.get_plugin" "myplugin"
+	athena.test.mock.outputs "athena.os.get_instance" "myinstance"
+	athena.test.mock.outputs "athena.plugin.get_container_to_use" "othercontainer"
+	athena.test.mock.returns "athena.docker.build_from_plugin" 0
+	athena.plugin.handle_container
+	athena.test.assert_output "athena.plugin.get_container_name" "athena-plugin-myplugin-othercontainer-myinstance"
+
 	rm -r $tmpdir
 }
 
