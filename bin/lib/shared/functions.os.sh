@@ -494,13 +494,13 @@ function athena.os.split_string()
 	local variable_name=$3
 
 	if [ -z "$string_to_split" ]; then
-		athena.exit_with_msg "missing variable 'string_to_split'"
+		athena.os.exit_with_msg "missing variable 'string_to_split'"
 	fi
 	if [ -z "$sc" ]; then
-		athena.exit_with_msg "missing variable 'separator_character'"
+		athena.os.exit_with_msg "missing variable 'separator_character'"
 	fi
 	if [ -z "$variable_name" ]; then
-		athena.exit_with_msg "missing variable 'variable_name'"
+		athena.os.exit_with_msg "missing variable 'variable_name'"
 	fi
 
 	OLD_IFS=$IFS
