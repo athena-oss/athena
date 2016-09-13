@@ -397,7 +397,14 @@ function athena.plugin.set_container_name()
 function athena.plugin.get_container_name()
 {
 	if [ -z "$ATHENA_CONTAINER_NAME" ]; then
-			ATHENA_CONTAINER_NAME="athena-plugin-$(athena.plugin.get_plugin)"-"$(athena.os.get_instance)"
+		local container_to_use
+		container_to_use=$(athena.plugin.get_container_to_use)
+		if [ $? -eq 1  ]; then
+			ATHENA_CONTAINER_NAME="athena-plugin-$(athena.plugin.get_plugin)-$(athena.os.get_instance)"
+		else
+			ATHENA_CONTAINER_NAME="athena-plugin-$(athena.plugin.get_plugin)-${container_to_use}-$(athena.os.get_instance)"
+
+		fi
 	fi
 	echo $ATHENA_CONTAINER_NAME
 }
@@ -636,7 +643,6 @@ function athena.plugin.handle_container()
 	version=$(athena.fs.get_file_contents "$version_file")
 	athena.plugin.set_image_version "$version"
 	athena.docker.build_from_plugin "$plg" "$other_ctr" "$version"
-	athena.plugin.set_container_name "athena-plugin-$plg-$other_ctr-$(athena.os.get_instance)"
 }
 
 # This function checks if the plugin root directory of the given plugin exists. If

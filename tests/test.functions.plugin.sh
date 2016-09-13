@@ -271,11 +271,18 @@ function testcase_athena.plugin.get_container_name()
 	athena.test.assert_output "athena.plugin.get_container_name" "mycontainer"
 
 	ATHENA_CONTAINER_NAME=
+	ATHENA_PLG_CONTAINER_TO_USE=
 	athena.plugin.set_plugin "myplugin"
 	athena.test.assert_output "athena.plugin.get_container_name" "athena-plugin-$(athena.plugin.get_plugin)-$(athena.os.get_instance)"
 	ATHENA_CONTAINER_NAME=$curr_container_name
 	athena.plugin.set_plugin "$curr_plugin"
 	athena.plugin.set_container_name "$curr_container_name"
+
+	ATHENA_CONTAINER_NAME=
+	athena.plugin.use_container "myspinpanscontainer"
+	athena.plugin.set_plugin "myplugin"
+	athena.plugin.use_container "myspinpanscontainer"
+	athena.test.assert_output "athena.plugin.get_container_name" "athena-plugin-$(athena.plugin.get_plugin)-myspinpanscontainer-$(athena.os.get_instance)"
 }
 
 function testcase_athena.plugin.get_plg_version()
