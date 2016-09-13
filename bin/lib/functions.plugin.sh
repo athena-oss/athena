@@ -398,12 +398,20 @@ function athena.plugin.get_container_name()
 {
 	if [ -z "$ATHENA_CONTAINER_NAME" ]; then
 		local container_to_use
+		local name
+		local env
+		name="$(athena.plugin.get_prefix_for_container_name)"
+
 		container_to_use=$(athena.plugin.get_container_to_use)
-		if [ $? -eq 1  ]; then
-			ATHENA_CONTAINER_NAME="$(athena.plugin.get_prefix_for_container_name)-$(athena.os.get_instance)"
-		else
-			ATHENA_CONTAINER_NAME="$(athena.plugin.get_prefix_for_container_name)-${container_to_use}-$(athena.os.get_instance)"
+		if [ $? -eq 0  ]; then
+			name="${name}-${container_to_use}"
 		fi
+
+		env=$(athena.plugin.get_environment)
+		if [ $? -eq 0  ]; then
+			name="${name}-${env}"
+		fi
+		ATHENA_CONTAINER_NAME="${name}-$(athena.os.get_instance)"
 	fi
 	echo $ATHENA_CONTAINER_NAME
 }
