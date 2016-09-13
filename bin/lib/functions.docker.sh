@@ -68,21 +68,26 @@ function athena.docker.is_current_container_not_running_or_fail()
 	return 0
 }
 
-# This function stops a docker container with the given name if running. In any
-# case (running or already stopped) the containers with the given name will be
-# removed including associated volumes.
-# USAGE:  athena.docker.stop_container <container name>
+# This function stops a docker container with the given name if running or the current container
+#if container name is not specified. In any case (running or already stopped) the containers with
+# the given name will be removed including associated volumes.
+# USAGE:  athena.docker.stop_container [container name]
 # RETURN: --
 function athena.docker.stop_container()
 {
-	if athena.docker.is_container_running "$1"; then
-		athena.color.print_info "Stopping $1"
-		athena.docker stop "$1" 2>/dev/null 1>/dev/null
+	local container=$1
+	if [ -z "$container" ]; then
+		container="$(athena.plugin.get_container_name)"
+	fi
+
+	if athena.docker.is_container_running "$container"; then
+		athena.color.print_info "Stopping $container"
+		athena.docker stop "$container" 2>/dev/null 1>/dev/null
 		if [ $? -eq 0 ]; then
-			athena.color.print_info "$1 is now stopped"
+			athena.color.print_info "$container is now stopped"
 		fi
 	fi
-	athena.docker.rm -v "$1" 2>/dev/null 1>/dev/null
+	athena.docker.rm -v "$container" 2>/dev/null 1>/dev/null
 }
 
 # This function stops and removes docker containers which run in this instance with

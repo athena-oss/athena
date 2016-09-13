@@ -450,9 +450,9 @@ This function stops and removes docker containers which run in this instance wit
  
 ### <a name="athenadockerstopcontainer"></a>`athena.docker.stop_container`
  
-This function stops a docker container with the given name if running. In any case (running or already stopped) the containers with the given name will be removed including associated volumes.
+This function stops a docker container with the given name if running or the current container f container name is not specified. In any case (running or already stopped) the containers with the given name will be removed including associated volumes.
  
-**USAGE:**  `athena.docker.stop_container <container name>`
+**USAGE:**  `athena.docker.stop_container [container name]`
  
 **RETURN:** `--`
  
