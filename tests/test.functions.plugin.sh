@@ -757,6 +757,12 @@ function testcase_athena.plugin.handle()
 	rm -r "$tmpdir2"
 }
 
+function testcase_athena.plugin.get_prefix_for_container_name()
+{
+	athena.test.assert_output "athena.plugin.get_prefix_for_container_name" "athena-plugin-specified" "specified"
+	athena.test.mock.outputs "athena.plugin.get_plugin" "myplugin"
+	athena.test.assert_output "athena.plugin.get_prefix_for_container_name" "athena-plugin-myplugin"
+}
 
 # aux functions
 function _my_echo()

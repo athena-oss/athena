@@ -60,10 +60,12 @@
     * [`athena.plugin.get_plg_cmd_dir`](#athenaplugingetplgcmddir)
     * [`athena.plugin.get_plg_dir`](#athenaplugingetplgdir)
     * [`athena.plugin.get_plg_docker_dir`](#athenaplugingetplgdockerdir)
+    * [`athena.plugin.get_plg_hooks_dir`](#athenaplugingetplghooksdir)
     * [`athena.plugin.get_plg_lib_dir`](#athenaplugingetplglibdir)
     * [`athena.plugin.get_plg_version`](#athenaplugingetplgversion)
     * [`athena.plugin.get_plugin`](#athenaplugingetplugin)
     * [`athena.plugin.get_plugins_dir`](#athenaplugingetpluginsdir)
+    * [`athena.plugin.get_prefix_for_container_name`](#athenaplugingetprefixforcontainername)
     * [`athena.plugin.get_shared_lib_dir`](#athenaplugingetsharedlibdir)
     * [`athena.plugin.get_subplg_version`](#athenaplugingetsubplgversion)
     * [`athena.plugin.get_tag_name`](#athenaplugingettagname)
@@ -266,7 +268,7 @@ This function checks if there if the given option is already set.
  
 This function checks if a docker image with the given tag name and version exists.
  
-**USAGE:**  `athena.docker.image_exists <tag name> <version>`
+**USAGE:**  `athena.docker.image_exists <image name> <version>`
  
 **RETURN:** `0 (true), 1 (false)`
  
@@ -584,6 +586,14 @@ This function returns the plugin docker directory name and checks if the plugin 
  
 **RETURN:** `string`
  
+### <a name="athenaplugingetplghooksdir"></a>`athena.plugin.get_plg_hooks_dir`
+ 
+This function returns the plugin hooks directory and checks if the plugin root root exists. If not, execution is stopped and an error message is thrown.
+ 
+**USAGE:**  `athena.plugin.get_plg_hooks_dir [plugin name]`
+ 
+**RETURN:** `string`
+ 
 ### <a name="athenaplugingetplglibdir"></a>`athena.plugin.get_plg_lib_dir`
  
 This function returns the plugin library directory name and checks if the plugin root exists. If not, execution is stopped and an error message is thrown.
@@ -613,6 +623,14 @@ This function wraps the athena.plugin.get_plg function.
 This function returns the directory name where plugins are installed (i.e. the value of the $ATHENA_PLGS_DIR variable).
  
 **USAGE:**  `athena.plugin.get_plugins_dir`
+ 
+**RETURN:** `string`
+ 
+### <a name="athenaplugingetprefixforcontainername"></a>`athena.plugin.get_prefix_for_container_name`
+ 
+This function returns the prefix for creating a container name.
+ 
+**USAGE:**  `athena.plugin.get_prefix_for_container_name [plugin name]`
  
 **RETURN:** `string`
  

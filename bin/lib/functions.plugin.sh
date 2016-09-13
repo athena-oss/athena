@@ -400,13 +400,25 @@ function athena.plugin.get_container_name()
 		local container_to_use
 		container_to_use=$(athena.plugin.get_container_to_use)
 		if [ $? -eq 1  ]; then
-			ATHENA_CONTAINER_NAME="athena-plugin-$(athena.plugin.get_plugin)-$(athena.os.get_instance)"
+			ATHENA_CONTAINER_NAME="$(athena.plugin.get_prefix_for_container_name)-$(athena.os.get_instance)"
 		else
-			ATHENA_CONTAINER_NAME="athena-plugin-$(athena.plugin.get_plugin)-${container_to_use}-$(athena.os.get_instance)"
-
+			ATHENA_CONTAINER_NAME="$(athena.plugin.get_prefix_for_container_name)-${container_to_use}-$(athena.os.get_instance)"
 		fi
 	fi
 	echo $ATHENA_CONTAINER_NAME
+}
+
+# This function returns the prefix for creating a container name.
+# USAGE: athena.plugin.get_prefix_for_container_name [plugin name]
+# RETURN: string
+function athena.plugin.get_prefix_for_container_name()
+{
+	if [ -n "$1" ]; then
+		echo "athena-plugin-$1"
+	else
+		echo "athena-plugin-$(athena.plugin.get_plugin)"
+	fi
+	return 0
 }
 
 # This function wraps the athena.plugin.get_plg function.
