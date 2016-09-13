@@ -178,8 +178,6 @@ function athena.docker.build_from_plugin()
 	local msg_no_dockerfile="Dockerfile not found '$docker_dir/Dockerfile'"
 	athena.fs.file_exists_or_fail "$docker_dir/Dockerfile" "$msg_no_dockerfile"
 
-	# plugin is now plugin-container_name
-	athena.plugin.set_container_name "athena-plugin-$plg-$sub_plg-$(athena.os.get_instance)"
 	local tag_name
 	tag_name=$(athena.plugin.get_tag_name)
 	athena.docker.build_container "$tag_name" "$version" "$docker_dir"
