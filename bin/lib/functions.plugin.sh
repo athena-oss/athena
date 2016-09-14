@@ -55,7 +55,7 @@ function athena.plugin._router()
 # RETURN: 0 (sucessfull), 1 (failed)
 function athena.plugin.handle()
 {
-	local command=$1
+	local command_to_execute=$1
 	local -a cmd_dir
 	local lib_dir=$3
 	local bin_dir=$4
@@ -75,7 +75,7 @@ function athena.plugin.handle()
 	# located in only one of the directories, so we need to search for it.
 	for dir in "${cmd_dir[@]}"
 	do
-		if athena.fs.dir_contains_files "$dir" "$command?(_pre|_post).sh" ; then
+		if athena.fs.dir_contains_files "$dir" "$command_to_execute?(_pre|_post).sh" ; then
 
 			# per plugin functions
 			if [ -f "$lib_dir/functions.sh" ]; then
@@ -90,7 +90,7 @@ function athena.plugin.handle()
 			# command pre-hooks
 			athena.plugin._run_hooks_if_exist "$hooks_dir/command_pre.sh"
 
-			athena.plugin.run_command "$command" $dir
+			athena.plugin.run_command "$command_to_execute" $dir
 			return_code=$?
 
 			# command post-hooks
@@ -102,7 +102,7 @@ function athena.plugin.handle()
 	done
 
 	if [ $cmd_found -eq 0 ]; then
-		athena.os.exit_with_msg "Unrecognized command '$command'."
+		athena.os.exit_with_msg "Unrecognized command '$command_to_execute'."
 	fi
 
 	return $return_code
