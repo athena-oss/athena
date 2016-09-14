@@ -1,4 +1,4 @@
-# Athena [![Build Status](https://travis-ci.org/athena-oss/athena.svg?branch=master)](https://travis-ci.org/athena-oss/athena)
+# Athena [![Build Status](https://travis-ci.org/athena-oss/athena.svg?branch=master)](https://travis-ci.org/athena-oss/athena) [![Join the chat at https://gitter.im/athena-oss/Lobby](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/athena-oss/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 *Automate, Automate, Automate!*
 
