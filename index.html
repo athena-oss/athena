@@ -397,19 +397,20 @@ https://www.gnu.org/software/bash/">Bash</a> already has support for a lot of st
 </li>
 <li><a href="#license">License</a>
 </li></ul>
-<h2 id="quick-start">Quick start</h2><p>Prerequisites</p><ul><li>You have a <a href="GLOSSARY.html#bash" class="glossary-term" title="Bash is the GNU Project&apos;s shell. Bash is the Bourne Again SHell. Bash is an sh-compatible shell that incorporates useful features from the Korn shell (ksh) and C shell (csh).
-https://www.gnu.org/software/bash/">Bash</a> shell.
+<h2 id="quick-start">Quick start</h2><p>Prerequisites</p><ul><li>You have a <code>bash</code> shell.
 </li>
-<li>You have <a href="GLOSSARY.html#git" class="glossary-term" title="Free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
-https://git-scm.com">Git</a> installed.
+<li>You have <a href="https://git-scm.com/" target="_blank">Git</a> installed.
 </li>
-<li>You have <a href="GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
-https://www.docker.com">Docker</a> installed.
+<li>You have <a href="https://www.docker.com/" target="_blank">Docker</a> installed.
 </li></ul>
-<p>There are two quick start options available:</p><ul><li><a href="https://github.com/athena-oss/athena/releases/latest" target="_blank">Download the latest release</a>
-</li>
-<li>Clone the repo: <code>git clone https://github.com/athena-oss/athena.git</code>
-</li></ul>
+<p>There are three quick start options available:</p><ul><li><p>On MAC OSX using <a href="http://brew.sh/" target="_blank">Homebrew</a> :</p><pre><code class="lang-bash">$ brew tap athena-oss/tap
+$ brew install athena</code></pre>
+<p><strong>Note:</strong> You might be required to allow <a href="GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">Docker</a> to access folders managed by <a href="GLOSSARY.html#homebrew" class="glossary-term" title="The missing package manager for OS X
+http://brew.sh/">Homebrew</a>. In order to do this, go to <a href="GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">Docker</a> <code>Preferences &gt; File Sharing</code> and add the folder <code>/usr/local/Cellar</code>.</p></li>
+<li><p><a href="https://github.com/athena-oss/athena/releases/latest" target="_blank">Download the latest release</a></p></li>
+<li><p>Clone the repo: <code>git clone https://github.com/athena-oss/athena.git</code></p></li></ul>
 <p>Read the <a href="http://athena-oss.github.io/athena" target="_blank">Documentation</a> on using Athena.</p><h2 id="examples">Examples</h2><p>Inside Examples section you&apos;ll find a variaty of ways to use Athena.</p><h3 id="running-a-filedirectory-validator">running a file/directory validator</h3><pre><code class="lang-bash">CMD_DESCRIPTION=<span class="hljs-string">&quot;Validates a file or directory for possible issues.&quot;</span>
 
 athena.usage 1 <span class="hljs-string">&quot;&lt;file|directory&gt;&quot;</span>
@@ -479,7 +480,7 @@ cleanups and refactorings).</p><h2 id="license">License</h2><p>Licensed under th
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Getting Started","level":"1.2","depth":1,"path":"quick-start/getting-started.md","ref":"quick-start/getting-started.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2016-09-15T11:51:32.994Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-15T11:53:01.077Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Getting Started","level":"1.2","depth":1,"path":"quick-start/getting-started.md","ref":"quick-start/getting-started.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2016-09-15T11:52:58.367Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-15T11:54:06.140Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
