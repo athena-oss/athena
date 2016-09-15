@@ -65,11 +65,18 @@ With this already taken care of you will only need to focus on your specific pro
 ## Quick start
 
 Prerequisites
- * You have a Bash shell.
- * You have Git installed.
- * You have Docker installed.
+ * You have a `bash` shell.
+ * You have [Git](https://git-scm.com/) installed.
+ * You have [Docker](https://www.docker.com/) installed.
 
-There are two quick start options available:
+There are three quick start options available:
+
+* On MAC OSX using [Homebrew](http://brew.sh/) :
+```bash
+$ brew tap athena-oss/tap
+$ brew install athena
+```
+**Note:** You might be required to allow Docker to access folders managed by Homebrew. In order to do this, go to Docker `Preferences > File Sharing` and add the folder `/usr/local/Cellar`.
 
 * [Download the latest release](https://github.com/athena-oss/athena/releases/latest)
 * Clone the repo: `git clone https://github.com/athena-oss/athena.git`
