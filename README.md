@@ -77,9 +77,7 @@ There are three quick start options available:
 $ brew tap athena-oss/tap
 $ brew install athena
 ```
-**Note:**
-
-You might be required to allow Docker to access folders managed by Homebrew. In order to do this, go to Docker `Preferences > File Sharing` and add the folder `/usr/local/Cellar`.
+**Note:** You might be required to allow Docker to access folders managed by Homebrew. In order to do this, go to Docker `Preferences > File Sharing` and add the folder `/usr/local/Cellar`.
 
 * [Download the latest release](https://github.com/athena-oss/athena/releases/latest)
 * Clone the repo: `git clone https://github.com/athena-oss/athena.git`
