@@ -139,6 +139,9 @@ function athena.test.assert_value.expects_fail()
 function athena.test.assert_return()
 {
 	LINE=$BASH_LINENO
+	if ! athena.test._assert_function_exists "$1"; then
+		return 1
+	fi
 	athena.test._expects_pass athena.test._assert_return "$@"
 }
 
@@ -148,6 +151,9 @@ function athena.test.assert_return()
 function athena.test.assert_return.expects_fail()
 {
 	LINE=$BASH_LINENO
+	if ! athena.test._assert_function_exists "$1"; then
+		return 1
+	fi
 	athena.test._expects_fail athena.test._assert_return "$@"
 }
 
@@ -157,6 +163,9 @@ function athena.test.assert_return.expects_fail()
 function athena.test.assert_output()
 {
 	LINE=$BASH_LINENO
+	if ! athena.test._assert_function_exists "$1"; then
+		return 1
+	fi
 	athena.test._expects_pass athena.test._assert_output "$@"
 }
 
@@ -166,6 +175,9 @@ function athena.test.assert_output()
 function athena.test.assert_output.expects_fail()
 {
 	LINE=$BASH_LINENO
+	if ! athena.test._assert_function_exists "$1"; then
+		return 1
+	fi
 	athena.test._expects_fail athena.test._assert_output "$@"
 }
 
@@ -175,6 +187,9 @@ function athena.test.assert_output.expects_fail()
 function athena.test.assert_exit_code()
 {
 	LINE=$BASH_LINENO
+	if ! athena.test._assert_function_exists "$1"; then
+		return 1
+	fi
 	athena.test._expects_pass athena.test._assert_exit_code "$@"
 }
 
@@ -184,6 +199,9 @@ function athena.test.assert_exit_code()
 function athena.test.assert_exit_code.expects_fail()
 {
 	LINE=$BASH_LINENO
+	if ! athena.test._assert_function_exists "$1"; then
+		return 1
+	fi
 	athena.test._expects_fail athena.test._assert_exit_code "$@"
 }
 
@@ -363,6 +381,17 @@ function athena.test._assert_output()
 	shift 2
 	output="$($func "$@")"
 	athena.test._assert_value "$output" "$expected"
+}
+
+function athena.test._assert_function_exists()
+{
+	if ! declare -F "$1" >/dev/null; then
+		printf "\033[31mF\033[m"
+		athena.test._append_output "\033[31m$TESTCASE/${FUNCNAME[2]}:$LINE criteria should not happen\033[m: function to test doesn't exist: $1"
+		return 1
+	fi
+
+	return 0
 }
 
 function athena.test._assert_array()
