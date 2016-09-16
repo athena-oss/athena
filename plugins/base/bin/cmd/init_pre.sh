@@ -49,5 +49,5 @@ echo "============================================================="
 echo
 athena.print "green" "All systems are GO. Enjoy!"
 echo
-athena.os._add_athena_path_to_user_profile "$SHELL"
+athena.os._check_athena_in_path "$SHELL"
 echo "============================================================="

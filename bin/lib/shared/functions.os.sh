@@ -686,10 +686,12 @@ function athena.os._trap()
 	trap "$@"
 }
 
-# This function adds the athena executable to the path in order to be used globally.
-# USAGE: athena.os._add_athena_path_to_user_profile <shell>
+# This function checks if the athena command is already in any search path
+# otherwise it will show an information how to add this within a shell's RC
+# file.
+# USAGE: athena.os._check_athena_in_path <shell>
 # RETURN: int
-function athena.os._add_athena_path_to_user_profile()
+function athena.os._check_athena_in_path()
 {
 	if which athena 1>/dev/null 2>/dev/null; then
 		return 0
@@ -697,27 +699,30 @@ function athena.os._add_athena_path_to_user_profile()
 
 	local profile_file
 	local append_str="export PATH=\"\$PATH:$ATHENA_BASE_DIR\""
-	case $1 in
+	case "$1" in
 		*zsh*)
 			profile_file="$HOME/.zshrc"
 			;;
 		*bash*)
 			profile_file="$HOME/.bashrc"
 			;;
-		*)
-			athena.color.print_debug "could not identify shell '$SHELL'."
-			;;
 	esac
 
-	if [ -f "$profile_file" ] && ! $(grep "PATH" "$profile_file" | grep "$ATHENA_BASE_DIR" "$profile_file") ; then
-		echo $append_str >> $profile_file
-		if [ $? -eq 0 ]; then
-			athena.color.print_info "To use athena globally run source '$profile_file'"
-		else
-			athena.color.print_error "Could not update current shell profile!"
-		fi
-	elif ! which athena 1>/dev/null 2>/dev/null; then
-		athena.color.print_info "To use athena globally run source '$profile_file'"
+	if [ -n "$profile_file" ]; then
+		athena.color.print_info "To use athena globally run the following snippet"
+		cat <<EOF
+
+         echo '$append_str' >> '$profile_file'
+         source '$profile_file'
+
+EOF
+	else
+		athena.color.print_info "To use athena globally please ensure that your PATH includes"
+		cat <<EOF
+
+         $ATHENA_BASE_DIR
+
+EOF
 	fi
 	return 0
 }
