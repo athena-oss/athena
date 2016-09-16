@@ -27,7 +27,7 @@ function testcase_athena.plugin.run_container()
 {
 	athena.test.assert_exit_code.expects_fail "athena.plugin.run_container" ""
 
-	athena.test.mock "athena.docker.exec" "_my_echo"
+	athena.test.mock "athena.docker.exec" "_my_plugin_echo"
 	athena.argument.set_arguments one two three
 	athena.test.mock.outputs "athena.docker.get_options" "--env varA=valA"
 	athena.test.mock.outputs "athena.plugin.get_tag_name" "mytag"
@@ -45,7 +45,7 @@ function testcase_athena.plugin.run_container()
 	athena.test.mock.returns "athena.docker.is_container_running" 0
 	athena.test.assert_output "athena.plugin.run_container" "-i mycontainer /opt/shared/router.sh command one two three" "command"
 
-	athena.test.mock "athena.docker.run" "_my_echo"
+	athena.test.mock "athena.docker.run" "_my_plugin_echo"
 
 	# using default router and container running
 	athena.test.mock.returns "athena.docker.is_container_running" 0
@@ -494,7 +494,7 @@ function testcase_athena.plugin.handle_environment()
 
 function testcase_athena.plugin.build()
 {
-	athena.test.mock "athena.docker.build_container" "_my_echo"
+	athena.test.mock "athena.docker.build_container" "_my_plugin_echo"
 	athena.test.mock.outputs "athena.plugin.get_plugin" "myplugin"
 	athena.test.mock.outputs "athena.plugin.get_plg_docker_dir" "mydockerdir"
 	athena.test.mock.outputs "athena.plugin.get_tag_name" "mytag"
@@ -532,7 +532,7 @@ function testcase_athena.plugin.handle_container()
 	athena.test.assert_exit_code.expects_fail "athena.plugin.handle_container"
 
 	touch "$tmpdir/othercontainer/Dockerfile"
-	athena.test.mock "athena.docker.build_from_plugin" "_my_echo"
+	athena.test.mock "athena.docker.build_from_plugin" "_my_plugin_echo"
 	athena.test.mock.returns "athena.plugin.set_plugin" 0
 	athena.test.assert_exit_code "athena.plugin.handle_container"
 	athena.test.assert_output "athena.plugin.handle_container" "myplugin othercontainer 1.2.3"
@@ -767,7 +767,7 @@ function testcase_athena.plugin.get_prefix_for_container_name()
 }
 
 # aux functions
-function _my_echo()
+function _my_plugin_echo()
 {
 	echo -n "$@"
 }

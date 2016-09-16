@@ -2,7 +2,7 @@ function testcase_athena.docker.run_container()
 {
 	athena.test.assert_exit_code.expects_fail "athena.docker.run_container"
 	athena.test.assert_exit_code.expects_fail "athena.docker.run_container" "one"
-	athena.test.mock "athena.docker.run" "_my_echo"
+	athena.test.mock "athena.docker.run" "_my_docker_echo"
 	athena.test.assert_output "athena.docker.run_container" "--name container_name --env A=B tag:version" "container_name" "tag:version" "--env A=B"
 	athena.test.assert_output "athena.docker.run_container" "--name container_name --env A=B tag:version one two three" "container_name" "tag:version" "--env A=B" "one two three"
 }
@@ -12,7 +12,7 @@ function testcase_athena.docker.run_container_with_default_router()
 	athena.test.assert_exit_code.expects_fail "athena.docker.run_container_with_default_router"
 	athena.test.assert_exit_code.expects_fail "athena.docker.run_container_with_default_router" "one"
 	athena.test.assert_exit_code.expects_fail "athena.docker.run_container_with_default_router" "one" "two"
-	athena.test.mock "athena.docker.run" "_my_echo"
+	athena.test.mock "athena.docker.run" "_my_docker_echo"
 	athena.test.mock.outputs "athena.docker.get_ip" "127.0.0.1"
 	athena.test.mock.outputs "athena.os.get_host_ip" "127.0.0.1"
 	athena.test.mock.outputs "athena.plugin.get_shared_lib_dir" "/path/to/shared/dir"
@@ -210,14 +210,14 @@ function testcase_athena.docker.is_container_running()
 	athena.test.mock.outputs "athena.docker" ""
 	athena.test.assert_return.expects_fail "athena.docker.is_container_running" "mycontainer"
 
-	athena.test.mock "athena.docker" "_my_fake_docker_exec"
+	athena.test.mock "athena.docker" "_my_docker_fake_docker_exec"
 	athena.test.assert_exit_code.expects_fail "athena.docker.is_container_running" "rm was called" "mycontainer"
 }
 
 function testcase_athena.docker.is_current_container_running()
 {
 	athena.test.mock.outputs "athena.plugin.get_container_name" "mycontainer123"
-	athena.test.mock "athena.docker.is_container_running" "_my_echo"
+	athena.test.mock "athena.docker.is_container_running" "_my_docker_echo"
 	athena.test.assert_output "athena.docker.is_current_container_running" "mycontainer123"
 }
 
@@ -277,7 +277,7 @@ function testcase_athena.docker.stop_all_containers()
 	athena.test.mock.returns "athena.color.print_debug" 0
 	athena.test.mock.outputs "athena.os.get_instance" "myinstance"
 	athena.test.mock.outputs "athena._get_list_of_docker_containers" "container1 container2-myinstance"
-	athena.test.mock "athena.docker.stop_container" "_my_fake_stop_container"
+	athena.test.mock "athena.docker.stop_container" "_my_docker_fake_stop_container"
 	athena.test.assert_output "athena.docker.stop_all_containers" "stopping container2-myinstance"
 
 	local output
@@ -291,8 +291,8 @@ function testcase_athena.docker.remove_container_and_image()
 	athena.test.assert_exit_code.expects_fail "athena.docker.remove_container_and_image"
 	athena.test.assert_exit_code.expects_fail "athena.docker.remove_container_and_image" "tag"
 	athena.test.mock.outputs "athena.docker.get_tag_and_version" "mycontainer1"
-	athena.test.mock "athena.docker.rm" "_my_echo"
-	athena.test.mock "athena.docker.rmi" "_my_echo"
+	athena.test.mock "athena.docker.rm" "_my_docker_echo"
+	athena.test.mock "athena.docker.rmi" "_my_docker_echo"
 	athena.test.mock.outputs "athena.docker.images" "mycontainer1 1.0.0"
 
 	athena.test.assert_output "athena.docker.remove_container_and_image" "mycontainer1-f mycontainer1:1.0.0" "mycontainer1" "1.0.0"
@@ -304,7 +304,7 @@ function testcase_athena.docker.build_from_plugin()
 	mkdir "$tmpdir/mysubplg"
 	echo > "$tmpdir/mysubplg/Dockerfile"
 
-	athena.test.mock "athena.docker.build_container" "_my_echo"
+	athena.test.mock "athena.docker.build_container" "_my_docker_echo"
 	athena.test.mock.outputs "athena.plugin.get_plg_docker_dir" "$tmpdir"
 	athena.test.mock.outputs "athena.plugin.get_tag_name" "mytag"
 	athena.test.mock.returns "athena.plugin.set_plugin" 0
@@ -379,7 +379,7 @@ function testcase_athena.docker._validate_if_build_args_exist()
 
 function testcase_athena.docker.build_container()
 {
-	athena.test.mock "athena.docker.build" "_my_echo"
+	athena.test.mock "athena.docker.build" "_my_docker_echo"
 	athena.test.mock.returns "athena.color.print_info" 0
 	athena.test.mock.returns "athena.color.print_debug" 0
 	athena.test.mock.returns "athena.docker.image_exists" 1
@@ -398,7 +398,7 @@ function testcase_athena.docker.build_container()
 function testcase_athena.docker.wait_for_string_in_container_logs()
 {
 	athena.test.mock.outputs "athena.docker.logs" "mymessage"
-	athena.test.mock "athena.color.print_info" "_my_echo"
+	athena.test.mock "athena.color.print_info" "_my_docker_echo"
 	athena.test.assert_output "athena.docker.wait_for_string_in_container_logs" "mycomponent is UP" "mycomponent" "mymessage"
 
 	# NOTE: no tests for the waiting need to be done
@@ -431,7 +431,7 @@ function testcase_athena.docker.add_envs_with_prefix()
 {
 	athena.test.assert_exit_code.expects_fail "athena.docker.add_envs_with_prefix" ""
 
-	athena.test.mock "athena.docker.add_option" "_my_echo"
+	athena.test.mock "athena.docker.add_option" "_my_docker_echo"
 
 	export mocked_env1="val1"
 	export mocked_env2="val2"
@@ -449,7 +449,7 @@ function testcase_athena.docker.print_or_follow_container_logs()
 	athena.test.assert_output "athena.docker.print_or_follow_container_logs" "" "mycontainer"
 
 	athena.test.mock "athena.color.print_info" "_void"
-	athena.test.mock "athena.docker" "_my_echo"
+	athena.test.mock "athena.docker" "_my_docker_echo"
 	athena.test.mock.returns "athena.docker.is_container_running" 0
 	athena.test.assert_output "athena.docker.print_or_follow_container_logs" "logs mycontainer" "mycontainer"
 	athena.test.assert_output "athena.docker.print_or_follow_container_logs" "logs -f mycontainer" "mycontainer" "-f"
@@ -482,15 +482,15 @@ function _echo_all_arguments_in_newline()
 {
 	echo "$@"
 }
-function _my_echo()
+function _my_docker_echo()
 {
 	echo -n "$@"
 }
-function _my_fake_stop_container()
+function _my_docker_fake_stop_container()
 {
 	echo -n "stopping $@"
 }
-function _my_fake_docker_exec()
+function _my_docker_fake_docker_exec()
 {
 	case $1 in
 		"ps")
