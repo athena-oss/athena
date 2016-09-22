@@ -1,4 +1,4 @@
-CMD_DESCRIPTION="Create, list, install and update plugin(s)."
+CMD_DESCRIPTION="Create, list, install,update or remove plugin(s)."
 
 function _list_plugins()
 {
@@ -6,6 +6,15 @@ function _list_plugins()
 	do
 		echo " * $plg"
 	done
+}
+
+function _remove_plugin()
+{
+        athena.argument.argument_is_not_empty_or_fail "$1" "plugin name"
+        local plugin_dir=$(athena.plugin.get_plugins_dir)/$1
+        athena.dir_exists_or_fail ${plugin_dir}
+        athena.info "will remove plugin '$1'"
+        rm -rf ${plugin_dir} && athena.ok "plugin '$1' has been removed"
 }
 
 function _install_plugin()
@@ -73,9 +82,10 @@ function _print_usage()
 list                  ;List all available plugins.
 install <name> <repo> ;Installs a plugin from a git repo.
 update <name|--all>   ;Update the existing plugin(s).
+remove <name>         ;Remove the plugin.
 EOF
 )
-	athena.usage 1 "<list|install|update>" "$options"
+	athena.usage 1 "<list|install|update|remove>" "$options"
 }
 
 # Main Execution
@@ -91,6 +101,9 @@ case $arg1 in
 		;;
 	install)
 		_install_plugin $arg2 $arg3
+		;;
+	remove)
+		_remove_plugin $arg2
 		;;
 	update)
 		if athena.arg_exists "--all" ; then
