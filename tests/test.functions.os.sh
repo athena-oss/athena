@@ -137,8 +137,8 @@ function testcase_athena.os.function_exists()
 	athena.test.assert_exit_code.expects_fail "athena.os.function_exists" ""
 	athena.test.assert_return.expects_fail "athena.os.function_exists" "my-non-existing-function"
 
-	athena.test.mock.exits "_my_function" 1
-	athena.test.assert_return "athena.os.function_exists" "_my_function"
+	athena.test.mock.exits "_my_os_function" 1
+	athena.test.assert_return "athena.os.function_exists" "_my_os_function"
 }
 
 function testcase_athena.os.function_exists_or_fail()
@@ -146,8 +146,8 @@ function testcase_athena.os.function_exists_or_fail()
 	athena.test.assert_exit_code.expects_fail "athena.os.function_exists_or_fail" ""
 	athena.test.assert_exit_code.expects_fail "athena.os.function_exists_or_fail" "my-non-existing-function"
 
-	athena.test.mock.exits "_my_function" 1
-	athena.test.assert_return "athena.os.function_exists_or_fail" "_my_function"
+	athena.test.mock.exits "_my_os_function" 1
+	athena.test.assert_return "athena.os.function_exists_or_fail" "_my_os_function"
 }
 
 function testcase_athena.os.return()
@@ -155,15 +155,15 @@ function testcase_athena.os.return()
 	athena.os.return "one" "var1"
 	athena.test.assert_value "one" "$var1"
 
-	athena.test.mock "athena.get_value" "_my_mock"
+	athena.test.mock "athena.get_value" "_my_os_mock"
 	athena.get_value
 	athena.test.assert_value "teste" "$value"
 
-	athena.test.assert_exit_code.expects_fail "spinpans"
+	athena.test.assert_exit_code.expects_fail "_my_os_spinpans"
 
-	athena.test.assert_value "hello" "$(athena.get_val)"
+	athena.test.assert_value "hello" "$(_my_os_athena.get_val)"
 
-	athena.mynamespace.get_valtwo
+	_my_os_athena.mynamespace.get_valtwo
 	athena.test.assert_value "hellofromtheoutside" "$valtwo"
 }
 
@@ -221,7 +221,7 @@ function testcase_athena.os.handle_exit()
 
 function testcase_athena.os.register_exit_handler()
 {
-	athena.test.mock "athena.os._trap" "_my_trap"
+	athena.test.mock "athena.os._trap" "_my_os_trap"
 
 	athena.test.assert_output "athena.os.register_exit_handler" "myfunc sig1 sig1" "myfunc" "sig1"
 
@@ -338,37 +338,37 @@ function testcase_athena.os.call_with_args()
 	athena.test.assert_exit_code "athena.os.call_with_args" 'echo'
 
 	athena.test.assert_output "athena.os.call_with_args" "one two three" "echo"
-	athena.test.assert_output "athena.os.call_with_args" "two" "_call_with_args_and_return_second_element"
+	athena.test.assert_output "athena.os.call_with_args" "two" "_my_os_call_with_args_and_return_second_element"
 	athena.argument.set_arguments one "who let the dogs out" two three
-	athena.test.assert_output "athena.os.call_with_args" "who let the dogs out" "_call_with_args_and_return_second_element"
+	athena.test.assert_output "athena.os.call_with_args" "who let the dogs out" "_my_os_call_with_args_and_return_second_element"
 }
 
 #### aux functions
-function _call_with_args_and_return_second_element()
+function _my_os_call_with_args_and_return_second_element()
 {
 	echo -n "${2}"
 }
 
-function athena.mynamespace.get_valtwo()
+function _my_os_athena.mynamespace.get_valtwo()
 {
 	athena.os.return "hellofromtheoutside"
 }
-function _my_mock()
+function _my_os_mock()
 {
 	athena.os.return "teste"
 }
 
-function _my_trap()
+function _my_os_trap()
 {
 	echo "$@"
 }
 
-function spinpans()
+function _my_os_spinpans()
 {
 	athena.os.return "good morning"
 }
 
-function athena.get_val()
+function _my_os_athena.get_val()
 {
 	athena.os.return "hello"
 }
