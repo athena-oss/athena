@@ -82,7 +82,7 @@ athena.plugin._router \
 	"$(athena.plugin.get_plg_cmd_dir)" \
 	"$(athena.plugin.get_plg_lib_dir)" \
 	"$(athena.plugin.get_plg_hooks_dir)" \
-	$(athena.argument.get_arguments)
+	"${ATHENA_ARGS[@]}"
 
 
 athena.os.exit $?
