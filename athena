@@ -76,13 +76,15 @@ athena.os._process_flags
 athena.fs.dir_exists_or_fail "$ATHENA_PLG_DIR"
 athena.fs.file_exists_or_fail "$ATHENA_PLG_VERSION_FILE"
 ######################################################
+declare -a athena_args
+athena.argument.get_arguments athena_args
 athena.plugin._router \
 	"$(athena.plugin.get_plugin)" \
 	"$(athena.plugin.get_plg_bin_dir)" \
 	"$(athena.plugin.get_plg_cmd_dir)" \
 	"$(athena.plugin.get_plg_lib_dir)" \
 	"$(athena.plugin.get_plg_hooks_dir)" \
-	$(athena.argument.get_arguments)
+	"${athena_args[@]}"
 
 
 athena.os.exit $?
