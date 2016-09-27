@@ -214,8 +214,7 @@ function athena.docker.build_container()
 		athena.docker._validate_if_build_args_exist "$docker_dir/Dockerfile" "$(athena.docker.get_build_args_file)"
 
 		athena.color.print_info "Building ATHENA container '$tag_name:$version'..."
-		local cmd="athena.docker.build $build_args -t $tag_name:$version -f $docker_dir/Dockerfile $docker_dir"
-		$cmd
+		athena.docker.build $build_args -t "$tag_name:$version" -f "$docker_dir/Dockerfile" "$docker_dir"
 		local rc=$?
 
 		# ensure that the process stops here if build error occurred
@@ -497,7 +496,7 @@ function athena.docker.run_container()
 	local docker_opts="$3"
 	shift 3
 
-	athena.docker.run --name "$name" $docker_opts $tag_name "$@"
+	athena.docker.run --name "$name" $docker_opts "$tag_name" "$@"
 }
 
 # This function runs a container using the default router.
@@ -530,7 +529,7 @@ function athena.docker.run_container_with_default_router()
 			-v "$(athena.plugin.get_shared_lib_dir):/opt/shared" \
 			-v "$(athena.plugin.get_plg_dir):/opt/athena" \
 			$docker_opts \
-			$tag_name \
+			"$tag_name" \
 			"$router" \
 			"$athena_command" \
 			"$@"
@@ -574,6 +573,8 @@ function athena.docker.print_or_follow_container_logs()
 
 		if [[ "$follow_logs" == "-f" ]]; then
 			athena.color.print_info "Hit CTRL-C to stop following..."
+		else
+			unset follow_logs
 		fi
 		athena.docker logs $follow_logs "$container_name"
 	done
