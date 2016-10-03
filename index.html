@@ -2,12 +2,12 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Introduction · GitBook</title>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Introduction · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.0">
+        <meta name="generator" content="GitBook 3.2.2">
         
         
         
@@ -355,63 +355,86 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id=""><img alt="image" src="img/athena_logo.png"></h1><p><em>Automate, Automate, Automate!</em></p><p>The key to optimize work is to <em>automate</em> as much as possible. Whether you are developing software, setting up infrastructure or even testing, if there is a chance to do it just take it.</p><p>Most of the times the boring and frequent tasks can be automated. There are a lot of different tools and technologies that can help you with that, but sometimes starting is simply an hassle by itself and one might end up giving up and doing it <em>&quot;manually&quot;</em>.</p><p>This is where Athena jumps in. The idea is quite simple, we minimize the start process by :</p><ul><li>automating the wiring of the dependencies and tools
+                                <h1 id=""><img src="img/athena_logo.png" alt="image"></h1>
+<p><em>Automate, Automate, Automate!</em></p>
+<p>The key to optimize work is to <em>automate</em> as much as possible. Whether you are developing software, setting up infrastructure or even testing, if there is a chance to do it just take it.</p>
+<p>Most of the times the boring and frequent tasks can be automated. There are a lot of different tools and technologies that can help you with that, but sometimes starting is simply an hassle by itself and one might end up giving up and doing it <em>&quot;manually&quot;</em>.</p>
+<p>This is where Athena jumps in. The idea is quite simple, we minimize the start process by :</p>
+<ul>
+<li>automating the wiring of the dependencies and tools</li>
+<li>implement a plugin architecture to allow freedom and scalability</li>
+<li>throw in a wizard that takes care of the boring stuff</li>
+</ul>
+<p>Once that part is done, you can reuse it as much as you can and you can even share with other people or teams.</p>
+<p>Seems cool, right?</p>
+<p>Well, it might also seem too easy or too abstract so let&apos;s dig into it.</p>
+<h2 id="how-does-it-work">How does it work?</h2>
+<p>Athena aims to be of simple usage and architecture and consists of 2 pillars:</p>
+<ul>
+<li><p>the <code>Engine</code>: a declarative framework based in <a href="GLOSSARY.html#bash" class="glossary-term" title="Bash is the GNU Project&apos;s shell. Bash is the Bourne Again SHell. Bash is an sh-compatible shell that incorporates useful features from the Korn shell (ksh) and C shell (csh).
+https://www.gnu.org/software/bash/">Bash</a> ( <em>say that again ???</em> Don&apos;t run away yet because it has a pretty cool built-in testing system with mocking and proper unit tests)</p>
 </li>
-<li>implement a plugin architecture to allow freedom and scalability
-</li>
-<li>throw in a wizard that takes care of the boring stuff
-</li></ul>
-<p>Once that part is done, you can reuse it as much as you can and you can even share with other people or teams.</p><p>Seems cool, right?</p><p>Well, it might also seem too easy or too abstract so let&apos;s dig into it.</p><h2 id="how-does-it-work">How does it work?</h2><p>Athena aims to be of simple usage and architecture and consists of 2 pillars:</p><ul><li><p>the <code>Engine</code>: a declarative framework based in <a href="GLOSSARY.html#bash" class="glossary-term" title="Bash is the GNU Project&apos;s shell. Bash is the Bourne Again SHell. Bash is an sh-compatible shell that incorporates useful features from the Korn shell (ksh) and C shell (csh).
-https://www.gnu.org/software/bash/">Bash</a> ( <em>say that again ???</em> Don&apos;t run away yet because it has a pretty cool built-in testing system with mocking and proper unit tests)</p></li>
 <li><p>the <code>Plugins</code>: they are tipically <em>Services</em>, <em>Applications</em>, <em>Jobs</em>, etc. They can use any technology or any stack of technologies and they form the ecosystem that helps you handle different scenarios. To support the automation environments, the virtualisation technology used is <a href="GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
-https://www.docker.com">Docker</a>.</p></li></ul>
-<p>As an example, you can use Athena to setup a webserver, test your website and handle the deployment. This example could be achieved by creating 3 <code>plugins</code>: <code>webserver</code>, <code>test</code> and <code>deploy</code> or you could simply create just one : <code>app</code>.</p><p>Hopefully the ecosystem will continue to grow and become big enough so that most of the scenarios will be already handled and you can use an existing <code>plugin</code>, build your own from scratch or even base yours on another one.</p><h2 id="why-did-we-choose-bash">Why did we choose Bash?</h2><p>We wanted to make it simple and having the minimum dependencies possible. Using <a href="GLOSSARY.html#bash" class="glossary-term" title="Bash is the GNU Project&apos;s shell. Bash is the Bourne Again SHell. Bash is an sh-compatible shell that incorporates useful features from the Korn shell (ksh) and C shell (csh).
-https://www.gnu.org/software/bash/">Bash</a> became a natural choice because that&apos;s where you usually start when you automate with scripts.</p><p><a href="GLOSSARY.html#bash" class="glossary-term" title="Bash is the GNU Project&apos;s shell. Bash is the Bourne Again SHell. Bash is an sh-compatible shell that incorporates useful features from the Korn shell (ksh) and C shell (csh).
-https://www.gnu.org/software/bash/">Bash</a> already has support for a lot of stuff, but the issue is that is not very declarative or at least does not have a very developer-like syntax, and this is why Athena was born. A simple, declarative and developer-friendly framework with testing support.</p><h2 id="why-should-you-use-it">Why should you use it?</h2><p>Besides having a very straightforward and simple architecture, which makes it easy to debug, it provides you built-in support for solving the following topics :</p><ul><li>Version validation
+https://www.docker.com">Docker</a>.</p>
 </li>
-<li>Error handling
-</li>
-<li>Proper display of messages
-</li>
-<li>Stacktrace
-</li>
-<li>Testing
-</li>
-<li>Routing
-</li>
-<li>Support for Multiple and configurable environments
-</li>
-<li>Hooks
-</li>
-<li>Standardized way of building stuff
-</li>
-<li>etc...
-</li></ul>
-<p>With this already taken care of you will only need to focus on your specific problem.</p><h2 id="table-of-contents">Table of contents</h2><ul><li><a href="#quick-start">Quick start</a>
-</li>
-<li><a href="#examples">Examples</a>
-</li>
-<li><a href="#contributing">Contributing</a>
-</li>
-<li><a href="#versioning">Versioning</a>
-</li>
-<li><a href="#license">License</a>
-</li></ul>
-<h2 id="quick-start">Quick start</h2><p>Prerequisites</p><ul><li>You have a <code>bash</code> shell.
-</li>
-<li>You have <a href="https://git-scm.com/" target="_blank">Git</a> installed.
-</li>
-<li>You have <a href="https://www.docker.com/" target="_blank">Docker</a> installed.
-</li></ul>
-<p>There are three quick start options available:</p><ul><li><p>On MAC OSX using <a href="http://brew.sh/" target="_blank">Homebrew</a> :</p><pre><code class="lang-bash">$ brew tap athena-oss/tap
-$ brew install athena</code></pre>
+</ul>
+<p>As an example, you can use Athena to setup a webserver, test your website and handle the deployment. This example could be achieved by creating 3 <code>plugins</code>: <code>webserver</code>, <code>test</code> and <code>deploy</code> or you could simply create just one : <code>app</code>.</p>
+<p>Hopefully the ecosystem will continue to grow and become big enough so that most of the scenarios will be already handled and you can use an existing <code>plugin</code>, build your own from scratch or even base yours on another one.</p>
+<h2 id="why-did-we-choose-bash">Why did we choose Bash?</h2>
+<p>We wanted to make it simple and having the minimum dependencies possible. Using <a href="GLOSSARY.html#bash" class="glossary-term" title="Bash is the GNU Project&apos;s shell. Bash is the Bourne Again SHell. Bash is an sh-compatible shell that incorporates useful features from the Korn shell (ksh) and C shell (csh).
+https://www.gnu.org/software/bash/">Bash</a> became a natural choice because that&apos;s where you usually start when you automate with scripts.</p>
+<p><a href="GLOSSARY.html#bash" class="glossary-term" title="Bash is the GNU Project&apos;s shell. Bash is the Bourne Again SHell. Bash is an sh-compatible shell that incorporates useful features from the Korn shell (ksh) and C shell (csh).
+https://www.gnu.org/software/bash/">Bash</a> already has support for a lot of stuff, but the issue is that is not very declarative or at least does not have a very developer-like syntax, and this is why Athena was born. A simple, declarative and developer-friendly framework with testing support.</p>
+<h2 id="why-should-you-use-it">Why should you use it?</h2>
+<p>Besides having a very straightforward and simple architecture, which makes it easy to debug, it provides you built-in support for solving the following topics :</p>
+<ul>
+<li>Version validation</li>
+<li>Error handling</li>
+<li>Proper display of messages</li>
+<li>Stacktrace</li>
+<li>Testing</li>
+<li>Routing</li>
+<li>Support for Multiple and configurable environments</li>
+<li>Hooks</li>
+<li>Standardized way of building stuff</li>
+<li>etc...</li>
+</ul>
+<p>With this already taken care of you will only need to focus on your specific problem.</p>
+<h2 id="table-of-contents">Table of contents</h2>
+<ul>
+<li><a href="#quick-start">Quick start</a></li>
+<li><a href="#examples">Examples</a></li>
+<li><a href="#contributing">Contributing</a></li>
+<li><a href="#versioning">Versioning</a></li>
+<li><a href="#license">License</a></li>
+</ul>
+<h2 id="quick-start">Quick start</h2>
+<p>Prerequisites</p>
+<ul>
+<li>You have a <code>bash</code> shell.</li>
+<li>You have <a href="https://git-scm.com/" target="_blank">Git</a> installed.</li>
+<li>You have <a href="https://www.docker.com/" target="_blank">Docker</a> installed.</li>
+</ul>
+<p>There are three quick start options available:</p>
+<ul>
+<li><p>On MAC OSX using <a href="http://brew.sh/" target="_blank">Homebrew</a> :</p>
+<pre><code class="lang-bash">$ brew tap athena-oss/tap
+$ brew install athena
+</code></pre>
 <p><strong>Note:</strong> You might be required to allow <a href="GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
 https://www.docker.com">Docker</a> to access folders managed by <a href="GLOSSARY.html#homebrew" class="glossary-term" title="The missing package manager for OS X
 http://brew.sh/">Homebrew</a>. In order to do this, go to <a href="GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
-https://www.docker.com">Docker</a> <code>Preferences &gt; File Sharing</code> and add the folder <code>/usr/local/Cellar</code>.</p></li>
-<li><p><a href="https://github.com/athena-oss/athena/releases/latest" target="_blank">Download the latest release</a></p></li>
-<li><p>Clone the repo: <code>git clone https://github.com/athena-oss/athena.git</code></p></li></ul>
-<p>Read the <a href="http://athena-oss.github.io/athena" target="_blank">Documentation</a> on using Athena.</p><h2 id="examples">Examples</h2><p>Inside Examples section you&apos;ll find a variaty of ways to use Athena.</p><h3 id="running-a-filedirectory-validator">running a file/directory validator</h3><pre><code class="lang-bash">CMD_DESCRIPTION=<span class="hljs-string">&quot;Validates a file or directory for possible issues.&quot;</span>
+https://www.docker.com">Docker</a> <code>Preferences &gt; File Sharing</code> and add the folder <code>/usr/local/Cellar</code>.</p>
+</li>
+<li><p><a href="https://github.com/athena-oss/athena/releases/latest" target="_blank">Download the latest release</a></p>
+</li>
+<li>Clone the repo: <code>git clone https://github.com/athena-oss/athena.git</code></li>
+</ul>
+<p>Read the <a href="http://athena-oss.github.io/athena" target="_blank">Documentation</a> on using Athena.</p>
+<h2 id="examples">Examples</h2>
+<p>Inside Examples section you&apos;ll find a variaty of ways to use Athena.</p>
+<h3 id="running-a-filedirectory-validator">running a file/directory validator</h3>
+<pre><code class="lang-bash">CMD_DESCRIPTION=<span class="hljs-string">&quot;Validates a file or directory for possible issues.&quot;</span>
 
 athena.usage 1 <span class="hljs-string">&quot;&lt;file|directory&gt;&quot;</span>
 
@@ -419,8 +442,10 @@ athena.usage 1 <span class="hljs-string">&quot;&lt;file|directory&gt;&quot;</spa
     athena.ok <span class="hljs-string">&quot;check passed&quot;</span>
     athena.exit 0
 <span class="hljs-keyword">fi</span>
-athena.fatal <span class="hljs-string">&quot;check failed&quot;</span></code></pre>
-<h3 id="running-a-php-webserver">running a php webserver</h3><pre><code class="lang-bash">CMD_DESCRIPTION=<span class="hljs-string">&quot;Starts the webserver.&quot;</span>
+athena.fatal <span class="hljs-string">&quot;check failed&quot;</span>
+</code></pre>
+<h3 id="running-a-php-webserver">running a php webserver</h3>
+<pre><code class="lang-bash">CMD_DESCRIPTION=<span class="hljs-string">&quot;Starts the webserver.&quot;</span>
 
 athena.usage 2 <span class="hljs-string">&quot;&lt;source_directory&gt; &lt;port&gt;&quot;</span>
 
@@ -438,10 +463,17 @@ athena.plugin.use_external_container_as_daemon <span class="hljs-string">&quot;p
 athena.docker.mount_dir <span class="hljs-string">&quot;<span class="hljs-variable">$source_directory</span>&quot;</span> <span class="hljs-string">&quot;/var/www/html&quot;</span>
 
 <span class="hljs-comment"># maps the specified host port to the port 80 of the container</span>
-athena.docker.add_option <span class="hljs-string">&quot;-p <span class="hljs-variable">$port</span>:80&quot;</span></code></pre>
-<h2 id="contributing">Contributing</h2><p>Checkout our guidelines on how to contribute in <a href="guides/contributing.html">CONTRIBUTING</a>.</p><h2 id="versioning">Versioning</h2><p>Releases are managed using github&apos;s release feature. We use <a href="http://semver.org" target="_blank">Semantic Versioning</a> for all
+athena.docker.add_option <span class="hljs-string">&quot;-p <span class="hljs-variable">$port</span>:80&quot;</span>
+</code></pre>
+<h2 id="contributing">Contributing</h2>
+<p>Checkout our guidelines on how to contribute in <a href="guides/contributing.html">CONTRIBUTING</a>.</p>
+<h2 id="versioning">Versioning</h2>
+<p>Releases are managed using github&apos;s release feature. We use <a href="http://semver.org" target="_blank">Semantic Versioning</a> for all
 the releases. Every change made to the code base will be referred to in the release notes (except for
-cleanups and refactorings).</p><h2 id="license">License</h2><p>Licensed under the <a href="LICENSE.html">Apache License Version 2.0 (APLv2)</a>.</p>
+cleanups and refactorings).</p>
+<h2 id="license">License</h2>
+<p>Licensed under the <a href="LICENSE.html">Apache License Version 2.0 (APLv2)</a>.</p>
+
                                 
                                 </section>
                             
@@ -480,7 +512,7 @@ cleanups and refactorings).</p><h2 id="license">License</h2><p>Licensed under th
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Getting Started","level":"1.2","depth":1,"path":"quick-start/getting-started.md","ref":"quick-start/getting-started.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2016-09-27T08:28:03.128Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-27T08:29:10.554Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Getting Started","level":"1.2","depth":1,"path":"quick-start/getting-started.md","ref":"quick-start/getting-started.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2016-10-03T09:51:56.342Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-10-03T09:53:03.656Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

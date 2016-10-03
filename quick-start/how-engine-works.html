@@ -2,12 +2,12 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Engine · GitBook</title>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Engine · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.0">
+        <meta name="generator" content="GitBook 3.2.2">
         
         
         
@@ -355,9 +355,13 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="how-the-engine-works">How the Engine works</h1><p>The Athena Engine is a simple and declarative <a href="../GLOSSARY.html#bash" class="glossary-term" title="Bash is the GNU Project&apos;s shell. Bash is the Bourne Again SHell. Bash is an sh-compatible shell that incorporates useful features from the Korn shell (ksh) and C shell (csh).
+                                <h1 id="how-the-engine-works">How the Engine works</h1>
+<p>The Athena Engine is a simple and declarative <a href="../GLOSSARY.html#bash" class="glossary-term" title="Bash is the GNU Project&apos;s shell. Bash is the Bourne Again SHell. Bash is an sh-compatible shell that incorporates useful features from the Korn shell (ksh) and C shell (csh).
 https://www.gnu.org/software/bash/">Bash</a> framework, implemented using only <a href="../GLOSSARY.html#bash" class="glossary-term" title="Bash is the GNU Project&apos;s shell. Bash is the Bourne Again SHell. Bash is an sh-compatible shell that incorporates useful features from the Korn shell (ksh) and C shell (csh).
-https://www.gnu.org/software/bash/">Bash</a> functions and it takes care of tasks like routing, errors, messages, stacktrace, testing, versioning, validation, etc.</p><h2 id="structure">Structure</h2><p>The directory structure is very simple as you can see in the following schema :</p><pre><code class="lang-bash">.
+https://www.gnu.org/software/bash/">Bash</a> functions and it takes care of tasks like routing, errors, messages, stacktrace, testing, versioning, validation, etc.</p>
+<h2 id="structure">Structure</h2>
+<p>The directory structure is very simple as you can see in the following schema :</p>
+<pre><code class="lang-bash">.
 &#x251C;&#x2500;&#x2500; athena  <span class="hljs-comment"># executable</span>
 &#x251C;&#x2500;&#x2500; ...
 &#x251C;&#x2500;&#x2500; bin
@@ -366,25 +370,39 @@ https://www.gnu.org/software/bash/">Bash</a> functions and it takes care of task
 &#x251C;&#x2500;&#x2500; plugins <span class="hljs-comment"># location of the plugins</span>
 &#x2502;   &#x2514;&#x2500;&#x2500; ...
 &#x2514;&#x2500;&#x2500; tests   <span class="hljs-comment"># location of the</span>
-    &#x2514;&#x2500;&#x2500; ...</code></pre>
-<h2 id="namespaces">Namespaces</h2><p>Even though it is not very tipical for <a href="../GLOSSARY.html#bash" class="glossary-term" title="Bash is the GNU Project&apos;s shell. Bash is the Bourne Again SHell. Bash is an sh-compatible shell that incorporates useful features from the Korn shell (ksh) and C shell (csh).
-https://www.gnu.org/software/bash/">Bash</a> functions to have namespaces, we defined namespacing to avoid collision of functions. The pattern is</p><pre><code class="lang-bash">athena.&lt;context&gt;.&lt;<span class="hljs-keyword">function</span>_name&gt;</code></pre>
-<p>The <strong>context</strong> is used to group functions, for instance, all functions related to handling arguments should be grouped under the <code>athena.argument.</code> namespace. As an example, to check if an argument exists you can use the following function :</p><pre><code class="lang-bash">athena.argument.argument_exists &lt;argument_name&gt;</code></pre>
-<p>The context also defines the name of the file where the functions are located. The pattern for the files is :</p><pre><code class="lang-bash">bin/lib/[&lt;shared_or_not&gt;/]functions.&lt;context&gt;.sh</code></pre>
-<h2 id="using-the-functions">Using the functions</h2><p>You can use the functions of Athena in 2 contexts, <em>HOST</em> or <em>SHARED</em>. Using on the <em>HOST</em> means that the function is being used directly on the machine that has Athena installed, on the other hand <em>SHARED</em> means that you can use it either on the host or inside the container that will provide the environment for your plugin.</p><ul><li><p>HOST only functions</p><ul><li>located in the <code>bin/lib</code> folder
+    &#x2514;&#x2500;&#x2500; ...
+</code></pre>
+<h2 id="namespaces">Namespaces</h2>
+<p>Even though it is not very tipical for <a href="../GLOSSARY.html#bash" class="glossary-term" title="Bash is the GNU Project&apos;s shell. Bash is the Bourne Again SHell. Bash is an sh-compatible shell that incorporates useful features from the Korn shell (ksh) and C shell (csh).
+https://www.gnu.org/software/bash/">Bash</a> functions to have namespaces, we defined namespacing to avoid collision of functions. The pattern is</p>
+<pre><code class="lang-bash">athena.&lt;context&gt;.&lt;<span class="hljs-keyword">function</span>_name&gt;
+</code></pre>
+<p>The <strong>context</strong> is used to group functions, for instance, all functions related to handling arguments should be grouped under the <code>athena.argument.</code> namespace. As an example, to check if an argument exists you can use the following function :</p>
+<pre><code class="lang-bash">athena.argument.argument_exists &lt;argument_name&gt;
+</code></pre>
+<p>The context also defines the name of the file where the functions are located. The pattern for the files is :</p>
+<pre><code class="lang-bash">bin/lib/[&lt;shared_or_not&gt;/]functions.&lt;context&gt;.sh
+</code></pre>
+<h2 id="using-the-functions">Using the functions</h2>
+<p>You can use the functions of Athena in 2 contexts, <em>HOST</em> or <em>SHARED</em>. Using on the <em>HOST</em> means that the function is being used directly on the machine that has Athena installed, on the other hand <em>SHARED</em> means that you can use it either on the host or inside the container that will provide the environment for your plugin.</p>
+<ul>
+<li><p>HOST only functions</p>
+<ul>
+<li>located in the <code>bin/lib</code> folder</li>
+<li>loaded automatically on the host</li>
+<li>can be used only on the <em>PRE</em> and <em>POST</em> commands</li>
+</ul>
 </li>
-<li>loaded automatically on the host
+</ul>
+<ul>
+<li><p>SHARED functions</p>
+<ul>
+<li>located in the <code>bin/lib/shared</code> folder</li>
+<li>loaded automatically on the host and on the container when the default router is being used</li>
+<li>can only be used on the inner commands</li>
+</ul>
 </li>
-<li>can be used only on the <em>PRE</em> and <em>POST</em> commands
-</li></ul>
-</li></ul>
-<ul><li><p>SHARED functions</p><ul><li>located in the <code>bin/lib/shared</code> folder
-</li>
-<li>loaded automatically on the host and on the container when the default router is being used
-</li>
-<li>can only be used on the inner commands
-</li></ul>
-</li></ul>
+</ul>
 
                                 
                                 </section>
@@ -428,7 +446,7 @@ https://www.gnu.org/software/bash/">Bash</a> functions to have namespaces, we de
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Engine","level":"1.3","depth":1,"next":{"title":"Plugins","level":"1.4","depth":1,"path":"quick-start/how-plugins-work.md","ref":"quick-start/how-plugins-work.md","articles":[]},"previous":{"title":"Getting Started","level":"1.2","depth":1,"path":"quick-start/getting-started.md","ref":"quick-start/getting-started.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"quick-start/how-engine-works.md","mtime":"2016-09-27T08:28:03.132Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-27T08:29:10.554Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Engine","level":"1.3","depth":1,"next":{"title":"Plugins","level":"1.4","depth":1,"path":"quick-start/how-plugins-work.md","ref":"quick-start/how-plugins-work.md","articles":[]},"previous":{"title":"Getting Started","level":"1.2","depth":1,"path":"quick-start/getting-started.md","ref":"quick-start/getting-started.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"quick-start/how-engine-works.md","mtime":"2016-10-03T09:51:56.342Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-10-03T09:53:03.656Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

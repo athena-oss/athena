@@ -2,12 +2,12 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Testing · GitBook</title>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Testing · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.0">
+        <meta name="generator" content="GitBook 3.2.2">
         
         
         
@@ -355,8 +355,14 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="testing">Testing</h1><p>To ensure that you build robust <code>plugins</code>, Athena also provides a built-in testing framework for <a href="../GLOSSARY.html#bash" class="glossary-term" title="Bash is the GNU Project&apos;s shell. Bash is the Bourne Again SHell. Bash is an sh-compatible shell that incorporates useful features from the Korn shell (ksh) and C shell (csh).
-https://www.gnu.org/software/bash/">Bash</a>. With this functionality you can do unit tests to all the functions that you implement.</p><p>For the full API on <em>Testing</em>, please have a look at the functions under the namespace <code>athena.test.</code>.</p><h2 id="mocking">Mocking</h2><p>This is a very important part of testing because it allows you to <em>fake</em> third-party functions that you don&apos;t care to test while testing your code. The best way to include these types of functions in your code, so that you can mock later, is to not use them directly, but instead, create a wrapper around it. Using this method you will be able to mock the wrapper and your code will be easy to test.</p><h3 id="example-mocking-grep">Example: mocking grep</h3><pre><code class="lang-bash"><span class="hljs-comment"># in your code</span>
+                                <h1 id="testing">Testing</h1>
+<p>To ensure that you build robust <code>plugins</code>, Athena also provides a built-in testing framework for <a href="../GLOSSARY.html#bash" class="glossary-term" title="Bash is the GNU Project&apos;s shell. Bash is the Bourne Again SHell. Bash is an sh-compatible shell that incorporates useful features from the Korn shell (ksh) and C shell (csh).
+https://www.gnu.org/software/bash/">Bash</a>. With this functionality you can do unit tests to all the functions that you implement.</p>
+<p>For the full API on <em>Testing</em>, please have a look at the functions under the namespace <code>athena.test.</code>.</p>
+<h2 id="mocking">Mocking</h2>
+<p>This is a very important part of testing because it allows you to <em>fake</em> third-party functions that you don&apos;t care to test while testing your code. The best way to include these types of functions in your code, so that you can mock later, is to not use them directly, but instead, create a wrapper around it. Using this method you will be able to mock the wrapper and your code will be easy to test.</p>
+<h3 id="example-mocking-grep">Example: mocking grep</h3>
+<pre><code class="lang-bash"><span class="hljs-comment"># in your code</span>
 <span class="hljs-keyword">function</span> <span class="hljs-function"><span class="hljs-title">my_grep</span></span>()
 {
   grep <span class="hljs-variable">$@</span>
@@ -372,32 +378,57 @@ https://www.gnu.org/software/bash/">Bash</a>. With this functionality you can do
 
 <span class="hljs-comment"># in your test</span>
 athena.test.mock.returns <span class="hljs-string">&quot;my_grep&quot;</span> 0
-athena.test.assert_<span class="hljs-built_in">return</span> <span class="hljs-string">&quot;my_function_that_uses_grep&quot;</span> 1</code></pre>
-<h2 id="testcases">Testcases</h2><p>For Athena to acknowledge a file containing tests as a <em>TestSuite</em>, you need to respect the following conventions :</p><ul><li>File <em>MUST</em> follow the pattern <code>test.&lt;functions_to_test&gt;.sh</code>
-</li>
-<li>Functions inside this file <em>MUST</em> follow the pattern <code>testcase_&lt;name_of_the_function_to_test&gt;()</code>
-</li></ul>
-<h3 id="example--testexamplesh">Example : test.example.sh</h3><pre><code class="lang-bash"><span class="hljs-keyword">function</span> <span class="hljs-function"><span class="hljs-title">testcase_my_function</span></span>()
+athena.test.assert_<span class="hljs-built_in">return</span> <span class="hljs-string">&quot;my_function_that_uses_grep&quot;</span> 1
+</code></pre>
+<h2 id="testcases">Testcases</h2>
+<p>For Athena to acknowledge a file containing tests as a <em>TestSuite</em>, you need to respect the following conventions :</p>
+<ul>
+<li>File <em>MUST</em> follow the pattern <code>test.&lt;functions_to_test&gt;.sh</code></li>
+<li>Functions inside this file <em>MUST</em> follow the pattern <code>testcase_&lt;name_of_the_function_to_test&gt;()</code></li>
+</ul>
+<h3 id="example--testexamplesh">Example : test.example.sh</h3>
+<pre><code class="lang-bash"><span class="hljs-keyword">function</span> <span class="hljs-function"><span class="hljs-title">testcase_my_function</span></span>()
 {
   ...
-}</code></pre>
-<h2 id="assertions">Assertions</h2><p>You can do assertions on :</p><h3 id="values">Values</h3><pre><code class="lang-bash">athena.test.assert_value <span class="hljs-string">&quot;One&quot;</span> <span class="hljs-string">&quot;One&quot;</span>
-athena.test.assert_value.expects_fail <span class="hljs-string">&quot;One&quot;</span> <span class="hljs-string">&quot;Two&quot;</span></code></pre>
-<h3 id="output">Output</h3><pre><code class="lang-bash">athena.test.assert_output <span class="hljs-string">&quot;_my_function&quot;</span> <span class="hljs-string">&quot;OK&quot;</span> <span class="hljs-string">&quot;pass&quot;</span>
-athena.test.assert_output.expects_fail <span class="hljs-string">&quot;_my_function&quot;</span> <span class="hljs-string">&quot;OK&quot;</span> <span class="hljs-string">&quot;fail&quot;</span></code></pre>
-<h3 id="return">Return</h3><pre><code class="lang-bash">athena.test.assert_<span class="hljs-built_in">return</span> <span class="hljs-string">&quot;_my_function&quot;</span> <span class="hljs-string">&quot;pass&quot;</span>
-athena.test.assert_return.expects_fail <span class="hljs-string">&quot;_my_function&quot;</span> <span class="hljs-string">&quot;fail&quot;</span></code></pre>
-<h3 id="exit-code">Exit code</h3><pre><code class="lang-bash">athena.test.assert_<span class="hljs-built_in">exit</span>_code <span class="hljs-string">&quot;_my_function_with_exit_0&quot;</span>
-athena.test.assert_<span class="hljs-built_in">exit</span>_code.expects_fail <span class="hljs-string">&quot;_my_function_with_exit_1&quot;</span></code></pre>
-<h3 id="string">String</h3><pre><code class="lang-bash">athena.test.assert_string_contains <span class="hljs-string">&quot;my string&quot;</span> <span class="hljs-string">&quot;my&quot;</span>
-athena.test.assert_string_contains.expects_fail <span class="hljs-string">&quot;my string&quot;</span> <span class="hljs-string">&quot;xpto&quot;</span></code></pre>
-<h2 id="other-useful-features">Other useful features</h2><p>There are a few other useful features that you can use while implementing tests :</p><ul><li>Create temporary directories
-</li></ul>
-<pre><code class="lang-bash">tmpdir=$(athena.test.create_tempdir)</code></pre>
-<ul><li>Create temporary files
-</li></ul>
-<pre><code class="lang-bash">tmpfile=$(athena.test.create_tempfile)</code></pre>
-<h2 id="executing-the-testsuites">Executing the Testsuites</h2><pre><code class="lang-bash">$ ./athena cli &lt;testsuite_directory|file&gt; [&lt;<span class="hljs-built_in">source</span>_directory&gt;] [--list]</code></pre>
+}
+</code></pre>
+<h2 id="assertions">Assertions</h2>
+<p>You can do assertions on :</p>
+<h3 id="values">Values</h3>
+<pre><code class="lang-bash">athena.test.assert_value <span class="hljs-string">&quot;One&quot;</span> <span class="hljs-string">&quot;One&quot;</span>
+athena.test.assert_value.expects_fail <span class="hljs-string">&quot;One&quot;</span> <span class="hljs-string">&quot;Two&quot;</span>
+</code></pre>
+<h3 id="output">Output</h3>
+<pre><code class="lang-bash">athena.test.assert_output <span class="hljs-string">&quot;_my_function&quot;</span> <span class="hljs-string">&quot;OK&quot;</span> <span class="hljs-string">&quot;pass&quot;</span>
+athena.test.assert_output.expects_fail <span class="hljs-string">&quot;_my_function&quot;</span> <span class="hljs-string">&quot;OK&quot;</span> <span class="hljs-string">&quot;fail&quot;</span>
+</code></pre>
+<h3 id="return">Return</h3>
+<pre><code class="lang-bash">athena.test.assert_<span class="hljs-built_in">return</span> <span class="hljs-string">&quot;_my_function&quot;</span> <span class="hljs-string">&quot;pass&quot;</span>
+athena.test.assert_return.expects_fail <span class="hljs-string">&quot;_my_function&quot;</span> <span class="hljs-string">&quot;fail&quot;</span>
+</code></pre>
+<h3 id="exit-code">Exit code</h3>
+<pre><code class="lang-bash">athena.test.assert_<span class="hljs-built_in">exit</span>_code <span class="hljs-string">&quot;_my_function_with_exit_0&quot;</span>
+athena.test.assert_<span class="hljs-built_in">exit</span>_code.expects_fail <span class="hljs-string">&quot;_my_function_with_exit_1&quot;</span>
+</code></pre>
+<h3 id="string">String</h3>
+<pre><code class="lang-bash">athena.test.assert_string_contains <span class="hljs-string">&quot;my string&quot;</span> <span class="hljs-string">&quot;my&quot;</span>
+athena.test.assert_string_contains.expects_fail <span class="hljs-string">&quot;my string&quot;</span> <span class="hljs-string">&quot;xpto&quot;</span>
+</code></pre>
+<h2 id="other-useful-features">Other useful features</h2>
+<p>There are a few other useful features that you can use while implementing tests :</p>
+<ul>
+<li>Create temporary directories</li>
+</ul>
+<pre><code class="lang-bash">tmpdir=$(athena.test.create_tempdir)
+</code></pre>
+<ul>
+<li>Create temporary files</li>
+</ul>
+<pre><code class="lang-bash">tmpfile=$(athena.test.create_tempfile)
+</code></pre>
+<h2 id="executing-the-testsuites">Executing the Testsuites</h2>
+<pre><code class="lang-bash">$ ./athena cli &lt;testsuite_directory|file&gt; [&lt;<span class="hljs-built_in">source</span>_directory&gt;] [--list]
+</code></pre>
 
                                 
                                 </section>
@@ -441,7 +472,7 @@ athena.test.assert_string_contains.expects_fail <span class="hljs-string">&quot;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Testing","level":"3.4","depth":1,"next":{"title":"A Simple PHP Web Server","level":"4.1","depth":1,"path":"examples/simple-php-server.md","ref":"examples/simple-php-server.md","articles":[]},"previous":{"title":"Versioning","level":"3.3","depth":1,"path":"guides/versioning.md","ref":"guides/versioning.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"guides/testing.md","mtime":"2016-09-27T08:28:03.132Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-27T08:29:10.554Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Testing","level":"3.4","depth":1,"next":{"title":"A Simple PHP Web Server","level":"4.1","depth":1,"path":"examples/simple-php-server.md","ref":"examples/simple-php-server.md","articles":[]},"previous":{"title":"Versioning","level":"3.3","depth":1,"path":"guides/versioning.md","ref":"guides/versioning.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"guides/testing.md","mtime":"2016-10-03T09:51:56.342Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-10-03T09:53:03.656Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
