@@ -1,4 +1,4 @@
-CMD_DESCRIPTION="Create, list, install,update or remove plugin(s)."
+CMD_DESCRIPTION="Create, list, install, update or remove plugin(s)."
 
 function _list_plugins()
 {
@@ -14,7 +14,7 @@ function _remove_plugin()
         local plugin_dir=$(athena.plugin.get_plugins_dir)/$1
         athena.dir_exists_or_fail ${plugin_dir}
         athena.info "will remove plugin '$1'"
-        rm -rf ${plugin_dir} && athena.ok "plugin '$1' has been removed"
+        rm -rf "${plugin_dir}" && athena.ok "plugin '$1' has been removed"
 }
 
 function _install_plugin()
@@ -56,7 +56,10 @@ function _update_plugin()
 	fi
 
 	athena.ok "Plugin '$1' was updated."
-	rm $plugin_dir/athena.lock
+	if [ -f "$plugin_dir/athena.lock" ]; then
+		rm "$plugin_dir/athena.lock"
+	fi
+
 	return $?
 }
 
