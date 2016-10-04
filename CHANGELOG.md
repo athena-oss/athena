@@ -1,3 +1,19 @@
+## 0.6.1 (October 4, 2016)
+
+### Added
+  - Remove plugin operations in plugins command
+
+### Changed
+  - Now athena is not automatically added to PATH, but informs on how to
+  - Unit tests checks that function to test exists before trying to run
+  - Renamed mock functions in unit tests to avoid overriding
+  - Renamed variable in athena.plugin.handle to avoid collisions
+  - Updated documentation
+
+### Fixed
+  - When updating plugin only tries to remove athena.lock if exists
+  - Handling of spaces when invoking athena.plugin._router
+
 ## 0.6.0 (September 13, 2016)
 
 ### Added
