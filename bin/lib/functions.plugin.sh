@@ -412,6 +412,7 @@ function athena.plugin.get_container_name()
 			name="${name}-${env}"
 		fi
 		ATHENA_CONTAINER_NAME="${name}-$(athena.os.get_instance)"
+		ATHENA_CONTAINER_NAME="${ATHENA_CONTAINER_NAME/:/}"
 	fi
 	echo $ATHENA_CONTAINER_NAME
 }

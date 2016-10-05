@@ -285,6 +285,9 @@ function testcase_athena.plugin.get_container_name()
 	athena.test.assert_output "athena.plugin.get_container_name" "athena-plugin-$(athena.plugin.get_plugin)-myspinpanscontainer-$(athena.os.get_instance)"
 	athena.test.mock.outputs "athena.plugin.get_environment" "myenv"
 	athena.test.assert_output "athena.plugin.get_container_name" "athena-plugin-$(athena.plugin.get_plugin)-myspinpanscontainer-myenv-$(athena.os.get_instance)"
+
+	athena.plugin.use_container "myspinpanscontainer:other"
+	athena.test.assert_output "athena.plugin.get_container_name" "athena-plugin-$(athena.plugin.get_plugin)-myspinpanscontainerother-myenv-$(athena.os.get_instance)"
 }
 
 function testcase_athena.plugin.get_plg_version()
