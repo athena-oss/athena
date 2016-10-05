@@ -130,7 +130,7 @@ Here is a list of some of the available plugins :
 
 * [PHP Plugin](https://github.com/athena-oss/plugin-php) - Plugin for Test Automation using PHP as a development language.
 * [Selenium Plugin](https://github.com/athena-oss/plugin-selenium) - Plugin to handle browser automation using Selenium.
-* [Proxy Plugin](https://github.com/athena-oss/plugin-selenium) - Plugin to handle a proxy server using Browsermob-proxy.
+* [Proxy Plugin](https://github.com/athena-oss/plugin-proxy) - Plugin to handle a proxy server using Browsermob-proxy.
 
 ## Contributing
 
