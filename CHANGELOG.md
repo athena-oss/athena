@@ -1,3 +1,8 @@
+## 0.6.2 (October 5, 2016)
+
+### Fixed
+	- Removed ":" from container names when using external images
+
 ## 0.6.1 (October 4, 2016)
 
 ### Added
