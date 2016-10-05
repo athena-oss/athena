@@ -174,7 +174,12 @@ function testcase_athena.os.include_once()
 
 	tmpfile=$(athena.test.create_tempfile)
 	athena.test.assert_exit_code "athena.os.include_once" "$tmpfile"
-	rm $tmpfile
+	rm "$tmpfile"
+
+	tmpfile=/tmp/athena.test.file.$RANDOM.$$@$RANDOM
+	touch "$tmpfile"
+	athena.test.assert_exit_code "athena.os.include_once" "$tmpfile"
+	rm "$tmpfile"
 }
 
 function testcase_athena.os.exit()
