@@ -248,7 +248,7 @@ function athena.os.include_once()
 
 	# var id is name of file without special chars appended with pid
 	local var_id
-	var_id=${1//[\/|\.-]/}$$
+	var_id=${1//[^0-9A-Za-z_]/_}$$
 	if [ -z "${!var_id}" ]; then
 		if [ ! -f "$1" ]; then
 			athena.os.exit_with_msg "file does not exist '$1'!"
