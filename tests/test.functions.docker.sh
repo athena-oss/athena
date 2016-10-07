@@ -473,6 +473,17 @@ EOF
 	athena.test.assert_output "athena.docker.print_or_follow_container_logs" "$expected_output" "$containers" "-f"
 }
 
+function testcase_athena.docker.get_ip_for_container()
+{
+	athena.test.assert_exit_code.expects_fail "athena.docker.get_ip_for_container"
+
+	athena.test.mock.outputs "athena.docker.inspect" "172.0.0.1"
+	athena.test.assert_output "athena.docker.get_ip_for_container" "172.0.0.1" "mycontainer"
+
+	athena.test.mock.returns "athena.docker.inspect" 1
+	athena.test.assert_exit_code.expects_fail "athena.docker.get_ip_for_container" "mycontainer"
+}
+
 # aux functions
 function _void()
 {

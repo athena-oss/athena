@@ -17,6 +17,18 @@ function athena.docker.get_ip()
 	fi
 }
 
+# This function returns the container internal ip provided by docker.
+# USAGE: athena.docker.get_ip_for_container <container_name>
+# RETURN: string
+function athena.docker.get_ip_for_container()
+{
+	athena.argument.argument_is_not_empty_or_fail "$1" "container name"
+	athena.docker.inspect --format '{{ .NetworkSettings.IPAddress }}' "$1"
+	if [ $? -ne 0 ]; then
+		athena.os.exit_with_msg "could not retrieve the IP for container '$1'"
+	fi
+}
+
 # This function checks if a docker image with the given tag name and version
 # exists.
 # USAGE:  athena.docker.image_exists <image name> <version>

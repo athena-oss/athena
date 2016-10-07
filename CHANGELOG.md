@@ -1,3 +1,11 @@
+## 0.6.3 (October 7, 2016)
+
+### Added
+  - athena.docker.get_ip_for_container
+
+### Fixed
+  - handling of special characters in file names
+
 ## 0.6.2 (October 5, 2016)
 
 ### Fixed

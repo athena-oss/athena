@@ -15,6 +15,7 @@
     * [`athena.docker.get_build_args`](#athenadockergetbuildargs)
     * [`athena.docker.get_build_args_file`](#athenadockergetbuildargsfile)
     * [`athena.docker.get_ip`](#athenadockergetip)
+    * [`athena.docker.get_ip_for_container`](#athenadockergetipforcontainer)
     * [`athena.docker.get_options`](#athenadockergetoptions)
     * [`athena.docker.get_tag_and_version`](#athenadockergettagandversion)
     * [`athena.docker.handle_run_type`](#athenadockerhandleruntype)
@@ -235,6 +236,14 @@ This function checks if a docker build environment file is defined in the $ATHEN
 This function returns the ip address of the docker machine. It checks for the 'docker-machine' and 'boot2docker' commands to do this (default on Mac). If not found it searches for the docker0 device (default on Linux) and returns the localhost ip if found. If no docker0 device is available the function assumes to run inside a docker container and checks if a docker daemon is running in this container. If so localhost is returned. If not it returns the default route ip address.
  
 **USAGE:**  `athena.docker.get_ip`
+ 
+**RETURN:** `string`
+ 
+### <a name="athenadockergetipforcontainer"></a>`athena.docker.get_ip_for_container`
+ 
+This function returns the container internal ip provided by docker.
+ 
+**USAGE:**  `athena.docker.get_ip_for_container <container_name>`
  
 **RETURN:** `string`
  
