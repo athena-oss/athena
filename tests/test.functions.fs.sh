@@ -109,6 +109,23 @@ function testcase_athena.fs.dir_contains_files()
 	rm -r $tmpdir
 }
 
+function testcase_athena.fs.get_cache_dir()
+{
+	local home=$HOME
+	local tmpdir=$(athena.test.create_tempdir)
+	HOME=$tmpdir
+	athena.test.mock.returns "athena.fs.dir_exists_or_create" 0
+	athena.test.assert_output "athena.fs.get_cache_dir" "$tmpdir/.athena"
+
+	HOME="$tmpdir/nonexistingpath"
+	athena.test.assert_exit_code.expects_fail "athena.fs.dir_exists_or_fail" "$HOME"
+	athena.test.unmock "athena.fs.dir_exists_or_create"
+	athena.test.assert_output "athena.fs.get_cache_dir" "$tmpdir/nonexistingpath/.athena"
+	athena.test.assert_exit_code "athena.fs.dir_exists_or_fail" "$HOME"
+
+	HOME=$home
+}
+
 function _echo_arguments()
 {
 	echo -n "$@"

@@ -38,6 +38,7 @@
     * [`athena.fs.dir_exists_or_fail`](#athenafsdirexistsorfail)
     * [`athena.fs.file_contains_string`](#athenafsfilecontainsstring)
     * [`athena.fs.file_exists_or_fail`](#athenafsfileexistsorfail)
+    * [`athena.fs.get_cache_dir`](#athenafsgetcachedir)
     * [`athena.fs.get_file_contents`](#athenafsgetfilecontents)
     * [`athena.fs.get_full_path`](#athenafsgetfullpath)
     * [`athena.fs.get_path_from_string_or_argument`](#athenafsgetpathfromstringorargument)
@@ -334,7 +335,7 @@ This function returns the basename of a file. If the file does not exist it will
  
 ### <a name="athenafsdircontainsfiles"></a>`athena.fs.dir_contains_files`
  
-This function checks if the given directory contains files with certain pattern (e.g.: *.sh).
+This function checks if the given directory contains files with certain pattern (e.g.: *.sh). Globbing has 'dotglob' and 'extglob' (see BASH(1)) enabled.
  
 **USAGE:**  `athena.fs.dir_contains_files <directory> <pattern>`
  
@@ -371,6 +372,14 @@ This function checks if the given filename is valid. If not execution is stopped
 **USAGE:**  `athena.fs.file_exists_or_fail <filename> <message>`
  
 **RETURN:** `--`
+ 
+### <a name="athenafsgetcachedir"></a>`athena.fs.get_cache_dir`
+ 
+Returns the name of athena cache directory. If it does not exist, then it will be created and then returned.
+ 
+**USAGE:**  `athena.fs.get_cache_dir`
+ 
+**RETURN:** `string`
  
 ### <a name="athenafsgetfilecontents"></a>`athena.fs.get_file_contents`
  
@@ -577,15 +586,15 @@ This function checks if Athena runs on a Mac OS X.
 **USAGE:**  `athena.os.is_mac`
  
 **RETURN:** `0 (true), 1 (false)`
-
-#### <a name="athenaosissudo"></a>`athena.os.is_sudo`
-
+ 
+### <a name="athenaosissudo"></a>`athena.os.is_sudo`
+ 
 This function checks if the $ATHENA_SUDO variable is set.
-
+ 
 **USAGE:**  `athena.os.is_sudo`
-
+ 
 **RETURN:** `0 (true), 1 (false)`
-
+ 
 ### <a name="athenaosoverrideexithandler"></a>`athena.os.override_exit_handler`
  
 This functions overrides the exit handler with the default signals to catch.

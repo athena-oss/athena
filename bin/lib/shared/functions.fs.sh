@@ -183,3 +183,14 @@ function athena.fs._basename()
 {
 	basename $1
 }
+
+# Returns the name of athena cache directory. If it does not exist, then
+# it will be created and then returned.
+# USAGE: athena.fs.get_cache_dir
+# RETURN: string
+function athena.fs.get_cache_dir()
+{
+	local cache_dir="$HOME/.athena"
+	athena.fs.dir_exists_or_create "$cache_dir"
+	echo $cache_dir
+}
