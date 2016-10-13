@@ -362,6 +362,7 @@
 <li><a href="#athenadockeraddautoremove"><code>athena.docker.add_autoremove</code></a></li>
 <li><a href="#athenadockeradddaemon"><code>athena.docker.add_daemon</code></a></li>
 <li><a href="#athenadockeraddenv"><code>athena.docker.add_env</code></a></li>
+<li><a href="#athenadockeraddenvsfromfile"><code>athena.docker.add_envs_from_file</code></a></li>
 <li><a href="#athenadockeraddenvswithprefix"><code>athena.docker.add_envs_with_prefix</code></a></li>
 <li><a href="#athenadockeraddoption"><code>athena.docker.add_option</code></a></li>
 <li><a href="#athenadockerbuild"><code>athena.docker.build</code></a></li>
@@ -502,6 +503,10 @@ https://www.docker.com">docker</a> run option string ($ATHENA_DOCKER_OPTS).</p>
 <p>This function adds an environment variable to the <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
 https://www.docker.com">docker</a> run option string ($ATHENA_DOCKER_OPTS).</p>
 <p><strong>USAGE:</strong>  <code>athena.docker.add_env &lt;variable name&gt; &lt;variable value&gt;</code></p>
+<p><strong>RETURN:</strong> <code>--</code></p>
+<h3 id="athenadockeraddenvsfromfile"><a name="athenadockeraddenvsfromfile"></a><code>athena.docker.add_envs_from_file</code></h3>
+<p>This function adds environment variables from the given file (ini format).</p>
+<p><strong>USAGE:</strong>  <code>athena.docker.add_envs_from_file &lt;filename&gt;</code></p>
 <p><strong>RETURN:</strong> <code>--</code></p>
 <h3 id="athenadockeraddenvswithprefix"><a name="athenadockeraddenvswithprefix"></a><code>athena.docker.add_envs_with_prefix</code></h3>
 <p>This function adds environment variables with the given prefix to the <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
@@ -1023,7 +1028,7 @@ https://www.docker.com">docker</a> build environment file name in the $ATHENA_PL
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Host only API","level":"2.3","depth":1,"next":{"title":"CLI flags","level":"2.4","depth":1,"path":"api/flags.md","ref":"api/flags.md","articles":[]},"previous":{"title":"Shared API","level":"2.2","depth":1,"path":"api/cli-functions-shared.md","ref":"api/cli-functions-shared.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"api/cli-functions-host.md","mtime":"2016-10-12T13:44:55.158Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-10-12T13:46:11.873Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Host only API","level":"2.3","depth":1,"next":{"title":"CLI flags","level":"2.4","depth":1,"path":"api/flags.md","ref":"api/flags.md","articles":[]},"previous":{"title":"Shared API","level":"2.2","depth":1,"path":"api/cli-functions-shared.md","ref":"api/cli-functions-shared.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"api/cli-functions-host.md","mtime":"2016-10-13T09:45:25.446Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-10-13T09:46:34.680Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
