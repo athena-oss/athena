@@ -4,6 +4,7 @@
     * [`athena.docker.add_autoremove`](#athenadockeraddautoremove)
     * [`athena.docker.add_daemon`](#athenadockeradddaemon)
     * [`athena.docker.add_env`](#athenadockeraddenv)
+    * [`athena.docker.add_envs_from_file`](#athenadockeraddenvsfromfile)
     * [`athena.docker.add_envs_with_prefix`](#athenadockeraddenvswithprefix)
     * [`athena.docker.add_option`](#athenadockeraddoption)
     * [`athena.docker.build`](#athenadockerbuild)
@@ -148,6 +149,14 @@ This function adds the daemon flag to the docker run option string ($ATHENA_DOCK
 This function adds an environment variable to the docker run option string ($ATHENA_DOCKER_OPTS).
  
 **USAGE:**  `athena.docker.add_env <variable name> <variable value>`
+ 
+**RETURN:** `--`
+ 
+### <a name="athenadockeraddenvsfromfile"></a>`athena.docker.add_envs_from_file`
+ 
+This function adds environment variables from the given file (ini format).
+ 
+**USAGE:**  `athena.docker.add_envs_from_file <filename>`
  
 **RETURN:** `--`
  

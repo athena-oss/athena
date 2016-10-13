@@ -441,6 +441,24 @@ function testcase_athena.docker.add_envs_with_prefix()
 	unset mocked_env2
 }
 
+function testcase_athena.docker.add_envs_from_file()
+{
+	athena.test.assert_exit_code.expects_fail "athena.docker.add_envs_from_file"
+	athena.test.assert_exit_code.expects_fail "athena.docker.add_envs_from_file" "/path/to/unexisting/file"
+
+	local tmpfile=$(athena.test.create_tempfile)
+	local content=$(cat <<EOF
+ENV1=myenv1value
+ENV2=myenv2value
+EOF
+)
+	echo "$content" > "$tmpfile"
+	athena.docker.add_envs_from_file "$tmpfile"
+	athena.test.assert_return "athena.docker.has_option" "--env ENV1=myenv1value"
+	athena.test.assert_return "athena.docker.has_option" "--env ENV2=myenv2value"
+	rm $tmpfile
+}
+
 function testcase_athena.docker.print_or_follow_container_logs()
 {
 	athena.test.assert_exit_code.expects_fail "athena.docker.print_or_follow_container_logs" ""

@@ -320,6 +320,23 @@ function athena.docker.add_envs_with_prefix()
 	return 0
 }
 
+# This function adds environment variables from the given file (ini format).
+# USAGE: athena.docker.add_envs_from_file <filename>
+# RETURN: --
+function athena.docker.add_envs_from_file()
+{
+	athena.argument.argument_is_not_empty_or_fail "$1"
+	athena.fs.file_exists_or_fail "$1"
+	local old_IFS=$IFS
+	IFS="="
+	while read -r name value
+	do
+		athena.docker.add_env "$name" "$value"
+	done < "$1"
+	IFS=$old_IFS
+	return 0
+}
+
 # This function adds the daemon flag to the docker run option string ($ATHENA_DOCKER_OPTS).
 # USAGE:  athena.docker.add_daemon
 # RETURN: --
