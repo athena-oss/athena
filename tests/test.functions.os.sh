@@ -361,6 +361,7 @@ function testcase_athena.os.in_array()
 	athena.test.assert_return "athena.os.in_array" 123 "${dummy_array[@]}"
 	athena.test.assert_return.expects_fail "athena.os.in_array" "element1 I dont exist" "${dummy_array[@]}"
 	athena.test.assert_return.expects_fail "athena.os.in_array" "non-existing" "${dummy_array[@]}"
+	athena.test.assert_return.expects_fail "athena.os.in_array" "--env" "${dummy_array[@]}"
 }
 
 #### aux functions

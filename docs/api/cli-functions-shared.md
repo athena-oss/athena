@@ -76,6 +76,7 @@
     * [`athena.os.set_instance`](#athenaossetinstance)
     * [`athena.os.split_string`](#athenaossplitstring)
     * [`athena.os.usage`](#athenaosusage)
+    * [`athena.os.in_array`](#athenaosinarray)
 
 # Using CLI Functions
  
@@ -666,3 +667,12 @@ This function prints the usage and exits with 1 and handles the name of the comm
 **USAGE:**  `athena.os.usage [<min_args>] [<options>] [<multi-line options>]`
  
 **RETURN:** `--`
+ 
+### <a name="athenaosinarray"></a>`athena.os.in_array`
+ 
+Search if <needle> exists inside the <array>.
+
+**USAGE:**  `athena.os.in_array <needle> <array>`
+ 
+**RETURN:** `--`
+
