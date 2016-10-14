@@ -351,17 +351,19 @@ function testcase_athena.os.call_with_args()
 function testcase_athena.os.in_array()
 {
 	athena.test.assert_exit_code.expects_fail "athena.os.in_array"
-	athena.test.assert_exit_code.expects_fail "athena.os.in_array" "something"
+	athena.test.assert_exit_code.expects_fail "athena.os.in_array" 1 "something"
 
 	local dummy_array=("element1" "element with spaces" "--env='something'" 123)
 
-	athena.test.assert_return "athena.os.in_array" "element1" "${dummy_array[@]}"
-	athena.test.assert_return "athena.os.in_array" "element with spaces" "${dummy_array[@]}"
-	athena.test.assert_return "athena.os.in_array" "--env='something'" "${dummy_array[@]}"
-	athena.test.assert_return "athena.os.in_array" 123 "${dummy_array[@]}"
-	athena.test.assert_return.expects_fail "athena.os.in_array" "element1 I dont exist" "${dummy_array[@]}"
-	athena.test.assert_return.expects_fail "athena.os.in_array" "non-existing" "${dummy_array[@]}"
-	athena.test.assert_return.expects_fail "athena.os.in_array" "--env" "${dummy_array[@]}"
+	athena.test.assert_return "athena.os.in_array" 1 "element1" "${dummy_array[@]}"
+	athena.test.assert_return "athena.os.in_array" 1 "element with spaces" "${dummy_array[@]}"
+	athena.test.assert_return "athena.os.in_array" 1 "--env='something'" "${dummy_array[@]}"
+	athena.test.assert_return "athena.os.in_array" 1 123 "${dummy_array[@]}"
+	athena.test.assert_return "athena.os.in_array" 0 "12" "${dummy_array[@]}"
+	athena.test.assert_return "athena.os.in_array" 0 "--env" "${dummy_array[@]}"
+	athena.test.assert_return.expects_fail "athena.os.in_array" 1 "element1 I dont exist" "${dummy_array[@]}"
+	athena.test.assert_return.expects_fail "athena.os.in_array" 1 "non-existing" "${dummy_array[@]}"
+	athena.test.assert_return.expects_fail "athena.os.in_array" 1 "--env" "${dummy_array[@]}"
 }
 
 #### aux functions

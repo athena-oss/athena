@@ -672,7 +672,9 @@ This function prints the usage and exits with 1 and handles the name of the comm
  
 Search if `<needle>` exists inside the `<array>`.
 
-**USAGE:**  `athena.os.in_array <needle> <array>`
+If `<strict>` is set to 0 and `<needle>` is matched partially, the function will be successfull.
+
+**USAGE:**  `athena.os.in_array <strict> <needle> <array>`
  
-**RETURN:** `--`
+**RETURN:** `0 if exists, 1 if it doesnt`
 
