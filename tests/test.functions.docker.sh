@@ -421,6 +421,10 @@ function testcase_athena.docker.get_options()
 {
 	athena.docker.set_options --env varA=valA
 	athena.test.assert_output "athena.docker.get_options" "--env varA=valA"
+
+	local docker_opts
+	athena.docker.get_options "docker_opts"
+	athena.test.assert_array ATHENA_DOCKER_OPTS docker_opts
 }
 
 function testcase_athena.docker.add_envs_with_prefix()
