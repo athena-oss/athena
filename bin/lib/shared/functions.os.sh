@@ -541,7 +541,7 @@ function athena.os.set_debug()
 # Search if <needle> exists inside the <array>.
 # If <strict> is set to 0 and <needle> is matched partially, the function will be successfull.
 # USAGE: athena.os.in_array <strict> <needle> <array>
-# RETURN: 0 if exists, 1 if it doesnt
+# RETURN: 0 (true) 1 (false)
 function athena.os.in_array()
 {
 	athena.argument.argument_is_not_empty_or_fail "$1" "strict"

@@ -676,5 +676,5 @@ If `<strict>` is set to 0 and `<needle>` is matched partially, the function will
 
 **USAGE:**  `athena.os.in_array <strict> <needle> <array>`
  
-**RETURN:** `0 if exists, 1 if it doesnt`
+**RETURN:** `0 (true) 1 (false)`
 
