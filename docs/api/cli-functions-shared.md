@@ -670,7 +670,7 @@ This function prints the usage and exits with 1 and handles the name of the comm
  
 ### <a name="athenaosinarray"></a>`athena.os.in_array`
  
-Search if <needle> exists inside the <array>.
+Search if `<needle>` exists inside the `<array>`.
 
 **USAGE:**  `athena.os.in_array <needle> <array>`
  
