@@ -367,7 +367,7 @@ function athena.docker.handle_run_type()
 {
 	# if run type is not specified explicitly then
 	# it will be auto remove
-	if ! athena.argument.string_contains "${ATHENA_DOCKER_OPTS[@]}" "-d" -a ! athena.argument.string_contains "${ATHENA_DOCKER_OPTS[@]}" "--rm"; then
+	if ! athena.docker.has_option "-d" 1 -a ! athena.docker.has_option "--rm" 1; then
 		athena.docker.add_autoremove
 		return 1
 	fi
@@ -451,12 +451,12 @@ function athena.docker.mount()
 }
 
 # This function checks if the given option is already set.
-# USAGE: athena.docker.has_option <option>
+# USAGE: athena.docker.has_option <option> [strict]
 # RETURN: 0 (true) 1 (false)
 function athena.docker.has_option()
 {
 	athena.argument.argument_is_not_empty_or_fail "$@"
-	athena.os.in_array 0 "$@" "${ATHENA_DOCKER_OPTS[@]}"
+	athena.os.in_array ${2:-0} "$@" "${ATHENA_DOCKER_OPTS[@]}"
 }
 
 # This function checks if docker option -d is already set.
