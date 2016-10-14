@@ -538,6 +538,25 @@ function athena.os.set_debug()
 	athena.docker.add_env "ATHENA_IS_DEBUG" "$ATHENA_IS_DEBUG"
 }
 
+# Search if <needle> exists inside the <array>.
+# USAGE: athena.os.in_array <needle> <array>
+# RETURN: 0 if exists, 1 if it doesnt
+function athena.os.in_array()
+{
+	athena.argument.argument_is_not_empty_or_fail "$1" "needle"
+	athena.argument.argument_is_not_empty_or_fail "${@:1}" "array"
+	local needle="$1"
+	shift 1
+	local array=("$@")
+
+	for ((i=0; i<${#array[*]}; i++)); do
+		if [[ "${array[$i]}" == $needle ]]; then
+			return 0
+		fi
+	done
+	return 1
+}
+
 # This function prints the Athena logo including infos about base plugin and current
 # plugin versions if $ATHENA_NO_LOGO is set to 0. If the $ATHENA_NO_LOGO flag is set to a value
 # unequal to 0 no logo will be printed.
