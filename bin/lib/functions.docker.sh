@@ -450,18 +450,13 @@ function athena.docker.mount()
 	athena.docker.add_option -v $1:$2
 }
 
-# This function checks if there if the given option is already set.
+# This function checks if the given option is already set.
 # USAGE: athena.docker.has_option <option>
 # RETURN: 0 (true) 1 (false)
 function athena.docker.has_option()
 {
 	athena.argument.argument_is_not_empty_or_fail "$@"
-	local opts="$(athena.docker.get_options)"
-	local regex="^(.*[ ]$1}|$1)([ ].*|$)$"
-	if [[ ${opts[@]} =~ $regex ]]; then
-		return 0
-	fi
-	return 1
+	athena.os.in_array 0 "$@" "${ATHENA_DOCKER_OPTS[@]}"
 }
 
 # This function checks if docker option -d is already set.
@@ -500,12 +495,21 @@ function athena.docker.mount_dir_from_plugin()
 	return 0
 }
 
-# This function outputs the extra options to be passed for running docker.
-# USAGE: athena.docker.get_options
+# This function outputs the extra options to be passed for running docker. As an alternative
+# you can also assign to a given array name.
+# USAGE: athena.docker.get_options [array_name]
 # RETURN: string
 function athena.docker.get_options()
 {
-	echo "${ATHENA_DOCKER_OPTS[@]}"
+	if [ -z "$1" ]; then
+		if [ ! -z $BASH_SUBSHELL ] && [ $BASH_SUBSHELL -gt 0 ]; then
+			echo "${ATHENA_DOCKER_OPTS[@]}"
+			return 0
+		fi
+		return 1
+	fi
+
+	eval "$1=( \"\${ATHENA_DOCKER_OPTS[@]}\" )"
 }
 
 # This function sets the options to be passed to docker.

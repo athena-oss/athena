@@ -58,7 +58,7 @@ function testcase_athena.docker.is_default_router_to_be_used()
 
 function testcase_athena.docker.has_option()
 {
-	athena.docker.set_options "-d"
+	athena.docker.set_options -d
 	athena.test.assert_return "athena.docker.has_option" "-d"
 
 	athena.docker.set_options "--env A=B"

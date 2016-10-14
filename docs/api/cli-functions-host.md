@@ -258,9 +258,9 @@ This function returns the container internal ip provided by docker.
  
 ### <a name="athenadockergetoptions"></a>`athena.docker.get_options`
  
-This function outputs the extra options to be passed for running docker.
+This function outputs the extra options to be passed for running docker. As an alternative you can also assign to a given array name.
  
-**USAGE:**  `athena.docker.get_options`
+**USAGE:**  `athena.docker.get_options [array_name]`
  
 **RETURN:** `string`
  
@@ -276,7 +276,7 @@ This function checks if either the daemon or the autoremove flag is set in the d
  
 ### <a name="athenadockerhasoption"></a>`athena.docker.has_option`
  
-This function checks if there if the given option is already set.
+This function checks if the given option is already set.
  
 **USAGE:**  `athena.docker.has_option <option>`
  
