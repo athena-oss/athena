@@ -430,7 +430,7 @@ This is a wrapper function for executing docker run, which helps with mocking an
  
 This function runs a container.
  
-**USAGE:**  `athena.docker.run_container <container_name> <tag_name> ["docker_opts"] [argument...]`
+**USAGE:**  `athena.docker.run_container <container_name> <tag_name>`
  
 **RETURN:** `--`
  
@@ -438,7 +438,7 @@ This function runs a container.
  
 This function runs a container using the default router. The ATHENA_COMMAND and ATHENA_ARGS will be set dynamically within the router inside the container so that even executing something inside an already running container will have the correct COMMAND being executed with the correct ARGS.
  
-**USAGE:**  `athena.docker.run_container_with_default_router <container_name> <tag_name> <command> [<docker_opts>] [<arguments...>]`
+**USAGE:**  `athena.docker.run_container_with_default_router <container_name> <tag_name> <command>`
  
 **RETURN:** `--`
  

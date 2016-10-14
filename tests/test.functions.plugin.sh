@@ -93,7 +93,6 @@ function testcase_athena.plugin.get_plugins_dir()
 function testcase_athena.plugin.use_external_container_as_daemon()
 {
 	local curr_athena_instance=$(athena.os.get_instance)
-	local curr_docker_opts=$(athena.docker.get_options)
 
 	local curr_is_no_default_router
 	if athena.docker.is_default_router_to_be_used ; then
@@ -101,9 +100,9 @@ function testcase_athena.plugin.use_external_container_as_daemon()
 	else
 		curr_is_no_default_router=1
 	fi
-
+	athena.docker.set_options
 	athena.plugin.use_external_container_as_daemon "mycontainer"
-	athena.test.assert_return "athena.docker.has_option" "-d"
+	athena.test.assert_output "athena.docker.get_options" "-d"
 	athena.test.assert_output "athena.docker.is_default_router_to_be_used"
 	athena.test.assert_output "athena.plugin.get_container_to_use" "mycontainer"
 
@@ -114,7 +113,7 @@ function testcase_athena.plugin.use_external_container_as_daemon()
 
 	athena.test.assert_output "athena.os.get_instance" "myinstance"
 
-	athena.docker.set_options "$curr_docker_opts"
+	athena.docker.set_options
 	athena.os.set_instance "$curr_athena_instance"
 	athena.docker.set_no_default_router $curr_is_no_default_router
 }

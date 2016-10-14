@@ -292,7 +292,11 @@ function athena.docker.cleanup() {
 # RETURN: --
 function athena.docker.add_option()
 {
-	ATHENA_DOCKER_OPTS=$(echo "$ATHENA_DOCKER_OPTS $1" | awk '$1=$1')
+	local -i index=${#ATHENA_DOCKER_OPTS[*]}
+	for ((i=1; i<=$#; i++)); do
+		ATHENA_DOCKER_OPTS[$index]=${!i}
+		let index++
+	done
 }
 
 # This function adds an environment variable to the docker run option string
@@ -301,7 +305,8 @@ function athena.docker.add_option()
 # RETURN: --
 function athena.docker.add_env()
 {
-	athena.docker.add_option "--env $1=$2"
+	local name="$1"
+	athena.docker.add_option --env $name"="$2
 }
 
 # This function adds environment variables with the given prefix to the docker run option string.
@@ -315,7 +320,7 @@ function athena.docker.add_envs_with_prefix()
 	local tmp=$(eval echo \${!$prefix@})
 	for var in $(echo $tmp | grep -v ^$ | tr ' ' '\n')
 	do
-		athena.docker.add_option "--env $var=${!var}"
+		athena.docker.add_option --env $var=${!var}
 	done
 	return 0
 }
@@ -327,13 +332,10 @@ function athena.docker.add_envs_from_file()
 {
 	athena.argument.argument_is_not_empty_or_fail "$1"
 	athena.fs.file_exists_or_fail "$1"
-	local old_IFS=$IFS
-	IFS="="
-	while read -r name value
+	while read env
 	do
-		athena.docker.add_env "$name" "$value"
+		athena.docker.add_option --env $env
 	done < "$1"
-	IFS=$old_IFS
 	return 0
 }
 
@@ -342,7 +344,7 @@ function athena.docker.add_envs_from_file()
 # RETURN: --
 function athena.docker.add_daemon()
 {
-	athena.docker.add_option "-d"
+	athena.docker.add_option -d
 	athena.os.enable_error_mode
 }
 
@@ -352,7 +354,7 @@ function athena.docker.add_daemon()
 # RETURN: --
 function athena.docker.add_autoremove()
 {
-	athena.docker.add_option "--rm=true"
+	athena.docker.add_option --rm=true
 }
 
 # This function checks if either the daemon or the autoremove flag is set in the
@@ -365,7 +367,7 @@ function athena.docker.handle_run_type()
 {
 	# if run type is not specified explicitly then
 	# it will be auto remove
-	if ! athena.argument.string_contains "$ATHENA_DOCKER_OPTS" "-d" -a ! athena.argument.string_contains "$ATHENA_DOCKER_OPTS" "--rm"; then
+	if ! athena.argument.string_contains "${ATHENA_DOCKER_OPTS[@]}" "-d" -a ! athena.argument.string_contains "${ATHENA_DOCKER_OPTS[@]}" "--rm"; then
 		athena.docker.add_autoremove
 		return 1
 	fi
@@ -422,7 +424,7 @@ function athena.docker.mount_dir()
 
 	athena.fs.dir_exists_or_fail "$1"
 
-	athena.docker.add_option "-v $1:$2"
+	athena.docker.add_option -v "$1:$2"
 }
 
 # This function adds the given volume to the docker run option string
@@ -445,7 +447,7 @@ function athena.docker.mount()
 		athena.os.exit_with_msg "source does not exist \"$1\"!"
 	fi
 
-	athena.docker.add_option "-v $1:$2"
+	athena.docker.add_option -v $1:$2
 }
 
 # This function checks if there if the given option is already set.
@@ -453,10 +455,10 @@ function athena.docker.mount()
 # RETURN: 0 (true) 1 (false)
 function athena.docker.has_option()
 {
-	athena.argument.argument_is_not_empty_or_fail "$1"
-	local opts=$(athena.docker.get_options)
-	local regex="^(.*[ ]$1|$1)([ ].*|$)$"
-	if [[ $opts =~ $regex ]]; then
+	athena.argument.argument_is_not_empty_or_fail "$@"
+	local opts="$(athena.docker.get_options)"
+	local regex="^(.*[ ]$1}|$1)([ ].*|$)$"
+	if [[ ${opts[@]} =~ $regex ]]; then
 		return 0
 	fi
 	return 1
@@ -495,6 +497,7 @@ function athena.docker.mount_dir_from_plugin()
 	dir_from_plg="$plg_dir/$1"
 	athena.fs.dir_exists_or_fail "$dir_from_plg"
 	athena.docker.mount_dir "$dir_from_plg" "$2"
+	return 0
 }
 
 # This function outputs the extra options to be passed for running docker.
@@ -502,7 +505,7 @@ function athena.docker.mount_dir_from_plugin()
 # RETURN: string
 function athena.docker.get_options()
 {
-	echo "$ATHENA_DOCKER_OPTS"
+	echo "${ATHENA_DOCKER_OPTS[@]}"
 }
 
 # This function sets the options to be passed to docker.
@@ -510,11 +513,16 @@ function athena.docker.get_options()
 # RETURN: --
 function athena.docker.set_options()
 {
-	ATHENA_DOCKER_OPTS="$1"
+	local -i arg
+	ATHENA_DOCKER_OPTS=()
+	for ((i=0; i<$#; i++)); do
+		let arg=i+1
+		ATHENA_DOCKER_OPTS[$i]=${!arg}
+	done
 }
 
 # This function runs a container.
-# USAGE: athena.docker.run_container <container_name> <tag_name> ["docker_opts"] [argument...]
+# USAGE: athena.docker.run_container <container_name> <tag_name>
 # RETURN: --
 function athena.docker.run_container()
 {
@@ -522,10 +530,9 @@ function athena.docker.run_container()
 	athena.argument.argument_is_not_empty_or_fail "$2"
 	local name="$1"
 	local tag_name="$2"
-	local docker_opts="$3"
-	shift 3
-
-	athena.docker.run --name "$name" $docker_opts "$tag_name" "$@"
+	local docker_opts="$(athena.docker.get_options)"
+	local arguments="$(athena.argument.get_arguments)"
+	athena.docker.run --name "$name" ${docker_opts[@]} "$tag_name" ${arguments[@]}
 }
 
 # This function runs a container using the default router.
@@ -533,7 +540,7 @@ function athena.docker.run_container()
 # within the router inside the container so that even executing
 # something inside an already running container will have the
 # correct COMMAND being executed with the correct ARGS.
-# USAGE: athena.docker.run_container_with_default_router <container_name> <tag_name> <command> [<docker_opts>] [<arguments...>]
+# USAGE: athena.docker.run_container_with_default_router <container_name> <tag_name> <command>
 # RETURN: --
 function athena.docker.run_container_with_default_router()
 {
@@ -544,24 +551,24 @@ function athena.docker.run_container_with_default_router()
 	local name="$1"
 	local tag_name="$2"
 	local athena_command="$3"
-	local docker_opts="$4"
-	shift 4
 
-	athena.docker.run --name "$name" \
-			--env ATHENA_PLUGIN="$(athena.plugin.get_plugin)" \
-			--env ATHENA_BASE_SHARED_LIB_DIR="/opt/shared" \
-			--env BIN_DIR="/opt/athena/bin" \
-			--env CMD_DIR="/opt/athena/bin/cmd" \
-			--env LIB_DIR="/opt/athena/bin/lib" \
-			--env ATHENA_DOCKER_IP="$(athena.docker.get_ip)" \
-			--env ATHENA_DOCKER_HOST_IP="$(athena.os.get_host_ip)" \
-			-v "$(athena.plugin.get_shared_lib_dir):/opt/shared" \
-			-v "$(athena.plugin.get_plg_dir):/opt/athena" \
-			$docker_opts \
-			"$tag_name" \
-			"$router" \
-			"$athena_command" \
-			"$@"
+	athena.docker.add_env "ATHENA_PLUGIN" "$(athena.plugin.get_plugin)"
+	athena.docker.add_env "ATHENA_BASE_SHARED_LIB_DIR" "/opt/shared"
+	athena.docker.add_env "BIN_DIR" "/opt/athena/bin"
+	athena.docker.add_env "CMD_DIR" "/opt/athena/bin/cmd"
+	athena.docker.add_env "LIB_DIR" "/opt/athena/bin/lib"
+	athena.docker.add_env "ATHENA_DOCKER_IP" "$(athena.docker.get_ip)"
+	athena.docker.add_env "ATHENA_DOCKER_HOST_IP" "$(athena.os.get_host_ip)"
+	athena.docker.mount_dir "$(athena.plugin.get_shared_lib_dir)" "/opt/shared"
+	athena.docker.mount_dir "$(athena.plugin.get_plg_dir)" "/opt/athena"
+	athena.docker.add_option "--name" "$name"
+	athena.docker.add_option "$tag_name"
+	athena.docker.add_option "$router"
+	athena.docker.add_option "$athena_command"
+	athena.docker.add_option "$(athena.argument.get_arguments)"
+
+	local docker_opts="$(athena.docker.get_options)"
+	athena.docker.run ${docker_opts[@]}
 }
 
 # This function specifies that the default router should not be used.

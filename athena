@@ -25,7 +25,6 @@ function athena.get_current_script_dir()
 export ATHENA_BASE_DIR
 export ATHENA_TAG
 export ATHENA_CONTAINER_NAME
-export ATHENA_DOCKER_OPTS
 export ATHENA_PLG_CONTAINER_TO_USE
 export ATHENA_PLG_IMAGE_VERSION
 export ATHENA_BASE_IMAGE_VERSION
@@ -56,6 +55,7 @@ if [ "$1" = "base" -o -n "$1" -a -d "$ATHENA_PLGS_DIR/$1" ]; then
 	shift
 fi
 
+declare -xa ATHENA_DOCKER_OPTS
 # from this point on arguments must be handled using the athena.argument functions
 declare -xa ATHENA_ARGS
 athena.argument.set_arguments "$@"
