@@ -3,8 +3,13 @@ function testcase_athena.docker.run_container()
 	athena.test.assert_exit_code.expects_fail "athena.docker.run_container"
 	athena.test.assert_exit_code.expects_fail "athena.docker.run_container" "one"
 	athena.test.mock "athena.docker.run" "_my_docker_echo"
-	athena.test.assert_output "athena.docker.run_container" "--name container_name --env A=B tag:version" "container_name" "tag:version" "--env A=B"
-	athena.test.assert_output "athena.docker.run_container" "--name container_name --env A=B tag:version one two three" "container_name" "tag:version" "--env A=B" "one two three"
+
+	athena.docker.set_options
+	athena.docker.add_env "A" "B"
+	athena.argument.set_arguments
+	athena.test.assert_output "athena.docker.run_container" "--name container_name --env A=B tag:version" "container_name" "tag:version"
+	athena.argument.set_arguments one two three
+	athena.test.assert_output "athena.docker.run_container" "--name container_name --env A=B tag:version one two three" "container_name" "tag:version"
 }
 
 function testcase_athena.docker.run_container_with_default_router()
@@ -16,19 +21,26 @@ function testcase_athena.docker.run_container_with_default_router()
 	athena.test.mock.outputs "athena.docker.get_ip" "127.0.0.1"
 	athena.test.mock.outputs "athena.os.get_host_ip" "127.0.0.1"
 	athena.test.mock.outputs "athena.plugin.get_shared_lib_dir" "/path/to/shared/dir"
+	athena.test.mock.returns "athena.fs.dir_exists_or_fail" 0
 	athena.test.mock.outputs "athena.plugin.get_plg_dir" "/path/to/plugin/dir"
+
+	athena.docker.set_options
+	athena.docker.add_option "OTHER_OPTIONS"
+	athena.argument.set_arguments one two three
 	athena.test.assert_output "athena.docker.run_container_with_default_router" \
-		"--name mycontainer --env ATHENA_PLUGIN=base --env ATHENA_BASE_SHARED_LIB_DIR=/opt/shared --env BIN_DIR=/opt/athena/bin --env CMD_DIR=/opt/athena/bin/cmd --env LIB_DIR=/opt/athena/bin/lib --env ATHENA_DOCKER_IP=127.0.0.1 --env ATHENA_DOCKER_HOST_IP=127.0.0.1 -v /path/to/shared/dir:/opt/shared -v /path/to/plugin/dir:/opt/athena OTHER_OPTIONS mytag:version /opt/shared/router.sh mycommand one two three" \
-		"mycontainer" "mytag:version" "mycommand" "OTHER_OPTIONS" one two three
+		"OTHER_OPTIONS --env ATHENA_PLUGIN=base --env ATHENA_BASE_SHARED_LIB_DIR=/opt/shared --env BIN_DIR=/opt/athena/bin --env CMD_DIR=/opt/athena/bin/cmd --env LIB_DIR=/opt/athena/bin/lib --env ATHENA_DOCKER_IP=127.0.0.1 --env ATHENA_DOCKER_HOST_IP=127.0.0.1 -v /path/to/shared/dir:/opt/shared -v /path/to/plugin/dir:/opt/athena --name mycontainer mytag:version /opt/shared/router.sh mycommand one two three" \
+		"mycontainer" "mytag:version" "mycommand"
 }
 
 function testcase_athena.docker.add_option()
 {
-	local curr_extra_opts="$ATHENA_DOCKER_OPTS"
-	ATHENA_DOCKER_OPTS=
-	athena.docker.add_option "--env A=B"
-	athena.test.assert_value "--env A=B" "$ATHENA_DOCKER_OPTS"
-	ATHENA_DOCKER_OPTS="$curr_extra_opts"
+	athena.docker.set_options
+	athena.docker.add_option --env A=B
+	athena.test.assert_output "athena.docker.get_options" "--env A=B"
+	athena.docker.add_option --env C=D
+	athena.test.assert_output "athena.docker.get_options" "--env A=B --env C=D"
+	athena.docker.add_option --env 'E="F with spaces"'
+	athena.test.assert_output "athena.docker.get_options" '--env A=B --env C=D --env E="F with spaces"'
 }
 
 function testcase_athena.docker.is_default_router_to_be_used()
@@ -46,31 +58,28 @@ function testcase_athena.docker.is_default_router_to_be_used()
 
 function testcase_athena.docker.has_option()
 {
-	local curr_extra_opts="$ATHENA_DOCKER_OPTS"
-
-	athena.docker.set_options "-d"
+	athena.docker.set_options -d
 	athena.test.assert_return "athena.docker.has_option" "-d"
 
 	athena.docker.set_options "--env A=B"
 	athena.test.assert_return.expects_fail "athena.docker.has_option" "-d"
+	athena.test.assert_return "athena.docker.has_option" "--env A=B"
 
 	athena.docker.set_options "-daemon"
-	athena.test.assert_return.expects_fail "athena.docker.has_option" "-d"
+	athena.test.assert_return.expects_fail "athena.docker.has_option" "--env A=B"
+	athena.test.assert_return "athena.docker.has_option" "-daemon"
 
-	ATHENA_DOCKER_OPTS="$curr_extra_opts"
+	athena.docker.set_options "--env A=\"something with spaces\""
+	athena.test.assert_return "athena.docker.has_option" "--env A=\"something with spaces\""
 }
 
 function testcase_athena.docker.set_options()
 {
-	local curr_extra_opts="$ATHENA_DOCKER_OPTS"
-
 	athena.docker.set_options "-d --env A=B"
 	athena.test.assert_value "$(athena.docker.get_options)" "-d --env A=B"
 
 	athena.docker.set_options ""
 	athena.test.assert_value "$(athena.docker.get_options)" ""
-
-	ATHENA_DOCKER_OPTS="$curr_extra_opts"
 }
 
 function testcase_athena.docker.container_has_started()
@@ -96,75 +105,66 @@ function testcase_athena.docker.is_running_as_daemon()
 
 function testcase_athena.docker.add_env()
 {
-	local curr_extra_opts="$ATHENA_DOCKER_OPTS"
-	ATHENA_DOCKER_OPTS=
+	athena.docker.set_options
 	athena.docker.add_env "A" "C"
-	athena.test.assert_value "--env A=C" "$ATHENA_DOCKER_OPTS"
-	ATHENA_DOCKER_OPTS="$curr_extra_opts"
+	athena.test.assert_value "--env A=C" "${ATHENA_DOCKER_OPTS[*]}"
+	athena.docker.set_options
+	athena.docker.add_env "B" "\"value with spaces\""
+	athena.test.assert_value "--env B=\"value with spaces\"" "${ATHENA_DOCKER_OPTS[*]}"
 }
 
 function testcase_athena.docker.add_daemon()
 {
-	local curr_extra_opts="$ATHENA_DOCKER_OPTS"
-	ATHENA_DOCKER_OPTS=
+	athena.docker.set_options
 	athena.docker.add_daemon
-	athena.test.assert_value "-d" "$ATHENA_DOCKER_OPTS"
-	ATHENA_DOCKER_OPTS="$curr_extra_opts"
+	athena.test.assert_value "-d" "${ATHENA_DOCKER_OPTS[@]}"
 }
 
 function testcase_athena.docker.add_autoremove()
 {
-	local curr_extra_opts="$ATHENA_DOCKER_OPTS"
-	ATHENA_DOCKER_OPTS=
+	athena.docker.set_options
 	athena.docker.add_autoremove
-	athena.test.assert_value "--rm=true" "$ATHENA_DOCKER_OPTS"
-	ATHENA_DOCKER_OPTS="$curr_extra_opts"
+	athena.test.assert_value "--rm=true" "${ATHENA_DOCKER_OPTS[@]}"
 }
 
 function testcase_athena.docker.handle_run_type()
 {
-	local curr_extra_opts="$ATHENA_DOCKER_OPTS"
-	ATHENA_DOCKER_OPTS=
+	athena.docker.set_options
 	athena.docker.add_daemon
 	athena.docker.handle_run_type
-	athena.test.assert_return.expects_fail "athena.argument.string_contains" $ATHENA_DOCKER_OPTS "--rm=true"
+	athena.test.assert_return.expects_fail "athena.argument.string_contains" "${ATHENA_DOCKER_OPTS[@]}" "--rm=true"
 
-	ATHENA_DOCKER_OPTS="--rm"
+	athena.docker.set_options --rm
 	athena.docker.handle_run_type
-	athena.test.assert_return.expects_fail "athena.argument.string_contains" $ATHENA_DOCKER_OPTS "--rm=true"
+	athena.test.assert_return.expects_fail "athena.argument.string_contains" "${ATHENA_DOCKER_OPTS[@]}" "--rm=true"
 
-	ATHENA_DOCKER_OPTS=
+	athena.docker.set_options
 	athena.docker.handle_run_type
-	athena.test.assert_return "athena.argument.string_contains" $ATHENA_DOCKER_OPTS "--rm=true"
-
-	ATHENA_DOCKER_OPTS="$curr_extra_opts"
+	athena.test.assert_return "athena.argument.string_contains" "${ATHENA_DOCKER_OPTS[@]}" "--rm=true"
 }
 
 function testcase_athena.docker.mount_dir()
 {
-	local curr_extra_opts="$ATHENA_DOCKER_OPTS"
 	local tmp_dir="$(athena.test.create_tempdir)"
 	athena.test.assert_exit_code.expects_fail "athena.docker.mount_dir"
 	athena.test.assert_exit_code.expects_fail "athena.docker.mount_dir" "$tmp_dir"
 
-	ATHENA_DOCKER_OPTS=
+	athena.docker.set_options
 	athena.docker.mount_dir "$tmp_dir" "$tmp_dir"
-	athena.test.assert_value "-v $tmp_dir:$tmp_dir" "$ATHENA_DOCKER_OPTS"
-	ATHENA_DOCKER_OPTS="$curr_extra_opts"
+	athena.test.assert_value "-v $tmp_dir:$tmp_dir" "$(athena.docker.get_options)"
 
 	rm -r "$tmp_dir"
 }
 
 function testcase_athena.docker.mount_dir_from_plugin()
 {
-	local curr_extra_opts="$ATHENA_DOCKER_OPTS"
+	athena.docker.set_options
 	local tmp_dir="$(athena.test.create_tempdir)"
 	athena.test.assert_exit_code.expects_fail "athena.docker.mount_dir_from_plugin"
 	athena.test.assert_exit_code.expects_fail "athena.docker.mount_dir_from_plugin" "$tmp_dir"
 
 	athena.test.mock.outputs "athena.plugin.get_plg_dir" "$tmp_dir"
 
-	ATHENA_DOCKER_OPTS=
 	athena.test.assert_exit_code.expects_fail "athena.docker.mount_dir_from_plugin" "xpto" "$tmp_dir"
 
 	local plg_dir="$(athena.test.create_tempdir)"
@@ -173,12 +173,10 @@ function testcase_athena.docker.mount_dir_from_plugin()
 	athena.test.assert_exit_code.expects_fail "athena.docker.mount_dir_from_plugin" "xpto" "$tmp_dir"
 
 	mkdir -p "$plg_dir/plg/xpto"
-	athena.test.assert_exit_code "athena.docker.mount_dir_from_plugin" "xpto" "$tmp_dir"
-
+	athena.test.assert_return "athena.docker.mount_dir_from_plugin" "xpto" "$tmp_dir"
 
 	athena.docker.mount_dir_from_plugin "xpto" "$tmp_dir"
-	athena.test.assert_value "-v $plg_dir/plg/xpto:${tmp_dir}" "$ATHENA_DOCKER_OPTS"
-	ATHENA_DOCKER_OPTS="$curr_extra_opts"
+	athena.test.assert_value "-v $plg_dir/plg/xpto:${tmp_dir}" "$(athena.docker.get_options)"
 	rm -r "$plg_dir"
 	rm -r "$tmp_dir"
 }
@@ -421,10 +419,12 @@ function testcase_athena.docker.get_ip()
 
 function testcase_athena.docker.get_options()
 {
-	local curr_docker_opts="$ATHENA_DOCKER_OPTS"
-	ATHENA_DOCKER_OPTS="--env varA=valA"
+	athena.docker.set_options --env varA=valA
 	athena.test.assert_output "athena.docker.get_options" "--env varA=valA"
-	ATHENA_DOCKER_OPTS="$curr_extra_opts"
+
+	local docker_opts
+	athena.docker.get_options "docker_opts"
+	athena.test.assert_array ATHENA_DOCKER_OPTS docker_opts
 }
 
 function testcase_athena.docker.add_envs_with_prefix()
@@ -453,9 +453,19 @@ ENV2=myenv2value
 EOF
 )
 	echo "$content" > "$tmpfile"
+	athena.docker.set_options
 	athena.docker.add_envs_from_file "$tmpfile"
-	athena.test.assert_return "athena.docker.has_option" "--env ENV1=myenv1value"
-	athena.test.assert_return "athena.docker.has_option" "--env ENV2=myenv2value"
+	athena.test.assert_output "athena.docker.get_options" "--env ENV1=myenv1value --env ENV2=myenv2value"
+local content=$(cat <<EOF
+ENV3="myenv3value with spaces"
+ENV4="myenv4value also with spaces"
+EOF
+)
+	echo "$content" > "$tmpfile"
+	athena.docker.set_options
+	athena.docker.add_envs_from_file "$tmpfile"
+	athena.test.assert_output "athena.docker.get_options" '--env ENV3="myenv3value with spaces" --env ENV4="myenv4value also with spaces"'
+
 	rm $tmpfile
 }
 

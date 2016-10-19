@@ -951,8 +951,6 @@ function athena.plugin.run_container()
 
 	local command=$1
 	local arguments
-	local docker_options
-	docker_options="$(athena.docker.get_options)"
 	athena.argument.get_arguments arguments
 
 	# bootstrap all the configuration that was predefined before
@@ -1000,16 +998,14 @@ function athena.plugin.run_container()
 			athena.os.exec athena.docker.run_container_with_default_router \
 				"$container_name" \
 				"$tag_name" \
-				"$command" \
-				"$docker_options" \
-				"${arguments[@]}"
+				"$command"
 		fi
 	elif athena.docker.is_container_running "$container_name" ; then
 		athena.color.print_debug "using already running container $container_name"
 		athena.os.exec athena.docker.exec -i "$container_name" "${arguments[@]}"
 	else
 		athena.color.print_debug "starting container $container_name for command '$command' ..."
-		athena.os.exec athena.docker.run_container "$container_name" "$tag_name" "$docker_options" "${arguments[@]}"
+		athena.os.exec athena.docker.run_container "$container_name" "$tag_name"
 	fi
 	local rc=$?
 	return $rc

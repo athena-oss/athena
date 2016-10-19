@@ -258,9 +258,9 @@ This function returns the container internal ip provided by docker.
  
 ### <a name="athenadockergetoptions"></a>`athena.docker.get_options`
  
-This function outputs the extra options to be passed for running docker.
+This function outputs the extra options to be passed for running docker. As an alternative you can also assign to a given array name.
  
-**USAGE:**  `athena.docker.get_options`
+**USAGE:**  `athena.docker.get_options [array_name]`
  
 **RETURN:** `string`
  
@@ -276,7 +276,7 @@ This function checks if either the daemon or the autoremove flag is set in the d
  
 ### <a name="athenadockerhasoption"></a>`athena.docker.has_option`
  
-This function checks if there if the given option is already set.
+This function checks if the given option is already set.
  
 **USAGE:**  `athena.docker.has_option <option>`
  
@@ -430,7 +430,7 @@ This is a wrapper function for executing docker run, which helps with mocking an
  
 This function runs a container.
  
-**USAGE:**  `athena.docker.run_container <container_name> <tag_name> ["docker_opts"] [argument...]`
+**USAGE:**  `athena.docker.run_container <container_name> <tag_name>`
  
 **RETURN:** `--`
  
@@ -438,7 +438,7 @@ This function runs a container.
  
 This function runs a container using the default router. The ATHENA_COMMAND and ATHENA_ARGS will be set dynamically within the router inside the container so that even executing something inside an already running container will have the correct COMMAND being executed with the correct ARGS.
  
-**USAGE:**  `athena.docker.run_container_with_default_router <container_name> <tag_name> <command> [<docker_opts>] [<arguments...>]`
+**USAGE:**  `athena.docker.run_container_with_default_router <container_name> <tag_name> <command>`
  
 **RETURN:** `--`
  
