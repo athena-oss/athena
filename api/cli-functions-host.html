@@ -576,8 +576,8 @@ https://www.docker.com">docker</a>.</p>
 <p><strong>RETURN:</strong> <code>string</code></p>
 <h3 id="athenadockergetoptions"><a name="athenadockergetoptions"></a><code>athena.docker.get_options</code></h3>
 <p>This function outputs the extra options to be passed for running <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
-https://www.docker.com">docker</a>.</p>
-<p><strong>USAGE:</strong>  <code>athena.docker.get_options</code></p>
+https://www.docker.com">docker</a>. As an alternative you can also assign to a given array name.</p>
+<p><strong>USAGE:</strong>  <code>athena.docker.get_options [array_name]</code></p>
 <p><strong>RETURN:</strong> <code>string</code></p>
 <h3 id="athenadockergettagandversion"><a name="athenadockergettagandversion"></a><code>athena.docker.get_tag_and_version</code></h3>
 <h3 id="athenadockerhandleruntype"><a name="athenadockerhandleruntype"></a><code>athena.docker.handle_run_type</code></h3>
@@ -586,7 +586,7 @@ https://www.docker.com">docker</a> run option string ($ATHENA_DOCKER_OPTS). If o
 <p><strong>USAGE:</strong>  <code>athena.docker.handle_run_type</code></p>
 <p><strong>RETURN:</strong> <code>0 (true), 1 (false)</code></p>
 <h3 id="athenadockerhasoption"><a name="athenadockerhasoption"></a><code>athena.docker.has_option</code></h3>
-<p>This function checks if there if the given option is already set.</p>
+<p>This function checks if the given option is already set.</p>
 <p><strong>USAGE:</strong>  <code>athena.docker.has_option &lt;option&gt;</code></p>
 <p><strong>RETURN:</strong> <code>0 (true) 1 (false)</code></p>
 <h3 id="athenadockerimageexists"><a name="athenadockerimageexists"></a><code>athena.docker.image_exists</code></h3>
@@ -676,11 +676,11 @@ https://www.docker.com">docker</a> run, which helps with mocking and tweaking.</
 <p><strong>RETURN:</strong> <code>--</code></p>
 <h3 id="athenadockerruncontainer"><a name="athenadockerruncontainer"></a><code>athena.docker.run_container</code></h3>
 <p>This function runs a container.</p>
-<p><strong>USAGE:</strong>  <code>athena.docker.run_container &lt;container_name&gt; &lt;tag_name&gt; [&quot;docker_opts&quot;] [argument...]</code></p>
+<p><strong>USAGE:</strong>  <code>athena.docker.run_container &lt;container_name&gt; &lt;tag_name&gt;</code></p>
 <p><strong>RETURN:</strong> <code>--</code></p>
 <h3 id="athenadockerruncontainerwithdefaultrouter"><a name="athenadockerruncontainerwithdefaultrouter"></a><code>athena.docker.run_container_with_default_router</code></h3>
 <p>This function runs a container using the default router. The ATHENA_COMMAND and ATHENA_ARGS will be set dynamically within the router inside the container so that even executing something inside an already running container will have the correct COMMAND being executed with the correct ARGS.</p>
-<p><strong>USAGE:</strong>  <code>athena.docker.run_container_with_default_router &lt;container_name&gt; &lt;tag_name&gt; &lt;command&gt; [&lt;docker_opts&gt;] [&lt;arguments...&gt;]</code></p>
+<p><strong>USAGE:</strong>  <code>athena.docker.run_container_with_default_router &lt;container_name&gt; &lt;tag_name&gt; &lt;command&gt;</code></p>
 <p><strong>RETURN:</strong> <code>--</code></p>
 <h3 id="athenadockersetnodefaultrouter"><a name="athenadockersetnodefaultrouter"></a><code>athena.docker.set_no_default_router</code></h3>
 <p>This function specifies that the default router should not be used.</p>
@@ -1028,7 +1028,7 @@ https://www.docker.com">docker</a> build environment file name in the $ATHENA_PL
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Host only API","level":"2.3","depth":1,"next":{"title":"CLI flags","level":"2.4","depth":1,"path":"api/flags.md","ref":"api/flags.md","articles":[]},"previous":{"title":"Shared API","level":"2.2","depth":1,"path":"api/cli-functions-shared.md","ref":"api/cli-functions-shared.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"api/cli-functions-host.md","mtime":"2016-10-14T12:25:51.994Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-10-14T12:27:00.593Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Host only API","level":"2.3","depth":1,"next":{"title":"CLI flags","level":"2.4","depth":1,"path":"api/flags.md","ref":"api/flags.md","articles":[]},"previous":{"title":"Shared API","level":"2.2","depth":1,"path":"api/cli-functions-shared.md","ref":"api/cli-functions-shared.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"api/cli-functions-host.md","mtime":"2016-10-19T11:07:36.153Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-10-19T11:08:44.309Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
