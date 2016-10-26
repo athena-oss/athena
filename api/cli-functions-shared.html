@@ -424,6 +424,7 @@
 <li><a href="#athenaosgetinstance"><code>athena.os.get_instance</code></a></li>
 <li><a href="#athenaosgetprefix"><code>athena.os.get_prefix</code></a></li>
 <li><a href="#athenaoshandleexit"><code>athena.os.handle_exit</code></a></li>
+<li><a href="#athenaosinarray"><code>athena.os.in_array</code></a></li>
 <li><a href="#athenaosincludeonce"><code>athena.os.include_once</code></a></li>
 <li><a href="#athenaosiscommandset"><code>athena.os.is_command_set</code></a></li>
 <li><a href="#athenaosisdebugactive"><code>athena.os.is_debug_active</code></a></li>
@@ -440,7 +441,15 @@
 <li><a href="#athenaossetinstance"><code>athena.os.set_instance</code></a></li>
 <li><a href="#athenaossplitstring"><code>athena.os.split_string</code></a></li>
 <li><a href="#athenaosusage"><code>athena.os.usage</code></a></li>
-<li><a href="#athenaosinarray"><code>athena.os.in_array</code></a></li>
+</ul>
+</li>
+<li><a href="#handling-utils">Handling <em>utils</em></a><ul>
+<li><a href="#athenautilsaddtoarray"><code>athena.utils.add_to_array</code></a></li>
+<li><a href="#athenautilsarraypop"><code>athena.utils.array_pop</code></a></li>
+<li><a href="#athenautilsgetarray"><code>athena.utils.get_array</code></a></li>
+<li><a href="#athenautilsinarray"><code>athena.utils.in_array</code></a></li>
+<li><a href="#athenautilsprependtoarray"><code>athena.utils.prepend_to_array</code></a></li>
+<li><a href="#athenautilssetarray"><code>athena.utils.set_array</code></a></li>
 </ul>
 </li>
 </ul>
@@ -678,6 +687,10 @@ https://www.gnu.org/software/bash/">BASH</a>(1)) enabled.</p>
 <p>This function handles the signals sent to and by athena.</p>
 <p><strong>USAGE:</strong>  <code>athena.os.handle_exit &lt;signal&gt;</code></p>
 <p><strong>RETURN:</strong> <code>--</code></p>
+<h3 id="athenaosinarray"><a name="athenaosinarray"></a><code>athena.os.in_array</code></h3>
+<p>Search if <needle> exists inside the <array>. If <strict> is set to 0 and <needle> is matched partially, the function will be successfull.</needle></strict></array></needle></p>
+<p><strong>USAGE:</strong>  <code>athena.os.in_array &lt;strict&gt; &lt;needle&gt; &lt;array&gt;</code></p>
+<p><strong>RETURN:</strong> <code>0 (true) 1 (false)</code></p>
 <h3 id="athenaosincludeonce"><a name="athenaosincludeonce"></a><code>athena.os.include_once</code></h3>
 <p>This function checks if a given <a href="../GLOSSARY.html#bash" class="glossary-term" title="Bash is the GNU Project&apos;s shell. Bash is the Bourne Again SHell. Bash is an sh-compatible shell that incorporates useful features from the Korn shell (ksh) and C shell (csh).
 https://www.gnu.org/software/bash/">Bash</a> source file exists and includes it if it wasn&apos;t loaded before. If it was loaded nothing is done (avoid multiple sourcing).</p>
@@ -745,11 +758,31 @@ https://git-scm.com">git</a> is installed). If not execution is stopped and an e
 <p>This function prints the usage and exits with 1 and handles the name of the command automatically and the athena executable.</p>
 <p><strong>USAGE:</strong>  <code>athena.os.usage [&lt;min_args&gt;] [&lt;options&gt;] [&lt;multi-line options&gt;]</code></p>
 <p><strong>RETURN:</strong> <code>--</code></p>
-<h3 id="athenaosinarray"><a name="athenaosinarray"></a><code>athena.os.in_array</code></h3>
-<p>Search if <code>&lt;needle&gt;</code> exists inside the <code>&lt;array&gt;</code>.</p>
-<p>If <code>&lt;strict&gt;</code> is set to 0 and <code>&lt;needle&gt;</code> is matched partially, the function will be successfull.</p>
-<p><strong>USAGE:</strong>  <code>athena.os.in_array &lt;strict&gt; &lt;needle&gt; &lt;array&gt;</code></p>
-<p><strong>RETURN:</strong> <code>0 (true) 1 (false)</code></p>
+<h2 id="handling-utils">Handling <em>utils</em></h2>
+<h3 id="athenautilsaddtoarray"><a name="athenautilsaddtoarray"></a><code>athena.utils.add_to_array</code></h3>
+<p>This functions adds elements to the given array.</p>
+<p><strong>USAGE:</strong>  <code>athena.utils.add_to_array &lt;array_name&gt; &lt;element...&gt;</code></p>
+<p><strong>RETURN:</strong> <code>0 (true), 1 (false)</code></p>
+<h3 id="athenautilsarraypop"><a name="athenautilsarraypop"></a><code>athena.utils.array_pop</code></h3>
+<p>This function pops elements from the given array, if argument 2 is an integer then it will pop as many times as specified.</p>
+<p><strong>USAGE:</strong>  <code>athena.utils.array_pop &lt;array_name&gt; [number_of_times]</code></p>
+<p><strong>RETURN:</strong> <code>0 (true), 1 (false)</code></p>
+<h3 id="athenautilsgetarray"><a name="athenautilsgetarray"></a><code>athena.utils.get_array</code></h3>
+<p>This function returns the elements of the given array in case of subshell assignment or stores them in a new variable if specified in argument 2.</p>
+<p><strong>USAGE:</strong>  <code>athena.utils.get_array &lt;array_name&gt; [other_array_name]</code></p>
+<p><strong>RETURN:</strong> <code>0 (true), 1 (false)</code></p>
+<h3 id="athenautilsinarray"><a name="athenautilsinarray"></a><code>athena.utils.in_array</code></h3>
+<p>This function checks if the element exists in the given array.</p>
+<p><strong>USAGE:</strong>  <code>athena.utils.in_array &lt;array_name&gt; &lt;element&gt; [strict]</code></p>
+<p><strong>RETURN:</strong> <code>0 (true), 1 (false)</code></p>
+<h3 id="athenautilsprependtoarray"><a name="athenautilsprependtoarray"></a><code>athena.utils.prepend_to_array</code></h3>
+<p>This function prepends the given elements to the specified array.</p>
+<p><strong>USAGE:</strong>  <code>athena.utils.prepend_to_array &lt;array_name&gt; &lt;element...&gt;</code></p>
+<p><strong>RETURN:</strong> <code>0 (true), 1 (false)</code></p>
+<h3 id="athenautilssetarray"><a name="athenautilssetarray"></a><code>athena.utils.set_array</code></h3>
+<p>This function assigns the given elements to the specified array.</p>
+<p><strong>USAGE:</strong>  <code>athena.utils.set_array &lt;array_name&gt; &lt;element...&gt;</code></p>
+<p><strong>RETURN:</strong> <code>0 (true), 1 (false)</code></p>
 
                                 
                                 </section>
@@ -793,7 +826,7 @@ https://git-scm.com">git</a> is installed). If not execution is stopped and an e
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Shared API","level":"2.2","depth":1,"next":{"title":"Host only API","level":"2.3","depth":1,"path":"api/cli-functions-host.md","ref":"api/cli-functions-host.md","articles":[]},"previous":{"title":"Top used API","level":"2.1","depth":1,"path":"api/frequently-used-cli-functions.md","ref":"api/frequently-used-cli-functions.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"api/cli-functions-shared.md","mtime":"2016-10-26T11:45:46.424Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-10-26T11:46:48.447Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Shared API","level":"2.2","depth":1,"next":{"title":"Host only API","level":"2.3","depth":1,"path":"api/cli-functions-host.md","ref":"api/cli-functions-host.md","articles":[]},"previous":{"title":"Top used API","level":"2.1","depth":1,"path":"api/frequently-used-cli-functions.md","ref":"api/frequently-used-cli-functions.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"api/cli-functions-shared.md","mtime":"2016-10-26T16:20:52.639Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-10-26T16:21:55.718Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
