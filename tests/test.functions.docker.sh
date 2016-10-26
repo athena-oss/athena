@@ -41,6 +41,8 @@ function testcase_athena.docker.add_option()
 	athena.test.assert_output "athena.docker.get_options" "--env A=B --env C=D"
 	athena.docker.add_option --env 'E="F with spaces"'
 	athena.test.assert_output "athena.docker.get_options" '--env A=B --env C=D --env E="F with spaces"'
+	athena.docker.set_options
+	athena.test.assert_return "athena.docker.add_option" "one"
 }
 
 function testcase_athena.docker.is_default_router_to_be_used()

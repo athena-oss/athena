@@ -297,6 +297,7 @@ function athena.docker.add_option()
 		ATHENA_DOCKER_OPTS[$index]=${!i}
 		let index++
 	done
+	return 0
 }
 
 # This function adds an environment variable to the docker run option string
