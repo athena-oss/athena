@@ -292,12 +292,7 @@ function athena.docker.cleanup() {
 # RETURN: --
 function athena.docker.add_option()
 {
-	local -i index=${#ATHENA_DOCKER_OPTS[*]}
-	for ((i=1; i<=$#; i++)); do
-		ATHENA_DOCKER_OPTS[$index]=${!i}
-		let index++
-	done
-	return 0
+	athena.utils.add_to_array "ATHENA_DOCKER_OPTS" "$@"
 }
 
 # This function adds an environment variable to the docker run option string
@@ -457,7 +452,7 @@ function athena.docker.mount()
 function athena.docker.has_option()
 {
 	athena.argument.argument_is_not_empty_or_fail "$@"
-	athena.os.in_array ${2:-0} "$@" "${ATHENA_DOCKER_OPTS[@]}"
+	athena.utils.in_array "ATHENA_DOCKER_OPTS" "$@" ${2:-0}
 }
 
 # This function checks if docker option -d is already set.
@@ -502,15 +497,7 @@ function athena.docker.mount_dir_from_plugin()
 # RETURN: string
 function athena.docker.get_options()
 {
-	if [ -z "$1" ]; then
-		if [ ! -z $BASH_SUBSHELL ] && [ $BASH_SUBSHELL -gt 0 ]; then
-			echo "${ATHENA_DOCKER_OPTS[@]}"
-			return 0
-		fi
-		return 1
-	fi
-
-	eval "$1=( \"\${ATHENA_DOCKER_OPTS[@]}\" )"
+	athena.utils.get_array "ATHENA_DOCKER_OPTS" "$1"
 }
 
 # This function sets the options to be passed to docker.
@@ -518,12 +505,7 @@ function athena.docker.get_options()
 # RETURN: --
 function athena.docker.set_options()
 {
-	local -i arg
-	ATHENA_DOCKER_OPTS=()
-	for ((i=0; i<$#; i++)); do
-		let arg=i+1
-		ATHENA_DOCKER_OPTS[$i]=${!arg}
-	done
+	athena.utils.set_array "ATHENA_DOCKER_OPTS" "$@"
 }
 
 # This function runs a container.

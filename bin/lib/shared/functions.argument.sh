@@ -16,10 +16,7 @@ function athena.argument.is_integer()
 # RETURN: --
 function athena.argument.pop_arguments()
 {
-	local -i count=${1:-1}
-	while ((--count >= 0)); do
-		athena.argument.remove_argument 1
-	done
+	athena.utils.array_pop "ATHENA_ARGS" "$1"
 }
 
 # This function will copy the $ATHENA_ARGS array into a variable provided as argument, unless it is being used in a shubshell, then a string containing all the arguments will be output.
@@ -27,15 +24,7 @@ function athena.argument.pop_arguments()
 # RETURN: 0 (success) | 1 (failure)
 function athena.argument.get_arguments()
 {
-	if [ -z "$1" ]; then
-		if [ ! -z $BASH_SUBSHELL ] && [ $BASH_SUBSHELL -gt 0 ]; then
-			echo "${ATHENA_ARGS[@]}"
-			return 0
-		fi
-		return 1
-	fi
-
-	eval "$1=( \"\${ATHENA_ARGS[@]}\" )"
+	athena.utils.get_array "ATHENA_ARGS" "$1"
 }
 
 # This function removes an argument from the argument list $ATHENA_ARGS if it is in the list.
@@ -79,13 +68,7 @@ function athena.argument.remove_argument()
 # RETURN: --
 function athena.argument.set_arguments()
 {
-	local -i arg
-
-	ATHENA_ARGS=()
-	for ((i=0; i<$#; i++)); do
-		let arg=i+1
-		ATHENA_ARGS[$i]=${!arg}
-	done
+	athena.utils.set_array "ATHENA_ARGS" "$@"
 }
 
 # This function appends the given argumnets to the argument list ($ATHENA_ARGS).
@@ -93,13 +76,7 @@ function athena.argument.set_arguments()
 # RETURN: --
 function athena.argument.append_to_arguments()
 {
-	local -i index=${#ATHENA_ARGS[*]}
-
-	for ((i=1; i<=$#; i++)); do
-		ATHENA_ARGS[$index]=${!i}
-
-		let index++
-	done
+	athena.utils.add_to_array "ATHENA_ARGS" "$@"
 }
 
 # This function prepends the given argumnets to the argument list ($ATHENA_ARGS).
@@ -107,11 +84,7 @@ function athena.argument.append_to_arguments()
 # RETURN: --
 function athena.argument.prepend_to_arguments()
 {
-	local -a arguments
-
-	athena.argument.get_arguments arguments
-	athena.argument.set_arguments "$@"
-	athena.argument.append_to_arguments "${arguments[@]}"
+	athena.utils.prepend_to_array "ATHENA_ARGS" "$@"
 }
 
 # This function returns the requested argument name or value if found in the argument

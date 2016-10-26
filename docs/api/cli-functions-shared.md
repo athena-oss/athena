@@ -60,6 +60,7 @@
     * [`athena.os.get_instance`](#athenaosgetinstance)
     * [`athena.os.get_prefix`](#athenaosgetprefix)
     * [`athena.os.handle_exit`](#athenaoshandleexit)
+    * [`athena.os.in_array`](#athenaosinarray)
     * [`athena.os.include_once`](#athenaosincludeonce)
     * [`athena.os.is_command_set`](#athenaosiscommandset)
     * [`athena.os.is_debug_active`](#athenaosisdebugactive)
@@ -76,7 +77,13 @@
     * [`athena.os.set_instance`](#athenaossetinstance)
     * [`athena.os.split_string`](#athenaossplitstring)
     * [`athena.os.usage`](#athenaosusage)
-    * [`athena.os.in_array`](#athenaosinarray)
+  * [Handling *utils*](#handling-utils)
+    * [`athena.utils.add_to_array`](#athenautilsaddtoarray)
+    * [`athena.utils.array_pop`](#athenautilsarraypop)
+    * [`athena.utils.get_array`](#athenautilsgetarray)
+    * [`athena.utils.in_array`](#athenautilsinarray)
+    * [`athena.utils.prepend_to_array`](#athenautilsprependtoarray)
+    * [`athena.utils.set_array`](#athenautilssetarray)
 
 # Using CLI Functions
  
@@ -540,6 +547,14 @@ This function handles the signals sent to and by athena.
  
 **RETURN:** `--`
  
+### <a name="athenaosinarray"></a>`athena.os.in_array`
+ 
+Search if <needle> exists inside the <array>. If <strict> is set to 0 and <needle> is matched partially, the function will be successfull.
+ 
+**USAGE:**  `athena.os.in_array <strict> <needle> <array>`
+ 
+**RETURN:** `0 (true) 1 (false)`
+ 
 ### <a name="athenaosincludeonce"></a>`athena.os.include_once`
  
 This function checks if a given Bash source file exists and includes it if it wasn't loaded before. If it was loaded nothing is done (avoid multiple sourcing).
@@ -668,13 +683,52 @@ This function prints the usage and exits with 1 and handles the name of the comm
  
 **RETURN:** `--`
  
-### <a name="athenaosinarray"></a>`athena.os.in_array`
+## Handling *utils*
  
-Search if `<needle>` exists inside the `<array>`.
-
-If `<strict>` is set to 0 and `<needle>` is matched partially, the function will be successfull.
-
-**USAGE:**  `athena.os.in_array <strict> <needle> <array>`
+### <a name="athenautilsaddtoarray"></a>`athena.utils.add_to_array`
  
-**RETURN:** `0 (true) 1 (false)`
-
+This functions adds elements to the given array.
+ 
+**USAGE:**  `athena.utils.add_to_array <array_name> <element...>`
+ 
+**RETURN:** `0 (true), 1 (false)`
+ 
+### <a name="athenautilsarraypop"></a>`athena.utils.array_pop`
+ 
+This function pops elements from the given array, if argument 2 is an integer then it will pop as many times as specified.
+ 
+**USAGE:**  `athena.utils.array_pop <array_name> [number_of_times]`
+ 
+**RETURN:** `0 (true), 1 (false)`
+ 
+### <a name="athenautilsgetarray"></a>`athena.utils.get_array`
+ 
+This function returns the elements of the given array in case of subshell assignment or stores them in a new variable if specified in argument 2.
+ 
+**USAGE:**  `athena.utils.get_array <array_name> [other_array_name]`
+ 
+**RETURN:** `0 (true), 1 (false)`
+ 
+### <a name="athenautilsinarray"></a>`athena.utils.in_array`
+ 
+This function checks if the element exists in the given array.
+ 
+**USAGE:**  `athena.utils.in_array <array_name> <element> [strict]`
+ 
+**RETURN:** `0 (true), 1 (false)`
+ 
+### <a name="athenautilsprependtoarray"></a>`athena.utils.prepend_to_array`
+ 
+This function prepends the given elements to the specified array.
+ 
+**USAGE:**  `athena.utils.prepend_to_array <array_name> <element...>`
+ 
+**RETURN:** `0 (true), 1 (false)`
+ 
+### <a name="athenautilssetarray"></a>`athena.utils.set_array`
+ 
+This function assigns the given elements to the specified array.
+ 
+**USAGE:**  `athena.utils.set_array <array_name> <element...>`
+ 
+**RETURN:** `0 (true), 1 (false)`
