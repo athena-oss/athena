@@ -226,9 +226,9 @@ This is a wrapper function for executing docker exec, which helps with mocking a
  
 ### <a name="athenadockergetbuildargs"></a>`athena.docker.get_build_args`
  
-This function generates and prints a build arguments string from the build args file returned by athena.docker.get_build_args_file or does nothing if no file was found.
+This function generates and stores, in the given array, the build arguments from the build args file returned by athena.docker.get_build_args_file or does nothing if no file was found.
  
-**USAGE:**  `athena.docker.get_build_args`
+**USAGE:**  `athena.docker.get_build_args <array_name>`
  
 **RETURN:** `string | 1 (false)`
  
@@ -278,7 +278,7 @@ This function checks if either the daemon or the autoremove flag is set in the d
  
 This function checks if the given option is already set.
  
-**USAGE:**  `athena.docker.has_option <option>`
+**USAGE:**  `athena.docker.has_option <option> [strict]`
  
 **RETURN:** `0 (true) 1 (false)`
  

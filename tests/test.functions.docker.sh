@@ -260,14 +260,24 @@ function testcase_athena.docker.get_build_args()
 	echo "varA=valA" > "$tmpfile"
 	echo "varB=valB" >> "$tmpfile"
 	athena.test.mock.outputs "athena.plugin.get_environment_build_file" "$tmpfile"
-	athena.test.assert_output "athena.docker.get_build_args" "--build-arg varA=valA --build-arg varB=valB"
-
+	local -a myargs=()
+	local -a expected=("--build-arg varA=valA" "--build-arg varB=valB")
+	athena.docker.get_build_args "myargs"
+	athena.test.assert_array "expected" "myargs"
 	echo > "$tmpfile"
-	athena.test.assert_output "athena.docker.get_build_args" ""
+
+	local -a myargs=()
+	local -a expected=()
+	athena.docker.get_build_args "myargs"
+	athena.test.assert_array "expected" "myargs"
 
 	echo "varA=valA" > "$tmpfile"
 	echo 'varB="valB with whitespaces"' >> "$tmpfile"
-	athena.test.assert_output "athena.docker.get_build_args" '--build-arg varA=valA --build-arg varB="valB with whitespaces"'
+
+	local -a myargs=()
+	local -a expected=('--build-arg varA=valA' '--build-arg varB="valB with whitespaces"')
+	athena.docker.get_build_args "myargs"
+	athena.test.assert_array "expected" "myargs"
 
 	rm "$tmpfile"
 }
@@ -391,8 +401,12 @@ function testcase_athena.docker.build_container()
 	athena.test.assert_exit_code.expects_fail "athena.docker.build_container" "-t mytag:1.2.3 -f /path/to/docker/Dockerfile /path/to/docker" "mytag" "1.2.3" "/path/to/docker"
 
 	athena.test.mock.returns "athena.docker._validate_if_build_args_exist" 0
-	athena.test.mock.outputs "athena.docker.get_build_args" "--build-arg myarg1=val1 --build-arg myarg2=val2"
+	local tmpfile=$(athena.test.create_tempfile)
+	athena.test.mock.outputs "athena.docker.get_build_args_file" "$tmpfile"
+	echo "myarg1=val1" > $tmpfile
+	echo "myarg2=val2" >> $tmpfile
 	athena.test.assert_output "athena.docker.build_container" "--build-arg myarg1=val1 --build-arg myarg2=val2 -t mytag:1.2.3 -f /path/to/docker/Dockerfile /path/to/docker" "mytag" "1.2.3" "/path/to/docker"
+	rm $tmpfile
 }
 
 function testcase_athena.docker.wait_for_string_in_container_logs()

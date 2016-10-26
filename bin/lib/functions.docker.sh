@@ -215,9 +215,9 @@ function athena.docker.build_container()
 	local version=$2
 	local docker_dir=$3
 	if ! athena.docker.image_exists "$tag_name" "$version"; then
-		local build_args
-		build_args=$(athena.docker.get_build_args)
-		if [ -n "$build_args" ]; then
+		local -a build_args=()
+		athena.docker.get_build_args "build_args"
+		if [ ${#build_args[@]} -gt 0 ]; then
 			local build_args_file
 			build_args_file=$(athena.plugin.get_environment_build_file)
 			athena.color.print_debug "loading build environment variables from file '$build_args_file'"
@@ -226,7 +226,7 @@ function athena.docker.build_container()
 		athena.docker._validate_if_build_args_exist "$docker_dir/Dockerfile" "$(athena.docker.get_build_args_file)"
 
 		athena.color.print_info "Building ATHENA container '$tag_name:$version'..."
-		athena.docker.build $build_args -t "$tag_name:$version" -f "$docker_dir/Dockerfile" "$docker_dir"
+		athena.docker.build "${build_args[@]}" -t "$tag_name:$version" -f "$docker_dir/Dockerfile" "$docker_dir"
 		local rc=$?
 
 		# ensure that the process stops here if build error occurred
@@ -236,9 +236,9 @@ function athena.docker.build_container()
 	fi
 }
 
-# This function generates and prints a build arguments string from the build args file
+# This function generates and stores, in the given array,  the build arguments from the build args file
 # returned by athena.docker.get_build_args_file or does nothing if no file was found.
-# USAGE:  athena.docker.get_build_args
+# USAGE:  athena.docker.get_build_args <array_name>
 # RETURN: string | 1 (false)
 function athena.docker.get_build_args()
 {
@@ -247,13 +247,10 @@ function athena.docker.get_build_args()
 	if [ $? -ne 0 ]; then
 		return 1
 	fi
-
 	while read build_arg
 	do
-		build_args="$build_args --build-arg $build_arg"
+		athena.utils.add_to_array "$1" "--build-arg ${build_arg[@]}"
 	done < "$file"
-
-	echo $build_args
 	return 0
 }
 
