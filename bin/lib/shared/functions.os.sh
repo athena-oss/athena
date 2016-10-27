@@ -278,10 +278,9 @@ function athena.os.exit()
 # RETURN: --
 function athena.os.exit_with_msg()
 {
-	athena.color.print_error "$1 $(athena.os.get_caller)" 1>&2
-	if athena.os.is_debug_active ; then
-		athena.os.print_stacktrace
-	fi
+	local exit_code=${2:-1}
+	athena.color.print_error "$1" 1>&2
+	athena.os.print_stacktrace
 	athena.os.exit $exit_code
 	return $exit_code
 }
@@ -739,31 +738,11 @@ function athena.os.print_stacktrace()
 {
 	local source
 	local level=${#FUNCNAME[@]}
-	local idx=1
-	if [ $level -gt 0 ]; then
+	if [ $level -gt 1 ]; then
 		printf "\nStacktrace:\n" >&2
-		while [ $level -gt 1  ];
-		do
+		for ((idx=2; idx<$level; idx++)) do
 			source="${BASH_SOURCE[$idx]//$ATHENA_BASE_DIR/}:${BASH_LINENO[(($idx - 1))]}"
 			printf "\t%s\n" "$source" >&2
-			((level--))
-			((idx++))
 		done
 	fi
-}
-
-# This function returns the name of the caller (script|function).
-# USAGE: athena.os.get_caller
-# RETURN: string
-function athena.os.get_caller()
-{
-	local source
-	local level=$(( ${#FUNCNAME[@]} - 3 ))
-	if [ $level -gt 1 ]; then
-		source="[${BASH_SOURCE[$level]//$ATHENA_BASE_DIR/}:${BASH_LINENO[(($level - 1))]}]"
-	else
-		source="[${BASH_SOURCE[1]//$ATHENA_BASE_DIR/}:${BASH_LINENO}]"
-	fi
-	echo $source
-	return 0
 }
