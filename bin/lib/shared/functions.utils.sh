@@ -13,6 +13,64 @@ function athena.utils.add_to_array()
 	return 0
 }
 
+# This function removes the specified element from the array.
+# USAGE: athena.utils.remove_from_array <array_name> <needle> [strict]
+# RETURN: 0 (succeeded), 1 (failed)
+function athena.utils.remove_from_array()
+{
+	if [ -z "$2" ]; then
+		return 1
+	fi
+
+	local array_name=$1
+	eval "local -i elems=\"\${#${array_name}[@]}\""
+
+	if [ $elems -eq 0 ]; then
+		return 1
+	fi
+
+	local -i remove_index
+
+	# by index
+	if athena.utils.is_integer "$2" ; then
+		if [ ! $2 -ge 0 ]; then
+			return 1
+		fi
+		remove_index=$2
+	else
+		# by name
+		remove_index=$(athena.utils.find_index_in_array "$array_name" "$2" "$3")
+		if [ $? -ne 0 ]; then
+			return 1
+		fi
+	fi
+
+	# remove
+	eval "local -a tmp_array=( \"\${${array_name}[@]}\" )"
+	tmp_array=( "${tmp_array[@]:0:$remove_index}" "${tmp_array[@]:$(expr $remove_index + 1)}" )
+	athena.utils.set_array "$1" "${tmp_array[@]}"
+}
+
+# This function returns the index of the element specified.
+# USAGE: athena.utils.find_index_in_array <array_name> <needle> [strict]
+# RETURN: 0 (true), 1 (false)
+function athena.utils.find_index_in_array()
+{
+	if ! athena.utils.in_array "$1" "$2" "${3:-1}"; then
+		return 1
+	fi
+
+	eval "local -a tmp=( \"\${${1}[@]}\" )"
+	for ((i=0; i<${#tmp[@]}; i++)); do
+		if [[ "${tmp[$i]}" =~ ^$2.* ]]; then
+			echo "$i"
+			return 0
+		fi
+	done
+
+	return 1
+}
+
 # This function prepends the given elements to the specified array.
 # USAGE: athena.utils.prepend_to_array <array_name> <element...>
 # RETURN: 0 (true), 1 (false)
@@ -72,4 +130,17 @@ function athena.utils.in_array()
 {
 	eval "local -a tmp=( \"\${${1}[@]}\" )"
 	athena.os.in_array ${3:-1} $2 "${tmp[@]}"
+}
+
+# This function checks if a value is an integer.
+# USAGE:  athena.utils.is_integer <value>
+# RETURN: 0 (true), 1 (false)
+function athena.utils.is_integer()
+{
+	local re='^[0-9]+$'
+	if ! [[ $1 =~ $re ]] ; then
+		return 1
+	else
+		return 0
+	fi
 }

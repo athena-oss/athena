@@ -69,6 +69,7 @@
     * [`athena.os.is_mac`](#athenaosismac)
     * [`athena.os.is_sudo`](#athenaosissudo)
     * [`athena.os.override_exit_handler`](#athenaosoverrideexithandler)
+    * [`athena.os.print_stacktrace`](#athenaosprintstacktrace)
     * [`athena.os.register_exit_handler`](#athenaosregisterexithandler)
     * [`athena.os.return`](#athenaosreturn)
     * [`athena.os.set_command`](#athenaossetcommand)
@@ -80,9 +81,12 @@
   * [Handling *utils*](#handling-utils)
     * [`athena.utils.add_to_array`](#athenautilsaddtoarray)
     * [`athena.utils.array_pop`](#athenautilsarraypop)
+    * [`athena.utils.find_index_in_array`](#athenautilsfindindexinarray)
     * [`athena.utils.get_array`](#athenautilsgetarray)
     * [`athena.utils.in_array`](#athenautilsinarray)
+    * [`athena.utils.is_integer`](#athenautilsisinteger)
     * [`athena.utils.prepend_to_array`](#athenautilsprependtoarray)
+    * [`athena.utils.remove_from_array`](#athenautilsremovefromarray)
     * [`athena.utils.set_array`](#athenautilssetarray)
 
 # Using CLI Functions
@@ -619,6 +623,14 @@ This functions overrides the exit handler with the default signals to catch.
  
 **RETURN:** `--`
  
+### <a name="athenaosprintstacktrace"></a>`athena.os.print_stacktrace`
+ 
+This function prints the stacktrace.
+ 
+**USAGE:**  `athena.os.print_stacktrace`
+ 
+**RETURN:** `--`
+ 
 ### <a name="athenaosregisterexithandler"></a>`athena.os.register_exit_handler`
  
 This function register the exit handler that takes the decision of what to do when interpreting the exit codes and signals.
@@ -701,6 +713,14 @@ This function pops elements from the given array, if argument 2 is an integer th
  
 **RETURN:** `0 (true), 1 (false)`
  
+### <a name="athenautilsfindindexinarray"></a>`athena.utils.find_index_in_array`
+ 
+This function returns the index of the element specified.
+ 
+**USAGE:**  `athena.utils.find_index_in_array <array_name> <needle> [strict]`
+ 
+**RETURN:** `0 (true), 1 (false)`
+ 
 ### <a name="athenautilsgetarray"></a>`athena.utils.get_array`
  
 This function returns the elements of the given array in case of subshell assignment or stores them in a new variable if specified in argument 2.
@@ -717,6 +737,14 @@ This function checks if the element exists in the given array.
  
 **RETURN:** `0 (true), 1 (false)`
  
+### <a name="athenautilsisinteger"></a>`athena.utils.is_integer`
+ 
+This function checks if a value is an integer.
+ 
+**USAGE:**  `athena.utils.is_integer <value>`
+ 
+**RETURN:** `0 (true), 1 (false)`
+ 
 ### <a name="athenautilsprependtoarray"></a>`athena.utils.prepend_to_array`
  
 This function prepends the given elements to the specified array.
@@ -724,6 +752,14 @@ This function prepends the given elements to the specified array.
 **USAGE:**  `athena.utils.prepend_to_array <array_name> <element...>`
  
 **RETURN:** `0 (true), 1 (false)`
+ 
+### <a name="athenautilsremovefromarray"></a>`athena.utils.remove_from_array`
+ 
+This function removes the specified element from the array.
+ 
+**USAGE:**  `athena.utils.remove_from_array <array_name> <needle> [strict]`
+ 
+**RETURN:** `0 (succeeded), 1 (failed)`
  
 ### <a name="athenautilssetarray"></a>`athena.utils.set_array`
  
