@@ -261,7 +261,7 @@ function testcase_athena.docker.get_build_args()
 	echo "varB=valB" >> "$tmpfile"
 	athena.test.mock.outputs "athena.plugin.get_environment_build_file" "$tmpfile"
 	local -a myargs=()
-	local -a expected=("--build-arg varA=valA" "--build-arg varB=valB")
+	local -a expected=(--build-arg varA=valA --build-arg varB=valB)
 	athena.docker.get_build_args "myargs"
 	athena.test.assert_array "expected" "myargs"
 	echo > "$tmpfile"
@@ -275,7 +275,7 @@ function testcase_athena.docker.get_build_args()
 	echo 'varB="valB with whitespaces"' >> "$tmpfile"
 
 	local -a myargs=()
-	local -a expected=('--build-arg varA=valA' '--build-arg varB="valB with whitespaces"')
+	local -a expected=(--build-arg varA=valA --build-arg 'varB="valB with whitespaces"')
 	athena.docker.get_build_args "myargs"
 	athena.test.assert_array "expected" "myargs"
 

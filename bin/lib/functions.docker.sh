@@ -249,7 +249,7 @@ function athena.docker.get_build_args()
 	fi
 	while read build_arg
 	do
-		athena.utils.add_to_array "$1" "--build-arg ${build_arg[@]}"
+		athena.utils.add_to_array "$1" --build-arg "${build_arg[@]}"
 	done < "$file"
 	return 0
 }
