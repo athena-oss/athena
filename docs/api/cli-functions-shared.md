@@ -41,7 +41,6 @@
     * [`athena.fs.get_cache_dir`](#athenafsgetcachedir)
     * [`athena.fs.get_file_contents`](#athenafsgetfilecontents)
     * [`athena.fs.get_full_path`](#athenafsgetfullpath)
-    * [`athena.fs.get_path_from_string_or_argument`](#athenafsgetpathfromstringorargument)
   * [Handling *os*](#handling-os)
     * [`athena.os.call_with_args`](#athenaoscallwithargs)
     * [`athena.os.enable_error_mode`](#athenaosenableerrormode)
@@ -406,14 +405,6 @@ This function checks if the given filename is valid. If not execution is stopped
 This function checks if the given argument is a valid directory or file and returns the absolute directory path of the given file or directory (a relative path is converted in an absolute directory path). If the path is not valid execution is stopped and an error message is thrown.
  
 **USAGE:**  `athena.fs.get_full_path <file or directory name>`
- 
-**RETURN:** `string`
- 
-### <a name="athenafsgetpathfromstringorargument"></a>`athena.fs.get_path_from_string_or_argument`
- 
-This function returns a full path to a file or directory from the arguments in case it is an integer passed (positional argument) or from a given string. When a string is provided, it checks on the arguments for that string and then tries to get from the function athena.fs.absolutepath.
- 
-**USAGE:**  `athena.fs.get_path_from_string_or_argument <arg position|arg name|relative path>`
  
 **RETURN:** `string`
  
