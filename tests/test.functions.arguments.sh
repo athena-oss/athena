@@ -175,10 +175,13 @@ function testcase_athena.argument.get_path_from_argument()
 	tmpfile=$(mktemp $HOME/xpto.$(date +%s).XXX)
 	athena.argument.set_arguments "--path=$tmpfile"
 	athena.test.assert_value "$tmpfile" "$(athena.argument.get_path_from_argument --path)"
-	rm $tmpfile
 
 	athena.argument.set_arguments "--path=/does/not/exist"
 	athena.test.assert_exit_code.expects_fail "athena.argument.get_path_from_argument" "--path"
+
+	athena.argument.set_arguments "--arg=myarg" "$tmpfile"
+	athena.test.assert_output "athena.argument.get_path_from_argument" "$tmpfile" "2"
+	rm $tmpfile
 }
 
 function testcase_athena.argument.get_path_from_argument_and_remove()

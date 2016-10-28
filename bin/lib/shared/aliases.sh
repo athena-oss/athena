@@ -13,7 +13,7 @@ alias athena.int=athena.argument.get_integer_argument
 
 # handling fs
 alias athena.dir_exists_or_fail=athena.fs.dir_exists_or_fail
-alias athena.path=athena.fs.get_path_from_string_or_argument
+alias athena.path=athena.argument.get_path_from_argument
 
 # handling os
 alias athena.usage=athena.os.usage

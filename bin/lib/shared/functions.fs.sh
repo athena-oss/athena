@@ -14,26 +14,6 @@ function athena.fs.dir_contains_files()
 	return 1
 }
 
-# This function returns a full path to a file or directory from the arguments
-# in case it is an integer passed (positional argument) or from a given string.
-# When a string is provided, it checks on the arguments for that string and then
-# tries to get from the function athena.fs.absolutepath.
-# USAGE: athena.fs.get_path_from_string_or_argument <arg position|arg name|relative path>
-# RETURN: string
-function athena.fs.get_path_from_string_or_argument()
-{
-	athena.argument.argument_is_not_empty_or_fail "$1"
-
-	local arg=$1
-
-	athena.argument.get_path_from_argument "$arg"
-	if [ $? -ne 0 ]; then
-		athena.os.exit_with_msg "argument '$arg' does not exist"
-		return 1
-	fi
-	return 0
-}
-
 # This function checks if the given argument is a valid directory or file and returns
 # the absolute directory path of the given file or directory (a relative path is
 # converted in an absolute directory path). If the path is not valid execution is

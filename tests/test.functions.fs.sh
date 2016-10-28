@@ -79,22 +79,6 @@ function testcase_athena.fs.file_contains_string()
 	rm $tmpfile
 }
 
-function testcase_athena.fs.get_path_from_string_or_argument()
-{
-	tmpdir=$(athena.test.create_tempdir)
-
-	touch $tmpdir/file1.txt
-	touch $tmpdir/file2.txt
-
-	athena.argument.set_arguments "$tmpdir/file1.txt" "--path=$tmpdir/file2.txt"
-
-	athena.test.assert_output "athena.fs.get_path_from_string_or_argument" "$tmpdir/file1.txt" "1"
-	athena.test.assert_output "athena.fs.get_path_from_string_or_argument" "$tmpdir/file2.txt" "--path"
-	athena.test.assert_exit_code.expects_fail "athena.fs.get_path_from_string_or_argument" "3"
-
-	rm -r $tmpdir
-}
-
 function testcase_athena.fs.dir_contains_files()
 {
 	athena.test.assert_exit_code.expects_fail "athena.fs.dir_contains_files" "/path/to/non/existent/dir"
