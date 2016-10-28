@@ -59,7 +59,6 @@
     * [`athena.os.get_instance`](#athenaosgetinstance)
     * [`athena.os.get_prefix`](#athenaosgetprefix)
     * [`athena.os.handle_exit`](#athenaoshandleexit)
-    * [`athena.os.in_array`](#athenaosinarray)
     * [`athena.os.include_once`](#athenaosincludeonce)
     * [`athena.os.is_command_set`](#athenaosiscommandset)
     * [`athena.os.is_debug_active`](#athenaosisdebugactive)
@@ -541,14 +540,6 @@ This function handles the signals sent to and by athena.
 **USAGE:**  `athena.os.handle_exit <signal>`
  
 **RETURN:** `--`
- 
-### <a name="athenaosinarray"></a>`athena.os.in_array`
- 
-Search if <needle> exists inside the <array>. If <strict> is set to 0 and <needle> is matched partially, the function will be successfull.
- 
-**USAGE:**  `athena.os.in_array <strict> <needle> <array>`
- 
-**RETURN:** `0 (true) 1 (false)`
  
 ### <a name="athenaosincludeonce"></a>`athena.os.include_once`
  
