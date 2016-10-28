@@ -403,7 +403,6 @@
 <li><a href="#athenafsgetcachedir"><code>athena.fs.get_cache_dir</code></a></li>
 <li><a href="#athenafsgetfilecontents"><code>athena.fs.get_file_contents</code></a></li>
 <li><a href="#athenafsgetfullpath"><code>athena.fs.get_full_path</code></a></li>
-<li><a href="#athenafsgetpathfromstringorargument"><code>athena.fs.get_path_from_string_or_argument</code></a></li>
 </ul>
 </li>
 <li><a href="#handling-os">Handling <em>os</em></a><ul>
@@ -433,6 +432,7 @@
 <li><a href="#athenaosismac"><code>athena.os.is_mac</code></a></li>
 <li><a href="#athenaosissudo"><code>athena.os.is_sudo</code></a></li>
 <li><a href="#athenaosoverrideexithandler"><code>athena.os.override_exit_handler</code></a></li>
+<li><a href="#athenaosprintstacktrace"><code>athena.os.print_stacktrace</code></a></li>
 <li><a href="#athenaosregisterexithandler"><code>athena.os.register_exit_handler</code></a></li>
 <li><a href="#athenaosreturn"><code>athena.os.return</code></a></li>
 <li><a href="#athenaossetcommand"><code>athena.os.set_command</code></a></li>
@@ -446,9 +446,12 @@
 <li><a href="#handling-utils">Handling <em>utils</em></a><ul>
 <li><a href="#athenautilsaddtoarray"><code>athena.utils.add_to_array</code></a></li>
 <li><a href="#athenautilsarraypop"><code>athena.utils.array_pop</code></a></li>
+<li><a href="#athenautilsfindindexinarray"><code>athena.utils.find_index_in_array</code></a></li>
 <li><a href="#athenautilsgetarray"><code>athena.utils.get_array</code></a></li>
 <li><a href="#athenautilsinarray"><code>athena.utils.in_array</code></a></li>
+<li><a href="#athenautilsisinteger"><code>athena.utils.is_integer</code></a></li>
 <li><a href="#athenautilsprependtoarray"><code>athena.utils.prepend_to_array</code></a></li>
+<li><a href="#athenautilsremovefromarray"><code>athena.utils.remove_from_array</code></a></li>
 <li><a href="#athenautilssetarray"><code>athena.utils.set_array</code></a></li>
 </ul>
 </li>
@@ -616,10 +619,6 @@ https://www.gnu.org/software/bash/">BASH</a>(1)) enabled.</p>
 <p>This function checks if the given argument is a valid directory or file and returns the absolute directory path of the given file or directory (a relative path is converted in an absolute directory path). If the path is not valid execution is stopped and an error message is thrown.</p>
 <p><strong>USAGE:</strong>  <code>athena.fs.get_full_path &lt;file or directory name&gt;</code></p>
 <p><strong>RETURN:</strong> <code>string</code></p>
-<h3 id="athenafsgetpathfromstringorargument"><a name="athenafsgetpathfromstringorargument"></a><code>athena.fs.get_path_from_string_or_argument</code></h3>
-<p>This function returns a full path to a file or directory from the arguments in case it is an integer passed (positional argument) or from a given string. When a string is provided, it checks on the arguments for that string and then tries to get from the function athena.fs.absolutepath.</p>
-<p><strong>USAGE:</strong>  <code>athena.fs.get_path_from_string_or_argument &lt;arg position|arg name|relative path&gt;</code></p>
-<p><strong>RETURN:</strong> <code>string</code></p>
 <h2 id="handling-os">Handling <em>os</em></h2>
 <h3 id="athenaoscallwithargs"><a name="athenaoscallwithargs"></a><code>athena.os.call_with_args</code></h3>
 <p>This function will call the command/function passed as argument with all the arguments existing in $ATHENA_ARGS.</p>
@@ -726,6 +725,10 @@ https://git-scm.com">git</a> is installed). If not execution is stopped and an e
 <p>This functions overrides the exit handler with the default signals to catch.</p>
 <p><strong>USAGE:</strong>  <code>athena.os.override_exit_handler &lt;function_name&gt;</code></p>
 <p><strong>RETURN:</strong> <code>--</code></p>
+<h3 id="athenaosprintstacktrace"><a name="athenaosprintstacktrace"></a><code>athena.os.print_stacktrace</code></h3>
+<p>This function prints the stacktrace.</p>
+<p><strong>USAGE:</strong>  <code>athena.os.print_stacktrace</code></p>
+<p><strong>RETURN:</strong> <code>--</code></p>
 <h3 id="athenaosregisterexithandler"><a name="athenaosregisterexithandler"></a><code>athena.os.register_exit_handler</code></h3>
 <p>This function register the exit handler that takes the decision of what to do when interpreting the exit codes and signals.</p>
 <p><strong>USAGE:</strong>  <code>athena.os.register_exit_handler &lt;function_name&gt; &lt;list_of_signals_to_trap&gt;</code></p>
@@ -767,6 +770,10 @@ https://git-scm.com">git</a> is installed). If not execution is stopped and an e
 <p>This function pops elements from the given array, if argument 2 is an integer then it will pop as many times as specified.</p>
 <p><strong>USAGE:</strong>  <code>athena.utils.array_pop &lt;array_name&gt; [number_of_times]</code></p>
 <p><strong>RETURN:</strong> <code>0 (true), 1 (false)</code></p>
+<h3 id="athenautilsfindindexinarray"><a name="athenautilsfindindexinarray"></a><code>athena.utils.find_index_in_array</code></h3>
+<p>This function returns the index of the element specified.</p>
+<p><strong>USAGE:</strong>  <code>athena.utils.find_index_in_array &lt;array_name&gt; &lt;needle&gt; [strict]</code></p>
+<p><strong>RETURN:</strong> <code>0 (true), 1 (false)</code></p>
 <h3 id="athenautilsgetarray"><a name="athenautilsgetarray"></a><code>athena.utils.get_array</code></h3>
 <p>This function returns the elements of the given array in case of subshell assignment or stores them in a new variable if specified in argument 2.</p>
 <p><strong>USAGE:</strong>  <code>athena.utils.get_array &lt;array_name&gt; [other_array_name]</code></p>
@@ -775,10 +782,18 @@ https://git-scm.com">git</a> is installed). If not execution is stopped and an e
 <p>This function checks if the element exists in the given array.</p>
 <p><strong>USAGE:</strong>  <code>athena.utils.in_array &lt;array_name&gt; &lt;element&gt; [strict]</code></p>
 <p><strong>RETURN:</strong> <code>0 (true), 1 (false)</code></p>
+<h3 id="athenautilsisinteger"><a name="athenautilsisinteger"></a><code>athena.utils.is_integer</code></h3>
+<p>This function checks if a value is an integer.</p>
+<p><strong>USAGE:</strong>  <code>athena.utils.is_integer &lt;value&gt;</code></p>
+<p><strong>RETURN:</strong> <code>0 (true), 1 (false)</code></p>
 <h3 id="athenautilsprependtoarray"><a name="athenautilsprependtoarray"></a><code>athena.utils.prepend_to_array</code></h3>
 <p>This function prepends the given elements to the specified array.</p>
 <p><strong>USAGE:</strong>  <code>athena.utils.prepend_to_array &lt;array_name&gt; &lt;element...&gt;</code></p>
 <p><strong>RETURN:</strong> <code>0 (true), 1 (false)</code></p>
+<h3 id="athenautilsremovefromarray"><a name="athenautilsremovefromarray"></a><code>athena.utils.remove_from_array</code></h3>
+<p>This function removes the specified element from the array.</p>
+<p><strong>USAGE:</strong>  <code>athena.utils.remove_from_array &lt;array_name&gt; &lt;needle&gt; [strict]</code></p>
+<p><strong>RETURN:</strong> <code>0 (succeeded), 1 (failed)</code></p>
 <h3 id="athenautilssetarray"><a name="athenautilssetarray"></a><code>athena.utils.set_array</code></h3>
 <p>This function assigns the given elements to the specified array.</p>
 <p><strong>USAGE:</strong>  <code>athena.utils.set_array &lt;array_name&gt; &lt;element...&gt;</code></p>
@@ -826,7 +841,7 @@ https://git-scm.com">git</a> is installed). If not execution is stopped and an e
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Shared API","level":"2.2","depth":1,"next":{"title":"Host only API","level":"2.3","depth":1,"path":"api/cli-functions-host.md","ref":"api/cli-functions-host.md","articles":[]},"previous":{"title":"Top used API","level":"2.1","depth":1,"path":"api/frequently-used-cli-functions.md","ref":"api/frequently-used-cli-functions.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"api/cli-functions-shared.md","mtime":"2016-10-27T09:48:30.091Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-10-27T09:49:31.556Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Shared API","level":"2.2","depth":1,"next":{"title":"Host only API","level":"2.3","depth":1,"path":"api/cli-functions-host.md","ref":"api/cli-functions-host.md","articles":[]},"previous":{"title":"Top used API","level":"2.1","depth":1,"path":"api/frequently-used-cli-functions.md","ref":"api/frequently-used-cli-functions.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"api/cli-functions-shared.md","mtime":"2016-10-28T14:53:16.831Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-10-28T14:54:18.187Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
