@@ -331,18 +331,27 @@ function athena.test._expects_pass()
 		athena.test._inc_nr_failed_tests
 		athena.test._append_output "\033[31m$TESTCASE/${FUNCNAME[2]}:$LINE criteria should not happen\033[m: $output"
 		return 1
-	else
-		echo -n "."
-		return 0
 	fi
+	echo -n "."
+	return 0
 }
 
 function athena.test._expects_fail()
 {
 	athena.test._inc_nr_tests
 	local output
-	output=$("$@")
-	if [ $? -ne 0 ]; then
+	local -i rc
+
+	# hack for when dealing with exit codes which causes some issues in linux
+	if [[ "$1" =~ _exit_code ]]; then
+		("$@")
+		rc=$?
+		output="exit code [$rc]"
+	else
+		output=$("$@")
+		rc=$?
+	fi
+	if [ $rc -ne 0 ]; then
 		echo -n "."
 		return 0
 	fi
@@ -355,7 +364,7 @@ function athena.test._expects_fail()
 function athena.test._append_output()
 {
 	local str="$TESTSUITE_OUTPUT\n$1"
-	TESTSUITE_OUTPUT="$str" 
+	TESTSUITE_OUTPUT="$str"
 }
 
 function athena.test._assert_return()
