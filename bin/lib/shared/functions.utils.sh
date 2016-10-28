@@ -128,8 +128,16 @@ function athena.utils.array_pop()
 # RETURN: 0 (true), 1 (false)
 function athena.utils.in_array()
 {
-	eval "local -a tmp=( \"\${${1}[@]}\" )"
-	athena.os.in_array ${3:-1} $2 "${tmp[@]}"
+	eval "local -a array=( \"\${${1}[@]}\" )"
+	local strict=${3:-1}
+	for ((i=0; i<${#array[*]}; i++)); do
+		if [[ "$strict" == "1" ]] && [[ "${array[$i]}" == $2 ]]; then
+			return 0
+		elif [[ "$strict" == "0" ]] && [[ "${array[$i]}" =~ ^$2.* ]]; then
+			return 0
+		fi
+	done
+	return 1
 }
 
 # This function checks if a value is an integer.

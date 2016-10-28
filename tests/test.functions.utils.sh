@@ -60,6 +60,7 @@ function testcase_athena.utils.find_index_in_array()
 	athena.test.assert_return.expects_fail "athena.utils.find_index_in_array" "myarray" "tw" 1
 	athena.test.assert_return.expects_fail "athena.utils.find_index_in_array" "myarray" "four"
 	athena.test.assert_output "athena.utils.find_index_in_array" 2 "myarray" "three"
+
 }
 
 function testcase_athena.utils.preprend_to_array()
@@ -124,4 +125,18 @@ function testcase_athena.utils.in_array()
 	athena.test.assert_return "athena.utils.in_array" "myarray" "three"
 	athena.test.assert_return.expects_fail "athena.utils.in_array" "myarray" "thr"
 	athena.test.assert_return "athena.utils.in_array" "myarray" "thr" 0
+
+	local dummy_array=("element1" "element with spaces" "--env='something'" 123)
+	athena.test.assert_return "athena.utils.in_array" "dummy_array" "element1" 1
+	athena.test.assert_return "athena.utils.in_array" "dummy_array" "element with spaces"
+	athena.test.assert_return "athena.utils.in_array" "dummy_array" "--env='something'" 1
+	athena.test.assert_return "athena.utils.in_array" "dummy_array" 123 1
+	athena.test.assert_return "athena.utils.in_array" "dummy_array" 12 0
+	athena.test.assert_return "athena.utils.in_array" "dummy_array" "--env" 0
+	athena.test.assert_return.expects_fail "athena.utils.in_array" "dummy_array" "element1 I dont exist" 1
+	athena.test.assert_return.expects_fail "athena.utils.in_array" "dummy_array" "non-existing" 1
+	athena.test.assert_return.expects_fail "athena.utils.in_array" "dummy_array" "--env" 1
+
+
+
 }
