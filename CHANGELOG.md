@@ -1,3 +1,21 @@
+## 0.7.0 (October 28, 2016)
+
+### Added
+  - Utils functions (e.g.: handling arrays) in athena.utils namespace
+  - Support for specifying docker environment variables from a file
+  - athena.os.print_stacktrace
+
+### Changed
+  - ATHENA_DOCKER_OPTS is now an array and supports values with spaces
+  - athena.docker functions that manipulate the array use athena.utils array functions
+  - Docker build args supports values with spaces
+  - Stacktrace now appears whenever an error occurs
+  - Run container functions now don't require docker options and arguments
+  - athena.docker.run_container_with_default_router now uses athena.docker functions to set default values
+
+### Fixed
+  - Random false negatives (in LINUX) when executing unit tests with exit code assertions
+
 ## 0.6.3 (October 7, 2016)
 
 ### Added
