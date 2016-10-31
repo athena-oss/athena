@@ -445,13 +445,17 @@
 <li><a href="#handling-utils">Handling <em>utils</em></a><ul>
 <li><a href="#athenautilsaddtoarray"><code>athena.utils.add_to_array</code></a></li>
 <li><a href="#athenautilsarraypop"><code>athena.utils.array_pop</code></a></li>
+<li><a href="#athenautilscomparenumber"><code>athena.utils.compare_number</code></a></li>
 <li><a href="#athenautilsfindindexinarray"><code>athena.utils.find_index_in_array</code></a></li>
 <li><a href="#athenautilsgetarray"><code>athena.utils.get_array</code></a></li>
+<li><a href="#athenautilsgetversioncomponents"><code>athena.utils.get_version_components</code></a></li>
 <li><a href="#athenautilsinarray"><code>athena.utils.in_array</code></a></li>
 <li><a href="#athenautilsisinteger"><code>athena.utils.is_integer</code></a></li>
 <li><a href="#athenautilsprependtoarray"><code>athena.utils.prepend_to_array</code></a></li>
 <li><a href="#athenautilsremovefromarray"><code>athena.utils.remove_from_array</code></a></li>
 <li><a href="#athenautilssetarray"><code>athena.utils.set_array</code></a></li>
+<li><a href="#athenautilsvalidateversion"><code>athena.utils.validate_version</code></a></li>
+<li><a href="#athenautilsvalidateversionformat"><code>athena.utils.validate_version_format</code></a></li>
 </ul>
 </li>
 </ul>
@@ -765,6 +769,9 @@ https://git-scm.com">git</a> is installed). If not execution is stopped and an e
 <p>This function pops elements from the given array, if argument 2 is an integer then it will pop as many times as specified.</p>
 <p><strong>USAGE:</strong>  <code>athena.utils.array_pop &lt;array_name&gt; [number_of_times]</code></p>
 <p><strong>RETURN:</strong> <code>0 (true), 1 (false)</code></p>
+<h3 id="athenautilscomparenumber"><a name="athenautilscomparenumber"></a><code>athena.utils.compare_number</code></h3>
+<p>This function compares a number to another with the given operator (&gt;, &gt;=, &lt;, &lt;=)</p>
+<p><strong>USAGE:</strong>  <code>athena.utils.compare_number &lt;number_a&gt; &lt;number_b&gt; &lt;comparator&gt;</code></p>
 <h3 id="athenautilsfindindexinarray"><a name="athenautilsfindindexinarray"></a><code>athena.utils.find_index_in_array</code></h3>
 <p>This function returns the index of the element specified.</p>
 <p><strong>USAGE:</strong>  <code>athena.utils.find_index_in_array &lt;array_name&gt; &lt;needle&gt; [strict]</code></p>
@@ -773,6 +780,9 @@ https://git-scm.com">git</a> is installed). If not execution is stopped and an e
 <p>This function returns the elements of the given array in case of subshell assignment or stores them in a new variable if specified in argument 2.</p>
 <p><strong>USAGE:</strong>  <code>athena.utils.get_array &lt;array_name&gt; [other_array_name]</code></p>
 <p><strong>RETURN:</strong> <code>0 (true), 1 (false)</code></p>
+<h3 id="athenautilsgetversioncomponents"><a name="athenautilsgetversioncomponents"></a><code>athena.utils.get_version_components</code></h3>
+<p>This function extracts the values from a Semantic Versioning 2 format into an array. index 0 contains the operation, index 1 the MAJOR version, index 2 MINOR version and index 3 the PATCH version.</p>
+<p><strong>USAGE:</strong>  <code>athena.utils.get_version_components &lt;sem_ver_string&gt; &lt;array_name_to_store&gt;</code></p>
 <h3 id="athenautilsinarray"><a name="athenautilsinarray"></a><code>athena.utils.in_array</code></h3>
 <p>This function checks if the element exists in the given array.</p>
 <p><strong>USAGE:</strong>  <code>athena.utils.in_array &lt;array_name&gt; &lt;element&gt; [strict]</code></p>
@@ -793,6 +803,13 @@ https://git-scm.com">git</a> is installed). If not execution is stopped and an e
 <p>This function assigns the given elements to the specified array.</p>
 <p><strong>USAGE:</strong>  <code>athena.utils.set_array &lt;array_name&gt; &lt;element...&gt;</code></p>
 <p><strong>RETURN:</strong> <code>0 (true), 1 (false)</code></p>
+<h3 id="athenautilsvalidateversion"><a name="athenautilsvalidateversion"></a><code>athena.utils.validate_version</code></h3>
+<p>This function validates if the given version meets the expected version criteria.</p>
+<p><strong>USAGE:</strong>  <code>athena.utils.validate_version &lt;version_str&gt; &lt;expected_version|base_version end_version&gt;</code></p>
+<h3 id="athenautilsvalidateversionformat"><a name="athenautilsvalidateversionformat"></a><code>athena.utils.validate_version_format</code></h3>
+<p>This function validates if the given version follows Semantic Versioning 2.0.</p>
+<p><strong>USAGE:</strong>  <code>athena.utils.validate_version_format &lt;version&gt;</code></p>
+<p><strong>RETURN:</strong> <code>0 (true) 1 (false)</code></p>
 
                                 
                                 </section>
@@ -836,7 +853,7 @@ https://git-scm.com">git</a> is installed). If not execution is stopped and an e
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Shared API","level":"2.2","depth":1,"next":{"title":"Host only API","level":"2.3","depth":1,"path":"api/cli-functions-host.md","ref":"api/cli-functions-host.md","articles":[]},"previous":{"title":"Top used API","level":"2.1","depth":1,"path":"api/frequently-used-cli-functions.md","ref":"api/frequently-used-cli-functions.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"api/cli-functions-shared.md","mtime":"2016-10-28T15:39:10.722Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-10-28T15:40:18.012Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Shared API","level":"2.2","depth":1,"next":{"title":"Host only API","level":"2.3","depth":1,"path":"api/cli-functions-host.md","ref":"api/cli-functions-host.md","articles":[]},"previous":{"title":"Top used API","level":"2.1","depth":1,"path":"api/frequently-used-cli-functions.md","ref":"api/frequently-used-cli-functions.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"api/cli-functions-shared.md","mtime":"2016-10-31T16:46:33.496Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-10-31T16:47:39.913Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
