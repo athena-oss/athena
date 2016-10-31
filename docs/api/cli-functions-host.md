@@ -92,8 +92,6 @@
     * [`athena.plugin.use_external_container_as_daemon`](#athenapluginuseexternalcontainerasdaemon)
     * [`athena.plugin.validate_plugin_name`](#athenapluginvalidatepluginname)
     * [`athena.plugin.validate_usage`](#athenapluginvalidateusage)
-    * [`athena.plugin.validate_version`](#athenapluginvalidateversion)
-    * [`athena.plugin.validate_version_format`](#athenapluginvalidateversionformat)
   * [Handling *test*](#handling-test)
     * [`athena.test.assert_array`](#athenatestassertarray)
     * [`athena.test.assert_exit_code`](#athenatestassertexitcode)
@@ -843,22 +841,6 @@ This function checks the number of arguments in the given list. If no argument i
 **USAGE:**  `athena.plugin.validate_usage <plugin_name> <argument1> <argument2> ...`
  
 **RETURN:** `--`
- 
-### <a name="athenapluginvalidateversion"></a>`athena.plugin.validate_version`
- 
-This function validates a given version against the accepted one. Semantic Version 2.0 is used in for the validation algorithm.
- 
-**USAGE:**  `athena.plugin.validate_version <version_to_validate> <version_accepted>`
- 
-**RETURN:** `0 (true), 1 (false)`
- 
-### <a name="athenapluginvalidateversionformat"></a>`athena.plugin.validate_version_format`
- 
-This function validates if the given version follows Semantic Versioning 2.0.
- 
-**USAGE:**  `athena.plugin.validate_version <version>`
- 
-**RETURN:** `0 (true) 1 (false)`
  
 ## Handling *test*
  

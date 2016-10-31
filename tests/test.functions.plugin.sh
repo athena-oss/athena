@@ -144,7 +144,7 @@ function testcase_athena.plugin.get_container_to_use()
 function testcase_athena.plugin.plugin_exists()
 {
 	athena.test.assert_exit_code "athena.plugin.plugin_exists" "base"
-	athena.test.assert_exit_code.expects_fail "athena.plugin.plugin_exists" "base" "-4.0.0"
+	athena.test.assert_exit_code.expects_fail "athena.plugin.plugin_exists" "base" "<0.0.0"
 	athena.test.assert_exit_code.expects_fail "athena.plugin.plugin_exists" "spinpans$(date +%s)"
 }
 
@@ -190,17 +190,6 @@ function testcase_athena.plugin.set_image_version()
 	athena.test.assert_exit_code.expects_fail "athena.plugin.set_image_version" ""
 	athena.test.assert_exit_code.expects_fail "athena.plugin.set_image_version" "a.1.2"
 	ATHENA_PLG_IMAGE_VERSION="$curr_athena_plg_image_version"
-}
-
-function testcase_athena.plugin.validate_version_format()
-{
-	athena.test.assert_return.expects_fail "athena.plugin.validate_version_format" ""
-	athena.test.assert_return "athena.plugin.validate_version_format" "1.2.3"
-	athena.test.assert_return "athena.plugin.validate_version_format" "1.2.3-rc"
-	athena.test.assert_return "athena.plugin.validate_version_format" "13.2.3-rc"
-	athena.test.assert_return "athena.plugin.validate_version_format" "13.2.35-rc"
-	athena.test.assert_return "athena.plugin.validate_version_format" "13.233.35-rc"
-	athena.test.assert_return.expects_fail "athena.plugin.validate_version_format" "a.2.3-rc"
 }
 
 function testcase_athena.plugin.get_image_version()
@@ -361,19 +350,6 @@ function testcase_athena.plugin.get_plg_docker_dir()
 {
 	athena.test.mock.outputs "athena.plugin.get_plg_dir" "/my/plugin/path"
 	athena.test.assert_output "athena.plugin.get_plg_docker_dir" "/my/plugin/path/docker"
-}
-
-function testcase_athena.plugin.validate_version()
-{
-	athena.test.assert_return "athena.plugin.validate_version" "1.0.0" "1.0.0"
-	athena.test.assert_return "athena.plugin.validate_version" "1.0.0-rc1" "1.0.0"
-	athena.test.assert_return "athena.plugin.validate_version" "1.1.0" "1.0.0"
-
-	athena.test.assert_return.expects_fail "athena.plugin.validate_version" "a.0.0" "2.0.0"
-	athena.test.assert_return.expects_fail "athena.plugin.validate_version" "1.0.0" "a"
-	athena.test.assert_return.expects_fail "athena.plugin.validate_version" "1.0.0" "2.0.0"
-	athena.test.assert_return.expects_fail "athena.plugin.validate_version" "1.0.1" "1.1.1"
-	athena.test.assert_return.expects_fail "athena.plugin.validate_version" "1.0.0" "1.0.1"
 }
 
 function testcase_athena.plugin.get_image_name()

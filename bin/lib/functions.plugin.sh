@@ -508,7 +508,7 @@ function athena.plugin.get_image_version()
 # RETURN: --
 function athena.plugin.set_image_version()
 {
-	if ! athena.plugin.validate_version_format "$1" ; then
+	if ! athena.utils.validate_version_format "$1" ; then
 		athena.os.exit_with_msg "version is not valid '$1'."
 	fi
 	ATHENA_PLG_IMAGE_VERSION=$1
@@ -683,84 +683,10 @@ function athena.plugin.plugin_exists()
 	if [ -n "$2" ]; then
 		local version
 		version=$(cat "$plugin_dir/version.txt")
-		if ! athena.plugin.validate_version "$version" "$2"; then
+		if ! athena.utils.validate_version "$version" "$2"; then
 			athena.os.exit_with_msg "'$1' plugin version '$version' does not match expected '$2'! Maybe you should consider update it."
 			return 1
 		fi
-	fi
-	return 0
-}
-
-# This function validates a given version against the accepted one.
-# Semantic Version 2.0 is used in for the validation algorithm.
-# USAGE: athena.plugin.validate_version <version_to_validate> <version_accepted>
-# RETURN: 0 (true), 1 (false)
-function athena.plugin.validate_version()
-{
-	# validate format of given versions
-	if ! athena.plugin.validate_version_format "$1" ; then
-		athena.color.print_error "Version '$1' does not match expected format '$regex'."
-		return 1
-	fi
-
-	if ! athena.plugin.validate_version_format "$2" ; then
-		athena.color.print_error "Version '$2' does not match expected format '$regex'."
-		return 1
-	fi
-
-	# they are the same then ok
-	if [[ "$1" = "$2" ]]; then
-		return 0
-	fi
-
-	# extract components from version
-	local major
-	local minor
-	local patch
-	local major_accepted
-	local minor_accepted
-	local patch_accepted
-	major=$(echo "$1" | awk -F'.' '{ print $1 }')
-	minor=$(echo "$1" | awk -F'.' '{ print $2 }')
-	patch=$(echo "$1" | awk -F'.' '{ print $3 }' | awk -F'-' '{ print $1 }' | tr -d '[:alpha:]')
-	major_accepted=$(echo "$2" | awk -F'.' '{ print $1 }')
-	minor_accepted=$(echo "$2" | awk -F'.' '{ print $2 }')
-	patch_accepted=$(echo "$2" | awk -F'.' '{ print $3 }' | awk -F'-' '{ print $1}'| tr -d '[:alpha:]')
-
-	# Major version validation
-	if [ "$major" -ne "$major_accepted" ]; then
-		athena.color.print_error "Major version '$major' is not equal to the accepted '$major_accepted'."
-		return 1
-	fi
-
-	# Minor version validation
-	if [ "$minor" -lt "$minor_accepted" ]; then
-		athena.color.print_error "Minor version '$minor' is lower than accepted '$minor_accepted'."
-		return 1
-	fi
-
-	# Patch version validation
-	if [ "$patch" -lt "$patch_accepted" ]; then
-		athena.color.print_error "Patch version '$patch' is lower than accepted '$patch_accepted'."
-		return 1
-	fi
-
-	# ignoring pre-release check for now
-	return 0
-}
-
-# This function validates if the given version follows Semantic Versioning 2.0.
-# USAGE: athena.plugin.validate_version <version>
-# RETURN: 0 (true) 1 (false)
-function athena.plugin.validate_version_format()
-{
-	if [ -z "$1" ]; then
-		return 1
-	fi
-
-	local regex="[0-9]+\\.[0-9]+\\.[0-9]+(-.*)?"
-	if [[ ! $1 =~ $regex ]]; then
-		return 1
 	fi
 	return 0
 }

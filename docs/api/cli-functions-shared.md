@@ -79,13 +79,17 @@
   * [Handling *utils*](#handling-utils)
     * [`athena.utils.add_to_array`](#athenautilsaddtoarray)
     * [`athena.utils.array_pop`](#athenautilsarraypop)
+    * [`athena.utils.compare_number`](#athenautilscomparenumber)
     * [`athena.utils.find_index_in_array`](#athenautilsfindindexinarray)
     * [`athena.utils.get_array`](#athenautilsgetarray)
+    * [`athena.utils.get_version_components`](#athenautilsgetversioncomponents)
     * [`athena.utils.in_array`](#athenautilsinarray)
     * [`athena.utils.is_integer`](#athenautilsisinteger)
     * [`athena.utils.prepend_to_array`](#athenautilsprependtoarray)
     * [`athena.utils.remove_from_array`](#athenautilsremovefromarray)
     * [`athena.utils.set_array`](#athenautilssetarray)
+    * [`athena.utils.validate_version`](#athenautilsvalidateversion)
+    * [`athena.utils.validate_version_format`](#athenautilsvalidateversionformat)
 
 # Using CLI Functions
  
@@ -695,6 +699,12 @@ This function pops elements from the given array, if argument 2 is an integer th
  
 **RETURN:** `0 (true), 1 (false)`
  
+### <a name="athenautilscomparenumber"></a>`athena.utils.compare_number`
+ 
+This function compares a number to another with the given operator (>, >=, <, <=)
+ 
+**USAGE:**  `athena.utils.compare_number <number_a> <number_b> <comparator>`
+ 
 ### <a name="athenautilsfindindexinarray"></a>`athena.utils.find_index_in_array`
  
 This function returns the index of the element specified.
@@ -710,6 +720,12 @@ This function returns the elements of the given array in case of subshell assign
 **USAGE:**  `athena.utils.get_array <array_name> [other_array_name]`
  
 **RETURN:** `0 (true), 1 (false)`
+ 
+### <a name="athenautilsgetversioncomponents"></a>`athena.utils.get_version_components`
+ 
+This function extracts the values from a Semantic Versioning 2 format into an array. index 0 contains the operation, index 1 the MAJOR version, index 2 MINOR version and index 3 the PATCH version.
+ 
+**USAGE:**  `athena.utils.get_version_components <sem_ver_string> <array_name_to_store>`
  
 ### <a name="athenautilsinarray"></a>`athena.utils.in_array`
  
@@ -750,3 +766,17 @@ This function assigns the given elements to the specified array.
 **USAGE:**  `athena.utils.set_array <array_name> <element...>`
  
 **RETURN:** `0 (true), 1 (false)`
+ 
+### <a name="athenautilsvalidateversion"></a>`athena.utils.validate_version`
+ 
+This function validates if the given version meets the expected version criteria.
+ 
+**USAGE:**  `athena.utils.validate_version <version_str> <expected_version|base_version end_version>`
+ 
+### <a name="athenautilsvalidateversionformat"></a>`athena.utils.validate_version_format`
+ 
+This function validates if the given version follows Semantic Versioning 2.0.
+ 
+**USAGE:**  `athena.utils.validate_version_format <version>`
+ 
+**RETURN:** `0 (true) 1 (false)`

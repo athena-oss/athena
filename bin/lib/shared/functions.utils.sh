@@ -152,3 +152,129 @@ function athena.utils.is_integer()
 		return 0
 	fi
 }
+
+# This function validates if the given version meets the expected version criteria.
+# USAGE: athena.utils.validate_version <version_str> <expected_version|base_version end_version>
+# RETURNS: 0 (true), 1 (false)
+function athena.utils.validate_version()
+{
+	local -a version_components=()
+	local -a version_compareto_components=()
+	local base_version_str=$(echo $2 | awk -F' ' '{ print $1}')
+	local end_version_str=$(echo $2 | awk -F' ' '{ print $2}')
+	athena.utils.get_version_components "$1" "version_components"
+	athena.utils.get_version_components "$base_version_str" "version_compareto_components"
+
+	# comparator defaults to >= (greater or equal) when it is not specified
+	local comparator=${version_compareto_components[0]:-">="}
+	local major=${version_components[1]}
+	local major_compareto=${version_compareto_components[1]}
+	local minor=${version_components[2]}
+	local minor_compareto=${version_compareto_components[2]}
+	local patch=${version_components[3]}
+	local patch_compareto=${version_compareto_components[3]}
+
+	# simply compare the numbers
+	local -i number="$major$minor$patch"
+	local -i number_compareto="$major_compareto$minor_compareto$patch_compareto"
+
+	if ! athena.utils.compare_number $number $number_compareto $comparator ; then
+		return 1
+	fi
+
+	# validate end version
+	if [[ -n "$end_version_str" ]]; then
+		athena.utils.validate_version "$1" "$end_version_str"
+		return $?
+	fi
+
+	return 0
+}
+
+# This function compares a number to another with the given operator (>, >=, <, <=)
+# USAGE: athena.utils.compare_number <number_a> <number_b> <comparator>
+# RETURNS: 0 (true), 1 (false)
+function athena.utils.compare_number()
+{
+	local -i value=$1
+	local -i compareto_value=$2
+	local comparator=$3
+	case "$comparator" in
+		">" )
+			if [[ $value -gt $compareto_value ]]; then
+				return 0
+			fi
+			;;
+		">=")
+			if [[ $value -ge $compareto_value ]]; then
+				return 0
+			fi
+			;;
+		"<")
+			if [[ $value -lt $compareto_value ]]; then
+				return 0
+			fi
+			;;
+		"<=")
+			if [[ $value -le $compareto_value ]]; then
+				return 0
+			fi
+			;;
+	esac
+
+	return 1
+}
+
+# This function extracts the values from a Semantic Versioning 2 format into an array.
+# index 0 contains the operation, index 1 the MAJOR version, index 2 MINOR version and
+# index 3 the PATCH version.
+# USAGE: athena.utils.get_version_components <sem_ver_string> <array_name_to_store>
+# RETURNS: 0 (true), 1 (false)
+function athena.utils.get_version_components()
+{
+	if ! athena.utils.validate_version_format "$1" ; then
+		return 1
+	fi
+
+	local major
+	local minor
+	local patch
+	local version
+
+	# handle end version
+	local base_version=$(echo $1 | awk -F' ' '{ print $1 }')
+	local operator=${base_version//[0-9A-Za-z.-]/}
+	local version=${base_version//$operator/}
+	major=$(echo "$version" | awk -F'.' '{ print $1 }')
+	minor=$(echo "$version" | awk -F'.' '{ print $2 }')
+	patch=$(echo "$version" | awk -F'.' '{ print $3 }' | awk -F'-' '{ print $1 }' | tr -d '[:alpha:]')
+
+	athena.utils.add_to_array "$2" "$operator"
+	athena.utils.add_to_array "$2" "$major"
+	if [ -n "$minor" ]; then
+		athena.utils.add_to_array "$2" "$minor"
+	fi
+
+	if [ -n "$patch" ]; then
+		athena.utils.add_to_array "$2" "$patch"
+	fi
+
+	return 0
+}
+
+
+# This function validates if the given version follows Semantic Versioning 2.0.
+# USAGE: athena.utils.validate_version_format <version>
+# RETURN: 0 (true) 1 (false)
+function athena.utils.validate_version_format()
+{
+	if [ -z "$1" ]; then
+		return 1
+	fi
+
+	local regex="^(>|>=|<|<=)?[0-9]+(\\.[0-9]+\\.[0-9]+(-.*)?)?"
+	if [[ ! "$1" =~ $regex ]]; then
+		return 1
+	fi
+	return 0
+}

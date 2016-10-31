@@ -136,7 +136,92 @@ function testcase_athena.utils.in_array()
 	athena.test.assert_return.expects_fail "athena.utils.in_array" "dummy_array" "element1 I dont exist" 1
 	athena.test.assert_return.expects_fail "athena.utils.in_array" "dummy_array" "non-existing" 1
 	athena.test.assert_return.expects_fail "athena.utils.in_array" "dummy_array" "--env" 1
+}
+
+function testcase_athena.utils.validate_version()
+{
+	athena.test.assert_return "athena.utils.validate_version" "1.0.1" ">1.0.0"
+	athena.test.assert_return.expects_fail "athena.utils.validate_version" "1.0.0" ">1.0.0"
+	athena.test.assert_return "athena.utils.validate_version" "1.0.0" "<1.0.1"
+	athena.test.assert_return.expects_fail "athena.utils.validate_version" "1.0.0" "<1.0.0"
+	athena.test.assert_return "athena.utils.validate_version" "1.0.0" "<=1.0.1"
+	athena.test.assert_return "athena.utils.validate_version" "1.0.0" "<=1.0.0"
+	athena.test.assert_return.expects_fail "athena.utils.validate_version" "1.0.1" "<=1.0.0"
+	athena.test.assert_return.expects_fail "athena.utils.validate_version" "1.1.1" "<=1.0.0"
+	athena.test.assert_return "athena.utils.validate_version" "1.1.1" "<=2.0.0"
+	athena.test.assert_return "athena.utils.validate_version" "1.0.0" ">=1.0.0"
+
+	####
+	athena.test.assert_return "athena.utils.validate_version" "1.0.0" "1.0.0"
+	athena.test.assert_return "athena.utils.validate_version" "1.0.0-rc1" "1.0.0"
+	athena.test.assert_return "athena.utils.validate_version" "1.1.0" "1.0.0"
+
+	athena.test.assert_return.expects_fail "athena.utils.validate_version" "a.0.0" "2.0.0"
+	athena.test.assert_return "athena.utils.validate_version" "1.0.1" "1.0.1"
+	athena.test.assert_return.expects_fail "athena.utils.validate_version" "1.0.0" "2.0.0"
+	athena.test.assert_return.expects_fail "athena.utils.validate_version" "1.0.1" "1.1.1"
+	athena.test.assert_return.expects_fail "athena.utils.validate_version" "1.0.0" "1.0.1"
+
+	athena.test.assert_return "athena.utils.validate_version" "1.0.1" ">1.0.0 <1.0.2"
+	athena.test.assert_return "athena.utils.validate_version" "1.0.1" ">1.0.0 <=1.0.1"
+	athena.test.assert_return.expects_fail "athena.utils.validate_version" "1.0.3" ">1.0.0 <1.0.2"
+
+}
+
+function testcase_athena.utils.validate_version_format()
+{
+	athena.test.assert_return.expects_fail "athena.utils.validate_version_format" ""
+	athena.test.assert_return "athena.utils.validate_version_format" "1.2.3"
+	athena.test.assert_return "athena.utils.validate_version_format" "1.2.3-rc"
+	athena.test.assert_return "athena.utils.validate_version_format" "13.2.3-rc"
+	athena.test.assert_return "athena.utils.validate_version_format" "13.2.35-rc"
+	athena.test.assert_return "athena.utils.validate_version_format" "13.233.35-rc"
+	athena.test.assert_return.expects_fail "athena.utils.validate_version_format" "a.2.3-rc"
+
+	# with operators
+	athena.test.assert_return "athena.utils.validate_version_format" ">1.0.1"
+	athena.test.assert_return "athena.utils.validate_version_format" ">=1.0.1"
+	athena.test.assert_return "athena.utils.validate_version_format" "<1.0.1"
+	athena.test.assert_return "athena.utils.validate_version_format" "<=1.0.1"
+}
 
 
+function testcase_athena.utils.get_version_components()
+{
+	athena.test.assert_return.expects_fail "athena.utils.get_version_components" "a.a2.1"
 
+	local -a mycomponents=()
+	athena.utils.get_version_components ">1.2.3" "mycomponents"
+	athena.test.assert_value ">" "${mycomponents[0]}"
+	athena.test.assert_value "1" ${mycomponents[1]}
+	athena.test.assert_value "2" "${mycomponents[2]}"
+	athena.test.assert_value "3" "${mycomponents[3]}"
+
+	mycomponents=()
+	athena.utils.get_version_components ">=3.1" "mycomponents"
+	athena.test.assert_value ">=" "${mycomponents[0]}"
+	athena.test.assert_value "3" ${mycomponents[1]}
+	athena.test.assert_value "1" "${mycomponents[2]}"
+	athena.test.assert_value "" "${mycomponents[3]}"
+
+	mycomponents=()
+	athena.utils.get_version_components "<3" "mycomponents"
+	athena.test.assert_value "<" "${mycomponents[0]}"
+	athena.test.assert_value "3" ${mycomponents[1]}
+	athena.test.assert_value "" "${mycomponents[2]}"
+	athena.test.assert_value "" "${mycomponents[3]}"
+
+	mycomponents=()
+	athena.utils.get_version_components ">3.0.1-rc1" "mycomponents"
+	athena.test.assert_value ">" "${mycomponents[0]}"
+	athena.test.assert_value "3" ${mycomponents[1]}
+	athena.test.assert_value "0" "${mycomponents[2]}"
+	athena.test.assert_value "1" "${mycomponents[3]}"
+
+	mycomponents=()
+	athena.utils.get_version_components ">3.0.1-rc1 <3.1.0" "mycomponents"
+	athena.test.assert_value ">" "${mycomponents[0]}"
+	athena.test.assert_value "3" ${mycomponents[1]}
+	athena.test.assert_value "0" "${mycomponents[2]}"
+	athena.test.assert_value "1" "${mycomponents[3]}"
 }
