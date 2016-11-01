@@ -746,6 +746,20 @@ function athena.docker.list_athena_containers()
 	athena.docker ps -a --filter="name=$(athena.os.get_prefix)" --format="{{.Names}}:{{.Ports}}:{{.Image}}" | sed "s# ##g" | sed 's#0.0.0.0:##g' | sed  's#/tcp##g'
 }
 
+# Check if docker volume with the <name> exists.
+# USAGE: athena.docker.volume_exists <name>
+# RETURN 0 (true), exit 1 (failed)
+function athena.docker.volume_exists()
+{
+	athena.argument.argument_is_not_empty_or_fail "$1" "name"
+
+	if ! athena.docker volume inspect "$1" 1>/dev/null 2>/dev/null; then
+		return 1
+	fi
+
+	return 0
+}
+
 # This function validates if the mandatory build args that exist in a given Dockerfile without
 # a default value are specified in the build_args file if it was given.
 # USAGE: athena.docker._validate_if_build_args_exist <dockerfile> [build_args_file]

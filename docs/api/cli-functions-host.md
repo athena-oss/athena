@@ -45,6 +45,7 @@
     * [`athena.docker.set_options`](#athenadockersetoptions)
     * [`athena.docker.stop_all_containers`](#athenadockerstopallcontainers)
     * [`athena.docker.stop_container`](#athenadockerstopcontainer)
+    * [`athena.docker.volume_exists`](#athenadockervolumeexists)
     * [`athena.docker.wait_for_string_in_container_logs`](#athenadockerwaitforstringincontainerlogs)
     * [`athena.plugin.build`](#athenapluginbuild)
   * [Handling *plugin*](#handling-plugin)
@@ -471,6 +472,12 @@ This function stops a docker container with the given name if running or the cur
 **USAGE:**  `athena.docker.stop_container [container name]`
  
 **RETURN:** `--`
+ 
+### <a name="athenadockervolumeexists"></a>`athena.docker.volume_exists`
+ 
+Check if docker volume with the <name> exists.
+ 
+**USAGE:**  `athena.docker.volume_exists <name>`
  
 ### <a name="athenadockerwaitforstringincontainerlogs"></a>`athena.docker.wait_for_string_in_container_logs`
  
