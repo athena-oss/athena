@@ -752,11 +752,34 @@ function athena.docker.list_athena_containers()
 function athena.docker.volume_exists()
 {
 	athena.argument.argument_is_not_empty_or_fail "$1" "name"
-
 	if ! athena.docker volume inspect "$1" 1>/dev/null 2>/dev/null; then
 		return 1
 	fi
+	return 0
+}
 
+# Create a new docker volume with <name>.
+# USAGE: athena.docker.volume_create <name>
+# RETURN: 0 (true), exit 1 (failed)
+function athena.docker.volume_create()
+{
+	athena.argument.argument_is_not_empty_or_fail "$1" "name"
+	athena.docker volume create --name "$1" 1>/dev/null
+}
+
+# Check if a volume with the <name> already exists, if not the volume is
+# created.
+# USAGE:  athena.docker.volume_exists_or_create <name>
+# RETURN: 0 (true), 1 (false)
+function athena.docker.volume_exists_or_create()
+{
+	athena.argument.argument_is_not_empty_or_fail "$1" "name"
+	if ! athena.docker.volume_exists "$1"; then
+		if ! athena.docker.volume_create "$1"; then
+			athena.os.exit_with_msg "Failed to create volume ${1} ..."
+			return 1
+		fi
+	fi
 	return 0
 }
 
