@@ -151,7 +151,6 @@ function testcase_athena.utils.validate_version()
 	athena.test.assert_return "athena.utils.validate_version" "1.1.1" "<=2.0.0"
 	athena.test.assert_return "athena.utils.validate_version" "1.0.0" ">=1.0.0"
 
-	####
 	athena.test.assert_return "athena.utils.validate_version" "1.0.0" "1.0.0"
 	athena.test.assert_return "athena.utils.validate_version" "1.0.0-rc1" "1.0.0"
 	athena.test.assert_return "athena.utils.validate_version" "1.1.0" "1.0.0"
@@ -162,10 +161,15 @@ function testcase_athena.utils.validate_version()
 	athena.test.assert_return.expects_fail "athena.utils.validate_version" "1.0.1" "1.1.1"
 	athena.test.assert_return.expects_fail "athena.utils.validate_version" "1.0.0" "1.0.1"
 
+	athena.test.assert_return.expects_fail "athena.utils.validate_version" "1.0.0" "#1.0.1"
+	athena.test.assert_return.expects_fail "athena.utils.validate_version" "#1.0.0" "1.0.1"
+
 	athena.test.assert_return "athena.utils.validate_version" "1.0.1" ">1.0.0 <1.0.2"
 	athena.test.assert_return "athena.utils.validate_version" "1.0.1" ">1.0.0 <=1.0.1"
 	athena.test.assert_return.expects_fail "athena.utils.validate_version" "1.0.3" ">1.0.0 <1.0.2"
 
+	athena.test.assert_return "athena.utils.validate_version" "1.0.1" "=1.0.1"
+	athena.test.assert_return.expects_fail "athena.utils.validate_version" "1.0.2" "=1.0.1"
 }
 
 function testcase_athena.utils.validate_version_format()

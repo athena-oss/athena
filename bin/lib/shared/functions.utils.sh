@@ -163,7 +163,13 @@ function athena.utils.validate_version()
 	local base_version_str=$(echo $2 | awk -F' ' '{ print $1}')
 	local end_version_str=$(echo $2 | awk -F' ' '{ print $2}')
 	athena.utils.get_version_components "$1" "version_components"
+	if [ $? -ne 0 ]; then
+		return 1
+	fi
 	athena.utils.get_version_components "$base_version_str" "version_compareto_components"
+	if [ $? -ne 0 ]; then
+		return 1
+	fi
 
 	# comparator defaults to >= (greater or equal) when it is not specified
 	local comparator=${version_compareto_components[0]:-">="}
@@ -220,6 +226,11 @@ function athena.utils.compare_number()
 				return 0
 			fi
 			;;
+		"=")
+			if [[ $value -eq $compareto_value ]]; then
+				return 0
+			fi
+			;;
 	esac
 
 	return 1
@@ -272,7 +283,7 @@ function athena.utils.validate_version_format()
 		return 1
 	fi
 
-	local regex="^(>|>=|<|<=)?[0-9]+(\\.[0-9]+\\.[0-9]+(-.*)?)?"
+	local regex="^(>|>=|<|<=|=)?[0-9]+(\\.[0-9]+\\.[0-9]+(-.*)?)?"
 	if [[ ! "$1" =~ $regex ]]; then
 		return 1
 	fi
