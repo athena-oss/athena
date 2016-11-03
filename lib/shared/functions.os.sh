@@ -518,40 +518,6 @@ function athena.os.set_debug()
 	athena.docker.add_env "ATHENA_IS_DEBUG" "$ATHENA_IS_DEBUG"
 }
 
-# This function prints the Athena logo including infos about base plugin and current
-# plugin versions if $ATHENA_NO_LOGO is set to 0. If the $ATHENA_NO_LOGO flag is set to a value
-# unequal to 0 no logo will be printed.
-# USAGE:  athena.os._print_logo
-# RETURN: --
-function athena.os._print_logo()
-{
-	if [ "$ATHENA_NO_LOGO" -ne 0 ]; then
-		return 0
-	fi
-
-	if [ -f "$ATHENA_PLG_DIR/.logo" ]; then
-		cat "$ATHENA_PLG_DIR/.logo"
-		return 0
-	fi
-
-	local version=""
-	if [[ "$ATHENA_PLUGIN" != "base" ]]; then
-		local ver="[$ATHENA_PLUGIN v$ATHENA_PLG_IMAGE_VERSION]"
-		version=$(printf "%s\n  ----------------------------------\n\n\n" "$ver")
-	fi
-	cat <<EOF
-       ___   __  __
-      /   | / /_/ /_  ___  ____  ____ _
-     / /| |/ __/ __ \/ _ \/ __ \/ __  /
-    / ___ / /_/ / / /  __/ / / / /_/ /
-   /_/  |_\__/_/ /_/\___/_/ /_/\__,_/
-                              v$ATHENA_BASE_IMAGE_VERSION
-  ==================================
-  $version
-
-EOF
-}
-
 # This function preprocesses all flags that are intended for Athena to setup the
 # runtime environment found in $ATHENA_ARGS. All flags must be prefixed with --athena and
 # can have values or not.
