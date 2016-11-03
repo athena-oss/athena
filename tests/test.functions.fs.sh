@@ -1,94 +1,94 @@
 function testcase_athena.fs.get_full_path()
 {
-	athena.test.assert_exit_code.expects_fail "athena.fs.get_full_path" ""
-	athena.test.assert_exit_code.expects_fail "athena.fs.get_full_path" "/file/not/existing"
+	bashunit.test.assert_exit_code.expects_fail "athena.fs.get_full_path" ""
+	bashunit.test.assert_exit_code.expects_fail "athena.fs.get_full_path" "/file/not/existing"
 
 	# full path
-	base=$(athena.test.create_tempdir)
-	athena.test.assert_output "athena.fs.get_full_path" "$base" "$base"
+	base=$(bashunit.test.create_tempdir)
+	bashunit.test.assert_output "athena.fs.get_full_path" "$base" "$base"
 
 
 	# relative path directory
 	mkdir $base/test
 	cd $base
-	athena.test.assert_output "athena.fs.get_full_path" "$base/test" "./test"
+	bashunit.test.assert_output "athena.fs.get_full_path" "$base/test" "./test"
 	rm -r $base
 
 	# relative path file
-	tmpfile=$(athena.test.create_tempfile)
+	tmpfile=$(bashunit.test.create_tempfile)
 	base="$(dirname $tmpfile)"
 	cd $base 
-	athena.test.assert_output "athena.fs.get_full_path" "$base" "$(basename $tmpfile)"
+	bashunit.test.assert_output "athena.fs.get_full_path" "$base" "$(basename $tmpfile)"
 	rm $tmpfile
 }
 
 function testcase_athena.fs.absolutepath()
 {
-	athena.test.assert_exit_code.expects_fail "athena.fs.absolutepath" "/non/existing/dir"
+	bashunit.test.assert_exit_code.expects_fail "athena.fs.absolutepath" "/non/existing/dir"
 
-	tmpfile=$(athena.test.create_tempfile)
-	athena.test.assert_output "athena.fs.absolutepath" "$tmpfile" "$tmpfile"
+	tmpfile=$(bashunit.test.create_tempfile)
+	bashunit.test.assert_output "athena.fs.absolutepath" "$tmpfile" "$tmpfile"
 	rm $tmpfile
 }
 
 function testcase_athena.fs.file_exists_or_fail()
 {
-	athena.test.assert_exit_code.expects_fail "athena.fs.file_exists_or_fail" "/non/existing/file"
+	bashunit.test.assert_exit_code.expects_fail "athena.fs.file_exists_or_fail" "/non/existing/file"
 
-	tmpfile=$(athena.test.create_tempfile)
-	athena.test.assert_exit_code "athena.fs.file_exists_or_fail" "$tmpfile"
+	tmpfile=$(bashunit.test.create_tempfile)
+	bashunit.test.assert_exit_code "athena.fs.file_exists_or_fail" "$tmpfile"
 	rm $tmpfile
 }
 
 function testcase_athena.fs.dir_exists_or_fail()
 {
-	athena.test.assert_exit_code.expects_fail "athena.fs.dir_exists_or_fail" "/non/existing/dir"
+	bashunit.test.assert_exit_code.expects_fail "athena.fs.dir_exists_or_fail" "/non/existing/dir"
 
-	tmpfile=$(athena.test.create_tempdir)
-	athena.test.assert_exit_code "athena.fs.dir_exists_or_fail" "$tmpfile"
+	tmpfile=$(bashunit.test.create_tempdir)
+	bashunit.test.assert_exit_code "athena.fs.dir_exists_or_fail" "$tmpfile"
 	rm -r $tmpfile
 
-	athena.test.mock "athena.os.exit_with_msg" "_echo_arguments"
-	athena.test.assert_output "athena.fs.dir_exists_or_fail" "My custom message" "/non/existing/dir" "My custom message"
+	bashunit.test.mock "athena.os.exit_with_msg" "_echo_arguments"
+	bashunit.test.assert_output "athena.fs.dir_exists_or_fail" "My custom message" "/non/existing/dir" "My custom message"
 }
 
 function testcase_athena.fs.dir_exists_or_create()
 {
 	tmpdir="$HOME/xpto$(date +%s)"
-	athena.test.assert_exit_code "athena.fs.dir_exists_or_create" "$tmpdir"
-	athena.test.assert_exit_code "athena.fs.dir_exists_or_fail" "$tmpdir"
+	bashunit.test.assert_exit_code "athena.fs.dir_exists_or_create" "$tmpdir"
+	bashunit.test.assert_exit_code "athena.fs.dir_exists_or_fail" "$tmpdir"
 	rm -r $tmpdir
 }
 
 function testcase_athena.fs.get_file_contents()
 {
-	athena.test.assert_exit_code.expects_fail "athena.fs.get_file_contents" "/non/existing-file"
+	bashunit.test.assert_exit_code.expects_fail "athena.fs.get_file_contents" "/non/existing-file"
 
-	tmpfile=$(athena.test.create_tempfile)
+	tmpfile=$(bashunit.test.create_tempfile)
 	echo "spinpans" > $tmpfile
-	athena.test.assert_output "athena.fs.get_file_contents" "spinpans" $tmpfile
+	bashunit.test.assert_output "athena.fs.get_file_contents" "spinpans" $tmpfile
 	rm $tmpfile
 }
 
 function testcase_athena.fs.file_contains_string()
 {
-	tmpfile=$(athena.test.create_tempfile)
+	tmpfile=$(bashunit.test.create_tempfile)
 	echo "spinpans" > $tmpfile
-	athena.test.assert_exit_code "athena.fs.file_contains_string" $tmpfile "spinpans"
-	athena.test.assert_exit_code.expects_fail "athena.fs.file_contains_string" $tmpfile "other"
+	bashunit.test.assert_exit_code "athena.fs.file_contains_string" $tmpfile "spinpans"
+	bashunit.test.assert_exit_code.expects_fail "athena.fs.file_contains_string" $tmpfile "other"
 	rm $tmpfile
 }
 
 function testcase_athena.fs.dir_contains_files()
 {
-	athena.test.assert_exit_code.expects_fail "athena.fs.dir_contains_files" "/path/to/non/existent/dir"
-	tmpdir=$(athena.test.create_tempdir)
-	athena.test.assert_exit_code.expects_fail "athena.fs.dir_contains_files" "$tmpdir"
-	athena.test.assert_return.expects_fail "athena.fs.dir_contains_files" "$tmpdir" "*.sh"
+	bashunit.test.assert_exit_code.expects_fail "athena.fs.dir_contains_files" "/path/to/non/existent/dir"
+	tmpdir=$(bashunit.test.create_tempdir)
+	bashunit.test.assert_exit_code.expects_fail "athena.fs.dir_contains_files" "$tmpdir"
+	bashunit.test.assert_return.expects_fail "athena.fs.dir_contains_files" "$tmpdir" "*.sh"
 
 	touch "$tmpdir/test.sh"
-	athena.test.assert_return "athena.fs.dir_contains_files" "$tmpdir" "*.sh"
-	athena.test.assert_return "athena.fs.dir_contains_files" "$tmpdir" "test?(_pre|_post).sh"
+	bashunit.test.assert_return "athena.fs.dir_contains_files" "$tmpdir" "*.sh"
+	bashunit.test.assert_return "athena.fs.dir_contains_files" "$tmpdir" "test?(_pre|_post).sh"
 
 	rm -r $tmpdir
 }
@@ -96,16 +96,16 @@ function testcase_athena.fs.dir_contains_files()
 function testcase_athena.fs.get_cache_dir()
 {
 	local home=$HOME
-	local tmpdir=$(athena.test.create_tempdir)
+	local tmpdir=$(bashunit.test.create_tempdir)
 	HOME=$tmpdir
-	athena.test.mock.returns "athena.fs.dir_exists_or_create" 0
-	athena.test.assert_output "athena.fs.get_cache_dir" "$tmpdir/.athena"
+	bashunit.test.mock.returns "athena.fs.dir_exists_or_create" 0
+	bashunit.test.assert_output "athena.fs.get_cache_dir" "$tmpdir/.athena"
 
 	HOME="$tmpdir/nonexistingpath"
-	athena.test.assert_exit_code.expects_fail "athena.fs.dir_exists_or_fail" "$HOME"
-	athena.test.unmock "athena.fs.dir_exists_or_create"
-	athena.test.assert_output "athena.fs.get_cache_dir" "$tmpdir/nonexistingpath/.athena"
-	athena.test.assert_exit_code "athena.fs.dir_exists_or_fail" "$HOME"
+	bashunit.test.assert_exit_code.expects_fail "athena.fs.dir_exists_or_fail" "$HOME"
+	bashunit.test.unmock "athena.fs.dir_exists_or_create"
+	bashunit.test.assert_output "athena.fs.get_cache_dir" "$tmpdir/nonexistingpath/.athena"
+	bashunit.test.assert_exit_code "athena.fs.dir_exists_or_fail" "$HOME"
 
 	HOME=$home
 }
