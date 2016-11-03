@@ -38,7 +38,7 @@ function athena.plugin._router()
 	# plugin pre-hooks
 	athena.plugin._run_hooks_if_exist "$hooks_dir/plugin_pre.sh"
 
-	athena.os._print_logo
+	athena.plugin._print_logo
 	athena.plugin.validate_usage "$plugin" "${args[@]}"
 
 	athena.plugin.handle "$cmd" "$cmd_dir" "$lib_dir" "$bin_dir" "$hooks_dir"
@@ -966,4 +966,38 @@ function athena.plugin._run_hooks_if_exist()
 		return $?
 	fi
 	return 1
+}
+
+# This function prints the Athena logo including infos about base plugin and current
+# plugin versions if $ATHENA_NO_LOGO is set to 0. If the $ATHENA_NO_LOGO flag is set to a value
+# unequal to 0 no logo will be printed.
+# USAGE:  athena.plugin._print_logo
+# RETURN: --
+function athena.plugin._print_logo()
+{
+	if [ "$ATHENA_NO_LOGO" -ne 0 ]; then
+		return 0
+	fi
+
+	if [ -f "$ATHENA_PLG_DIR/.logo" ]; then
+		cat "$ATHENA_PLG_DIR/.logo"
+		return 0
+	fi
+
+	local version=""
+	if [[ "$ATHENA_PLUGIN" != "base" ]]; then
+		local ver="[$ATHENA_PLUGIN v$ATHENA_PLG_IMAGE_VERSION]"
+		version=$(printf "%s\n  ----------------------------------\n\n\n" "$ver")
+	fi
+	cat <<EOF
+       ___   __  __
+      /   | / /_/ /_  ___  ____  ____ _
+     / /| |/ __/ __ \/ _ \/ __ \/ __  /
+    / ___ / /_/ / / /  __/ / / / /_/ /
+   /_/  |_\__/_/ /_/\___/_/ /_/\__,_/
+                              v$ATHENA_BASE_IMAGE_VERSION
+  ==================================
+  $version
+
+EOF
 }

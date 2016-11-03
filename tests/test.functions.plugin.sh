@@ -669,7 +669,7 @@ function testcase_athena.plugin._router()
 	athena.test.assert_exit_code.expects_fail "athena.plugin._router"
 
 	athena.test.mock.outputs "athena.plugin.handle" "run-handle"
-	athena.test.mock.returns "athena.os._print_logo" 0
+	athena.test.mock.returns "athena.plugin._print_logo" 0
 	athena.test.mock.returns "athena.plugin.validate_usage" 0
 	athena.test.assert_output "athena.plugin._router" "run-handle" "myplugin"
 
