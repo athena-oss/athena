@@ -30,15 +30,6 @@ if ! athena.docker ps 1>/dev/null; then
 fi
 athena.ok "docker is running."
 
-base_dir=$(athena.os.get_base_dir)
-source_dir=$(athena.os.get_base_lib_dir)
-tests_dir=$base_dir/tests
-athena.os.include_once $(athena.os.get_base_lib_dir)/functions.test.sh
-athena.test.run_suite $tests_dir
-if [ $? -ne 0 ]; then
-	athena.fatal "problem found with system!"
-fi
-
 athena.plugins.base.check "$(athena.plugin.get_plg_cmd_dir)"
 if [ $? -ne 0 ]; then
 	athena.fatal "problem found with system!"
