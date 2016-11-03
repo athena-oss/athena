@@ -3,7 +3,7 @@
 ATHENA_IS_INSIDE_CONTAINER=1
 
 # includes
-source $ATHENA_BASE_SHARED_LIB_DIR/bootstrap.functions.sh
+source /opt/bootstrap/shared.functions.sh
 
 athena.os.set_command "$1"
 shift

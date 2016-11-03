@@ -51,6 +51,7 @@
     * [`athena.plugin.build`](#athenapluginbuild)
     * [`athena.plugin.check_dependencies`](#athenaplugincheckdependencies)
     * [`athena.plugin.get_available_cmds`](#athenaplugingetavailablecmds)
+    * [`athena.plugin.get_bootstrap_dir`](#athenaplugingetbootstrapdir)
     * [`athena.plugin.get_container_name`](#athenaplugingetcontainername)
     * [`athena.plugin.get_container_to_use`](#athenaplugingetcontainertouse)
     * [`athena.plugin.get_environment`](#athenaplugingetenvironment)
@@ -513,6 +514,14 @@ This function prints the usage info list of all commands found for this plugin (
 **USAGE:**  `athena.plugin.get_available_cmds`
  
 **RETURN:** `--`
+ 
+### <a name="athenaplugingetbootstrapdir"></a>`athena.plugin.get_bootstrap_dir`
+ 
+This function returns the bootstrap directory.
+ 
+**USAGE:**  `athena.plugin.get_bootstrap_dir`
+ 
+**RETURN:** `string`
  
 ### <a name="athenaplugingetcontainername"></a>`athena.plugin.get_container_name`
  

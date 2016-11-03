@@ -380,6 +380,15 @@ function athena.plugin.get_shared_lib_dir()
 	echo "$ATHENA_BASE_SHARED_LIB_DIR"
 }
 
+# This function returns the bootstrap directory.
+# USAGE: athena.plugin.get_bootstrap_dir
+# RETURN: string
+function athena.plugin.get_bootstrap_dir()
+{
+	echo "$ATHENA_BASE_BOOTSTRAP_DIR"
+}
+
+
 # This function sets the current container name in the $ATHENA_CONTAINER_NAME variable to
 # the given value.
 # USAGE:  athena.plugin.set_container_name <container name>
@@ -721,10 +730,12 @@ function athena.plugin.check_dependencies()
 	athena.color.print_debug "checking plugin dependencies..."
 	# check plugin dependencies
 	if [ -f  "$reqs_file" ]; then
-		while read dep
+		while read line
 		do
-			name=$(echo "$dep" | awk -F"=" '{ print $1 }')
-			version=$(echo "$dep" | awk -F"=" '{ print $2 }')
+			name=$(echo "$line" | awk -F"=" '{ print $1 }')
+			# version can include also an equal sign and be enclosed by double quotes
+			version=$(echo "$line" | sed -e "s/${name}=//g")
+			version=${version//\"/}
 			if ! athena.plugin.plugin_exists "$name" "$version"; then
 				return 1
 			fi
