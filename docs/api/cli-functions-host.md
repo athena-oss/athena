@@ -45,6 +45,9 @@
     * [`athena.docker.set_options`](#athenadockersetoptions)
     * [`athena.docker.stop_all_containers`](#athenadockerstopallcontainers)
     * [`athena.docker.stop_container`](#athenadockerstopcontainer)
+    * [`athena.docker.volume_create`](#athenadockervolumecreate)
+    * [`athena.docker.volume_exists`](#athenadockervolumeexists)
+    * [`athena.docker.volume_exists_or_create`](#athenadockervolumeexistsorcreate)
     * [`athena.docker.wait_for_string_in_container_logs`](#athenadockerwaitforstringincontainerlogs)
     * [`athena.plugin.build`](#athenapluginbuild)
   * [Handling *plugin*](#handling-plugin)
@@ -472,6 +475,28 @@ This function stops a docker container with the given name if running or the cur
 **USAGE:**  `athena.docker.stop_container [container name]`
  
 **RETURN:** `--`
+ 
+### <a name="athenadockervolumecreate"></a>`athena.docker.volume_create`
+ 
+Create a new docker volume with <name>.
+ 
+**USAGE:**  `athena.docker.volume_create <name>`
+ 
+**RETURN:** `0 (true), exit 1 (failed)`
+ 
+### <a name="athenadockervolumeexists"></a>`athena.docker.volume_exists`
+ 
+Check if docker volume with the <name> exists.
+ 
+**USAGE:**  `athena.docker.volume_exists <name>`
+ 
+### <a name="athenadockervolumeexistsorcreate"></a>`athena.docker.volume_exists_or_create`
+ 
+Check if a volume with the <name> already exists, if not the volume is created.
+ 
+**USAGE:**  `athena.docker.volume_exists_or_create <name>`
+ 
+**RETURN:** `0 (true), 1 (false)`
  
 ### <a name="athenadockerwaitforstringincontainerlogs"></a>`athena.docker.wait_for_string_in_container_logs`
  

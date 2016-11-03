@@ -529,6 +529,48 @@ function testcase_athena.docker.get_ip_for_container()
 	bashunit.test.assert_exit_code.expects_fail "athena.docker.get_ip_for_container" "mycontainer"
 }
 
+function testcase_athena.docker.volume_exists()
+{
+	athena.test.assert_exit_code.expects_fail "athena.docker.volume_exists"
+
+	local myoutput=
+	athena.test.mock "athena.docker" "_save_args_to_var"
+	athena.docker.volume_exists "somevolumename"
+	athena.test.assert_value "$myoutput" "volume inspect somevolumename"
+
+	athena.test.mock.returns "athena.docker" 1
+	athena.test.assert_return.expects_fail "athena.docker.volume_exists" "somevolumename"
+
+	athena.test.mock.returns "athena.docker" 0
+	athena.test.assert_return "athena.docker.volume_exists" "somevolumename"
+}
+
+function testcase_athena.docker.volume_create()
+{
+	athena.test.assert_exit_code.expects_fail "athena.docker.volume_create"
+
+	athena.test.mock.returns "athena.docker" 1
+	athena.test.assert_exit_code.expects_fail "athena.docker.volume_create" "somerandomvolume"
+
+	athena.test.mock.returns "athena.docker" 0
+	athena.test.assert_return "athena.docker.volume_create" "somerandomvolume"
+}
+
+function testcase_athena.docker.volume_exists_or_create()
+{
+	athena.test.assert_exit_code.expects_fail "athena.docker.volume_exists_or_create"
+
+	athena.test.mock.returns "athena.docker.volume_exists" 0
+	athena.test.assert_return "athena.docker.volume_exists_or_create" "somerandomvolume"
+
+	athena.test.mock.returns "athena.docker.volume_exists" 1
+	athena.test.mock.returns "athena.docker.volume_create" 1
+	athena.test.assert_exit_code.expects_fail "athena.docker.volume_exists_or_create" "somerandomvolume"
+
+	athena.test.mock.returns "athena.docker.volume_exists" 0
+	athena.test.assert_return "athena.docker.volume_exists_or_create" "somerandomvolume"
+}
+
 # aux functions
 function _void()
 {
@@ -560,4 +602,8 @@ function _my_docker_fake_docker_exec()
 			exit 1
 			;;
 	esac
+}
+function _save_args_to_var()
+{
+	myoutput="$@"
 }
