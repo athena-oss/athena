@@ -23,12 +23,13 @@ function testcase_athena.docker.run_container_with_default_router()
 	athena.test.mock.outputs "athena.plugin.get_shared_lib_dir" "/path/to/shared/dir"
 	athena.test.mock.returns "athena.fs.dir_exists_or_fail" 0
 	athena.test.mock.outputs "athena.plugin.get_plg_dir" "/path/to/plugin/dir"
+	athena.test.mock.outputs "athena.plugin.get_bootstrap_dir" "/path/to/bootstrap/dir"
 
 	athena.docker.set_options
 	athena.docker.add_option "OTHER_OPTIONS"
 	athena.argument.set_arguments one two three
 	athena.test.assert_output "athena.docker.run_container_with_default_router" \
-		"OTHER_OPTIONS --env ATHENA_PLUGIN=base --env ATHENA_BASE_SHARED_LIB_DIR=/opt/shared --env BIN_DIR=/opt/athena/bin --env CMD_DIR=/opt/athena/bin/cmd --env LIB_DIR=/opt/athena/bin/lib --env ATHENA_DOCKER_IP=127.0.0.1 --env ATHENA_DOCKER_HOST_IP=127.0.0.1 -v /path/to/shared/dir:/opt/shared -v /path/to/plugin/dir:/opt/athena --name mycontainer mytag:version /opt/shared/router.sh mycommand one two three" \
+		"OTHER_OPTIONS --env ATHENA_PLUGIN=base --env ATHENA_BASE_SHARED_LIB_DIR=/opt/shared --env BIN_DIR=/opt/athena/bin --env CMD_DIR=/opt/athena/bin/cmd --env LIB_DIR=/opt/athena/bin/lib --env ATHENA_DOCKER_IP=127.0.0.1 --env ATHENA_DOCKER_HOST_IP=127.0.0.1 -v /path/to/shared/dir:/opt/shared -v /path/to/plugin/dir:/opt/athena -v /path/to/bootstrap/dir:/opt/bootstrap --name mycontainer mytag:version /opt/bootstrap/router.sh mycommand one two three" \
 		"mycontainer" "mytag:version" "mycommand"
 }
 
