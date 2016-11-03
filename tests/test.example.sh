@@ -1,43 +1,43 @@
 function testcase_athena.example()
 {
 	# asserting values
-	athena.test.assert_value "One" "One"
-	athena.test.assert_value.expects_fail "One" "Two"
+	bashunit.test.assert_value "One" "One"
+	bashunit.test.assert_value.expects_fail "One" "Two"
 
 	# asserting return of functions
-	athena.test.assert_return "_my_example_function" "pass"
-	athena.test.assert_return.expects_fail "_my_example_function" "fail"
+	bashunit.test.assert_return "_my_example_function" "pass"
+	bashunit.test.assert_return.expects_fail "_my_example_function" "fail"
 
 	# asserting output of functions
-	athena.test.assert_output "_my_example_function" "OK" "pass"
-	athena.test.assert_output.expects_fail "_my_example_function" "OK" "fail"
+	bashunit.test.assert_output "_my_example_function" "OK" "pass"
+	bashunit.test.assert_output.expects_fail "_my_example_function" "OK" "fail"
 
 	# asserting exit codes
-	athena.test.assert_exit_code "_my_example_function_with_exit_0"
-	athena.test.assert_exit_code.expects_fail "_my_example_function_with_exit_1"
+	bashunit.test.assert_exit_code "_my_example_function_with_exit_0"
+	bashunit.test.assert_exit_code.expects_fail "_my_example_function_with_exit_1"
 
 	# mocking
-	athena.test.mock "_my_example_function" "_my_example_mock"
-	athena.test.assert_output "_my_example_function" "Now i am the mock"
-	athena.test.assert_exit_code.expects_fail "_my_example_function"
+	bashunit.test.mock "_my_example_function" "_my_example_mock"
+	bashunit.test.assert_output "_my_example_function" "Now i am the mock"
+	bashunit.test.assert_exit_code.expects_fail "_my_example_function"
 
-	athena.test.mock.returns "my_mock" 3
-	athena.test.assert_return.expects_fail "my_mock"
+	bashunit.test.mock.returns "my_mock" 3
+	bashunit.test.assert_return.expects_fail "my_mock"
 
-	athena.test.mock.outputs "my_mock" "my string"
-	athena.test.assert_output "my_mock" "my string"
+	bashunit.test.mock.outputs "my_mock" "my string"
+	bashunit.test.assert_output "my_mock" "my string"
 
-	athena.test.mock.exits "my_mock" 0
-	athena.test.assert_exit_code "my_mock"
+	bashunit.test.mock.exits "my_mock" 0
+	bashunit.test.assert_exit_code "my_mock"
 
-	athena.test.mock.exits "my_mock" 1
-	athena.test.assert_exit_code.expects_fail "my_mock"
+	bashunit.test.mock.exits "my_mock" 1
+	bashunit.test.assert_exit_code.expects_fail "my_mock"
 
-	athena.test.mock.outputs "_my_example_function" "my new string"
-	athena.test.assert_output "_my_example_function" "my new string"
+	bashunit.test.mock.outputs "_my_example_function" "my new string"
+	bashunit.test.assert_output "_my_example_function" "my new string"
 
-	athena.test.mock.returns "_my_example_function" 0
-	athena.test.assert_return "_my_example_function"
+	bashunit.test.mock.returns "_my_example_function" 0
+	bashunit.test.assert_return "_my_example_function"
 
 
 	local multiline_string=$(cat <<EOF
@@ -46,18 +46,18 @@ function testcase_athena.example()
 }
 EOF
 )
-	athena.test.assert_output "_my_example_echo" "$multiline_string" "$multiline_string"
-	athena.test.assert_output "_my_example_echo_arguments" "$multiline_string" "$multiline_string"
+	bashunit.test.assert_output "_my_example_echo" "$multiline_string" "$multiline_string"
+	bashunit.test.assert_output "_my_example_echo_arguments" "$multiline_string" "$multiline_string"
 
-	athena.test.assert_string_contains "my string" "my"
-	athena.test.assert_string_contains.expects_fail "my string" "xpto"
+	bashunit.test.assert_string_contains "my string" "my"
+	bashunit.test.assert_string_contains.expects_fail "my string" "xpto"
 
 	multiline_string="$(cat <<EOF
 	my string: [xpto]
 EOF
 )"
-	athena.test.assert_string_contains "$multiline_string" "xpto]"
-	athena.test.assert_string_contains.expects_fail "$multiline_string" "xpto2]"
+	bashunit.test.assert_string_contains "$multiline_string" "xpto]"
+	bashunit.test.assert_string_contains.expects_fail "$multiline_string" "xpto2]"
 }
 
 function _my_example_echo()

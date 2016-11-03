@@ -22,53 +22,25 @@ function athena.get_current_script_dir()
 	echo "$dir"
 }
 
-export ATHENA_BASE_DIR
-export ATHENA_TAG
-export ATHENA_CONTAINER_NAME
-export ATHENA_PLG_CONTAINER_TO_USE
-export ATHENA_PLG_IMAGE_VERSION
-export ATHENA_BASE_IMAGE_VERSION
-export ATHENA_DOCKER_DAEMON_IS_RUNNING=0
-export ATHENA_PLUGIN="base"
-export ATHENA_PREFIX="athena"
-export ATHENA_IS_DEBUG=0
-export ATHENA_OUTPUT=0
-export ATHENA_NO_LOGO=0
-export ATHENA_CONTAINER_STARTED=0
-export ATHENA_DOCKER_NO_DEFAULT_ROUTER=0
-export ATHENA_SUDO=${ATHENA_SUDO:-""}
-export ATHENA_SUDO_DISABLED=${ATHENA_SUDO_DISABLED:-0}
-export ATHENA_INSTANCE=${ATHENA_INSTANCE:-0}
-export ATHENA_NO_TTY=${ATHENA_NO_TTY:-0}
-export ATHENA_PLG_ENVIRONMENT=""
-export ATHENA_PLG_IMAGE_NAME=olx/athena
-ATHENA_BASE_DIR="$(athena.get_current_script_dir)"
-export ATHENA_BASE_BIN_DIR=$ATHENA_BASE_DIR/bin
-export ATHENA_BASE_LIB_DIR=$ATHENA_BASE_BIN_DIR/lib
-export ATHENA_BASE_SHARED_LIB_DIR=$ATHENA_BASE_LIB_DIR/shared
-export ATHENA_PLGS_DIR=$ATHENA_BASE_DIR/plugins
-
-source "$ATHENA_BASE_LIB_DIR/bootstrap.functions.sh"
+source "$(athena.get_current_script_dir)/bootstrap/variables.sh"
+source "$(athena.get_current_script_dir)/bootstrap/host.functions.sh"
 
 if [ "$1" = "base" -o -n "$1" -a -d "$ATHENA_PLGS_DIR/$1" ]; then
 	ATHENA_PLUGIN=$1
 	shift
 fi
 
-declare -xa ATHENA_DOCKER_OPTS
 # from this point on arguments must be handled using the athena.argument functions
-declare -xa ATHENA_ARGS
 athena.argument.set_arguments "$@"
 shift $#
 
-export ATHENA_PLG_DIR=$ATHENA_PLGS_DIR/$ATHENA_PLUGIN
-export ATHENA_PLG_DOCKER_DIR=$ATHENA_PLG_DIR/docker
-export ATHENA_PLG_DOCKER_ENV_BUILD_FILE=$ATHENA_PLG_DOCKER_DIR/default.env
-export ATHENA_PLG_VERSION_FILE=$ATHENA_PLG_DIR/version.txt
-export ATHENA_VERSION_FILE=$ATHENA_PLGS_DIR/base/version.txt
+ATHENA_PLG_DIR=$ATHENA_PLGS_DIR/$ATHENA_PLUGIN
+ATHENA_PLG_DOCKER_DIR=$ATHENA_PLG_DIR/docker
+ATHENA_PLG_DOCKER_ENV_BUILD_FILE=$ATHENA_PLG_DOCKER_DIR/default.env
+ATHENA_PLG_VERSION_FILE=$ATHENA_PLG_DIR/version.txt
+ATHENA_VERSION_FILE=$ATHENA_PLGS_DIR/base/version.txt
 ATHENA_BASE_IMAGE_VERSION=$(athena.fs.get_file_contents "$ATHENA_VERSION_FILE")
 ATHENA_PLG_IMAGE_VERSION=$(athena.fs.get_file_contents "$ATHENA_PLG_VERSION_FILE")
-ATHENA_TAG=${ATHENA_PLG_IMAGE_NAME}-${ATHENA_PLUGIN}:${ATHENA_PLG_IMAGE_VERSION}
 ######################################################
 athena.os.set_exit_handler
 athena.os._handle_os
