@@ -6,7 +6,10 @@ services:
 before_install:
   - npm install -g gitbook-cli
 script:
-  - ./athena version
+ - export BASHUNIT_RELEASE="0.3.0"
+ - wget -O "$HOME/bashunit.tar.gz" "https://github.com/athena-oss/bashunit/archive/v${BASHUNIT_RELEASE}.tar.gz" && tar -v -C "$HOME" -xzf "$HOME/bashunit.tar.gz" && mv "$HOME/bashunit-${BASHUNIT_RELEASE}" "$HOME/bashunit"
+ - $HOME/bashunit/bashunit tests --bootstrap=bashunit-bootstrap.sh
+ - ./athena version
 after_success:
   - docs/publish_docs
 cache:
