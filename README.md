@@ -23,7 +23,7 @@ Well, it might also seem too easy or too abstract so let's dig into it.
 
 **Athena** aims to be of simple usage and architecture and consists of 2 pillars:
 
- * the `Engine`: a declarative framework based in `bash` ( *say that again ???* Don't run away yet because it has a pretty cool built-in testing system with mocking and proper [unit tests](tests/))
+ * the `Engine`: a declarative framework based in `bash` ( *say that again ???* Don't run away yet because it has proper [unit tests](tests/). To know more about it, have a look at the [bashUnit](https://github.com/athena-oss/bashunit) Testing Framework for `bash`. It has all of the common features an xUnit Framework gives, including Mocking.)
 
  * the `Plugins`: they are typically *Services*, *Applications*, *Jobs*, etc. They can use any technology or any stack of technologies and they form the ecosystem that helps you handle different scenarios. To support the automation environments, the virtualisation technology used is [docker](https://www.docker.com/).
 
