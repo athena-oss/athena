@@ -1,3 +1,20 @@
+## 0.8.0 (November 7, 2016)
+
+### Added
+  - Support for using ranged or specific versions of athena
+  - athena.docker.volume_exists function
+
+### Changed
+  - Created bootstrap folder that contains files required to bootstrap athena (e.g.: global variables)
+  - Extracted Testing Framework to the bashUnit project
+  - Replaced tests with bashUnit
+  - Removed unit tests from the init command
+  - Moved print_logo function to the plugin functions
+  - Removed unnecessary bin directory structure
+
+### Fixed
+  - Some tests that were depending on some athena functionalities and were not explicit
+
 ## 0.7.0 (October 28, 2016)
 
 ### Added
