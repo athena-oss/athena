@@ -181,8 +181,8 @@ function athena.utils.validate_version()
 	local patch_compareto=${version_compareto_components[3]}
 
 	# simply compare the numbers
-	local -i number="$major$minor$patch"
-	local -i number_compareto="$major_compareto$minor_compareto$patch_compareto"
+	local number=$((major*100 + minor*10 + patch*1))
+	local number_compareto=$((major_compareto*100 + minor_compareto*10 + patch_compareto*1))
 
 	if ! athena.utils.compare_number $number $number_compareto $comparator ; then
 		return 1
@@ -202,9 +202,9 @@ function athena.utils.validate_version()
 # RETURNS: 0 (true), 1 (false)
 function athena.utils.compare_number()
 {
-	local -i value=$1
+	local value=$1
 	local -i compareto_value=$2
-	local comparator=$3
+	local -i comparator=$3
 	case "$comparator" in
 		">" )
 			if [[ $value -gt $compareto_value ]]; then
