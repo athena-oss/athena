@@ -171,6 +171,7 @@ function testcase_athena.utils.validate_version()
 	bashunit.test.assert_return "athena.utils.validate_version" "1.0.1" "=1.0.1"
 	bashunit.test.assert_return.expects_fail "athena.utils.validate_version" "1.0.2" "=1.0.1"
 	bashunit.test.assert_return "athena.utils.validate_version" "1.0.1" "0.8.0"
+	bashunit.test.assert_return "athena.utils.validate_version" "1.0.1" ">=0.8.0"
 }
 
 function testcase_athena.utils.validate_version_format()

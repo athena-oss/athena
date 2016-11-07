@@ -202,9 +202,9 @@ function athena.utils.validate_version()
 # RETURNS: 0 (true), 1 (false)
 function athena.utils.compare_number()
 {
-	local value=$1
+	local -i value=$1
 	local -i compareto_value=$2
-	local -i comparator=$3
+	local comparator=$3
 	case "$comparator" in
 		">" )
 			if [[ $value -gt $compareto_value ]]; then
