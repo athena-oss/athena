@@ -392,6 +392,9 @@
 <li><a href="#athenadockermount"><code>athena.docker.mount</code></a></li>
 <li><a href="#athenadockermountdir"><code>athena.docker.mount_dir</code></a></li>
 <li><a href="#athenadockermountdirfromplugin"><code>athena.docker.mount_dir_from_plugin</code></a></li>
+<li><a href="#athenadockernetworkcreate"><code>athena.docker.network_create</code></a></li>
+<li><a href="#athenadockernetworkexists"><code>athena.docker.network_exists</code></a></li>
+<li><a href="#athenadockernetworkexistsorcreate"><code>athena.docker.network_exists_or_create</code></a></li>
 <li><a href="#athenadockerprintorfollowcontainerlogs"><code>athena.docker.print_or_follow_container_logs</code></a></li>
 <li><a href="#athenadockerremovecontainerandimage"><code>athena.docker.remove_container_and_image</code></a></li>
 <li><a href="#athenadockerrm"><code>athena.docker.rm</code></a></li>
@@ -456,29 +459,6 @@
 <li><a href="#athenapluginuseexternalcontainerasdaemon"><code>athena.plugin.use_external_container_as_daemon</code></a></li>
 <li><a href="#athenapluginvalidatepluginname"><code>athena.plugin.validate_plugin_name</code></a></li>
 <li><a href="#athenapluginvalidateusage"><code>athena.plugin.validate_usage</code></a></li>
-</ul>
-</li>
-<li><a href="#handling-test">Handling <em>test</em></a><ul>
-<li><a href="#athenatestassertarray"><code>athena.test.assert_array</code></a></li>
-<li><a href="#athenatestassertexitcode"><code>athena.test.assert_exit_code</code></a></li>
-<li><a href="#athenatestassertexitcodeexpectsfail"><code>athena.test.assert_exit_code.expects_fail</code></a></li>
-<li><a href="#athenatestassertoutput"><code>athena.test.assert_output</code></a></li>
-<li><a href="#athenatestassertoutputexpectsfail"><code>athena.test.assert_output.expects_fail</code></a></li>
-<li><a href="#athenatestassertreturn"><code>athena.test.assert_return</code></a></li>
-<li><a href="#athenatestassertreturnexpectsfail"><code>athena.test.assert_return.expects_fail</code></a></li>
-<li><a href="#athenatestassertstringcontains"><code>athena.test.assert_string_contains</code></a></li>
-<li><a href="#athenatestassertstringcontainsexpectsfail"><code>athena.test.assert_string_contains.expects_fail</code></a></li>
-<li><a href="#athenatestassertvalue"><code>athena.test.assert_value</code></a></li>
-<li><a href="#athenatestassertvalueexpectsfail"><code>athena.test.assert_value.expects_fail</code></a></li>
-<li><a href="#athenatestcreatetempdir"><code>athena.test.create_tempdir</code></a></li>
-<li><a href="#athenatestcreatetempfile"><code>athena.test.create_tempfile</code></a></li>
-<li><a href="#athenatestmock"><code>athena.test.mock</code></a></li>
-<li><a href="#athenatestmockexits"><code>athena.test.mock.exits</code></a></li>
-<li><a href="#athenatestmockoutputs"><code>athena.test.mock.outputs</code></a></li>
-<li><a href="#athenatestmockreturns"><code>athena.test.mock.returns</code></a></li>
-<li><a href="#athenatestrunsuite"><code>athena.test.run_suite</code></a></li>
-<li><a href="#athenatestshowcoverage"><code>athena.test.show_coverage</code></a></li>
-<li><a href="#athenatestunmock"><code>athena.test.unmock</code></a></li>
 </ul>
 </li>
 </ul>
@@ -652,6 +632,20 @@ https://www.docker.com">docker</a> run option string ($ATHENA_DOCKER_OPTS). If s
 https://www.docker.com">docker</a> run option from a relative path to the current plugin.</p>
 <p><strong>USAGE:</strong>  <code>athena,docker.mount_dir_from_plugin &lt;relative_path_from_plugin&gt; &lt;target_directory&gt;</code></p>
 <p><strong>RETURN:</strong> <code>--</code></p>
+<h3 id="athenadockernetworkcreate"><a name="athenadockernetworkcreate"></a><code>athena.docker.network_create</code></h3>
+<p>Create a new <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> network with <name>.</name></p>
+<p><strong>USAGE:</strong>  <code>athena.docker.network_create &lt;name&gt; [opts...]</code></p>
+<p><strong>RETURN:</strong> <code>0 (true), exit 1 (failed)</code></p>
+<h3 id="athenadockernetworkexists"><a name="athenadockernetworkexists"></a><code>athena.docker.network_exists</code></h3>
+<p>Check if <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
+https://www.docker.com">docker</a> network with the <name> exists.</name></p>
+<p><strong>USAGE:</strong>  <code>athena.docker.network_exists &lt;name&gt; [opts...]</code></p>
+<p><strong>RETURN:</strong> <code>0 (true), exit 1 (failed)</code></p>
+<h3 id="athenadockernetworkexistsorcreate"><a name="athenadockernetworkexistsorcreate"></a><code>athena.docker.network_exists_or_create</code></h3>
+<p>Check if a network with the <name> already exists, if not the network is created.</name></p>
+<p><strong>USAGE:</strong>  <code>athena.docker.network_exists_or_create &lt;name&gt; [opts...]</code></p>
+<p><strong>RETURN:</strong> <code>0 (true), 1 (false)</code></p>
 <h3 id="athenadockerprintorfollowcontainerlogs"><a name="athenadockerprintorfollowcontainerlogs"></a><code>athena.docker.print_or_follow_container_logs</code></h3>
 <p>Either print or follow the output of one or more container logs.</p>
 <p><strong>USAGE:</strong>  <code>athena.docker.print_or_follow_container_logs &lt;containers&gt; [-f]</code></p>
@@ -713,6 +707,7 @@ https://www.docker.com">docker</a> volume with <name>.</name></p>
 <p>Check if <a href="../GLOSSARY.html#docker" class="glossary-term" title="Open platform for developers and sysadmins to build, ship, and run distributed applications, whether on laptops, data center VMs, or the cloud.
 https://www.docker.com">docker</a> volume with the <name> exists.</name></p>
 <p><strong>USAGE:</strong>  <code>athena.docker.volume_exists &lt;name&gt;</code></p>
+<p><strong>RETURN:</strong> <code>0 (true), exit 1 (failed)</code></p>
 <h3 id="athenadockervolumeexistsorcreate"><a name="athenadockervolumeexistsorcreate"></a><code>athena.docker.volume_exists_or_create</code></h3>
 <p>Check if a volume with the <name> already exists, if not the volume is created.</name></p>
 <p><strong>USAGE:</strong>  <code>athena.docker.volume_exists_or_create &lt;name&gt;</code></p>
@@ -917,85 +912,6 @@ https://www.docker.com">docker</a> build environment file name in the $ATHENA_PL
 <p>This function checks the number of arguments in the given list. If no argument is given it shows the available commands of the given plugin and exits. If another argument than &apos;init&apos; or &apos;cleanup&apos; is given it checks if the plugin was initialised.</p>
 <p><strong>USAGE:</strong>  <code>athena.plugin.validate_usage &lt;plugin_name&gt; &lt;argument1&gt; &lt;argument2&gt; ...</code></p>
 <p><strong>RETURN:</strong> <code>--</code></p>
-<h2 id="handling-test">Handling <em>test</em></h2>
-<h3 id="athenatestassertarray"><a name="athenatestassertarray"></a><code>athena.test.assert_array</code></h3>
-<p>This function asserts if two arrays are equal. It takes the name of the array variables to look them up.</p>
-<p><strong>USAGE:</strong>  <code>athena.assert_value &lt;name_of_array&gt; &lt;name_of_expected_array&gt;</code></p>
-<p><strong>RETURN:</strong> <code>0 (true) 1 (false)</code></p>
-<h3 id="athenatestassertexitcode"><a name="athenatestassertexitcode"></a><code>athena.test.assert_exit_code</code></h3>
-<p>This function asserts if the function exits with 0.</p>
-<p><strong>USAGE:</strong>  <code>athena.test.assert_exit_code &lt;function&gt; &lt;arguments&gt;</code></p>
-<p><strong>RETURN:</strong> <code>0 (true) 1 (false)</code></p>
-<h3 id="athenatestassertexitcodeexpectsfail"><a name="athenatestassertexitcodeexpectsfail"></a><code>athena.test.assert_exit_code.expects_fail</code></h3>
-<p>This function asserts if the function does not exit with 0.</p>
-<p><strong>USAGE:</strong>  <code>athena.test.assert_exit_code &lt;function&gt; &lt;arguments&gt;</code></p>
-<p><strong>RETURN:</strong> <code>0 (true) 1 (false)</code></p>
-<h3 id="athenatestassertoutput"><a name="athenatestassertoutput"></a><code>athena.test.assert_output</code></h3>
-<p>This function asserts the output of a function call.</p>
-<p><strong>USAGE:</strong>  <code>athena.assert_output &lt;function&gt; &lt;expected&gt; &lt;arguments&gt;</code></p>
-<p><strong>RETURN:</strong> <code>0 (true) 1 (false)</code></p>
-<h3 id="athenatestassertoutputexpectsfail"><a name="athenatestassertoutputexpectsfail"></a><code>athena.test.assert_output.expects_fail</code></h3>
-<p>This function asserts if the output of a function call is not the same as the expected.</p>
-<p><strong>USAGE:</strong>  <code>athena.assert_output.expects_fail &lt;function&gt; &lt;expected&gt; &lt;arguments&gt;</code></p>
-<p><strong>RETURN:</strong> <code>0 (true) 1 (false)</code></p>
-<h3 id="athenatestassertreturn"><a name="athenatestassertreturn"></a><code>athena.test.assert_return</code></h3>
-<p>This function asserts the return of a function call.</p>
-<p><strong>USAGE:</strong>  <code>athena.assert_return &lt;function&gt; &lt;arguments&gt;</code></p>
-<p><strong>RETURN:</strong> <code>0 (true) 1 (false)</code></p>
-<h3 id="athenatestassertreturnexpectsfail"><a name="athenatestassertreturnexpectsfail"></a><code>athena.test.assert_return.expects_fail</code></h3>
-<p>This function asserts if a function call fails.</p>
-<p><strong>USAGE:</strong>  <code>athena.assert_return.expects_fail &lt;function&gt; &lt;arguments&gt;</code></p>
-<p><strong>RETURN:</strong> <code>0 (true) 1 (false)</code></p>
-<h3 id="athenatestassertstringcontains"><a name="athenatestassertstringcontains"></a><code>athena.test.assert_string_contains</code></h3>
-<p>Assert <string> contains <sub-string></sub-string></string></p>
-<p><strong>USAGE:</strong>  <code>athena.test.assert_string_contains &lt;string&gt; &lt;sub-string&gt;</code></p>
-<h3 id="athenatestassertstringcontainsexpectsfail"><a name="athenatestassertstringcontainsexpectsfail"></a><code>athena.test.assert_string_contains.expects_fail</code></h3>
-<p>Assert <string> does not contain <sub-string></sub-string></string></p>
-<p><strong>USAGE:</strong>  <code>athena.test.assert_string_contains.expects_fail &lt;string&gt; &lt;sub-string&gt;</code></p>
-<h3 id="athenatestassertvalue"><a name="athenatestassertvalue"></a><code>athena.test.assert_value</code></h3>
-<p>This function asserts if two values are equal.</p>
-<p><strong>USAGE:</strong>  <code>athena.assert_value &lt;value&gt; &lt;expected&gt;</code></p>
-<p><strong>RETURN:</strong> <code>0 (true) 1 (false)</code></p>
-<h3 id="athenatestassertvalueexpectsfail"><a name="athenatestassertvalueexpectsfail"></a><code>athena.test.assert_value.expects_fail</code></h3>
-<p>This function asserts if two values are not supposed to be equal.</p>
-<p><strong>USAGE:</strong>  <code>athena.assert_value.expects_fail &lt;value&gt; &lt;not_expected&gt;</code></p>
-<p><strong>RETURN:</strong> <code>0 (true) 1 (false)</code></p>
-<h3 id="athenatestcreatetempdir"><a name="athenatestcreatetempdir"></a><code>athena.test.create_tempdir</code></h3>
-<p>This function creates a temporary directory in the home dir, by making use of mktemp command.</p>
-<p><strong>USAGE:</strong>  <code>athena.test.create_tempdir</code></p>
-<p><strong>RETURN:</strong> <code>string</code></p>
-<h3 id="athenatestcreatetempfile"><a name="athenatestcreatetempfile"></a><code>athena.test.create_tempfile</code></h3>
-<p>This function creates a temporary file in the home dir, by making use of mktemp command.</p>
-<p><strong>USAGE:</strong>  <code>athena.test.create_tempfile</code></p>
-<p><strong>RETURN:</strong> <code>string</code></p>
-<h3 id="athenatestmock"><a name="athenatestmock"></a><code>athena.test.mock</code></h3>
-<p>This function mocks and existing function by overriding it. Also it saves the function to be mocked as ATHENA<em>MOCK</em><func_name>, so that it can be restored afterwards by callin athena.test.unmock.</func_name></p>
-<p><strong>USAGE:</strong>  <code>athena.test.mock &lt;function_name&gt; &lt;mock_function_name&gt;</code></p>
-<p><strong>RETURN:</strong> <code>--</code></p>
-<h3 id="athenatestmockexits"><a name="athenatestmockexits"></a><code>athena.test.mock.exits</code></h3>
-<p>This function creates a mock of the specified function with the given exit code.</p>
-<p><strong>USAGE:</strong>  <code>athena.test.mock.exits &lt;function_name&gt; &lt;return&gt;</code></p>
-<p><strong>RETURN:</strong> <code>--</code></p>
-<h3 id="athenatestmockoutputs"><a name="athenatestmockoutputs"></a><code>athena.test.mock.outputs</code></h3>
-<p>This function creates a mock of the specified function with the given output.</p>
-<p><strong>USAGE:</strong>  <code>athena.test.mock.outputs &lt;function_name&gt; &lt;return&gt;</code></p>
-<p><strong>RETURN:</strong> <code>--</code></p>
-<h3 id="athenatestmockreturns"><a name="athenatestmockreturns"></a><code>athena.test.mock.returns</code></h3>
-<p>This function creates a mock of the specified function with the given return.</p>
-<p><strong>USAGE:</strong>  <code>athena.test.mock.returns &lt;function_name&gt; &lt;return&gt;</code></p>
-<p><strong>RETURN:</strong> <code>--</code></p>
-<h3 id="athenatestrunsuite"><a name="athenatestrunsuite"></a><code>athena.test.run_suite</code></h3>
-<p>This function executes the suite of tests located in the given directory. The exit code will be zero in case all tests succeed and 1 if any fail.</p>
-<p><strong>USAGE:</strong>  <code>athena.test.run_suite &lt;directory|file&gt;</code></p>
-<p><strong>RETURN:</strong> <code>--</code></p>
-<h3 id="athenatestshowcoverage"><a name="athenatestshowcoverage"></a><code>athena.test.show_coverage</code></h3>
-<p>This function outputs the coverage for the given source and tests directory. It is also possible to output the list of functions that don&apos;t have tests for it.</p>
-<p><strong>USAGE:</strong>  <code>athena.test.show_coverage &lt;source_dir&gt; &lt;tests_dir&gt; [&lt;show_untested_functions&gt;]</code></p>
-<p><strong>RETURN:</strong> <code>--</code></p>
-<h3 id="athenatestunmock"><a name="athenatestunmock"></a><code>athena.test.unmock</code></h3>
-<p>This function unmocks the previous mocked function by restoring its source code.</p>
-<p><strong>USAGE:</strong>  <code>athena.test.unmock &lt;function_name&gt;</code></p>
-<p><strong>RETURN:</strong> <code>--</code></p>
 
                                 
                                 </section>
@@ -1039,7 +955,7 @@ https://www.docker.com">docker</a> build environment file name in the $ATHENA_PL
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Host only API","level":"2.3","depth":1,"next":{"title":"CLI flags","level":"2.4","depth":1,"path":"api/flags.md","ref":"api/flags.md","articles":[]},"previous":{"title":"Shared API","level":"2.2","depth":1,"path":"api/cli-functions-shared.md","ref":"api/cli-functions-shared.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"api/cli-functions-host.md","mtime":"2016-11-09T10:00:03.659Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-11-09T10:01:10.364Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Host only API","level":"2.3","depth":1,"next":{"title":"CLI flags","level":"2.4","depth":1,"path":"api/flags.md","ref":"api/flags.md","articles":[]},"previous":{"title":"Shared API","level":"2.2","depth":1,"path":"api/cli-functions-shared.md","ref":"api/cli-functions-shared.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["theme-default"],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"api/cli-functions-host.md","mtime":"2016-11-09T12:26:57.944Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-11-09T12:28:01.681Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
