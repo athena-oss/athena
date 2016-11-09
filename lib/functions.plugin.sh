@@ -928,7 +928,6 @@ function athena.plugin.run_container()
 		athena.color.print_debug "using container with default router"
 		if athena.docker.is_container_running "$container_name" ; then
 			athena.color.print_debug "using already running container $container_name"
-			# TODO: check why command needs to be passed to container via arguments
 			athena.os.exec athena.docker.exec -i "$container_name" "$router" "$command" "${arguments[@]}"
 		else
 			athena.color.print_debug "starting container $container_name for command '$command' ..."
