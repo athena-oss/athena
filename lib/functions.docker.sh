@@ -749,7 +749,7 @@ function athena.docker.list_athena_containers()
 
 # Check if docker volume with the <name> exists.
 # USAGE: athena.docker.volume_exists <name>
-# RETURN 0 (true), exit 1 (failed)
+# RETURN: 0 (true), exit 1 (failed)
 function athena.docker.volume_exists()
 {
 	athena.argument.argument_is_not_empty_or_fail "$1" "name"
@@ -778,6 +778,43 @@ function athena.docker.volume_exists_or_create()
 	if ! athena.docker.volume_exists "$1"; then
 		if ! athena.docker.volume_create "$1"; then
 			athena.os.exit_with_msg "Failed to create volume ${1} ..."
+			return 1
+		fi
+	fi
+	return 0
+}
+
+# Check if docker network with the <name> exists.
+# USAGE: athena.docker.network_exists <name> [opts...]
+# RETURN: 0 (true), exit 1 (failed)
+function athena.docker.network_exists()
+{
+	athena.argument.argument_is_not_empty_or_fail "$1" "name"
+	if ! athena.docker network inspect "$1" 1>/dev/null 2>/dev/null; then
+		return 1
+	fi
+	return 0
+}
+
+# Create a new docker network with <name>.
+# USAGE: athena.docker.network_create <name> [opts...]
+# RETURN: 0 (true), exit 1 (failed)
+function athena.docker.network_create()
+{
+	athena.argument.argument_is_not_empty_or_fail "$1" "name"
+	athena.docker network create ${@:2} "$1" 1>/dev/null
+}
+
+# Check if a network with the <name> already exists, if not the network is
+# created.
+# USAGE:  athena.docker.network_exists_or_create <name> [opts...]
+# RETURN: 0 (true), 1 (false)
+function athena.docker.network_exists_or_create()
+{
+	athena.argument.argument_is_not_empty_or_fail "$1" "name"
+	if ! athena.docker.network_exists "$1"; then
+		if ! athena.docker.network_create "$1" ${@:2}; then
+			athena.os.exit_with_msg "Failed to create network '${1}'..."
 			return 1
 		fi
 	fi

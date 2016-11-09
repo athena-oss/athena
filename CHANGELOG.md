@@ -1,3 +1,8 @@
+## 0.9.0 (November 9, 2016)
+
+### Added
+  - athena.docker.network functions to manage docker networks
+
 ## 0.8.0 (November 7, 2016)
 
 ### Added

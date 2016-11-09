@@ -34,6 +34,9 @@
     * [`athena.docker.mount`](#athenadockermount)
     * [`athena.docker.mount_dir`](#athenadockermountdir)
     * [`athena.docker.mount_dir_from_plugin`](#athenadockermountdirfromplugin)
+    * [`athena.docker.network_create`](#athenadockernetworkcreate)
+    * [`athena.docker.network_exists`](#athenadockernetworkexists)
+    * [`athena.docker.network_exists_or_create`](#athenadockernetworkexistsorcreate)
     * [`athena.docker.print_or_follow_container_logs`](#athenadockerprintorfollowcontainerlogs)
     * [`athena.docker.remove_container_and_image`](#athenadockerremovecontainerandimage)
     * [`athena.docker.rm`](#athenadockerrm)
@@ -96,27 +99,6 @@
     * [`athena.plugin.use_external_container_as_daemon`](#athenapluginuseexternalcontainerasdaemon)
     * [`athena.plugin.validate_plugin_name`](#athenapluginvalidatepluginname)
     * [`athena.plugin.validate_usage`](#athenapluginvalidateusage)
-  * [Handling *test*](#handling-test)
-    * [`athena.test.assert_array`](#athenatestassertarray)
-    * [`athena.test.assert_exit_code`](#athenatestassertexitcode)
-    * [`athena.test.assert_exit_code.expects_fail`](#athenatestassertexitcodeexpectsfail)
-    * [`athena.test.assert_output`](#athenatestassertoutput)
-    * [`athena.test.assert_output.expects_fail`](#athenatestassertoutputexpectsfail)
-    * [`athena.test.assert_return`](#athenatestassertreturn)
-    * [`athena.test.assert_return.expects_fail`](#athenatestassertreturnexpectsfail)
-    * [`athena.test.assert_string_contains`](#athenatestassertstringcontains)
-    * [`athena.test.assert_string_contains.expects_fail`](#athenatestassertstringcontainsexpectsfail)
-    * [`athena.test.assert_value`](#athenatestassertvalue)
-    * [`athena.test.assert_value.expects_fail`](#athenatestassertvalueexpectsfail)
-    * [`athena.test.create_tempdir`](#athenatestcreatetempdir)
-    * [`athena.test.create_tempfile`](#athenatestcreatetempfile)
-    * [`athena.test.mock`](#athenatestmock)
-    * [`athena.test.mock.exits`](#athenatestmockexits)
-    * [`athena.test.mock.outputs`](#athenatestmockoutputs)
-    * [`athena.test.mock.returns`](#athenatestmockreturns)
-    * [`athena.test.run_suite`](#athenatestrunsuite)
-    * [`athena.test.show_coverage`](#athenatestshowcoverage)
-    * [`athena.test.unmock`](#athenatestunmock)
 
 # Using CLI Functions
  
@@ -388,6 +370,30 @@ This function adds the given volume to the docker run option from a relative pat
  
 **RETURN:** `--`
  
+### <a name="athenadockernetworkcreate"></a>`athena.docker.network_create`
+ 
+Create a new docker network with <name>.
+ 
+**USAGE:**  `athena.docker.network_create <name> [opts...]`
+ 
+**RETURN:** `0 (true), exit 1 (failed)`
+ 
+### <a name="athenadockernetworkexists"></a>`athena.docker.network_exists`
+ 
+Check if docker network with the <name> exists.
+ 
+**USAGE:**  `athena.docker.network_exists <name> [opts...]`
+ 
+**RETURN:** `0 (true), exit 1 (failed)`
+ 
+### <a name="athenadockernetworkexistsorcreate"></a>`athena.docker.network_exists_or_create`
+ 
+Check if a network with the <name> already exists, if not the network is created.
+ 
+**USAGE:**  `athena.docker.network_exists_or_create <name> [opts...]`
+ 
+**RETURN:** `0 (true), 1 (false)`
+ 
 ### <a name="athenadockerprintorfollowcontainerlogs"></a>`athena.docker.print_or_follow_container_logs`
  
 Either print or follow the output of one or more container logs.
@@ -489,6 +495,8 @@ Create a new docker volume with <name>.
 Check if docker volume with the <name> exists.
  
 **USAGE:**  `athena.docker.volume_exists <name>`
+ 
+**RETURN:** `0 (true), exit 1 (failed)`
  
 ### <a name="athenadockervolumeexistsorcreate"></a>`athena.docker.volume_exists_or_create`
  
@@ -873,163 +881,5 @@ This function checks if the given argument (e.g. <plugin name>) is not empty. If
 This function checks the number of arguments in the given list. If no argument is given it shows the available commands of the given plugin and exits. If another argument than 'init' or 'cleanup' is given it checks if the plugin was initialised.
  
 **USAGE:**  `athena.plugin.validate_usage <plugin_name> <argument1> <argument2> ...`
- 
-**RETURN:** `--`
- 
-## Handling *test*
- 
-### <a name="athenatestassertarray"></a>`athena.test.assert_array`
- 
-This function asserts if two arrays are equal. It takes the name of the array variables to look them up.
- 
-**USAGE:**  `athena.assert_value <name_of_array> <name_of_expected_array>`
- 
-**RETURN:** `0 (true) 1 (false)`
- 
-### <a name="athenatestassertexitcode"></a>`athena.test.assert_exit_code`
- 
-This function asserts if the function exits with 0.
- 
-**USAGE:**  `athena.test.assert_exit_code <function> <arguments>`
- 
-**RETURN:** `0 (true) 1 (false)`
- 
-### <a name="athenatestassertexitcodeexpectsfail"></a>`athena.test.assert_exit_code.expects_fail`
- 
-This function asserts if the function does not exit with 0.
- 
-**USAGE:**  `athena.test.assert_exit_code <function> <arguments>`
- 
-**RETURN:** `0 (true) 1 (false)`
- 
-### <a name="athenatestassertoutput"></a>`athena.test.assert_output`
- 
-This function asserts the output of a function call.
- 
-**USAGE:**  `athena.assert_output <function> <expected> <arguments>`
- 
-**RETURN:** `0 (true) 1 (false)`
- 
-### <a name="athenatestassertoutputexpectsfail"></a>`athena.test.assert_output.expects_fail`
- 
-This function asserts if the output of a function call is not the same as the expected.
- 
-**USAGE:**  `athena.assert_output.expects_fail <function> <expected> <arguments>`
- 
-**RETURN:** `0 (true) 1 (false)`
- 
-### <a name="athenatestassertreturn"></a>`athena.test.assert_return`
- 
-This function asserts the return of a function call.
- 
-**USAGE:**  `athena.assert_return <function> <arguments>`
- 
-**RETURN:** `0 (true) 1 (false)`
- 
-### <a name="athenatestassertreturnexpectsfail"></a>`athena.test.assert_return.expects_fail`
- 
-This function asserts if a function call fails.
- 
-**USAGE:**  `athena.assert_return.expects_fail <function> <arguments>`
- 
-**RETURN:** `0 (true) 1 (false)`
- 
-### <a name="athenatestassertstringcontains"></a>`athena.test.assert_string_contains`
- 
-Assert <string> contains <sub-string>
- 
-**USAGE:**  `athena.test.assert_string_contains <string> <sub-string>`
- 
-### <a name="athenatestassertstringcontainsexpectsfail"></a>`athena.test.assert_string_contains.expects_fail`
- 
-Assert <string> does not contain <sub-string>
- 
-**USAGE:**  `athena.test.assert_string_contains.expects_fail <string> <sub-string>`
- 
-### <a name="athenatestassertvalue"></a>`athena.test.assert_value`
- 
-This function asserts if two values are equal.
- 
-**USAGE:**  `athena.assert_value <value> <expected>`
- 
-**RETURN:** `0 (true) 1 (false)`
- 
-### <a name="athenatestassertvalueexpectsfail"></a>`athena.test.assert_value.expects_fail`
- 
-This function asserts if two values are not supposed to be equal.
- 
-**USAGE:**  `athena.assert_value.expects_fail <value> <not_expected>`
- 
-**RETURN:** `0 (true) 1 (false)`
- 
-### <a name="athenatestcreatetempdir"></a>`athena.test.create_tempdir`
- 
-This function creates a temporary directory in the home dir, by making use of mktemp command.
- 
-**USAGE:**  `athena.test.create_tempdir`
- 
-**RETURN:** `string`
- 
-### <a name="athenatestcreatetempfile"></a>`athena.test.create_tempfile`
- 
-This function creates a temporary file in the home dir, by making use of mktemp command.
- 
-**USAGE:**  `athena.test.create_tempfile`
- 
-**RETURN:** `string`
- 
-### <a name="athenatestmock"></a>`athena.test.mock`
- 
-This function mocks and existing function by overriding it. Also it saves the function to be mocked as ATHENA_MOCK_<func_name>, so that it can be restored afterwards by callin athena.test.unmock.
- 
-**USAGE:**  `athena.test.mock <function_name> <mock_function_name>`
- 
-**RETURN:** `--`
- 
-### <a name="athenatestmockexits"></a>`athena.test.mock.exits`
- 
-This function creates a mock of the specified function with the given exit code.
- 
-**USAGE:**  `athena.test.mock.exits <function_name> <return>`
- 
-**RETURN:** `--`
- 
-### <a name="athenatestmockoutputs"></a>`athena.test.mock.outputs`
- 
-This function creates a mock of the specified function with the given output.
- 
-**USAGE:**  `athena.test.mock.outputs <function_name> <return>`
- 
-**RETURN:** `--`
- 
-### <a name="athenatestmockreturns"></a>`athena.test.mock.returns`
- 
-This function creates a mock of the specified function with the given return.
- 
-**USAGE:**  `athena.test.mock.returns <function_name> <return>`
- 
-**RETURN:** `--`
- 
-### <a name="athenatestrunsuite"></a>`athena.test.run_suite`
- 
-This function executes the suite of tests located in the given directory. The exit code will be zero in case all tests succeed and 1 if any fail.
- 
-**USAGE:**  `athena.test.run_suite <directory|file>`
- 
-**RETURN:** `--`
- 
-### <a name="athenatestshowcoverage"></a>`athena.test.show_coverage`
- 
-This function outputs the coverage for the given source and tests directory. It is also possible to output the list of functions that don't have tests for it.
- 
-**USAGE:**  `athena.test.show_coverage <source_dir> <tests_dir> [<show_untested_functions>]`
- 
-**RETURN:** `--`
- 
-### <a name="athenatestunmock"></a>`athena.test.unmock`
- 
-This function unmocks the previous mocked function by restoring its source code.
- 
-**USAGE:**  `athena.test.unmock <function_name>`
  
 **RETURN:** `--`

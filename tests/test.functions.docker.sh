@@ -571,6 +571,53 @@ function testcase_athena.docker.volume_exists_or_create()
 	bashunit.test.assert_return "athena.docker.volume_exists_or_create" "somerandomvolume"
 }
 
+function testcase_athena.docker.network_exists()
+{
+	bashunit.test.assert_exit_code.expects_fail "athena.docker.network_exists"
+
+	local myoutput=
+	bashunit.test.mock "athena.docker" "_save_args_to_var"
+	athena.docker.network_exists "some_network_name"
+	bashunit.test.assert_value "$myoutput" "network inspect some_network_name"
+
+	bashunit.test.mock.returns "athena.docker" 1
+	bashunit.test.assert_return.expects_fail "athena.docker.network_exists" "some_network_name"
+
+	bashunit.test.mock.returns "athena.docker" 0
+	bashunit.test.assert_return "athena.docker.network_exists" "some_network_name"
+}
+
+function testcase_athena.docker.network_create()
+{
+	bashunit.test.assert_exit_code.expects_fail "athena.docker.network_create"
+
+	local myoutput=
+	bashunit.test.mock "athena.docker" "_save_args_to_var"
+	athena.docker.network_create "some_network_name" -d bridge --dns 1.2.3
+	bashunit.test.assert_value "$myoutput" "network create -d bridge --dns 1.2.3 some_network_name"
+
+	athena.docker.network_create "some_network_name"
+	bashunit.test.assert_value "$myoutput" "network create some_network_name"
+
+	bashunit.test.mock.returns "athena.docker" 1
+	bashunit.test.assert_exit_code.expects_fail "athena.docker.network_create" "somerandomnetwork"
+
+	bashunit.test.mock.returns "athena.docker" 0
+	bashunit.test.assert_return "athena.docker.network_create" "somerandomnetwork"
+}
+
+function testcase_athena.docker.network_exists_or_create()
+{
+	bashunit.test.assert_exit_code.expects_fail "athena.docker.network_exists_or_create"
+
+	bashunit.test.mock.returns "athena.docker.network_exists" 0
+	bashunit.test.assert_return "athena.docker.network_exists_or_create" "somerandomnetwork"
+
+	bashunit.test.mock.returns "athena.docker.network_exists" 1
+	bashunit.test.mock.returns "athena.docker.network_create" 1
+	bashunit.test.assert_exit_code.expects_fail "athena.docker.network_exists_or_create" "somerandomnetwork"
+}
+
 # aux functions
 function _void()
 {
