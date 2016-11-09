@@ -3,6 +3,9 @@
 ### Added
   - athena.docker.network functions to manage docker networks
 
+### Fixed
+  - router.sh path when using a running container
+
 ## 0.8.0 (November 7, 2016)
 
 ### Added
