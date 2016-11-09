@@ -921,7 +921,7 @@ function athena.plugin.run_container()
 	# now run
 	ATHENA_CONTAINER_STARTED=1
 	local container_name
-	local router="/opt/shared/router.sh"
+	local router="/opt/bootstrap/router.sh"
 	container_name=$(athena.plugin.get_container_name)
 	athena.docker.handle_run_type
 	if athena.docker.is_default_router_to_be_used ; then

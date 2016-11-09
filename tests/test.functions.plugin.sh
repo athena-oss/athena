@@ -43,7 +43,7 @@ function testcase_athena.plugin.run_container()
 	athena.os.enable_verbose_mode
 	bashunit.test.mock.returns "athena.docker.image_exists" 0
 	bashunit.test.mock.returns "athena.docker.is_container_running" 0
-	bashunit.test.assert_output "athena.plugin.run_container" "-i mycontainer /opt/shared/router.sh command one two three" "command"
+	bashunit.test.assert_output "athena.plugin.run_container" "-i mycontainer /opt/bootstrap/router.sh command one two three" "command"
 
 	bashunit.test.mock "athena.docker.run" "_my_plugin_echo"
 
