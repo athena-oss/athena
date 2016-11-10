@@ -1,3 +1,8 @@
+## 0.9.1 (November 10, 2016)
+
+### Fixed
+  - global variables that can be setted from outside athena
+
 ## 0.9.0 (November 9, 2016)
 
 ### Added
