@@ -1,6 +1,6 @@
 # Most used functions (aliases)
 
-To simplify the development of plugins, we created some aliases for functions that are frequently used in the commands. Below you can find a list of a few of them, but you can check the full list in the file `bin/lib/shared/aliases.sh`.
+To simplify the development of plugins, we created some aliases for functions that are frequently used in the commands. Below you can find a list of a few of them, but you can check the full list in the file `lib/shared/aliases.sh`.
 
 ## Handling arguments
 
