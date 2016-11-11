@@ -9,9 +9,8 @@ The directory structure is very simple as you can see in the following schema :
 .
 ├── athena  # executable
 ├── ...
-├── bin
-│   └── lib # location of the library functions
-│       └── ...
+├── lib # location of the library functions
+│   └── ...
 ├── plugins # location of the plugins
 │   └── ...
 └── tests   # location of the
@@ -34,7 +33,7 @@ athena.argument.argument_exists <argument_name>
 The context also defines the name of the file where the functions are located. The pattern for the files is :
 
 ```bash
-bin/lib/[<shared_or_not>/]functions.<context>.sh
+lib/[<shared_or_not>/]functions.<context>.sh
 ```
 
 ## Using the functions
@@ -43,13 +42,13 @@ You can use the functions of Athena in 2 contexts, *HOST* or *SHARED*. Using on 
 
 * HOST only functions
 
-  * located in the ```bin/lib``` folder
+  * located in the ```lib``` folder
   * loaded automatically on the host
   * can be used only on the *PRE* and *POST* commands
 
 
 * SHARED functions
 
-  * located in the ```bin/lib/shared``` folder
+  * located in the ```lib/shared``` folder
   * loaded automatically on the host and on the container when the default router is being used
   * can only be used on the inner commands
