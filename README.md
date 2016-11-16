@@ -72,12 +72,33 @@ Prerequisites
 
 There are three quick start options available:
 
-* On MAC OSX using [Homebrew](http://brew.sh/) :
+**On Linux**
+
+ * Using a `debian package` from the [releases](https://github.com/athena-oss/athena/releases) :
+ 
+```bash
+$ sudo dpkg -i <downloaded_debian_package>
+```
+   
+* Using `apt-get` :
+  
+```bash
+$ sudo add-apt-repository ppa:athena-oss/athena
+$ sudo apt-get install athena
+```
+ 
+**On MAC OSX** 
+
+* Using [Homebrew](http://brew.sh/) :
+
 ```bash
 $ brew tap athena-oss/tap
 $ brew install athena
 ```
+
 **Note:** You might be required to allow Docker to access folders managed by Homebrew. In order to do this, go to Docker `Preferences > File Sharing` and add the folder `/usr/local/Cellar`.
+
+**Alternative**
 
 * [Download the latest release](https://github.com/athena-oss/athena/releases/latest)
 * Clone the repo: `git clone https://github.com/athena-oss/athena.git`
