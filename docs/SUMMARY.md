@@ -18,7 +18,6 @@
 * [Contributing](guides/contributing.md)
 * [License](LICENSE.md)
 * [Versioning](guides/versioning.md)
-* [Testing](guides/testing.md)
 
 ### Examples
 
