@@ -168,6 +168,23 @@ function athena.os.get_command()
 	return 0
 }
 
+# This functions checks if the env variable with the given name exists,
+# if not it will abort the current execution.
+# USAGE: athena.os.getenv_or_fail <name>
+# RETURN: string
+function athena.os.getenv_or_fail()
+{
+	# http://stackoverflow.com/questions/3601515/how-to-check-if-a-variable-is-set-in-bash
+	if [ -z ${!1} ]; then
+		athena.os.exit_with_msg "$1 is unset"
+		return 1
+	fi
+
+	athena.color.print_info "$1 is set to '${$1}'"
+	echo ${!1}
+	return 0
+}
+
 
 # This functions checks if the function with the given name exists.
 # USAGE: athena.os.function_exists <name>
