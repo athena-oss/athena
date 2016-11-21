@@ -58,6 +58,7 @@
     * [`athena.os.get_host_ip`](#athenaosgethostip)
     * [`athena.os.get_instance`](#athenaosgetinstance)
     * [`athena.os.get_prefix`](#athenaosgetprefix)
+    * [`athena.os.getenv_or_fail`](#athenaosgetenvorfail)
     * [`athena.os.handle_exit`](#athenaoshandleexit)
     * [`athena.os.include_once`](#athenaosincludeonce)
     * [`athena.os.is_command_set`](#athenaosiscommandset)
@@ -534,6 +535,14 @@ This function returns the value of the current instance as set in the $ATHENA_IN
 This functions returns the prefix that is used to create names for
  
 **USAGE:**  `athena.os.get_prefix`
+ 
+**RETURN:** `string`
+ 
+### <a name="athenaosgetenvorfail"></a>`athena.os.getenv_or_fail`
+ 
+This functions checks if the env variable with the given name exists, if not it will abort the current execution.
+ 
+**USAGE:**  `athena.os.getenv_or_fail <name>`
  
 **RETURN:** `string`
  
