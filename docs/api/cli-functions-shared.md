@@ -278,7 +278,7 @@ This function if a string contains a substring. With --literal, regex is not par
  
 This function prints the given string in a given color on STDOUT. Available colors are "green", "red", "blue", "yellow", "cyan", and "normal".
  
-**USAGE:**  `athena.color.print_color <color> <string> [<non_colored_string>]`
+**USAGE:**  `athena.color.print_color <color> <string> [<non_colored_string>][<redirect_number>]`
  
 **RETURN:** `--`
  
@@ -286,7 +286,7 @@ This function prints the given string in a given color on STDOUT. Available colo
  
 This function prints the given string on STDOUT formatted as debug message if debug mode is set.
  
-**USAGE:**  `athena.color.print_debug <string>`
+**USAGE:**  `athena.color.print_debug <string> [<redirect_number>]`
  
 **RETURN:** `--`
  
@@ -294,7 +294,7 @@ This function prints the given string on STDOUT formatted as debug message if de
  
 This function prints the given string on STDOUT formatted as error message.
  
-**USAGE:**  `athena.color.print_error <string>`
+**USAGE:**  `athena.color.print_error <string> [<redirect_number>]`
  
 **RETURN:** `--`
  
@@ -302,7 +302,7 @@ This function prints the given string on STDOUT formatted as error message.
  
 This function prints the given string on STDOUT formatted as fatal message and exit with 1 or the given code.
  
-**USAGE:**  `athena.color.print_fatal <string> [<exit_code>]`
+**USAGE:**  `athena.color.print_fatal <string> [<exit_code>] [<redirect_number>]`
  
 **RETURN:** `--`
  
@@ -310,7 +310,7 @@ This function prints the given string on STDOUT formatted as fatal message and e
  
 This function prints the given string on STDOUT formatted as info message.
  
-**USAGE:**  `athena.color.print_info <string>`
+**USAGE:**  `athena.color.print_info <string> [<redirect_number>]`
  
 **RETURN:** `--`
  
@@ -318,7 +318,7 @@ This function prints the given string on STDOUT formatted as info message.
  
 This function prints the given string on STDOUT formatted as ok message.
  
-**USAGE:**  `athena.color.print_ok <string>`
+**USAGE:**  `athena.color.print_ok <string> [<redirect_number>]`
  
 **RETURN:** `--`
  
@@ -326,7 +326,7 @@ This function prints the given string on STDOUT formatted as ok message.
  
 This function prints the given string on STDOUT formatted as warn message.
  
-**USAGE:**  `athena.color.print_warn <string>`
+**USAGE:**  `athena.color.print_warn <string> [<redirect_number>]`
  
 **RETURN:** `--`
  

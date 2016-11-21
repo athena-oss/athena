@@ -389,7 +389,7 @@ function testcase_athena.os.is_git_installed()
 function testcase_athena.plugin.check_dependencies()
 {
 	tmpdir=$(bashunit.test.create_tempdir)
-
+	bashunit.test.mock.returns "athena.color.print_debug" 0
 	mkdir "$tmpdir/myplugin"
 	mkdir "$tmpdir/other"
 	echo "4.0.0" > "$tmpdir/other/version.txt"
@@ -523,6 +523,7 @@ function testcase_athena.plugin.handle_container()
 function testcase_athena.plugin.init()
 {
 	tmpdir=$(bashunit.test.create_tempdir)
+	bashunit.test.mock.returns "athena.color.print_debug" 0
 	bashunit.test.mock.outputs "athena.plugin.get_plg_dir" "$tmpdir"
 
 	bashunit.test.mock.returns "athena.plugin._init_plugin" 1
@@ -540,8 +541,9 @@ function testcase_athena.plugin.init()
 function testcase_athena.plugin.validate_usage()
 {
 	bashunit.test.assert_exit_code.expects_fail "athena.plugin.validate_usage"
-
+	bashunit.test.mock.returns "athena.color.print_debug" 0
 	athena.argument.set_arguments "somearg"
+
 	bashunit.test.mock.returns "athena.plugin.init" 0
 	bashunit.test.assert_return "athena.plugin.validate_usage" "myplugin"
 
@@ -557,6 +559,7 @@ function testcase_athena.plugin.require()
 	ATHENA_PLGS_DIR=$tmpdir
 	local plg="myplugin"
 	mkdir -p "$tmpdir/$plg/bin/lib"
+	bashunit.test.mock.returns "athena.color.print_debug" 0
 	bashunit.test.mock.returns "athena.plugin.init" 0
 
 	echo "echo -n hello" > "$tmpdir/$plg/bin/variables.sh"
@@ -630,6 +633,8 @@ function testcase_athena.plugin.get_available_cmds()
 function testcase_athena.plugin.init()
 {
 	tmpdir=$(bashunit.test.create_tempdir)
+	bashunit.test.mock.returns "athena.color.print_debug" 0
+	bashunit.test.mock.returns "athena.color.print_info" 0
 	bashunit.test.mock.outputs "athena.plugin.get_plg_dir" "$tmpdir"
 	bashunit.test.mock.outputs "athena.plugin.get_plg_cmd_dir" "$tmpdir"
 	touch $tmpdir/init_pre.sh

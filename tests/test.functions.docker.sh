@@ -241,15 +241,15 @@ function testcase_athena.docker.stop_container()
 
 	bashunit.test.mock.returns "athena.docker.is_container_running" 0
 	bashunit.test.mock.returns "athena.docker" 1
-	local output=$(athena.docker.stop_container "mycontainer" | tr -d '\n')
-	local expected=$(athena.color.print_info "Stopping mycontainer" | tr -d '\n')
+	local output=$(athena.docker.stop_container "mycontainer" 2>&1 | tr -d '\n')
+	local expected=$(athena.color.print_info "Stopping mycontainer" 2>&1 | tr -d '\n')
 	bashunit.test.assert_value "$expected" "$output"
 
 	bashunit.test.mock.returns "athena.docker.is_container_running" 0
 	bashunit.test.mock.returns "athena.docker" 0
-	output=$(athena.docker.stop_container "mycontainer" | tr -d '\n')
-	local line1=$(athena.color.print_info "Stopping mycontainer" | tr -d '\n')
-	local line2=$(athena.color.print_info "mycontainer is now stopped" | tr -d '\n')
+	output=$(athena.docker.stop_container "mycontainer" 2>&1 | tr -d '\n')
+	local line1=$(athena.color.print_info "Stopping mycontainer" 2>&1 | tr -d '\n')
+	local line2=$(athena.color.print_info "mycontainer is now stopped" 2>&1 | tr -d '\n')
 	expected="$line1$line2"
 	bashunit.test.assert_value "$expected" "$output"
 }
