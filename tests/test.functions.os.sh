@@ -145,6 +145,15 @@ function testcase_athena.os.function_exists_or_fail()
 	bashunit.test.assert_return "athena.os.function_exists_or_fail" "_my_os_function"
 }
 
+function testcase_athena.os.getenv_or_fail()
+{
+	bashunit.test.assert_exit_code.expects_fail "athena.os.getenv_or_fail" ""
+	bashunit.test.assert_exit_code.expects_fail "athena.os.getenv_or_fail" "AWS_PROFILE"
+
+	export AWS_PROFILE="abc"
+	bashunit.test.assert_return "athena.os.getenv_or_fail" "AWS_PROFILE"
+}
+
 function testcase_athena.os.return()
 {
 	athena.os.return "one" "var1"
@@ -372,5 +381,3 @@ function _my_os_athena.get_val()
 {
 	athena.os.return "hello"
 }
-
-
