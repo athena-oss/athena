@@ -180,7 +180,7 @@ function athena.os.getenv_or_fail()
 		return 1
 	fi
 
-	athena.color.print_info "$1 is set to '${$1}'"
+	athena.color.print_info "$1 is set to '${!1}'"
 	echo ${!1}
 	return 0
 }
