@@ -174,7 +174,6 @@ function athena.os.get_command()
 # RETURN: string
 function athena.os.getenv_or_fail()
 {
-	# http://stackoverflow.com/questions/3601515/how-to-check-if-a-variable-is-set-in-bash
 	if [ -z ${!1} ]; then
 		athena.os.exit_with_msg "$1 is unset"
 		return 1
