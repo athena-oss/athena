@@ -385,6 +385,11 @@ function testcase_athena.docker._validate_if_build_args_exist()
 	echo "somethin=else" >> $tmpfile_build_args
 	bashunit.test.assert_output "athena.docker._validate_if_build_args_exist" "exit_with_msg was called" "$tmpfile" "$tmpfile_build_args"
 
+	echo "RUN echo {ANDROID_TARGET}.conf" > "$tmpfile"
+	echo "varA=valA" > $tmpfile_build_args
+	bashunit.test.unmock "athena.os.exit_with_msg"
+	bashunit.test.assert_exit_code "athena.docker._validate_if_build_args_exist" "$tmpfile" "$tmpfile_build_args"
+
 	rm "$tmpfile"
 }
 

@@ -847,6 +847,6 @@ function athena.docker._validate_if_build_args_exist()
 		fi
 
 		athena.os.exit_with_msg "Build arg '$arg' missing $error_msg"
-	done < <(grep "ARG" "$1")
+	done < <(grep "^ARG" "$1")
 	return 0
 }
