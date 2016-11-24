@@ -7,20 +7,20 @@ if [ "$(uname -s)" != 'Linux' ]; then
 fi
 
 # Default arch type is source when pushing to ppa
-if [ $# -lt 8 ]; then                                                                                                                                                                                                                     
-    echo "usage: $0 <name> <version> <url|source_directory> <email> \"<maintainer>\" \"<small_description>\" \"<description>\" \"<homepage>\" [--arch=[amd64|i386]] [--push]"
+if [ $# -lt 5 ]; then
+    echo "usage: $0 <name> <version> <email> \"<maintainer>\" \"<description>\" [--arch=[amd64|i386]] [--push]"
     exit 1
 fi
 
 # Variables
-name=$1
+name="athena-plugin-$1"
 version=$2
-url=$3
-email=$4
-maintainer="$5"
-small_description="$6"
-description="$7"
-homepage="$8"
+url="https://github.com/athena-oss/plugin-$1/archive/v${version}.tar.gz"
+email=$3
+maintainer="$4"
+small_description="Athena $1 Plugin"
+description="$5"
+homepage="https://github.com/athena-oss/plugin-$1"
 project="${name}_${version}"
 
 source ./create_linux_dist.sh
