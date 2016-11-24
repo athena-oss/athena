@@ -6,14 +6,8 @@ if [ "$(uname -s)" != 'Linux' ]; then
 
 fi
 
-# Default arch type is source when pushing to ppa
-if [ $# -lt 4 ]; then
-	echo "usage: $0 <version> <url|source_directory> <email> \"<maintainer>\" [--arch=[amd64|i386]] [--push]"
-	exit 1
-fi
-
 # Validate all build dependencies
-declare -a build_deps=("tar" "curl" "dh_make" "dpkg-buildpackage" "dput")
+declare -a build_deps=("tar" "curl" "dh_make" "dpkg-buildpackage" "dput" "lsb_release" "awk")
 for((i=0; i<${#build_deps[@]}; i++))
 do
 	if ! which "${build_deps[i]}" 1>/dev/null 2>/dev/null; then
@@ -23,54 +17,54 @@ do
 done
 
 # Consts
-name="athena"
 dependencies="bsdmainutils (>=9)"
-homepage="https://github.com/athena-oss/athena"
-small_description="An automation platform."
-description="An automation platform with a plugin architecture that allows you to easily create and share services"
-
-# Variables
-version=$1
-url=$2
-email=$3
-maintainer="$4"
-project="${name}_${version}"
+ppa_name="athena"
 
 # Create empty project folder
-if [ -d Debian/$name ] ; then
-	rm -rf Debian/$name
+if [ -d Debian ] ; then
+	rm -rf Debian
 fi
 
 mkdir -p Debian/$name
 cd Debian/$name
 
 # Getting the files
-mkdir -p files/usr/share/lib
-mkdir -p files/usr/bin
+mkdir -p files/usr/share
 
 if [ -d "$url" ]; then
-	cp -R "$url" "files/usr/share/lib/"
-	location="${name}"
+	cp -R "$url" "files/usr/share"
 elif [[ "$url" =~ "http"* ]] || [[ "$url" =~ "git@"* ]]; then
-	cd files/usr/share/lib
-	curl -sL "$url" | tar xz
+	cd files/usr/share
+	mkdir $name
+	curl -sL "$url" | tar xz -C $name --strip-components=1
 	if [ ${PIPESTATUS[0]} -ne 0 ]; then
 		echo "Problem occurred fetching url '$url'"
 		exit 1
 	fi
+	chmod -R +w $name
 	cd -
-	location="${name}-${version}"
 else
 	echo "URL is neither a directory or an url that starts with 'git@' or 'http'."
 	exit 1
 fi
 
-touch "files/usr/share/lib/${location}/plugins/base/athena.lock"
-ln -s "../share/lib/${location}/$name" "files/usr/bin/$name"
+# When building the athena package
+if [ "$name" = "athena" ]; then
+	mkdir -p files/usr/bin
+	touch "files/usr/share/${name}/plugins/base/athena.lock"
+	ln -s "../share/${name}/$name" "files/usr/bin/$name"
+else
+	# When building the plugins package
+	mkdir -p "files/usr/share/athena/plugins"
+	ln -s "../../${name}" "files/usr/share/athena/plugins/${name//athena-plugin-/}"
+	dependencies="${dependencies}, athena"
+
+fi
 
 # Create debian/ folder with example files (.ex)
 cd ..
 DEBFULLNAME="$maintainer" dh_make \
+	--yes \
 	--copyright apache \
 	--native \
 	--single \
@@ -94,6 +88,26 @@ Description: $small_description
  $description
 EOF
 
+# Make sure the folder is writeable for athena.lock
+cat >debian/postinst <<EOF
+#!/bin/sh
+chmod 777 /usr/share/${name}
+EOF
+
+# Make sure all the user generated files are removed before uninstall
+cat >debian/prerm <<EOF
+#!/bin/sh
+user=\$(logname)
+find /usr/share/${name} -group \$user -exec rm -rf {} \;
+
+if [ -d "/usr/share/${name}/vendor" ]; then
+	rm -rf "/usr/share/${name}/vendor"
+fi
+EOF
+
+# Select files to be copied
+echo "$name/files/usr/* usr" > debian/install
+
 # Getting architecture type
 push_to_ppa=0
 declare -a opts=()
@@ -110,6 +124,10 @@ do
 	esac
 done
 
+# Update the distro
+distro_name=$(lsb_release -a 2>/dev/null | grep Codename | awk '{ print $2}')
+sed -i "s/unstable;/${distro_name};/" debian/changelog
+
 # Defaults
 if [ ${#opts[@]} -eq 0 ]; then
 	opts+=("-S")
@@ -122,5 +140,5 @@ dpkg-buildpackage "${opts[@]}"
 cd ..
 # Push to ppa
 if [ $push_to_ppa -eq 1 ]; then
-	dput ppa:athena-oss/$name ${project}_${arch}.changes
+	dput ppa:athena-oss/$ppa_name ${project}_${arch}.changes
 fi
