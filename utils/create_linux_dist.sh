@@ -88,6 +88,7 @@ Description: $small_description
  $description
 EOF
 
+
 # Make sure the folder is writeable for athena.lock
 cat >debian/postinst <<EOF
 #!/bin/sh
@@ -124,9 +125,21 @@ do
 	esac
 done
 
+######## START Convert CHANGELOG.md to debian/changelog
 # Update the distro
 distro_name=$(lsb_release -a 2>/dev/null | grep Codename | awk '{ print $2}')
 sed -i "s/unstable;/${distro_name};/" debian/changelog
+cat debian/changelog | grep ${distro_name} > debian/changelog.tmp
+echo "" >> debian/changelog.tmp
+
+# Update changelog
+changelog_file="${name}/files/usr/share/${name}/CHANGELOG.md"
+cat "$changelog_file" | sed "s/- /   /g" | sed "s/^## /  /g" | sed "s/### /   /g" >> debian/changelog.tmp
+echo "" >> debian/changelog.tmp
+cat debian/changelog | grep $email >> debian/changelog.tmp
+
+mv debian/changelog.tmp debian/changelog
+######## END Convert CHANGELOG.md to debian/changelog
 
 # Defaults
 if [ ${#opts[@]} -eq 0 ]; then
