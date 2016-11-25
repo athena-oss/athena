@@ -623,6 +623,22 @@ function testcase_athena.docker.network_exists_or_create()
 	bashunit.test.assert_exit_code.expects_fail "athena.docker.network_exists_or_create" "somerandomnetwork"
 }
 
+function testcase_athena.docker.is_auto_cleanup_active()
+{
+	ATHENA_DOCKER_AUTO_CLEANUP=1
+	bashunit.test.assert_return "athena.docker.is_auto_cleanup_active"
+
+	ATHENA_DOCKER_AUTO_CLEANUP=0
+	bashunit.test.assert_return.expects_fail "athena.docker.is_auto_cleanup_active"
+}
+
+function testcase_athena.docker.no_auto_cleanup()
+{
+	ATHENA_DOCKER_AUTO_CLEANUP=1
+	athena.docker.no_auto_cleanup
+	bashunit.test.assert_return.expects_fail "athena.docker.is_auto_cleanup_active"
+}
+
 # aux functions
 function _void()
 {

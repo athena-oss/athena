@@ -308,7 +308,7 @@ function athena.os.handle_exit()
 	local exit_code=$?
 	case $1 in
 		EXIT)
-			if athena.docker.container_has_started && ! athena.docker.has_option "-d" ; then
+			if athena.docker.is_auto_cleanup_active && athena.docker.container_has_started && ! athena.docker.has_option "-d" ; then
 				athena.docker.cleanup
 			fi
 			athena._print_time

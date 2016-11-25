@@ -821,6 +821,25 @@ function athena.docker.network_exists_or_create()
 	return 0
 }
 
+# This function disables the automatic removal of the container.
+# USAGE: athena.docker.no_auto_cleanup
+# RETURN: --
+function athena.docker.no_auto_cleanup()
+{
+	ATHENA_DOCKER_AUTO_CLEANUP=0
+}
+
+# This function checks if the automatic removal of the container is active.
+# USAGE: athena.docker.is_auto_cleanup_active
+# RETURN: 0 (true), 1 (false)
+function athena.docker.is_auto_cleanup_active()
+{
+	if [ $ATHENA_DOCKER_AUTO_CLEANUP -eq 0 ]; then
+		return 1
+	fi
+	return 0
+}
+
 # This function validates if the mandatory build args that exist in a given Dockerfile without
 # a default value are specified in the build_args file if it was given.
 # USAGE: athena.docker._validate_if_build_args_exist <dockerfile> [build_args_file]

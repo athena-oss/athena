@@ -24,6 +24,7 @@
     * [`athena.docker.image_exists`](#athenadockerimageexists)
     * [`athena.docker.images`](#athenadockerimages)
     * [`athena.docker.inspect`](#athenadockerinspect)
+    * [`athena.docker.is_auto_cleanup_active`](#athenadockerisautocleanupactive)
     * [`athena.docker.is_container_running`](#athenadockeriscontainerrunning)
     * [`athena.docker.is_current_container_not_running_or_fail`](#athenadockeriscurrentcontainernotrunningorfail)
     * [`athena.docker.is_current_container_running`](#athenadockeriscurrentcontainerrunning)
@@ -37,6 +38,7 @@
     * [`athena.docker.network_create`](#athenadockernetworkcreate)
     * [`athena.docker.network_exists`](#athenadockernetworkexists)
     * [`athena.docker.network_exists_or_create`](#athenadockernetworkexistsorcreate)
+    * [`athena.docker.no_auto_cleanup`](#athenadockernoautocleanup)
     * [`athena.docker.print_or_follow_container_logs`](#athenadockerprintorfollowcontainerlogs)
     * [`athena.docker.remove_container_and_image`](#athenadockerremovecontainerandimage)
     * [`athena.docker.rm`](#athenadockerrm)
@@ -290,6 +292,14 @@ This is a wrapper function for executing docker inspect, which helps with mockin
  
 **RETURN:** `--`
  
+### <a name="athenadockerisautocleanupactive"></a>`athena.docker.is_auto_cleanup_active`
+ 
+This function checks if the automatic removal of the container is active.
+ 
+**USAGE:**  `athena.docker.is_auto_cleanup_active`
+ 
+**RETURN:** `0 (true), 1 (false)`
+ 
 ### <a name="athenadockeriscontainerrunning"></a>`athena.docker.is_container_running`
  
 This function checks if a docker container with the given name is running. If no container with the given name is running all stopped containers with this name are removed (to avoid collisions).
@@ -393,6 +403,14 @@ Check if a network with the <name> already exists, if not the network is created
 **USAGE:**  `athena.docker.network_exists_or_create <name> [opts...]`
  
 **RETURN:** `0 (true), 1 (false)`
+ 
+### <a name="athenadockernoautocleanup"></a>`athena.docker.no_auto_cleanup`
+ 
+This function disables the automatic removal of the container.
+ 
+**USAGE:**  `athena.docker.no_auto_cleanup`
+ 
+**RETURN:** `--`
  
 ### <a name="athenadockerprintorfollowcontainerlogs"></a>`athena.docker.print_or_follow_container_logs`
  

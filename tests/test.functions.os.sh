@@ -207,7 +207,11 @@ function testcase_athena.os.handle_exit()
 	bashunit.test.mock.returns "athena._print_time" 0
 
 	ATHENA_CONTAINER_STARTED=1
+	ATHENA_DOCKER_AUTO_CLEANUP=1
 	bashunit.test.assert_output "athena.os.handle_exit" "cleanup" EXIT
+
+	athena.docker.no_auto_cleanup
+	bashunit.test.assert_output "athena.os.handle_exit" "" EXIT
 
 	ATHENA_CONTAINER_STARTED=0
 	bashunit.test.assert_output "athena.os.handle_exit" "" EXIT
