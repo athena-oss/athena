@@ -1,3 +1,18 @@
+## 0.10.0 (November 25, 2016)
+
+### Added
+  - scripts to generate debian packages and push to ppa
+  - athena.os.get_env_or_fail
+  - athena.docker.disable_auto_cleanup and athena.docker.is_auto_cleanup_enabled
+  - athena.docker.disable_privileged_mode and athena.docker.is_privileged_mode_enabled
+  - possibility to specify the plugins directory using environment variable ATHENA_PLGS_DIR
+
+### Changed
+  - athena.color functions now print to stderr by default
+
+### Fixed
+  - docker build args searching for ARG on beginning of line
+
 ## 0.9.1 (November 10, 2016)
 
 ### Fixed
