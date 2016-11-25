@@ -210,7 +210,7 @@ function testcase_athena.os.handle_exit()
 	ATHENA_DOCKER_AUTO_CLEANUP=1
 	bashunit.test.assert_output "athena.os.handle_exit" "cleanup" EXIT
 
-	athena.docker.no_auto_cleanup
+	athena.docker.disable_auto_cleanup
 	bashunit.test.assert_output "athena.os.handle_exit" "" EXIT
 
 	ATHENA_CONTAINER_STARTED=0

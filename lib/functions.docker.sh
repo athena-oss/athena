@@ -822,9 +822,9 @@ function athena.docker.network_exists_or_create()
 }
 
 # This function disables the automatic removal of the container.
-# USAGE: athena.docker.no_auto_cleanup
+# USAGE: athena.docker.disable_auto_cleanup
 # RETURN: --
-function athena.docker.no_auto_cleanup()
+function athena.docker.disable_auto_cleanup()
 {
 	ATHENA_DOCKER_AUTO_CLEANUP=0
 }

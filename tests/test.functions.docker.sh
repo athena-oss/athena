@@ -632,10 +632,10 @@ function testcase_athena.docker.is_auto_cleanup_active()
 	bashunit.test.assert_return.expects_fail "athena.docker.is_auto_cleanup_active"
 }
 
-function testcase_athena.docker.no_auto_cleanup()
+function testcase_athena.docker.disable_auto_cleanup()
 {
 	ATHENA_DOCKER_AUTO_CLEANUP=1
-	athena.docker.no_auto_cleanup
+	athena.docker.disable_auto_cleanup
 	bashunit.test.assert_return.expects_fail "athena.docker.is_auto_cleanup_active"
 }
 
