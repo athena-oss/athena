@@ -639,6 +639,22 @@ function testcase_athena.docker.disable_auto_cleanup()
 	bashunit.test.assert_return.expects_fail "athena.docker.is_auto_cleanup_active"
 }
 
+function testcase_athena.docker.is_privileged_mode_enabled()
+{
+	ATHENA_DOCKER_PRIVILEGED_MODE_ENABLED=1
+	bashunit.test.assert_return "athena.docker.is_privileged_mode_enabled"
+
+	ATHENA_DOCKER_PRIVILEGED_MODE_ENABLED=0
+	bashunit.test.assert_return.expects_fail "athena.docker.is_privileged_mode_enabled"
+}
+
+function testcase_athena.docker.disable_privileged_mode()
+{
+	ATHENA_DOCKER_PRIVILEGED_MODE_ENABLED=1
+	athena.docker.disable_privileged_mode
+	bashunit.test.assert_return.expects_fail "athena.docker.is_privileged_mode_enabled"
+}
+
 # aux functions
 function _void()
 {

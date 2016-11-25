@@ -153,8 +153,9 @@ function athena.plugin.run_command()
 	if [ -f "$cmd_file" ] || athena.docker.is_running_as_daemon || ! athena.docker.is_default_router_to_be_used ; then
 		found_cmd=1
 
-		# TODO: check if it is better to make it as a flag or environment variable
-		athena.docker.add_option "--privileged"
+		if athena.docker.is_privileged_mode_enabled ; then
+			athena.docker.add_option "--privileged"
+		fi
 
 		if [ "$ATHENA_NO_TTY" -ne 1 ]; then
 			athena.docker.add_option "-t"

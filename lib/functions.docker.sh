@@ -840,6 +840,25 @@ function athena.docker.is_auto_cleanup_active()
 	return 0
 }
 
+# This function disables the privileged mode of the container.
+# USAGE: athena.docker.disable_privileged_mode
+# RETURN: --
+function athena.docker.disable_privileged_mode()
+{
+	ATHENA_DOCKER_PRIVILEGED_MODE_ENABLED=0
+}
+
+# This function checks if the docker privileged mode is enabled.
+# USAGE: athena.docker.is_privileged_mode_enabled
+# RETURN: 0 (true), 1 (false)
+function athena.docker.is_privileged_mode_enabled()
+{
+if [ $ATHENA_DOCKER_PRIVILEGED_MODE_ENABLED -eq 0 ]; then
+		return 1
+	fi
+	return 0
+}
+
 # This function validates if the mandatory build args that exist in a given Dockerfile without
 # a default value are specified in the build_args file if it was given.
 # USAGE: athena.docker._validate_if_build_args_exist <dockerfile> [build_args_file]
