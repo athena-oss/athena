@@ -12,6 +12,8 @@
     * [`athena.docker.build_from_plugin`](#athenadockerbuildfromplugin)
     * [`athena.docker.cleanup`](#athenadockercleanup)
     * [`athena.docker.container_has_started`](#athenadockercontainerhasstarted)
+    * [`athena.docker.disable_auto_cleanup`](#athenadockerdisableautocleanup)
+    * [`athena.docker.disable_privileged_mode`](#athenadockerdisableprivilegedmode)
     * [`athena.docker.exec`](#athenadockerexec)
     * [`athena.docker.get_build_args`](#athenadockergetbuildargs)
     * [`athena.docker.get_build_args_file`](#athenadockergetbuildargsfile)
@@ -29,6 +31,7 @@
     * [`athena.docker.is_current_container_not_running_or_fail`](#athenadockeriscurrentcontainernotrunningorfail)
     * [`athena.docker.is_current_container_running`](#athenadockeriscurrentcontainerrunning)
     * [`athena.docker.is_default_router_to_be_used`](#athenadockerisdefaultroutertobeused)
+    * [`athena.docker.is_privileged_mode_enabled`](#athenadockerisprivilegedmodeenabled)
     * [`athena.docker.is_running_as_daemon`](#athenadockerisrunningasdaemon)
     * [`athena.docker.list_athena_containers`](#athenadockerlistathenacontainers)
     * [`athena.docker.logs`](#athenadockerlogs)
@@ -38,7 +41,6 @@
     * [`athena.docker.network_create`](#athenadockernetworkcreate)
     * [`athena.docker.network_exists`](#athenadockernetworkexists)
     * [`athena.docker.network_exists_or_create`](#athenadockernetworkexistsorcreate)
-    * [`athena.docker.no_auto_cleanup`](#athenadockernoautocleanup)
     * [`athena.docker.print_or_follow_container_logs`](#athenadockerprintorfollowcontainerlogs)
     * [`athena.docker.remove_container_and_image`](#athenadockerremovecontainerandimage)
     * [`athena.docker.rm`](#athenadockerrm)
@@ -202,6 +204,22 @@ This function checks if container has started
  
 **RETURN:** `0 (true) 1 (false)`
  
+### <a name="athenadockerdisableautocleanup"></a>`athena.docker.disable_auto_cleanup`
+ 
+This function disables the automatic removal of the container.
+ 
+**USAGE:**  `athena.docker.disable_auto_cleanup`
+ 
+**RETURN:** `--`
+ 
+### <a name="athenadockerdisableprivilegedmode"></a>`athena.docker.disable_privileged_mode`
+ 
+This function disables the privileged mode of the container.
+ 
+**USAGE:**  `athena.docker.disable_privileged_mode`
+ 
+**RETURN:** `--`
+ 
 ### <a name="athenadockerexec"></a>`athena.docker.exec`
  
 This is a wrapper function for executing docker exec, which helps with mocking and tweaking.
@@ -332,6 +350,14 @@ This function checks if the default router should be used.
  
 **RETURN:** `0 (true) 1 (false)`
  
+### <a name="athenadockerisprivilegedmodeenabled"></a>`athena.docker.is_privileged_mode_enabled`
+ 
+This function checks if the docker privileged mode is enabled.
+ 
+**USAGE:**  `athena.docker.is_privileged_mode_enabled`
+ 
+**RETURN:** `0 (true), 1 (false)`
+ 
 ### <a name="athenadockerisrunningasdaemon"></a>`athena.docker.is_running_as_daemon`
  
 This function checks if docker option -d is already set.
@@ -403,14 +429,6 @@ Check if a network with the <name> already exists, if not the network is created
 **USAGE:**  `athena.docker.network_exists_or_create <name> [opts...]`
  
 **RETURN:** `0 (true), 1 (false)`
- 
-### <a name="athenadockernoautocleanup"></a>`athena.docker.no_auto_cleanup`
- 
-This function disables the automatic removal of the container.
- 
-**USAGE:**  `athena.docker.no_auto_cleanup`
- 
-**RETURN:** `--`
  
 ### <a name="athenadockerprintorfollowcontainerlogs"></a>`athena.docker.print_or_follow_container_logs`
  
