@@ -1,4 +1,4 @@
-# ![image](docs/img/athena_logo.png) 
+# ![image](docs/img/athena_logo.png)
 [![Build Status](https://travis-ci.org/athena-oss/athena.svg?branch=master)](https://travis-ci.org/athena-oss/athena) [![Join the chat at https://gitter.im/athena-oss/Lobby](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/athena-oss/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 *Automate, Automate, Automate!*
@@ -75,19 +75,20 @@ There are three quick start options available:
 **On Linux**
 
  * Using a `debian package` from the [releases](https://github.com/athena-oss/athena/releases) :
- 
+
 ```bash
 $ sudo dpkg -i <downloaded_debian_package>
 ```
-   
+
 * Using `apt-get` :
-  
+
 ```bash
 $ sudo add-apt-repository ppa:athena-oss/athena
+$ sudo apt-get update
 $ sudo apt-get install athena
 ```
- 
-**On MAC OSX** 
+
+**On MAC OSX**
 
 * Using [Homebrew](http://brew.sh/) :
 
@@ -116,8 +117,8 @@ CMD_DESCRIPTION="Validates a file or directory for possible issues."
 athena.usage 1 "<file|directory>"
 
 if athena.plugins.base.check "$(athena.path 1)" ; then
-	athena.ok "check passed"
-	athena.exit 0
+  athena.ok "check passed"
+  athena.exit 0
 fi
 athena.fatal "check failed"
 ```
