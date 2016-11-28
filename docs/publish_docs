@@ -22,6 +22,7 @@ if [[ ! -d "$GITBOOK_DOCS_DIR" ]]; then
 fi
 
 gitbook build "$GITBOOK_DOCS_DIR" "$GITBOOK_HTML_OUTPUT_DIR"
+gitbook pdf "$GITBOOK_DOCS_DIR" "${GITBOOK_HTML_OUTPUT_DIR}/documentation.pdf"
 
 pushd "$GITBOOK_HTML_OUTPUT_DIR"
 git init
