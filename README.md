@@ -104,7 +104,7 @@ $ brew install athena
 * [Download the latest release](https://github.com/athena-oss/athena/releases/latest)
 * Clone the repo: `git clone https://github.com/athena-oss/athena.git`
 
-Read the [Documentation](http://athena-oss.github.io/athena) on using Athena.
+Go to the [Documentation Website](http://athena-oss.github.io/athena) or download the [Documentation PDF](https://github.com/athena-oss/athena/raw/gh-pages/documentation.pdf) to find out more about using Athena.
 
 ## Examples
 
