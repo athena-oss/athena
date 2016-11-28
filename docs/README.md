@@ -1,4 +1,5 @@
-# ![image](img/athena_logo.png)
+# ![image](docs/img/athena_logo.png)
+[![Build Status](https://travis-ci.org/athena-oss/athena.svg?branch=master)](https://travis-ci.org/athena-oss/athena) [![Join the chat at https://gitter.im/athena-oss/Lobby](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/athena-oss/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 *Automate, Automate, Automate!*
 
@@ -107,7 +108,7 @@ Go to the [Documentation Website](http://athena-oss.github.io/athena) or downloa
 
 ## Examples
 
-Inside Examples section you'll find a variaty of ways to use Athena.
+We have several examples [here](docs/examples). Check these two **Athena** commands, so that you can have an idea how it looks like :
 
 ### running a file/directory validator
 ```bash
@@ -158,7 +159,7 @@ Here is a list of some of the available plugins :
 
 ## Contributing
 
-Checkout our guidelines on how to contribute in [CONTRIBUTING](guides/contributing.md).
+Checkout our guidelines on how to contribute in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Versioning
 
@@ -168,4 +169,4 @@ cleanups and refactorings).
 
 ## License
 
-Licensed under the [Apache License Version 2.0 (APLv2)](/LICENSE.html).
+Licensed under the [Apache License Version 2.0 (APLv2)](LICENSE).
