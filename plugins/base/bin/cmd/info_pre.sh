@@ -24,9 +24,9 @@ function _list_running_containers()
 		image=$(echo $container | awk -F':' '{ print $3 }')
 		athena.docker.is_container_running $name
 		if [ $? -eq 0 ]; then
-			status=$(athena.print "green" "[UP]")
+			status=$(athena.print "green" "[UP]" "" 1)
 		else
-			status=$(athena.print "red" "[DOWN]")
+			status=$(athena.print "red" "[DOWN]" "" 1)
 		fi
 		if [[ "$container" =~ .*-\>.* ]]; then
 			if [[ "$container" =~ .*-node-.* ]]; then
