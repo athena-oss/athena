@@ -4,6 +4,8 @@ function testcase_athena.plugin.run_command()
 	bashunit.test.assert_exit_code.expects_fail "athena.plugin.run_command" "cmd1"
 	bashunit.test.assert_exit_code.expects_fail "athena.plugin.run_command" "cmd1" "/no/real/path"
 
+	bashunit.test.mock.returns "athena.plugin.init" 0
+
 	local tmpdir
 	tmpdir=$(bashunit.test.create_tempdir)
 	bashunit.test.assert_exit_code.expects_fail "athena.plugin.run_command" "cmd1" "$tmpdir"
@@ -704,6 +706,7 @@ function testcase_athena.plugin.handle()
 	bashunit.test.assert_exit_code.expects_fail "athena.plugin.handle"
 	bashunit.test.assert_exit_code.expects_fail "athena.plugin.handle" "cmd" "/non/existing/dir"
 
+	bashunit.test.mock.returns "athena.plugin.init" 0
 	local tmpdir=$(bashunit.test.create_tempdir)
 	bashunit.test.assert_exit_code.expects_fail "athena.plugin.handle" "cmd1" "$tmpdir"
 
