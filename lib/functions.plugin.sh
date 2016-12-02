@@ -140,6 +140,10 @@ function athena.plugin.run_command()
 	local command=$1
 	local plg_cmd_dir=$2
 
+	if [[ "$command" != "init" && "$command" != "cleanup" ]]; then
+		athena.plugin.init "$(athena.plugin.get_plg)"
+	fi
+
 	# run pre-command outside container
 	pre_cmd_file="$plg_cmd_dir/${command}_pre.sh"
 	if [ -f "$pre_cmd_file" ]; then
@@ -869,9 +873,6 @@ function athena.plugin.validate_usage()
 		athena.exit_with_msg "Missing first argument with plugin name."
 	fi
 
-	if [[ "$2" != "init" && "$2" != "cleanup" ]]; then
-		athena.plugin.init "$plugin_name"
-	fi
 	if [ -z "$ATHENA_COMMAND" ] ; then
 		athena.plugin.print_available_cmds "$plugin_name"
 		athena.os.exit 1
