@@ -19,6 +19,7 @@ done
 # Consts
 dependencies="bsdmainutils (>=9)"
 ppa_name="athena"
+standalone=0
 
 # Create empty project folder
 if [ -d Debian ] ; then
@@ -53,12 +54,15 @@ if [ "$name" = "athena" ]; then
 	mkdir -p files/usr/bin
 	touch "files/usr/share/${name}/plugins/base/athena.lock"
 	ln -s "../share/${name}/$name" "files/usr/bin/$name"
-else
+elif [[ "$name" =~ athena-plugin-* ]]; then
 	# When building the plugins package
 	mkdir -p "files/usr/share/athena/plugins"
 	ln -s "../../${name}" "files/usr/share/athena/plugins/${name//athena-plugin-/}"
 	dependencies="${dependencies}, athena"
-
+else
+	standalone=1
+	mkdir -p files/usr/bin
+	ln -s "../share/${name}/$name" "files/usr/bin/$name"
 fi
 
 # Create debian/ folder with example files (.ex)
@@ -88,23 +92,24 @@ Description: $small_description
  $description
 EOF
 
-
-# Make sure the folder is writeable for athena.lock
-cat >debian/postinst <<EOF
-#!/bin/sh
-chmod 777 /usr/share/${name}
+if [ $standalone -eq 0 ]; then
+	# Make sure the folder is writeable for athena.lock
+	cat >debian/postinst <<EOF
+	#!/bin/sh
+	chmod 777 /usr/share/${name}
 EOF
 
-# Make sure all the user generated files are removed before uninstall
-cat >debian/prerm <<EOF
-#!/bin/sh
-user=\$(logname)
-find /usr/share/${name} -group \$user -exec rm -rf {} \;
+	# Make sure all the user generated files are removed before uninstall
+	cat >debian/prerm <<EOF
+	#!/bin/sh
+	user=\$(logname)
+	find /usr/share/${name} -group \$user -exec rm -rf {} \;
 
-if [ -d "/usr/share/${name}/vendor" ]; then
-	rm -rf "/usr/share/${name}/vendor"
+	if [ -d "/usr/share/${name}/vendor" ]; then
+		rm -rf "/usr/share/${name}/vendor"
+	fi
+EOF
 fi
-EOF
 
 # Select files to be copied
 echo "$name/files/usr/* usr" > debian/install
