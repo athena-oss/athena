@@ -46,7 +46,8 @@ function _update_plugin()
 	local output
 	output=$(git -C $plugin_dir pull origin master 2>&1)
 	if [ $? -ne 0 ]; then
-		athena.error "there was a problem updating the plugin '$1'"
+		athena.error "there was a problem updating the plugin '$1'. details:"
+		athena.error "$output"
 		return 1
 	fi
 
