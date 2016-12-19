@@ -30,7 +30,7 @@ We will be using GitHub Issues for our public bugs. We will keep a close eye on 
 
 ### Reporting New Issues
 
-The best way to get your bug fixed is to provide a test case.
+A good issue description starts with information about your Athena Environment. Since Athena 0.10.1 you can run `athena new-issue` in order to generate a short Markdown preamble for your issue. Please copy and paste the output of that command in your issue description alongside all steps necessary to reproduce your problem. Please also provide the actual error output and specify what you were expecting instead.
 
 ## How to Get in Touch
 
