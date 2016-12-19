@@ -1,3 +1,19 @@
+## 0.10.1 (December 19, 2016)
+
+### Added
+- bd88414 new-issue command (closes #34)
+- fb66cf6 Added possibility to create standalone projects
+- 3cd4988 Added stdout to info cmd when doing print to var
+- cd4d995 Replaced ebook-convert
+- fa27096 Travis setup for generating documentation in pdf
+- e29914f Added dynamic changelog to deb package
+
+### Changed
+- 0d7da34 output more details when 'plugin update' command fails (closes #33)
+- d6f0dab Moved the init phase to when a command is invoked
+- b7fe796 Updated bashunit version
+- 8e85318 Update the installation section debian section for debian (#30)
+
 ## 0.10.0 (November 25, 2016)
 
 ### Added
@@ -110,7 +126,7 @@
 
 ## 0.5.0 (September 7, 2016)
 
-### Added 
+### Added
 - support for pre and post command hooks
 
 ### Changed
