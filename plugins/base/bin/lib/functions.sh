@@ -12,7 +12,7 @@ function athena.plugins.base.check_for_undefined_athena_functions()
 			func=$(echo $func | sed -e 's#[")]##g')
 
 			# looking for declared functions
-			grep -R -e "[function|alias] ${func}[=|()]" $ATHENA_BASE_LIB_DIR 1>/dev/null 2>/dev/null
+			grep -R -e "[function|alias] ${func}[=|()]" "$ATHENA_BASE_LIB_DIR" 1>/dev/null 2>/dev/null
 			if [ $? -ne 0 ]; then
 				grep -R -e "[function|alias] ${func}[=|()]" "$(athena.plugin.get_plg_lib_dir)" 1>/dev/null 2>/dev/null
 				if [ $? -ne 0 ]; then
@@ -30,13 +30,13 @@ function athena.plugins.base.check_for_undefined_athena_functions()
 function athena.plugins.base.validate_dir()
 {
 	local rc=0
-	for file in $(find "$1" -type f -name "*.sh")
+	while read file
 	do
 		athena.plugins.base.validate_file "$file"
 		if [[ $? -ne 0 ]]; then
 			rc=1
 		fi
-	done
+	done < <(find "$1" -type f -name "*.sh")
 	return $rc
 }
 

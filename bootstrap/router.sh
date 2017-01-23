@@ -24,8 +24,8 @@ athena.os.split_string "$CMD_DIR" ":" cmd_dirs
 
 for cmd_dir in "${cmd_dirs[@]}"; do
   operation_file="$cmd_dir/$ATHENA_COMMAND.sh"
-  if [ -f $operation_file ]; then
-    source $operation_file
+  if [[ -f "$operation_file" ]]; then
+    source "$operation_file"
     athena.os.exit $?
   fi
 done

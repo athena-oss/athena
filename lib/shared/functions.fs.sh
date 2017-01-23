@@ -119,11 +119,11 @@ function athena.fs.dir_exists_or_create()
 # RETURN: --
 function athena.fs.dir_exists_or_fail()
 {
-	if [ -d "$1" ]; then
+	if [[ -d "$1" ]]; then
 		return 0
 	fi
 
-	if [ -n "$2" ]; then
+	if [[ -n "$2" ]]; then
 		athena.os.exit_with_msg "$2"
 		return 1
 	fi

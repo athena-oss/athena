@@ -78,19 +78,19 @@ function athena.plugin.handle()
 		if athena.fs.dir_contains_files "$dir" "$command_to_execute?(_pre|_post).sh" ; then
 
 			# per plugin functions
-			if [ -f "$lib_dir/functions.sh" ]; then
+			if [[ -f "$lib_dir/functions.sh" ]]; then
 				athena.os.include_once "$lib_dir/functions.sh"
 			fi
 
 			# per plugin variables
-			if [ -f "$bin_dir/variables.sh" ]; then
+			if [[ -f "$bin_dir/variables.sh" ]]; then
 				athena.os.include_once "$bin_dir/variables.sh"
 			fi
 
 			# command pre-hooks
 			athena.plugin._run_hooks_if_exist "$hooks_dir/command_pre.sh"
 
-			athena.plugin.run_command "$command_to_execute" $dir
+			athena.plugin.run_command "$command_to_execute" "$dir"
 			return_code=$?
 
 			# command post-hooks
@@ -232,16 +232,16 @@ function athena.plugin.init()
 	local -a plg_cmd_dir
 	plg="$1"
 	plg_dir=$(athena.plugin.get_plg_dir "$plg")
-	plg_cmd_dir=$(athena.plugin.get_plg_cmd_dir "$plg")
+	plg_cmd_dir=("$(athena.plugin.get_plg_cmd_dir "$plg")")
 
 	# plugins might not require initialisation so only
 	# if an init command exists then it will try to init
-	if  [ ! -f "$plg_dir/athena.lock" ]; then
+	if  [[ ! -f "$plg_dir/athena.lock" ]]; then
 		if ! athena.plugin.check_dependencies "$plg"; then
 			athena.os.exit_with_msg "dependencies are not installed"
 			return 1
 		fi
-		if [ -f "$plg_cmd_dir/init.sh" ] || [ -f "$plg_cmd_dir/init_pre.sh" ] || [ -f "$plg_cmd_dir/init_post.sh" ]; then
+		if [[ -f "$plg_cmd_dir/init.sh" ]] || [[ -f "$plg_cmd_dir/init_pre.sh" ]] || [[ -f "$plg_cmd_dir/init_post.sh" ]]; then
 			athena.color.print_info "Athena plugin '$plg' has not been initialized!"
 			athena.color.print_info "Athena plugin '$plg' is initialising..."
 			athena.plugin._init_plugin "$plg"
@@ -252,7 +252,7 @@ function athena.plugin.init()
 		fi
 
 		# create the lock file
-		echo $(date +%s) > $plg_dir/athena.lock
+		echo $(date +%s) > "${plg_dir}/athena.lock"
 	fi
 	return 0
 }
@@ -315,7 +315,7 @@ function athena.plugin.get_plg_dir()
 # RETURN: string
 function athena.plugin.get_plg_bin_dir()
 {
-	echo "$(athena.plugin.get_plg_dir $1)/bin"
+	echo "$(athena.plugin.get_plg_dir "$1")/bin"
 }
 
 # This function returns the plugin hooks directory and checks if the plugin root
@@ -324,7 +324,7 @@ function athena.plugin.get_plg_bin_dir()
 # RETURN: string
 function athena.plugin.get_plg_hooks_dir()
 {
-	echo "$(athena.plugin.get_plg_bin_dir $1)/hooks"
+	echo "$(athena.plugin.get_plg_bin_dir "$1")/hooks"
 }
 
 # This function returns the plugin library directory name and checks if the plugin
@@ -333,7 +333,7 @@ function athena.plugin.get_plg_hooks_dir()
 # RETURN: string
 function athena.plugin.get_plg_lib_dir()
 {
-	echo "$(athena.plugin.get_plg_bin_dir $1)/lib"
+	echo "$(athena.plugin.get_plg_bin_dir "$1")/lib"
 }
 
 # This function returns the plugin command directory name and checks if the plugin
@@ -343,11 +343,11 @@ function athena.plugin.get_plg_lib_dir()
 function athena.plugin.get_plg_cmd_dir()
 {
 	# to allow to override in the plugin hooks for example
-	if [ -n "$ATHENA_PLG_CMD_DIR" ]; then
+	if [[ -n "$ATHENA_PLG_CMD_DIR" ]]; then
 		echo "$ATHENA_PLG_CMD_DIR"
 		return 0
 	fi
-	echo "$(athena.plugin.get_plg_bin_dir $1)/cmd"
+	echo "$(athena.plugin.get_plg_bin_dir "$1")/cmd"
 }
 
 # This functions sets the plg cmd dir(s).
@@ -356,7 +356,7 @@ function athena.plugin.get_plg_cmd_dir()
 # RETURN: --
 function athena.plugin.set_plg_cmd_dir()
 {
-	ATHENA_PLG_CMD_DIR=$1
+	ATHENA_PLG_CMD_DIR="$1"
 }
 
 # This function returns the plugin docker directory name and checks if the plugin
@@ -365,7 +365,7 @@ function athena.plugin.set_plg_cmd_dir()
 # RETURN: string
 function athena.plugin.get_plg_docker_dir()
 {
-	echo "$(athena.plugin.get_plg_dir $1)/docker"
+	echo "$(athena.plugin.get_plg_dir "$1")/docker"
 }
 
 # This function returns the name of the current plugin as set in the $ATHENA_PLUGIN

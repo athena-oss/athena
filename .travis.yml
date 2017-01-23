@@ -9,7 +9,7 @@ before_install:
   - sudo -v && wget -nv -O- https://raw.githubusercontent.com/kovidgoyal/calibre/master/setup/linux-installer.py | sudo python -c "import sys; main=lambda:sys.stderr.write('Download failed\n'); exec(sys.stdin.read()); main()"
   - sudo ln -s /opt/calibre/ebook-convert /usr/local/bin/
 script:
- - export BASHUNIT_RELEASE="0.3.2"
+ - export BASHUNIT_RELEASE="0.3.3"
  - wget -O "$HOME/bashunit.tar.gz" "https://github.com/athena-oss/bashunit/archive/v${BASHUNIT_RELEASE}.tar.gz" && tar -v -C "$HOME" -xzf "$HOME/bashunit.tar.gz" && mv "$HOME/bashunit-${BASHUNIT_RELEASE}" "$HOME/bashunit"
  - $HOME/bashunit/bashunit tests
  - ./athena version

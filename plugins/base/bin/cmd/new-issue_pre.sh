@@ -2,10 +2,10 @@ CMD_DESCRIPTION="Prints the GitHub issue Markdown template."
 
 function _itemized_plugins_name_and_version()
 {
-	for dir_name in $(ls $ATHENA_PLGS_DIR); do
-		local version="$(cat $ATHENA_PLGS_DIR/$dir_name/version.txt)"
+	while read dir_name; do
+		local version="$(cat "$ATHENA_PLGS_DIR/$dir_name/version.txt")"
 		echo "${dir_name},${version}"
-	done
+	done < <(ls "$ATHENA_PLGS_DIR")
 }
 
 # check that docker is up or exit with a message
