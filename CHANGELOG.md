@@ -1,3 +1,8 @@
+## 0.10.2 (January 23, 2016)
+
+- 4a1347b Add better support for dirs with spaces
+- 96062ef Wrap with double quotes when mounting a docker volume
+
 ## 0.10.1 (December 19, 2016)
 
 ### Added
