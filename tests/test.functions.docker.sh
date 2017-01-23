@@ -156,7 +156,13 @@ function testcase_athena.docker.mount_dir()
 	athena.docker.mount_dir "$tmp_dir" "$tmp_dir"
 	bashunit.test.assert_value "-v $tmp_dir:$tmp_dir" "$(athena.docker.get_options)"
 
-	rm -r "$tmp_dir"
+	athena.docker.set_options
+	local tmp_dir_with_spaces="$(bashunit.test.create_tempdir)/my dir with spaces"
+	mkdir -p "$tmp_dir_with_spaces"
+	athena.docker.mount_dir "$tmp_dir_with_spaces" "/opt/my-dir"
+	bashunit.test.assert_value "-v ${tmp_dir_with_spaces}:/opt/my-dir" "$(athena.docker.get_options)"
+
+	rm -r "$tmp_dir" "$tmp_dir_with_spaces"
 }
 
 function testcase_athena.docker.mount_dir_from_plugin()

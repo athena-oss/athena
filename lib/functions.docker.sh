@@ -440,7 +440,7 @@ function athena.docker.mount()
 		athena.os.exit_with_msg "source does not exist \"$1\"!"
 	fi
 
-	athena.docker.add_option -v $1:$2
+	athena.docker.add_option -v "$1:$2"
 }
 
 # This function checks if the given option is already set.
