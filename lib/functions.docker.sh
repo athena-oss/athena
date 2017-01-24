@@ -284,11 +284,12 @@ function athena.docker.cleanup() {
 	fi
 }
 
-# This function adds the given option to the docker run option string ($ATHENA_DOCKER_OPTS).
-# USAGE:  athena.docker.add_option <your option>
+# This function adds the given option(s) to the docker run option string ($ATHENA_DOCKER_OPTS).
+# USAGE:  athena.docker.add_option <option...>
 # RETURN: --
 function athena.docker.add_option()
 {
+	athena.argument.argument_is_not_empty_or_fail "$1" "option"
 	athena.utils.add_to_array "ATHENA_DOCKER_OPTS" "$@"
 }
 
@@ -298,8 +299,10 @@ function athena.docker.add_option()
 # RETURN: --
 function athena.docker.add_env()
 {
+	athena.argument.argument_is_not_empty_or_fail "$1"
+	athena.argument.argument_is_not_empty_or_fail "$2"
 	local name="$1"
-	athena.docker.add_option --env $name"="$2
+	athena.docker.add_option --env "$name"="$2"
 }
 
 # This function adds environment variables with the given prefix to the docker run option string.
@@ -313,7 +316,7 @@ function athena.docker.add_envs_with_prefix()
 	local tmp=$(eval echo \${!$prefix@})
 	for var in $(echo $tmp | grep -v ^$ | tr ' ' '\n')
 	do
-		athena.docker.add_option --env $var=${!var}
+		athena.docker.add_env "$var" "${!var}"
 	done
 	return 0
 }
@@ -535,6 +538,8 @@ function athena.docker.run_container_with_default_router()
 	local name="$1"
 	local tag_name="$2"
 	local athena_command="$3"
+	local -a athena_arguments
+	local -a docker_opts
 
 	athena.docker.add_env "ATHENA_PLUGIN" "$(athena.plugin.get_plugin)"
 	athena.docker.add_env "ATHENA_BASE_SHARED_LIB_DIR" "/opt/shared"
@@ -550,10 +555,10 @@ function athena.docker.run_container_with_default_router()
 	athena.docker.add_option "$tag_name"
 	athena.docker.add_option "$router"
 	athena.docker.add_option "$athena_command"
-	athena.docker.add_option "$(athena.argument.get_arguments)"
 
-	local docker_opts="$(athena.docker.get_options)"
-	athena.docker.run ${docker_opts[@]}
+	athena.argument.get_arguments athena_arguments
+	athena.docker.get_options docker_opts
+	athena.docker.run "${docker_opts[@]}" "${athena_arguments[@]}"
 }
 
 # This function specifies that the default router should not be used.

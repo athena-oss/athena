@@ -17,7 +17,7 @@ function testcase_athena.docker.run_container_with_default_router()
 	bashunit.test.assert_exit_code.expects_fail "athena.docker.run_container_with_default_router"
 	bashunit.test.assert_exit_code.expects_fail "athena.docker.run_container_with_default_router" "one"
 	bashunit.test.assert_exit_code.expects_fail "athena.docker.run_container_with_default_router" "one" "two"
-	bashunit.test.mock "athena.docker.run" "_my_docker_echo"
+	bashunit.test.mock "athena.docker.run" "_my_fill_called_with_arguments"
 	bashunit.test.mock.outputs "athena.docker.get_ip" "127.0.0.1"
 	bashunit.test.mock.outputs "athena.os.get_host_ip" "127.0.0.1"
 	bashunit.test.mock.outputs "athena.plugin.get_shared_lib_dir" "/path/to/shared/dir"
@@ -27,10 +27,12 @@ function testcase_athena.docker.run_container_with_default_router()
 
 	athena.docker.set_options
 	athena.docker.add_option "OTHER_OPTIONS"
-	athena.argument.set_arguments one two three
-	bashunit.test.assert_output "athena.docker.run_container_with_default_router" \
-		"OTHER_OPTIONS --env ATHENA_PLUGIN=base --env ATHENA_BASE_SHARED_LIB_DIR=/opt/shared --env BIN_DIR=/opt/athena/bin --env CMD_DIR=/opt/athena/bin/cmd --env LIB_DIR=/opt/athena/bin/lib --env ATHENA_DOCKER_IP=127.0.0.1 --env ATHENA_DOCKER_HOST_IP=127.0.0.1 -v /path/to/shared/dir:/opt/shared -v /path/to/plugin/dir:/opt/athena -v /path/to/bootstrap/dir:/opt/bootstrap --name mycontainer mytag:version /opt/bootstrap/router.sh mycommand one two three" \
-		"mycontainer" "mytag:version" "mycommand"
+	athena.argument.set_arguments one two three "four and five"
+
+	CALLED_WITH_ARGUMENTS=()
+	athena.docker.run_container_with_default_router "mycontainer" "mytag:version" "mycommand"
+	EXPECTED_ARGUMENTS=( OTHER_OPTIONS --env ATHENA_PLUGIN=base --env ATHENA_BASE_SHARED_LIB_DIR=/opt/shared --env BIN_DIR=/opt/athena/bin --env CMD_DIR=/opt/athena/bin/cmd --env LIB_DIR=/opt/athena/bin/lib --env ATHENA_DOCKER_IP=127.0.0.1 --env ATHENA_DOCKER_HOST_IP=127.0.0.1 -v /path/to/shared/dir:/opt/shared -v /path/to/plugin/dir:/opt/athena -v /path/to/bootstrap/dir:/opt/bootstrap --name mycontainer mytag:version /opt/bootstrap/router.sh mycommand one two three "four and five" )
+	bashunit.test.assert_array EXPECTED_ARGUMENTS CALLED_WITH_ARGUMENTS
 }
 
 function testcase_athena.docker.add_option()
@@ -669,6 +671,10 @@ function _void()
 function _echo_all_arguments_in_newline()
 {
 	echo "$@"
+}
+function _my_fill_called_with_arguments()
+{
+	CALLED_WITH_ARGUMENTS=( "$@" )
 }
 function _my_docker_echo()
 {
