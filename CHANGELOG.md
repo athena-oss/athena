@@ -1,3 +1,8 @@
+## 0.10.2 (January 30, 2017)
+
+### Changed
+- ed1d359 improve support for spaces
+
 ## 0.10.1 (December 19, 2016)
 
 ### Added
