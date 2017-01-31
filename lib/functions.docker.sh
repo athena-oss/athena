@@ -554,14 +554,10 @@ function athena.docker.run_container_with_default_router()
 	athena.docker.mount_dir "$(athena.plugin.get_shared_lib_dir)" "/opt/shared"
 	athena.docker.mount_dir "$(athena.plugin.get_plg_dir)" "/opt/athena"
 	athena.docker.mount_dir "$(athena.plugin.get_bootstrap_dir)" "/opt/bootstrap"
-	athena.docker.add_option "--name" "$name"
-	athena.docker.add_option "$tag_name"
-	athena.docker.add_option "$router"
-	athena.docker.add_option "$athena_command"
 
 	athena.argument.get_arguments athena_arguments
 	athena.docker.get_options docker_opts
-	athena.docker.run "${docker_opts[@]}" "${athena_arguments[@]}"
+	athena.docker.run "${docker_opts[@]}" --name "$name" "$tag_name" "$router" "$athena_command" "${athena_arguments[@]}"
 }
 
 # This function specifies that the default router should not be used.
