@@ -517,9 +517,12 @@ function athena.docker.run_container()
 	athena.argument.argument_is_not_empty_or_fail "$2"
 	local name="$1"
 	local tag_name="$2"
-	local docker_opts="$(athena.docker.get_options)"
-	local arguments="$(athena.argument.get_arguments)"
-	athena.docker.run --name "$name" ${docker_opts[@]} "$tag_name" ${arguments[@]}
+	declare -a arguments
+	declare -a docker_opts
+	athena.argument.get_arguments arguments
+	athena.docker.get_options docker_opts
+
+	athena.docker.run --name "$name" "${docker_opts[@]}" "$tag_name" "${arguments[@]}"
 }
 
 # This function runs a container using the default router.
