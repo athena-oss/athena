@@ -115,7 +115,7 @@ athena.plugin.use_external_container_as_daemon "php:7.0-apache"
 athena.docker.mount_dir "$source_directory" "/var/www/html"
 
 # maps the specified port into the port 80 of the container
-athena.docker.add_option "-p $port:80"
+athena.docker.add_option -p "$port:80"
 ```
 
 ## Execute the command with the right parameters
