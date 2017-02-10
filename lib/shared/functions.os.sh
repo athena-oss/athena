@@ -583,7 +583,7 @@ function athena.os._get_host_ip_for_linux()
 	if which 'ifconfig' 1>/dev/null 2>/dev/null; then
 		for iface in docker0 eth0; do
 			if /sbin/ifconfig $iface 1>/dev/null 2>/dev/null; then
-				docker_host_ip=$(/sbin/ifconfig $iface | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1 }')
+				docker_host_ip=$(/sbin/ifconfig $iface | grep 'inet ' | awk '{print $2}' | sed -r 's/.*://')
 				break
 			fi
 		done
