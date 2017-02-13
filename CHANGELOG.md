@@ -1,3 +1,7 @@
+## 0.10.4 (February 13, 2017)
+
+- 99c3699 Fixes ifconfig output handling on some systems (closes #39)
+
 ## 0.10.3 (January 30, 2017)
 
 ### Changed
