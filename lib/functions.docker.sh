@@ -541,8 +541,6 @@ function athena.docker.run_container_with_default_router()
 	local name="$1"
 	local tag_name="$2"
 	local athena_command="$3"
-	local -a athena_arguments
-	local -a docker_opts
 
 	athena.docker.add_env "ATHENA_PLUGIN" "$(athena.plugin.get_plugin)"
 	athena.docker.add_env "ATHENA_BASE_SHARED_LIB_DIR" "/opt/shared"
@@ -554,10 +552,14 @@ function athena.docker.run_container_with_default_router()
 	athena.docker.mount_dir "$(athena.plugin.get_shared_lib_dir)" "/opt/shared"
 	athena.docker.mount_dir "$(athena.plugin.get_plg_dir)" "/opt/athena"
 	athena.docker.mount_dir "$(athena.plugin.get_bootstrap_dir)" "/opt/bootstrap"
+	athena.docker.add_option "--name" "$name"
+	athena.docker.add_option "$tag_name"
+	athena.docker.add_option "$router"
+	athena.docker.add_option "$athena_command"
+	athena.docker.add_option "$(athena.argument.get_arguments)"
 
-	athena.argument.get_arguments athena_arguments
-	athena.docker.get_options docker_opts
-	athena.docker.run "${docker_opts[@]}" --name "$name" "$tag_name" "$router" "$athena_command" "${athena_arguments[@]}"
+	local docker_opts="$(athena.docker.get_options)"
+	athena.docker.run ${docker_opts[@]}
 }
 
 # This function specifies that the default router should not be used.
