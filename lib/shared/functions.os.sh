@@ -595,12 +595,30 @@ function athena.os._get_host_ip_for_linux()
 	echo "$docker_host_ip"
 }
 
+function athena.os._get_active_adapter_for_mac(){
+	services=$(networksetup -listnetworkserviceorder | grep 'Hardware Port')
+
+	while read line; do
+		sdev=$(echo $line | awk -F  "(, )|(: )|[)]" '{print $4}')
+		if [ -n "$sdev" ]; then
+			ifconfig $sdev 2>/dev/null | grep 'status: active' > /dev/null 2>&1
+			rc="$?"
+			if [ "$rc" -eq 0 ]; then
+				echo "$sdev"
+				return 0
+			fi
+		fi
+	done <<< "$(echo "$services")"
+
+	echo "en0"
+}
+
 function athena.os._get_host_ip_for_mac()
 {
 	if which 'ipconfig' 1>/dev/null 2>/dev/null; then
 		# we are using docker for mac
 		if [ -z "$DOCKER_MACHINE_NAME" ]; then
-				/sbin/ifconfig en0 | grep 'inet ' | cut -f2 | awk '{ print $2 }'
+				/sbin/ifconfig $(athena.os._get_active_adapter_for_mac) | grep 'inet ' | cut -f2 | awk '{ print $2 }'
 			return 0
 		fi
 		docker-machine inspect --format="{{.Driver.HostOnlyCIDR}}" "$DOCKER_MACHINE_NAME" | cut -d"/" -f1
