@@ -1,3 +1,8 @@
+## 0.11.0 (July 6, 2017)
+
+- d1acab9 Auto-detect active mac network adaptor (Andrew Basson)
+- 8817ec6 Fixed broken broken athena logo under docs. (Mc Auriel Gagan)
+
 ## 0.10.4 (February 13, 2017)
 
 - 99c3699 Fixes ifconfig output handling on some systems (closes #39)
